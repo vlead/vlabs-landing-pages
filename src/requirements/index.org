@@ -1,0 +1,45 @@
+#+TITLE: Vlabs Landing Pages
+#+AUTHOR: VLEAD
+#+DATE: [2017-04-03 Monday]
+#+PROPERTY: results output
+#+PROPERTY: exports code
+#+SETUPFILE: ../org-templates/level-1.org
+#+options: ^:nil
+#+LATEX: Literal LaTeX code for export
+
+* Introduction 
+  :PROPERTIES:
+  :CUSTOM_ID: introduction
+  :END: 
+  This document describes all the requirements of =vlabs-landing-pages=.
+
+* Requirements
+  :PROPERTIES:
+  :CUSTOM_ID: requirements
+  :END: 
+
+** Req1
+  :PROPERTIES:
+  :CUSTOM_ID: req1
+  :END: 
+   - Ability to display =All Labs=
+
+** Req2 
+  :PROPERTIES:
+  :CUSTOM_ID: req2
+  :END: 
+   - Ability to display the labs developed by =Partner Institutes=.
+
+** Req3
+  :PROPERTIES:
+  :CUSTOM_ID: req3
+  :END: 
+   - Ability to display all  =Discipline and Domain= wise labs.
+
+** Req4
+  :PROPERTIES:
+  :CUSTOM_ID: req4
+  :END: 
+  - Ability to Search all the labs based on the =lab name=
+
+    
