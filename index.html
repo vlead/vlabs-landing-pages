@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+  <head>
+    
+    <title>How to Parse a JSON file using jQuery</title>
+    <style>
+        body{
+            text-align: center;
+            font-family: arial;
+        }
+
+        .button{
+            margin:20px;
+            font-size:16px;
+            font-weight: bold;
+            padding:5px 10px;
+        }
+    </style>
+
+
+</head>
+<body>
+  <select id="filterInstComboBox"></select>
+  <select id="filterDisComboBox"></select>
+  <input id="button1" type="button" value="Click!" />  
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+      $.getJSON( "http://localhost:5000/institutes", function(data) {
+      $.each(data, function(key, value){
+      inst_name = value['institute_name']
+      $('#filterInstComboBox').append('<option value="' + inst_name + '">' + inst_name + '</option>');
+      });      
+      })
+      .done(function() {
+      console.log( "second success" );
+      })
+      .fail(function() {
+      console.log( "error" );
+      })
+      .always(function() {
+      console.log( "complete" );
+      }); 
+      $.getJSON( "http://localhost:5000/disciplines", function(data) {
+      $.each(data, function(key, value){
+      dis_name = value['discipline_name']
+      $('#filterDisComboBox').append('<option value="' + dis_name + '">' + dis_name + '</option>');
+      });      
+      })
+      .done(function() {
+      console.log( "second success" );
+      })
+      .fail(function() {
+      console.log( "error" );
+      })
+      .always(function() {
+      console.log( "complete" );
+      });
+      $(document).ready(function(){ 
+      $('#button1').click(function(){ 
+      alert($('#filterDisComboBox :selected').text());
+      });
+      });      
+    </script>
+
+</body>
+</html>
