@@ -1,0 +1,78 @@
+<html>
+  <head>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </style>
+  </head>
+  
+<body>
+    
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">vlabs-logo</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li class="dropdown" ><a class="dropdown-toggle" data-toggle="dropdown" href="#">Institutes <span class="caret"></span></a>
+          <ul class="dropdown-menu" id="filterInstComboBox">
+          </ul>
+        </li>
+        <li class="dropdown" ><a class="dropdown-toggle" data-toggle="dropdown" href="#">Disciplines <span class="caret"></span></a>
+          <ul class="dropdown-menu" id="filterDisComboBox">
+          </ul>
+        </li>
+        <li><a href="#">All Labs</a></li>
+      </ul>
+    </div>
+  </nav>
+  
+  <div class="container">
+  </div>
+  <script>
+    $.getJSON( "http://localhost:5000/institutes", function(data) {
+    var items = '';
+    $.each(data, function(key, value){
+    inst_name = value['institute_name']
+    items += '<li id="' + inst_name + '"><a href="#">' + inst_name + '</a></li>';
+    });
+    $('#filterInstComboBox').append(items);
+    })
+    .done(function() {
+    console.log( "second success" );
+    })
+      .fail(function() {
+    console.log( "error" );
+    })
+    .always(function() {
+    console.log( "complete" );
+    }); 
+    $.getJSON( "http://localhost:5000/disciplines", function(data) {
+    var items = '';
+    $.each(data, function(key, value){
+    dis_name = value['discipline_name']
+    items += '<li id="' + dis_name + '"><a href="#">' + dis_name + '</a></li>';
+    });
+    $('#filterDisComboBox').append(items);
+    })
+    .done(function() {
+    console.log( "second success" );
+    })
+    .fail(function() {
+    console.log( "error" );
+    })
+    .always(function() {
+    console.log( "complete" );
+    });
+    $(document).ready(function(){ 
+    $('#button1').click(function(){ 
+    alert($('#filterDisComboBox :selected').text());
+    });
+    });      
+  </script>
+
+
+  
+</body></html>
