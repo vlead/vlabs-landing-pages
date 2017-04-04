@@ -24,12 +24,13 @@
           <ul class="dropdown-menu" id="filterDisComboBox">
           </ul>
         </li>
-        <li><a href="#">All Labs</a></li>
+        <li><a href="javascript:getAllLabs()">All Labs</a></li>
       </ul>
     </div>
   </nav>
   
   <div class="container">
+    <span id="allLabs"></span>
   </div>
   <script>
     $.getJSON( "http://localhost:5000/institutes", function(data) {
@@ -49,6 +50,7 @@
     .always(function() {
     console.log( "complete" );
     }); 
+
     $.getJSON( "http://localhost:5000/disciplines", function(data) {
     var items = '';
     $.each(data, function(key, value){
@@ -66,11 +68,27 @@
     .always(function() {
     console.log( "complete" );
     });
-    $(document).ready(function(){ 
-    $('#button1').click(function(){ 
-    alert($('#filterDisComboBox :selected').text());
+    function getAllLabs() {
+    $.getJSON( "http://localhost:5000/labs", function(data) {
+    var items = '';
+    $.each(data, function(key, value){
+    lab_name = value['lab_name']
+    hosted_url = value['hosting_info'][0]['hosted_url']
+    items += '<li id="' + lab_name + '"><a href='+ hosted_url+'>' + lab_name + '</a></li>';
     });
-    });      
+    console.log( hosted_url );
+    $('#allLabs').append(items);
+    })
+    .done(function() {
+    console.log( "second success" );
+    })
+    .fail(function() {
+    console.log( "error" );
+    })
+    .always(function() {
+    console.log( "complete" );
+    });
+    }
   </script>
 
 
