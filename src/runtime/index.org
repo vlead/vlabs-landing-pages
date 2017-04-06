@@ -1,0 +1,231 @@
+#+TITLE: Runtime
+#+AUTHOR: VLEAD
+#+DATE: [2017-04-06 Thursday]
+#+PROPERTY: results output
+#+PROPERTY: exports code
+#+SETUPFILE: ../org-templates/level-1.org
+#+options: ^:nil
+#+LATEX: Literal LaTeX code for export
+
+* Introduction 
+  :PROPERTIES:
+  :CUSTOM_ID: introduction
+  :END: 
+  
+  This document illustrates building of  =Vlabs landing Pages= dynamically.
+  Data will be provided by =Lab Data Service=.
+* Web App
+** Index
+#+BEGIN_SRC html :tangle test_index.html :eval no :noweb yes
+<html>
+  <head>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </style>
+  </head>
+  
+<body>
+    
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">vlabs-logo</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li class="dropdown" ><a class="dropdown-toggle" data-toggle="dropdown" href="#">Institutes <span class="caret"></span></a>
+          <ul class="dropdown-menu" id="filterInstComboBox">
+          </ul>
+        </li>
+        <li class="dropdown" ><a class="dropdown-toggle" data-toggle="dropdown" href="#">Disciplines <span class="caret"></span></a>
+          <ul class="dropdown-menu" id="filterDisComboBox">
+          </ul>
+        </li>
+        <li><a href="javascript:getAllLabs()">All Labs</a></li>
+      </ul>
+    </div>
+  </nav>
+  
+  <div class="container">
+    <span id="allLabs"></span>
+    
+  </div>
+  <script>
+    var url = 'http://localhost:5000/institutes';
+    $.getJSON(url , function(data) {
+    var items = '';
+    $.each(data, function(key, value){
+    inst_name = value['institute_name']
+    items += '<li id="' + inst_name + '"><a href='+ url+'>' + inst_name + '</a></li>';
+    });
+    $('#filterInstComboBox').append(items);
+    })
+    .done(function() {
+    console.log( "second success" );
+    })
+      .fail(function() {
+    console.log( "error" );
+    })
+    .always(function() {
+    console.log( "complete" );
+    }); 
+
+    $.getJSON( "http://localhost:5000/disciplines", function(data) {
+    var items = '';
+    $.each(data, function(key, value){
+    dis_name = value['discipline_name']
+    items += '<li id="' + dis_name + '"><a href="#">' + dis_name + '</a></li>';
+    });
+    $('#filterDisComboBox').append(items);
+    })
+    .done(function() {
+    console.log( "second success" );
+    })
+    .fail(function() {
+    console.log( "error" );
+    })
+    .always(function() {
+    console.log( "complete" );
+    });
+    function getAllLabs() {
+    $.getJSON( "http://localhost:5000/labs", function(data) {
+    var items = '';
+    $.each(data, function(key, value){
+    lab_name = value['lab_name']
+    hosted_url = value['hosting_info'][0]['hosted_url']
+    items += '<div class="row"><div class="col-sm-4" id="' + lab_name + '"><a href='+ hosted_url+'>' + lab_name + '</a></div>';
+    });
+    $('#allLabs').append(items);
+    })
+    .done(function() {
+    console.log( "second success" );
+    })
+    .fail(function() {
+    console.log( "error" );
+    })
+    .always(function() {
+    console.log( "complete" );
+    });
+    }
+  </script>
+</body></html>
+
+#+END_SRC
+
+** Footer
+#+BEGIN_SRC html :tangle footer.html :eval no :noweb yes 
+<head>
+  <link rel="stylesheet" type="text/css" href="static/css/main.css">
+</head>
+
+<footer>
+  <div class="container-fluid footer-div" style="background: #404040; margin-top: 40px;  padding: 20px;">
+    <div class="col-md-4 border-right-green-dotted" >
+      <h2 class="text-h2-lightblue-small" style="font-weight: bold;margin-top: 0px;">Updates</h2>
+      <a href="http://community.virtual-labs.ac.in/w/index.php/Download" class="text-normal-gray-small nounderline" style="color: white" > Lab Integration Kit Releases</a><br>
+      <a href="http://community.virtual-labs.ac.in/w/index.php/First_Integration_workshop"
+	 class="text-normal-gray-small nounderline"
+	 style="color: white" >First Integration Workshop at IIIT Hyderabad</a><br>
+      <a href="http://community.virtual-labs.ac.in/w/index.php/Summer_Sprint_Integration_workshop" class="text-normal-gray-small nounderline" style="color: white" > Summer Integration Workshop at IIT Guwahati</a><br>
+      <a href="http://community.virtual-labs.ac.in/w/index.php/QA/Integration_workshop"
+	 class="text-normal-gray-small nounderline"
+	 style="color: white" > QA Integration
+	Workshop at IIIT Hyderabad</a><br>
+      <a href="http://community.virtual-labs.ac.in/w/index.php/A_new_set_of_25_Virtual_Labs_on_Portable_Media" class="text-normal-gray-small nounderline" style="color: white" > A new set of 25 Virtual Labs on Portable Media</a><br>
+    </div>
+    
+    <div class="col-md-2 border-right-green-dotted" >
+
+<!--      <a href="./faq.html" class="text-a-lightgreen" style="text-decoration: underline;" > FAQ</a><br>-->
+      <a href="http://community.virtual-labs.ac.in/w/index.php/Main_Page" class="text-a-lightgreen" style="text-decoration: underline;" >Community</a><br>
+      
+      <a href="http://outreach.vlabs.ac.in/ncentres"
+	 class="text-a-lightgreen"
+	 style="text-decoration: underline;" > Nodal Centers</a><br>
+      
+      
+      <a href="http://www.sakshat.ac.in/" class="text-a-lightgreen" style="text-decoration: underline;" > Sakshat Portal</a><br>
+
+      <a href="http://outreach.vlabs.ac.in/" class="text-a-lightgreen" style="text-decoration: underline;" > Outreach Portal</a><br>
+      <a href="http://118.102.191.38/vlabiitece/"
+	 class="text-a-lightgreen"
+	 style="text-decoration: underline;" > Labs
+	Developed by Nodal Centers</a><br>
+      
+    </div>
+    
+    <div class="col-md-3 border-right-green-dotted" id="contact" >
+      <h2 class="text-h2-lightblue-small" style="font-weight: bold;margin-top: 0px;"> Contact us</h2>
+      <a href="http://feedback.vlabs.ac.in/" class="text-a-lightgreen" style="text-decoration: underline;" > Feedback</a><br>
+      
+      <a class="text-a-lightgreen"style="text-decoration: underline;" href="mailto:support@vlabs.ac.in">support@vlabs.ac.in</a><br>
+      <a href="http://118.102.191.38/labassessment/assessmentform.html"
+	 class="text-a-lightgreen"
+	 style="text-decoration: underline;" > Lab
+	Assessment Form</a><br>
+
+    </div>
+    
+                        
+    <div class="col-md-2 border-right-green-dotted" >
+      <h2 class="text-h2-lightblue-small" style="font-weight: bold;margin-top: 0px;"> Follow us</h2>
+      <a href="https://www.facebook.com/pages/Virtual-Labs-IIT-Delhi/301510159983871" class="text-a-lightgreen nounderline"   target="_blank"> <img src="http://vlabs.ac.in/images/social/fb.png"  style="border-radius: 50%;"/> </a><br>
+      <a href="https://twitter.com/TheVirtualLabs" class="text-a-lightgreen nounderline"   target="_blank"> <img src="http://vlabs.ac.in/images/social/twitter.png"  style="border-radius: 50%;"/></a><br>
+      <a href="http://linkedin.com" class="text-a-lightgreen nounderline"  target="_blank" > <img src="http://vlabs.ac.in/images/social/linkedin.png" style="border-radius: 50%;" /></a><br>
+      <a href="https://www.youtube.com/watch?v=mVBYNXLaDdg"
+	 class="text-a-lightgreen nounderline"
+	 target="_blank" >
+	<img src="http://vlabs.ac.in/images/social/youtube.png"
+	     style="border-radius: 50%; width: 38px;
+		    height: 38px" /></a><br>
+      
+    </div>
+    
+  </div>
+</footer>
+
+#+END_SRC
+** Header
+#+BEGIN_SRC html :tangle header.html :eval no :noweb yes
+      <header>
+        <!-- Navigation -->
+        <link rel="shortcut icon" href="http://vlabs.ac.in/static/edx-bootstrap-theme/images/favicon.f7ccf9ba8503.ico">
+        <link rel = "stylesheet" href = "/static/css/bootstrap.min.css">
+        <nav class="navbar navbar-default " style="background-color: white !important; margin-bottom: 0px !important;">
+          <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+              <button aria-controls="bs-navbar" aria-expanded="true"  type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar #bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar" style="background-color: #77BB41"></span>
+                <span class="icon-bar" style="background-color: #77BB41"></span>
+                <span class="icon-bar" style="background-color: #77BB41"></span>
+              </button>
+              <a class="navbar-brand main-logo-a" href="https://open-edx.vlabs.ac.in"><img src="http://vlabs.ac.in/static/edx-bootstrap-theme/images/logo.07484ecb2b31.png" class="img-responsive main-logo" /></a>
+            </div>                  
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse menu-div" id="bs-example-navbar-collapse-1" style="border: 0px;">
+              <ul class="nav navbar-nav navbar-right menu-ul search-ul" style="position: relative; top: -5px;">
+                <li></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right menu-ul">
+                <li class="page-scroll menu-li " >
+                  <a href="https://open-edx.vlabs.ac.in" class="menu-a" >HOME</a>
+                </li>
+                <li class="page-scroll menu-li">
+                  <a href="https://open-edx.vlabs.ac.in/courses"  class="menu-a " >ALL LABS</a>
+                </li>
+                <li class="page-scroll menu-li" >
+                  <a href="https://open-edx.vlabs.ac.in/#partner" class="menu-a" >PARTNERS</a>
+                </li><li class="page-scroll menu-li " >
+                  <a href="https://open-edx.vlabs.ac.in/#partner" class="menu-a" >CONTACT</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+#+END_SRC
