@@ -17,6 +17,7 @@
 * Web App
 ** Index
 #+BEGIN_SRC html :tangle test_index.html :eval no :noweb yes
+
 <html>
   <head>
     <link rel="stylesheet"
@@ -53,12 +54,13 @@
     
   </div>
   <script>
-    var url = 'http://localhost:5000/institutes';
-    $.getJSON(url , function(data) {
+    var base_url = 'http://lds.base4.vlabs.ac.in'
+    var inst_url = base_url+"/institutes";
+    $.getJSON(inst_url, function(data) {
     var items = '';
     $.each(data, function(key, value){
     inst_name = value['institute_name']
-    items += '<li id="' + inst_name + '"><a href='+ url+'>' + inst_name + '</a></li>';
+    items += '<li id="' + inst_name + '"><a href='+ inst_url+'>' + inst_name + '</a></li>';
     });
     $('#filterInstComboBox').append(items);
     })
@@ -70,13 +72,14 @@
     })
     .always(function() {
     console.log( "complete" );
-    }); 
-
-    $.getJSON( "http://localhost:5000/disciplines", function(data) {
+    });
+    
+    dis_url = base_url+"/disciplines";
+    $.getJSON(dis_url, function(data) {
     var items = '';
     $.each(data, function(key, value){
     dis_name = value['discipline_name']
-    items += '<li id="' + dis_name + '"><a href="#">' + dis_name + '</a></li>';
+    items += '<li id="' + dis_name + '"><a href='+ dis_url+'>' + dis_name + '</a></li>';
     });
     $('#filterDisComboBox').append(items);
     })
@@ -89,13 +92,17 @@
     .always(function() {
     console.log( "complete" );
     });
+
+    lab_url = base_url+"/labs";
     function getAllLabs() {
-    $.getJSON( "http://localhost:5000/labs", function(data) {
+    $.getJSON(lab_url, function(data) {
     var items = '';
     $.each(data, function(key, value){
     lab_name = value['lab_name']
     hosted_url = value['hosting_info'][0]['hosted_url']
-    items += '<div class="row"><div class="col-sm-4" id="' + lab_name + '"><a href='+ hosted_url+'>' + lab_name + '</a></div>';
+    image =value['assets'][0]['path']
+    items += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>' + lab_name +'<div class="thumbnail"><img src='+ image +'></img></a></div></div>';
+    console.log(value);     
     });
     $('#allLabs').append(items);
     })
@@ -111,7 +118,6 @@
     }
   </script>
 </body></html>
-
 #+END_SRC
 
 ** Footer
