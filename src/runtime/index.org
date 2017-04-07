@@ -15,9 +15,8 @@
   This document illustrates building of  =Vlabs landing Pages= dynamically.
   Data will be provided by =Lab Data Service=.
 * Web App
-** Index
+** Index HTML
 #+BEGIN_SRC html :tangle test_index.html :eval no :noweb yes
-
 <html>
   <head>
     <link rel="stylesheet"
@@ -28,7 +27,6 @@
   </head>
   
 <body>
-    
   <nav class="navbar navbar-inverse">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -41,7 +39,7 @@
           </ul>
         </li>
         <li class="dropdown" ><a class="dropdown-toggle" data-toggle="dropdown" href="#">Disciplines <span class="caret"></span></a>
-          <ul class="dropdown-menu" id="filterDisComboBox">
+          <ul class="dropdown-menu filterDisComboBox" id="getDisName">
           </ul>
         </li>
         <li><a href="javascript:getAllLabs()">All Labs</a></li>
@@ -50,76 +48,92 @@
   </nav>
   
   <div class="container">
-    <span id="allLabs"></span>
-    
+    <span id="allLabs"></span>    
   </div>
-  <script>
-    var base_url = 'http://lds.base4.vlabs.ac.in'
-    var inst_url = base_url+"/institutes";
-    $.getJSON(inst_url, function(data) {
-    var items = '';
-    $.each(data, function(key, value){
-    inst_name = value['institute_name']
-    items += '<li id="' + inst_name + '"><a href='+ inst_url+'>' + inst_name + '</a></li>';
-    });
-    $('#filterInstComboBox').append(items);
-    })
-    .done(function() {
-    console.log( "second success" );
-    })
-      .fail(function() {
-    console.log( "error" );
-    })
-    .always(function() {
-    console.log( "complete" );
-    });
-    
-    dis_url = base_url+"/disciplines";
-    $.getJSON(dis_url, function(data) {
-    var items = '';
-    $.each(data, function(key, value){
-    dis_name = value['discipline_name']
-    items += '<li id="' + dis_name + '"><a href='+ dis_url+'>' + dis_name + '</a></li>';
-    });
-    $('#filterDisComboBox').append(items);
-    })
-    .done(function() {
-    console.log( "second success" );
-    })
-    .fail(function() {
-    console.log( "error" );
-    })
-    .always(function() {
-    console.log( "complete" );
-    });
+</body>
+<script type="text/javascript">
+<<main-js>>        
+</script>
 
-    lab_url = base_url+"/labs";
-    function getAllLabs() {
-    $.getJSON(lab_url, function(data) {
-    var items = '';
-    $.each(data, function(key, value){
-    lab_name = value['lab_name']
-    hosted_url = value['hosting_info'][0]['hosted_url']
-    image =value['assets'][0]['path']
-    items += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>' + lab_name +'<div class="thumbnail"><img src='+ image +'></img></a></div></div>';
-    console.log(value);     
-    });
-    $('#allLabs').append(items);
-    })
-    .done(function() {
-    console.log( "second success" );
-    })
-    .fail(function() {
-    console.log( "error" );
-    })
-    .always(function() {
-    console.log( "complete" );
-    });
-    }
-  </script>
-</body></html>
+</html>
 #+END_SRC
 
+** JS
+#+NAME: main-js
+#+BEGIN_SRC javascript
+var base_url = 'http://lds.base4.vlabs.ac.in'
+
+var inst_url = base_url+"/institutes";
+$.getJSON(inst_url, function(data) {
+  var items = '';
+  $.each(data, function(key, value){
+    inst_name = value['institute_name']
+    items += '<li id="' + inst_name + '"><a href='+ inst_url+'>' + inst_name + '</a></li>';
+  });
+  $('#filterInstComboBox').append(items);
+})
+  .done(function() {
+    console.log( "second success" );
+  })
+  .fail(function() {
+    console.log( "error" );
+  })
+  .always(function() {
+    console.log( "complete" );
+  });
+
+dis_url = base_url+"/disciplines";
+$.getJSON(dis_url, function(data) {
+  var items = '';
+  $.each(data, function(key, value){
+    dis_name = value['discipline_name']
+    items += '<li onclick="getLabsbyDis()" value="' + dis_name + '" id="' + dis_name + '"><a href="#">' +
+      dis_name + '</a></li>';
+  });
+  $('.filterDisComboBox').append(items);
+})
+  .done(function() {
+    console.log( "second success" );
+  })
+  .fail(function() {
+    console.log( "error" );
+  })
+    .always(function() {
+      console.log( "complete" );
+    });
+
+function getLabsbyDis() {
+$("#getDisName li").click(function() {
+    console.log($(this).text()); 
+});
+}
+
+lab_url = base_url+"/labs";
+function getAllLabs() {
+  $.getJSON(lab_url, function(data) {
+    var items = '';
+    $.each(data, function(key, value){
+      lab_name = value['lab_name']
+      hosted_url = value['hosting_info'][0]['hosted_url']
+      image =value['assets'][0]['path']
+      items += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
+        + lab_name +'<div class="thumbnail"><img src='+ image +'></img></a></div></div>';
+    });
+    $('#allLabs').append(items);
+  })
+    .done(function() {
+      console.log( "second success" );
+    })
+    .fail(function() {
+      console.log( "error" );
+    })
+    .always(function() {
+      console.log( "complete" );
+    });
+}
+    
+#+END_SRC
+   
 ** Footer
 #+BEGIN_SRC html :tangle footer.html :eval no :noweb yes 
 <head>
