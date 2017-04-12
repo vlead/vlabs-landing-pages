@@ -197,6 +197,23 @@ function getAllLabs() {
     
 #+END_SRC
    
+** Iframe
+#+BEGIN_SRC html :tangle test_iframe.html :eval no :noweb yes 
+<!DOCTYPE html>
+<html>
+<body>
+<p><a href="https://w3schools.com" target="iframe_a">vlabs landing page</a></p>
+
+
+
+<iframe width="100%" src="demo_iframe.htm" name="iframe_a"></iframe>
+
+
+</body>
+</html>
+
+
+#+END_SRC
 ** Footer
 #+BEGIN_SRC html :tangle footer.html :eval no :noweb yes 
 <head>
