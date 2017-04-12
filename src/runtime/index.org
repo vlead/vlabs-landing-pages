@@ -202,11 +202,11 @@ function getAllLabs() {
 <!DOCTYPE html>
 <html>
 <body>
-<p><a href="https://w3schools.com" target="iframe_a">Home</a></p>
+<p><a href="https://vlabs.ac.in" target="iframe_a">Home</a></p>
 
 
 
-<iframe scrolling="no" width="100%"height="auto" src="demo_iframe.htm" name="iframe_a"></iframe>
+<iframe scrolling="no" width="100%" height="auto" src="demo_iframe.htm" name="iframe_a"></iframe>
 
 
 </body>
