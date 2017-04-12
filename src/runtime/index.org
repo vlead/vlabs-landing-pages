@@ -202,7 +202,7 @@ function getAllLabs() {
 <!DOCTYPE html>
 <html>
 <body>
-<p><a href="https://w3schools.com" target="iframe_a">vlabs landing page</a></p>
+<p><a href="https://w3schools.com" target="iframe_a">Home</a></p>
 
 
 
