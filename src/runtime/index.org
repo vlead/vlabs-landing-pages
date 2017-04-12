@@ -205,7 +205,6 @@ function getAllLabs() {
 <p><a href="https://w3schools.com" target="iframe_a">Home</a></p>
 
 
-
 <iframe scrolling="no" width="100%" height="auto" src="demo_iframe.htm" name="iframe_a"></iframe>
 
 
