@@ -206,7 +206,7 @@ function getAllLabs() {
 
 
 
-<iframe width="100%" src="demo_iframe.htm" name="iframe_a"></iframe>
+<iframe scrolling="no" width="100%" src="demo_iframe.htm" name="iframe_a"></iframe>
 
 
 </body>
