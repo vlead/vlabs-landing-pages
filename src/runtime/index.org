@@ -19,22 +19,19 @@
 #+BEGIN_SRC html :tangle index.html :eval no :noweb yes
 
 <html>
-    <iframe width="100%" height="150em"  src="./header.html" name="iframe_header"></iframe>
+  <iframe width="100%" height="150em"  src="./header.html" name="iframe_header"></iframe>
   <head>
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="./main.js"></script>
   </head>
-  
-<body>
-  
-  <div class="container">
-  <p><a href="https://w3schools.com" target="iframe_a">vlabs landing page</a></p>
-  <iframe width="100%" height="150em"  src="./test_index.html" name="iframe_a"></iframe>
-  </div>
-</body>
+  <body>
+    <div class="container">
+      <p><a href="https://w3schools.com" target="iframe_a">vlabs landing page</a></p>
+      <iframe width="100%" height="450em"  src="./test_index.html" name="iframe_a"></iframe>
+    </div>
+  </body>
 </html>
 
 #+END_SRC
@@ -44,22 +41,21 @@
 
 <html>
   <head>
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="./main.js"></script>
   </head>  
-<body>
-  <span id="allLabs">welcome to virutal labs</span>
-</body>
+  <body>
+    <span id="allLabs">welcome to virutal labs</span>
+  </body>
 </html>
 #+END_SRC
 
 ** JS
 #+BEGIN_SRC javascript :tangle main.js :eval no :noweb yes
 
-var base_url = 'http://lds.base4.vlabs.ac.in'
+var base_url = 'http://localhost:5000'
 
 var inst_url = base_url+"/institutes";
 $.getJSON(inst_url, function(data) {
@@ -276,12 +272,11 @@ function getAllLabs() {
 #+BEGIN_SRC html :tangle header.html :eval no :noweb yes
 
 <header >
-  <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
-    <script src="./main.js"></script>
-<nav class="navbar navbar-inverse">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="./main.js"></script>
+  <nav class="navbar navbar-inverse">
     <div class="container-fluid">
       <div class="navbar-header">
         <a class="navbar-brand" href="#">vlabs-logo</a>
