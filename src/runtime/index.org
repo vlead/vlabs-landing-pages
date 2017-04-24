@@ -55,13 +55,20 @@
 ** JS
 #+BEGIN_SRC javascript :tangle main.js :eval no :noweb yes
 
-var base_url = 'http://localhost:5000'
-
+function manage_frames(){
+  console.log("manage_frames");
+  var elem = document.getElementById("allLabs");
+  elem.parentNode.removeChild(elem);
+  var x = document.createElement("span");
+  x.id="allLabs";
+  document.body.appendChild(x);
+}
+var base_url = 'http://localhost:5000';
 var inst_url = base_url+"/institutes";
 $.getJSON(inst_url, function(data) {
   var items = '';
   $.each(data, function(key, value){
-    inst_name = value['institute_name']
+    inst_name = value['institute_name'];
     items += '<li onclick="getLabsbyInstitute()" value="' + inst_name +
       '" id="' + inst_name + '"><a href="#">' +
       inst_name + '</a></li>';
@@ -83,7 +90,7 @@ dis_url = base_url+"/disciplines";
 $.getJSON(dis_url, function(data) {
   var items = '';
   $.each(data, function(key, value){
-    dis_name = value['discipline_name']
+    dis_name = value['discipline_name'];
     items += '<li onclick="getLabsbyDiscipline()" value="' + dis_name +
       '" id="' + dis_name + '"><a href="#">' +
       dis_name + '</a></li>';
@@ -101,6 +108,9 @@ $.getJSON(dis_url, function(data) {
     });
 
 function getLabsbyDiscipline() {
+  var x = document.getElementById("allLabs");
+  console.log("x="+ x);
+  manage_frames();
   $("#getDisName li").click(function() {
     labs_url = base_url+"/labs";
     labs_by_dis_url = labs_url+"?discipline_name="+($(this).text());
@@ -108,8 +118,8 @@ function getLabsbyDiscipline() {
     $.getJSON(labs_by_dis_url, function(data) {
       var items = '';
       $.each(data, function(key, value){
-        lab_name = value['lab_name']
-        hosted_url = value['hosting_info'][0]['hosted_url']
+        lab_name = value['lab_name'];
+        hosted_url = value['hosting_info'][0]['hosted_url'];
 //        image =value['assets'][0]['path']
 //        items += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
 //          + lab_name +'<div class="thumbnail"><img src='+ image +'></img></a></div></div>';
@@ -117,7 +127,7 @@ function getLabsbyDiscipline() {
           + lab_name +'<div class="thumbnail"></a></div></div>';
 
       });
-      $('#getLabsbyDis').append(items);
+      $('#allLabs').append(items);
     })
       .done(function() {
         console.log( "second success" );
@@ -134,6 +144,7 @@ function getLabsbyDiscipline() {
 }
 
 function getLabsbyInstitute() {
+  manage_frames();  
   $("#getInstName li").click(function() {
     labs_url = base_url+"/labs";
     labs_by_inst_url = labs_url+"?institute_name="+($(this).text());
@@ -141,8 +152,8 @@ function getLabsbyInstitute() {
     $.getJSON(labs_by_inst_url, function(data) {
       var items = '';
       $.each(data, function(key, value){
-        lab_name = value['lab_name']
-        hosted_url = value['hosting_info'][0]['hosted_url']
+        lab_name = value['lab_name'];
+        hosted_url = value['hosting_info'][0]['hosted_url'];
 //        image =value['assets'][0]['path']
 //        items += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
 //          + lab_name +'<div class="thumbnail"><img src='+ image +'></img></a></div></div>';
@@ -167,12 +178,17 @@ function getLabsbyInstitute() {
 }
 
 lab_url = base_url+"/labs";
+
 function getAllLabs() {
+  manage_frames();
+  var x = document.getElementById("allLabs");
+  console.log("X="+x);
+  console.log(x);
   $.getJSON(lab_url, function(data) {
     var items = '';
     $.each(data, function(key, value){
-      lab_name = value['lab_name']
-      hosted_url = value['hosting_info'][0]['hosted_url']
+      lab_name = value['lab_name'];
+      hosted_url = value['hosting_info'][0]['hosted_url'];
 //      image =value['assets'][0]['path']
       items += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
         + lab_name +'<div class="thumbnail"></a></div></div>';
