@@ -17,10 +17,8 @@
 * Web App
 ** Index HTML
 #+BEGIN_SRC html :tangle index.html :eval no :noweb yes
-
 <html>
-  <iframe width="100%" height="150em"  src="./header.html" name="iframe_header"></iframe>
-  <head>
+   <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -28,17 +26,18 @@
   </head>
   <body>
     <div class="container">
-      <p><a href="https://w3schools.com" target="iframe_a">vlabs landing page</a></p>
-      <iframe width="100%" height="450em"  src="./test_index.html" name="iframe_a"></iframe>
+      <iframe id="headerIframe" width="100%" height="150em"  src="./header.html" name="header_iframe"></iframe>
+      <iframe id="bodyIframe" width="100%" height="450em"
+              src="./body_iframe.html" name="body_iframe">
+      </iframe>
     </div>
   </body>
 </html>
 
 #+END_SRC
 
-** Index HTML Part II
-#+BEGIN_SRC html :tangle test_index.html :eval no :noweb yes
-
+** Body IFrame
+#+BEGIN_SRC html :tangle body_iframe.html :eval no :noweb yes
 <html>
   <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -47,23 +46,25 @@
     <script src="./main.js"></script>
   </head>  
   <body>
-    <span id="allLabs">welcome to virutal labs</span>
+    <div id="content">welcome to virutal labs</div>
   </body>
 </html>
+
 #+END_SRC
 
 ** JS
 #+BEGIN_SRC javascript :tangle main.js :eval no :noweb yes
 
-function manage_frames(){
-  console.log("manage_frames");
-  var elem = document.getElementById("allLabs");
-  elem.parentNode.removeChild(elem);
-  var x = document.createElement("span");
-  x.id="allLabs";
-  document.body.appendChild(x);
+function manageFrames(items){
+  console.log("manageFrames");
+  var elem = parent.frames["body_iframe"].document.getElementById("content");
+  console.log("elem = " + elem);
+  console.log("new htdfdfml = " + items);
+  elem.innerHTML = items;
 }
+
 var base_url = 'http://localhost:5000';
+
 var inst_url = base_url+"/institutes";
 $.getJSON(inst_url, function(data) {
   var items = '';
@@ -91,7 +92,7 @@ $.getJSON(dis_url, function(data) {
   var items = '';
   $.each(data, function(key, value){
     dis_name = value['discipline_name'];
-    items += '<li onclick="getLabsbyDiscipline()" value="' + dis_name +
+    items += '<li onclick="getLabsByDiscipline()" value="' + dis_name +
       '" id="' + dis_name + '"><a href="#">' +
       dis_name + '</a></li>';
   });
@@ -107,10 +108,7 @@ $.getJSON(dis_url, function(data) {
       console.log( "complete" );
     });
 
-function getLabsbyDiscipline() {
-  var x = document.getElementById("allLabs");
-  console.log("x="+ x);
-  manage_frames();
+function getLabsByDiscipline() {
   $("#getDisName li").click(function() {
     labs_url = base_url+"/labs";
     labs_by_dis_url = labs_url+"?discipline_name="+($(this).text());
@@ -125,9 +123,9 @@ function getLabsbyDiscipline() {
 //          + lab_name +'<div class="thumbnail"><img src='+ image +'></img></a></div></div>';
         items += '  <span id="getLabsbyDis"></span><div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
           + lab_name +'<div class="thumbnail"></a></div></div>';
-
       });
-      $('#allLabs').append(items);
+      manageFrames(items);
+
     })
       .done(function() {
         console.log( "second success" );
@@ -142,9 +140,7 @@ function getLabsbyDiscipline() {
 
   });
 }
-
-function getLabsbyInstitute() {
-  manage_frames();  
+function getLabsByInstitute() {
   $("#getInstName li").click(function() {
     labs_url = base_url+"/labs";
     labs_by_inst_url = labs_url+"?institute_name="+($(this).text());
@@ -157,11 +153,14 @@ function getLabsbyInstitute() {
 //        image =value['assets'][0]['path']
 //        items += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
 //          + lab_name +'<div class="thumbnail"><img src='+ image +'></img></a></div></div>';
-        
-        items += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
+
+        items += '  <span id="getLabsbyInst"></span><div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
           + lab_name +'<div class="thumbnail"></a></div></div>';
+
+//        items += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
+//          + lab_name +'<div class="thumbnail"></a></div></div>';
       });
-      $('#allLabs').append(items);
+      manageFrames(items);
     })
       .done(function() {
         console.log( "second success" );
@@ -181,9 +180,6 @@ lab_url = base_url+"/labs";
 
 function getAllLabs() {
   manage_frames();
-  var x = document.getElementById("allLabs");
-  console.log("X="+x);
-  console.log(x);
   $.getJSON(lab_url, function(data) {
     var items = '';
     $.each(data, function(key, value){
@@ -196,7 +192,7 @@ function getAllLabs() {
 //      items += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
 //        + lab_name +'<div class="thumbnail"><img src='+ image +'></img></a></div></div>';
     });
-    $('#allLabs').append(items);
+    $('#content').append(items);
   })
     .done(function() {
       console.log( "second success" );
@@ -208,6 +204,18 @@ function getAllLabs() {
       console.log( "complete" );
     });
 }
+
+//function getLabsByInstitute() {
+//  new_html =  "<html><head></head><body><p> Institute </p></body></html>";
+//  manageFrames(new_html);
+//}
+
+//function getAllLabs() {
+//  new_html =  "<html><head></head><body><p> All Labs </p></body></html>";
+//  manageFrames(new_html);
+//}
+
+    
     
 #+END_SRC
    
@@ -299,15 +307,26 @@ function getAllLabs() {
       </div>
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Home</a></li>
+
         <li class="dropdown" ><a class="dropdown-toggle" data-toggle="dropdown" href="#">Institutes <span class="caret"></span></a>
           <ul class="dropdown-menu filterInstComboBox" id="getInstName">
           </ul>
         </li>
+
+          
         <li class="dropdown" ><a class="dropdown-toggle" data-toggle="dropdown" href="#">Disciplines <span class="caret"></span></a>
           <ul class="dropdown-menu filterDisComboBox" id="getDisName">
           </ul>
-        </li>
-        <li><a href="javascript:getAllLabs()" target="iframe_a">All Labs</a></li>
+          
+        <li><a href="javascript:getLabsByInstitute()"
+               target="body_iframe">Institutes</a></li>
+
+        <li><a href="javascript:getLabsByDiscipline()"
+               target="body_iframe">Disciplines</a></li>
+        
+        <li><a href="javascript:getAllLabs()" target="body_iframe">All
+            Labs</a></li>
+        
       </ul>
       <ul class="nav navbar-nav navbar-right">
       <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
