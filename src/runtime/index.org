@@ -16,63 +16,59 @@
   Data will be provided by =Lab Data Service=.
 * Web App
 ** Index HTML
-#+BEGIN_SRC html :tangle test_index.html :eval no :noweb yes
+#+BEGIN_SRC html :tangle index.html :eval no :noweb yes
+
 <html>
+  <iframe width="100%" height="150em"  src="./header.html" name="iframe_header"></iframe>
   <head>
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    </style>
+    <script src="./main.js"></script>
   </head>
-  
-<body>
-  <nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#">vlabs-logo</a>
-      </div>
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li class="dropdown" ><a class="dropdown-toggle" data-toggle="dropdown" href="#">Institutes <span class="caret"></span></a>
-          <ul class="dropdown-menu filterInstComboBox" id="getInstName">
-          </ul>
-        </li>
-        <li class="dropdown" ><a class="dropdown-toggle" data-toggle="dropdown" href="#">Disciplines <span class="caret"></span></a>
-          <ul class="dropdown-menu filterDisComboBox" id="getDisName">
-          </ul>
-        </li>
-        <li><a href="javascript:getAllLabs()">All Labs</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-    </ul>
-
+  <body>
+    <div class="container">
+      <p><a href="https://w3schools.com" target="iframe_a">vlabs landing page</a></p>
+      <iframe width="100%" height="450em"  src="./test_index.html" name="iframe_a"></iframe>
     </div>
-  </nav>
-  
-  <div class="container">
-    <span id="allLabs"></span>    
-  </div>
-</body>
-<script type="text/javascript">
-<<main-js>>        
-</script>
+  </body>
+</html>
 
+#+END_SRC
+
+** Index HTML Part II
+#+BEGIN_SRC html :tangle test_index.html :eval no :noweb yes
+
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="./main.js"></script>
+  </head>  
+  <body>
+    <span id="allLabs">welcome to virutal labs</span>
+  </body>
 </html>
 #+END_SRC
 
 ** JS
-#+NAME: main-js
-#+BEGIN_SRC javascript
-var base_url = 'http://lds.base4.vlabs.ac.in'
+#+BEGIN_SRC javascript :tangle main.js :eval no :noweb yes
 
+function manage_frames(){
+  console.log("manage_frames");
+  var elem = document.getElementById("allLabs");
+  elem.parentNode.removeChild(elem);
+  var x = document.createElement("span");
+  x.id="allLabs";
+  document.body.appendChild(x);
+}
+var base_url = 'http://localhost:5000';
 var inst_url = base_url+"/institutes";
 $.getJSON(inst_url, function(data) {
   var items = '';
   $.each(data, function(key, value){
-    inst_name = value['institute_name']
+    inst_name = value['institute_name'];
     items += '<li onclick="getLabsbyInstitute()" value="' + inst_name +
       '" id="' + inst_name + '"><a href="#">' +
       inst_name + '</a></li>';
@@ -94,7 +90,7 @@ dis_url = base_url+"/disciplines";
 $.getJSON(dis_url, function(data) {
   var items = '';
   $.each(data, function(key, value){
-    dis_name = value['discipline_name']
+    dis_name = value['discipline_name'];
     items += '<li onclick="getLabsbyDiscipline()" value="' + dis_name +
       '" id="' + dis_name + '"><a href="#">' +
       dis_name + '</a></li>';
@@ -112,6 +108,9 @@ $.getJSON(dis_url, function(data) {
     });
 
 function getLabsbyDiscipline() {
+  var x = document.getElementById("allLabs");
+  console.log("x="+ x);
+  manage_frames();
   $("#getDisName li").click(function() {
     labs_url = base_url+"/labs";
     labs_by_dis_url = labs_url+"?discipline_name="+($(this).text());
@@ -119,11 +118,14 @@ function getLabsbyDiscipline() {
     $.getJSON(labs_by_dis_url, function(data) {
       var items = '';
       $.each(data, function(key, value){
-        lab_name = value['lab_name']
-        hosted_url = value['hosting_info'][0]['hosted_url']
-        image =value['assets'][0]['path']
-        items += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
-          + lab_name +'<div class="thumbnail"><img src='+ image +'></img></a></div></div>';
+        lab_name = value['lab_name'];
+        hosted_url = value['hosting_info'][0]['hosted_url'];
+//        image =value['assets'][0]['path']
+//        items += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
+//          + lab_name +'<div class="thumbnail"><img src='+ image +'></img></a></div></div>';
+        items += '  <span id="getLabsbyDis"></span><div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
+          + lab_name +'<div class="thumbnail"></a></div></div>';
+
       });
       $('#allLabs').append(items);
     })
@@ -142,6 +144,7 @@ function getLabsbyDiscipline() {
 }
 
 function getLabsbyInstitute() {
+  manage_frames();  
   $("#getInstName li").click(function() {
     labs_url = base_url+"/labs";
     labs_by_inst_url = labs_url+"?institute_name="+($(this).text());
@@ -149,11 +152,14 @@ function getLabsbyInstitute() {
     $.getJSON(labs_by_inst_url, function(data) {
       var items = '';
       $.each(data, function(key, value){
-        lab_name = value['lab_name']
-        hosted_url = value['hosting_info'][0]['hosted_url']
-        image =value['assets'][0]['path']
+        lab_name = value['lab_name'];
+        hosted_url = value['hosting_info'][0]['hosted_url'];
+//        image =value['assets'][0]['path']
+//        items += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
+//          + lab_name +'<div class="thumbnail"><img src='+ image +'></img></a></div></div>';
+        
         items += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
-          + lab_name +'<div class="thumbnail"><img src='+ image +'></img></a></div></div>';
+          + lab_name +'<div class="thumbnail"></a></div></div>';
       });
       $('#allLabs').append(items);
     })
@@ -172,15 +178,23 @@ function getLabsbyInstitute() {
 }
 
 lab_url = base_url+"/labs";
+
 function getAllLabs() {
+  manage_frames();
+  var x = document.getElementById("allLabs");
+  console.log("X="+x);
+  console.log(x);
   $.getJSON(lab_url, function(data) {
     var items = '';
     $.each(data, function(key, value){
-      lab_name = value['lab_name']
-      hosted_url = value['hosting_info'][0]['hosted_url']
-      image =value['assets'][0]['path']
+      lab_name = value['lab_name'];
+      hosted_url = value['hosting_info'][0]['hosted_url'];
+//      image =value['assets'][0]['path']
       items += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
-        + lab_name +'<div class="thumbnail"><img src='+ image +'></img></a></div></div>';
+        + lab_name +'<div class="thumbnail"></a></div></div>';
+
+//      items += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
+//        + lab_name +'<div class="thumbnail"><img src='+ image +'></img></a></div></div>';
     });
     $('#allLabs').append(items);
   })
@@ -289,43 +303,37 @@ function getAllLabs() {
 #+END_SRC
 ** Header
 #+BEGIN_SRC html :tangle header.html :eval no :noweb yes
-      <header>
-        <!-- Navigation -->
-        <link rel="shortcut icon" href="http://vlabs.ac.in/static/edx-bootstrap-theme/images/favicon.f7ccf9ba8503.ico">
-        <link rel = "stylesheet" href = "/static/css/bootstrap.min.css">
-        <nav class="navbar navbar-default " style="background-color: white !important; margin-bottom: 0px !important;">
-          <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header page-scroll">
-              <button aria-controls="bs-navbar" aria-expanded="true"  type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar #bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar" style="background-color: #77BB41"></span>
-                <span class="icon-bar" style="background-color: #77BB41"></span>
-                <span class="icon-bar" style="background-color: #77BB41"></span>
-              </button>
-              <a class="navbar-brand main-logo-a" href="https://open-edx.vlabs.ac.in"><img src="http://vlabs.ac.in/static/edx-bootstrap-theme/images/logo.07484ecb2b31.png" class="img-responsive main-logo" /></a>
-            </div>                  
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse menu-div" id="bs-example-navbar-collapse-1" style="border: 0px;">
-              <ul class="nav navbar-nav navbar-right menu-ul search-ul" style="position: relative; top: -5px;">
-                <li></li>
-              </ul>
-              <ul class="nav navbar-nav navbar-right menu-ul">
-                <li class="page-scroll menu-li " >
-                  <a href="https://open-edx.vlabs.ac.in" class="menu-a" >HOME</a>
-                </li>
-                <li class="page-scroll menu-li">
-                  <a href="https://open-edx.vlabs.ac.in/courses"  class="menu-a " >ALL LABS</a>
-                </li>
-                <li class="page-scroll menu-li" >
-                  <a href="https://open-edx.vlabs.ac.in/#partner" class="menu-a" >PARTNERS</a>
-                </li><li class="page-scroll menu-li " >
-                  <a href="https://open-edx.vlabs.ac.in/#partner" class="menu-a" >CONTACT</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-      </header>
+
+<header >
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="./main.js"></script>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">vlabs-logo</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li class="dropdown" ><a class="dropdown-toggle" data-toggle="dropdown" href="#">Institutes <span class="caret"></span></a>
+          <ul class="dropdown-menu filterInstComboBox" id="getInstName">
+          </ul>
+        </li>
+        <li class="dropdown" ><a class="dropdown-toggle" data-toggle="dropdown" href="#">Disciplines <span class="caret"></span></a>
+          <ul class="dropdown-menu filterDisComboBox" id="getDisName">
+          </ul>
+        </li>
+        <li><a href="javascript:getAllLabs()" target="iframe_a">All Labs</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>
+
+    </div>
+  </nav>
+
+</header>
 
 #+END_SRC
