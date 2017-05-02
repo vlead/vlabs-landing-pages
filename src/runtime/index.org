@@ -339,15 +339,22 @@ function getAllLabs() {
 #+BEGIN_SRC html :tangle header.html :eval no :noweb yes
 
 <header >
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="js/bootstrap.css">
+  <link rel="stylesheet" href="js/font-awesome.css">
+  <link rel="stylesheet" href="js/bootsnipp.css">
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="./main.js"></script>
-  <nav class="navbar navbar-inverse">
+  <nav class="navbar navbar-fixed-top navbar-bootsnipp animate" role="navigation" style="z-index: 9999999">
+
     <div class="container-fluid">
 
       <div class="navbar-header">
-        <a class="navbar-brand" href="#">vlabs-logo</a>
+        <a class="navbar-brand main-logo-a" href="https://vlabs.ac.in" style=" width:100px; height:40px; margin-top:-13px"><img src="https://vlabs.ac.in/static/edx-bootstrap-theme/images/logo.7e034286282a.png" class="img-responsive main-logo" style="width:100%; maring-top:2px;"></a>
+
       </div>
 
       <ul class="nav navbar-nav">
@@ -359,7 +366,7 @@ function getAllLabs() {
           
         <li class="dropdown" ><a class="dropdown-toggle" data-toggle="dropdown" href="#">Disciplines <span class="caret"></span></a>
           <ul class="dropdown-menu filterDisComboBox" id="getDisName">
-          </ul>
+          </ul></li>
           
         <li><a href="javascript:getAllLabs()" target="body_iframe">All
             Labs</a></li>
