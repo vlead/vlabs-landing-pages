@@ -16,6 +16,7 @@
   Data will be provided by =Lab Data Service=.
 * Web App
 ** Index HTML
+   This is the index page with a body iframe where all the results will be loaded.
 #+BEGIN_SRC html :tangle templates/index.html :eval no :noweb yes
 <html>
    <head>
@@ -37,6 +38,7 @@
 #+END_SRC
 
 ** Body IFrame
+   This is the default home page of the virtual labs.
 #+BEGIN_SRC html :tangle templates/body_iframe.html :eval no :noweb yes
 <html>
   <head>
@@ -53,10 +55,13 @@
 #+END_SRC
 
 ** JS
+*** on Load
+    on loading of the web page, All the combo boxes will be populated with
+    institutes and disciplines.
 #+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
 var base_url = 'http://localhost:5000';
 var keyword_url = base_url+"/labs?keyword_lab_name="
-
+var lab_url = base_url+"/labs";
  $(document).ready(function() {
    getAllInstitutes();
    getAllDisciplines();
@@ -65,10 +70,17 @@ var keyword_url = base_url+"/labs?keyword_lab_name="
 //   });
  });
 
+#+END_SRC
+*** Get Labs based on Labname Keyword
+    =GetLabsByKeyword= function returns all the labs based on the lab-name
+    keyword. This function calls an api 
+    =http://<servername>/labs?keyword_lab_name=<keyword>= and displays the
+    result in the body iframe.
+
+#+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
 function getLabs(){
   var keyword = document.getElementById("keyword").value;
   var lab_url = keyword_url+keyword;
-  console.log("============keyword==========");
   console.log(lab_url);
   manageFrames(lab_url);
   $.getJSON(lab_url, function(data) {
@@ -95,13 +107,18 @@ function getLabs(){
       console.log(jqXHR);
       console.log( "error in getAllkeyword labs" );
     })
-    .alert();ways(function() {
+    .always(function() {
       console.log( "complete" );
     });
 
 }
+#+END_SRC
+*** Manage Frames
+    =Manage Frames()= function takes the =items= as input and displays the
+    items in the body =iframe=. When this function is called twice, it
+    overrides the previous results.
 
-
+#+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
 function manageFrames(items){
   console.log("manageFrames");
   var elem = parent.frames["body_iframe"].document.getElementById("content");
@@ -110,11 +127,24 @@ function manageFrames(items){
   elem.innerHTML = items;
 }
 
+#+END_SRC
+*** Sign In 
+    =getSignInPage()= function has to load the sign page of virtual labs into
+    body iframe.
+
+#+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
 function getSignInPage(){
   items = "<html><head><body><div><ul><li><a href='http://vlabs.ac.in'>hello</a></li></ul><p>hello></p></div></body></head></html>"
   manageFrames(items)
 }
+#+END_SRC
 
+*** Display All Institutes
+    =getAllInstitutes()= function returns all the =Institutes=. This function
+    calls an api =http://<servername>/institutes= and appends the result to the
+    =Institutes= combo box.
+
+#+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
 function getAllInstitutes(){
   console.log("getallinstitutes");
   var inst_url = base_url+"/institutes";
@@ -140,6 +170,13 @@ function getAllInstitutes(){
       console.log( "complete" );
     });
 }
+#+END_SRC
+*** Display All Disciplines
+    =getAllDisciplines()= function returns all the =Disciplines=. This function
+    calls an api =http://<servername>/disciplines= and appends the result to the
+    =Disciplines= combo box.
+
+#+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
 function getAllDisciplines(){
   dis_url = base_url+"/disciplines";
   $.getJSON(dis_url, function(data) {
@@ -162,6 +199,14 @@ function getAllDisciplines(){
       console.log( "complete" );
     });
 }
+#+END_SRC
+*** Display All Labs By Discipline
+    =GetLabsByDiscipline()= function returns all the labs based on the
+    discipline name selected from =Discipline= Combo box. This function calls
+    an api =http://<servername>/labs?discipline_name=<discipline_name>= and
+    displays the result in the body iframe.
+
+#+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
 function getLabsByDiscipline() {
   $("#getDisName li").click(function() {
     labs_url = base_url+"/labs";
@@ -194,6 +239,14 @@ function getLabsByDiscipline() {
 
   });
 }
+#+END_SRC
+*** Display All Labs By Institute
+    =GetLabsByInstitute()= function returns all the labs based on the
+    institute name selected from =Institute= Combo box. This function calls
+    an api =http://<servername>/labs?institute_name=<institute_name>= and
+    displays the result in the body iframe.
+
+#+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
 function getLabsByInstitute() {
   $("#getInstName li").click(function() {
     labs_url = base_url+"/labs";
@@ -229,9 +282,13 @@ function getLabsByInstitute() {
 
   });
 }
-  
-lab_url = base_url+"/labs";
+#+END_SRC
+*** Display All Labs
+    =getAllLabs()= function returns all the labs when clicked on =All Labs=
+    tab. This function calls an api =http://<servername>/labs= and displays the
+    result in the body iframe.
 
+#+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
 function getAllLabs() {
   $.getJSON(lab_url, function(data) {
     var items = '';
@@ -262,6 +319,8 @@ function getAllLabs() {
     
 #+END_SRC
    
+** CSS
+   Bootstrap framework default classes are used to style the vlabs landing page.
 ** Footer
 #+BEGIN_SRC html :tangle templates/footer.html :eval no :noweb yes 
 <head>
@@ -336,6 +395,7 @@ function getAllLabs() {
 
 #+END_SRC
 ** Header
+   This is the header page of virtual labs. 
 #+BEGIN_SRC html :tangle templates/header.html :eval no :noweb yes
 
 <header >
