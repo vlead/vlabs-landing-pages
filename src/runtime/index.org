@@ -54,11 +54,53 @@
 
 ** JS
 #+BEGIN_SRC javascript :tangle main.js :eval no :noweb yes
+var base_url = 'http://localhost:5000';
+var keyword_url = base_url+"/labs?keyword_lab_name="
 
-$(document).ready(function() { 
+ $(document).ready(function() {
    getAllInstitutes();
    getAllDisciplines();
-});
+//   $("button").click(function(){
+//     getLabs();
+//   });
+ });
+
+function getLabs(){
+  var keyword = document.getElementById("keyword").value;
+  var lab_url = keyword_url+keyword;
+  console.log("============keyword==========");
+  console.log(lab_url);
+  manageFrames(lab_url);
+  $.getJSON(lab_url, function(data) {
+    console.log(lab_url);
+    var items = '';
+    $.each(data, function(key, value){
+      lab_name = value['lab_name'];
+      hosted_url = value['hosting_info'][0]['hosted_url'];
+      //      image =value['assets'][0]['path']
+        items += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
+        + lab_name +'<div class="thumbnail"></a></div></div>';
+      
+      //      items += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
+      //        + lab_name +'<div class="thumbnail"><img src='+ image +'></img></a></div></div>';
+    });
+    console.log(items);
+    manageFrames(items);
+      //$('#content').append(items);
+  })
+    .done(function() {
+      console.log( "second success" );
+    })
+    .fail(function() {
+      console.log(jqXHR);
+      console.log( "error in getAllkeyword labs" );
+    })
+    .alert();ways(function() {
+      console.log( "complete" );
+    });
+
+}
+
 
 function manageFrames(items){
   console.log("manageFrames");
@@ -67,11 +109,11 @@ function manageFrames(items){
   console.log("new htdfdfml = " + items);
   elem.innerHTML = items;
 }
+
 function getSignInPage(){
   items = "<html><head><body><div><ul><li><a href='http://vlabs.ac.in'>hello</a></li></ul><p>hello></p></div></body></head></html>"
   manageFrames(items)
 }
-var base_url = 'http://localhost:5000';
 
 function getAllInstitutes(){
   console.log("getallinstitutes");
@@ -191,9 +233,7 @@ function getLabsByInstitute() {
 lab_url = base_url+"/labs";
 
 function getAllLabs() {
-  console.log("get all labs by keyword");
   $.getJSON(lab_url, function(data) {
-    console.log("get all labs by keyword");
     var items = '';
     $.each(data, function(key, value){
       lab_name = value['lab_name'];
@@ -212,17 +252,12 @@ function getAllLabs() {
       console.log( "second success" );
     })
     .fail(function() {
-      console.log( "error" );
+      console.log(jqXHR);
+      console.log( "error in getAllLabs" );
     })
     .always(function() {
       console.log( "complete" );
     });
-}
-
-function getLabsByLabNameKeyword(){
-  console.log("=====dfasddfsddf======");
-  getAllLabs();
-
 }
     
 #+END_SRC
@@ -333,10 +368,9 @@ function getLabsByLabNameKeyword(){
       <ul class="nav navbar-nav navbar-right">
         <form class="navbar-form navbar-left">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Lab Name">
+            <input id="keyword" type="text" class="form-control" placeholder="Lab Name">
             <div class="input-group-btn">
-              <button onclick="javascript:getLabsByLabNameKeyword()"
-            target="body_iframe" class="btn btn-default" type="submit">
+              <button onclick="javascript:getLabs()" target="body_iframe" class="btn btn-default" type="submit">
                 <i class="glyphicon glyphicon-search"></i>
               </button>
             </div>
