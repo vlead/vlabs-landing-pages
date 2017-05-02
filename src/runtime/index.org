@@ -16,19 +16,19 @@
   Data will be provided by =Lab Data Service=.
 * Web App
 ** Index HTML
-#+BEGIN_SRC html :tangle index.html :eval no :noweb yes
+#+BEGIN_SRC html :tangle templates/index.html :eval no :noweb yes
 <html>
    <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="./main.js"></script>
+    <script src="../static/js/main.js"></script>
   </head>
   <body>
     <div class="container">
-      <iframe id="headerIframe" width="100%" height="150em"  src="./header.html" name="header_iframe"></iframe>
+      <iframe id="headerIframe" width="100%" height="150em"  src="header.html" name="header_iframe"></iframe>
       <iframe id="bodyIframe" width="100%" height="450em"
-              src="./body_iframe.html" name="body_iframe">
+              src="body_iframe.html" name="body_iframe">
       </iframe>
     </div>
   </body>
@@ -37,13 +37,13 @@
 #+END_SRC
 
 ** Body IFrame
-#+BEGIN_SRC html :tangle body_iframe.html :eval no :noweb yes
+#+BEGIN_SRC html :tangle templates/body_iframe.html :eval no :noweb yes
 <html>
   <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="./main.js"></script>
+    <script src="../static/js/main.js"></script>
   </head>  
   <body>
     <div id="content">welcome to virutal labs</div>
@@ -53,7 +53,7 @@
 #+END_SRC
 
 ** JS
-#+BEGIN_SRC javascript :tangle main.js :eval no :noweb yes
+#+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
 var base_url = 'http://localhost:5000';
 var keyword_url = base_url+"/labs?keyword_lab_name="
 
@@ -336,18 +336,18 @@ function getAllLabs() {
 
 #+END_SRC
 ** Header
-#+BEGIN_SRC html :tangle header.html :eval no :noweb yes
+#+BEGIN_SRC html :tangle templates/header.html :eval no :noweb yes
 
 <header >
   <link rel="stylesheet"
         href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="js/bootstrap.css">
-  <link rel="stylesheet" href="js/font-awesome.css">
-  <link rel="stylesheet" href="js/bootsnipp.css">
+  <link rel="stylesheet" href="../static/js/bootstrap.css">
+  <link rel="stylesheet" href="../static/js/font-awesome.css">
+  <link rel="stylesheet" href="../static/js/bootsnipp.css">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="./main.js"></script>
+  <script src="../static/js/main.js"></script>
   <nav class="navbar navbar-fixed-top navbar-bootsnipp animate" role="navigation" style="z-index: 9999999">
 
     <div class="container-fluid">
