@@ -263,7 +263,7 @@ function getAllLabs() {
 #+END_SRC
    
 ** Footer
-#+BEGIN_SRC html :tangle footer.html :eval no :noweb yes 
+#+BEGIN_SRC html :tangle templates/footer.html :eval no :noweb yes 
 <head>
   <link rel="stylesheet" type="text/css" href="static/css/main.css">
 </head>
