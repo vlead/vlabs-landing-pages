@@ -85,20 +85,20 @@ function getLabs(){
   manageFrames(lab_url);
   $.getJSON(lab_url, function(data) {
     console.log(lab_url);
-    var items = '';
+    var labs = '';
     $.each(data, function(key, value){
       lab_name = value['lab_name'];
       hosted_url = value['hosting_info'][0]['hosted_url'];
       //      image =value['assets'][0]['path']
-        items += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
+        labs += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
         + lab_name +'<div class="thumbnail"></a></div></div>';
       
-      //      items += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
+      //      labs += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
       //        + lab_name +'<div class="thumbnail"><img src='+ image +'></img></a></div></div>';
     });
-    console.log(items);
-    manageFrames(items);
-      //$('#content').append(items);
+    console.log(labs);
+    manageFrames(labs);
+      //$('#content').append(labs);
   })
     .done(function() {
       console.log( "second success" );
@@ -114,17 +114,17 @@ function getLabs(){
 }
 #+END_SRC
 *** Manage Frames
-    =Manage Frames()= function takes the =items= as input and displays the
-    items in the body =iframe=. When this function is called twice, it
+    =Manage Frames()= function takes the =labs= as input and displays the
+    labs in the body =iframe=. When this function is called twice, it
     overrides the previous results.
 
 #+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
-function manageFrames(items){
+function manageFrames(labs){
   console.log("manageFrames");
   var elem = parent.frames["body_iframe"].document.getElementById("content");
   console.log("elem = " + elem);
-  console.log("new htdfdfml = " + items);
-  elem.innerHTML = items;
+  console.log("new htdfdfml = " + labs);
+  elem.innerHTML = labs;
 }
 
 #+END_SRC
@@ -134,8 +134,8 @@ function manageFrames(items){
 
 #+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
 function getSignInPage(){
-  items = "<html><head><body><div><ul><li><a href='http://vlabs.ac.in'>hello</a></li></ul><p>hello></p></div></body></head></html>"
-  manageFrames(items)
+  labs = "<html><head><body><div><ul><li><a href='http://vlabs.ac.in'>hello</a></li></ul><p>hello></p></div></body></head></html>"
+  manageFrames(labs)
 }
 #+END_SRC
 
@@ -149,15 +149,15 @@ function getAllInstitutes(){
   console.log("getallinstitutes");
   var inst_url = base_url+"/institutes";
   $.getJSON(inst_url, function(data) {
-    var items = '';
+    var labs = '';
     $.each(data, function(key, value){
       inst_name = value['institute_name'];
-      items += '<li onclick="getLabsByInstitute()" value="' + inst_name +
+      labs += '<li onclick="getLabsByInstitute()" value="' + inst_name +
         '" id="' + inst_name + '"><a href="#">' +
         inst_name + '</a></li>';
     });
     
-    $('.filterInstComboBox').append(items);
+    $('.filterInstComboBox').append(labs);
   })
     .done(function() {
       console.log( "second success" );
@@ -180,14 +180,14 @@ function getAllInstitutes(){
 function getAllDisciplines(){
   dis_url = base_url+"/disciplines";
   $.getJSON(dis_url, function(data) {
-    var items = '';
+    var labs = '';
     $.each(data, function(key, value){
       dis_name = value['discipline_name'];
-      items += '<li onclick="getLabsByDiscipline()" value="' + dis_name +
+      labs += '<li onclick="getLabsByDiscipline()" value="' + dis_name +
         '" id="' + dis_name + '"><a href="#">' +
         dis_name + '</a></li>';
     });
-    $('.filterDisComboBox').append(items);
+    $('.filterDisComboBox').append(labs);
   })
     .done(function() {
       console.log( "second success" );
@@ -213,17 +213,17 @@ function getLabsByDiscipline() {
     labs_by_dis_url = labs_url+"?discipline_name="+($(this).text());
     console.log(labs_by_dis_url);
     $.getJSON(labs_by_dis_url, function(data) {
-      var items = '';
+      var labs = '';
       $.each(data, function(key, value){
         lab_name = value['lab_name'];
         hosted_url = value['hosting_info'][0]['hosted_url'];
 //        image =value['assets'][0]['path']
-//        items += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
+//        labs += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
 //          + lab_name +'<div class="thumbnail"><img src='+ image +'></img></a></div></div>';
-        items += '  <span id="getLabsbyDis"></span><div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
+        labs += '  <span id="getLabsbyDis"></span><div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
           + lab_name +'<div class="thumbnail"></a></div></div>';
       });
-      manageFrames(items);
+      manageFrames(labs);
 
     })
       .done(function() {
@@ -253,21 +253,21 @@ function getLabsByInstitute() {
     labs_by_inst_url = labs_url+"?institute_name="+($(this).text());
     console.log(labs_by_inst_url);
     $.getJSON(labs_by_inst_url, function(data) {
-      var items = '';
+      var labs = '';
       $.each(data, function(key, value){
         lab_name = value['lab_name'];
         hosted_url = value['hosting_info'][0]['hosted_url'];
 //        image =value['assets'][0]['path']
-//        items += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
+//        labs += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
 //          + lab_name +'<div class="thumbnail"><img src='+ image +'></img></a></div></div>';
 
-        items += '  <span id="getLabsbyInst"></span><div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
+        labs += '  <span id="getLabsbyInst"></span><div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
           + lab_name +'<div class="thumbnail"></a></div></div>';
 
-//        items += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
+//        labs += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
 //          + lab_name +'<div class="thumbnail"></a></div></div>';
       });
-      manageFrames(items);
+      manageFrames(labs);
     })
       .done(function() {
         console.log( "second success" );
@@ -291,19 +291,19 @@ function getLabsByInstitute() {
 #+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
 function getAllLabs() {
   $.getJSON(lab_url, function(data) {
-    var items = '';
+    var labs = '';
     $.each(data, function(key, value){
       lab_name = value['lab_name'];
       hosted_url = value['hosting_info'][0]['hosted_url'];
 //      image =value['assets'][0]['path']
-      items += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
+      labs += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
         + lab_name +'<div class="thumbnail"></a></div></div>';
 
-//      items += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
+//      labs += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
 //        + lab_name +'<div class="thumbnail"><img src='+ image +'></img></a></div></div>';
     });
-    manageFrames(items);
-    //$('#content').append(items);
+    manageFrames(labs);
+    //$('#content').append(labs);
   })
     .done(function() {
       console.log( "second success" );
