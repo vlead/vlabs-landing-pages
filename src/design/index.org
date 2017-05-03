@@ -1,0 +1,30 @@
+#+TITLE: Vlabs Landing Pages
+#+AUTHOR: VLEAD
+#+DATE: [2017-05-03 Wednesday]
+#+PROPERTY: results output
+#+PROPERTY: exports code
+#+SETUPFILE: ../org-templates/level-1.org
+#+options: ^:nil
+#+LATEX: Literal LaTeX code for export
+
+* Introduction 
+  :PROPERTIES:
+  :CUSTOM_ID: introduction
+  :END: 
+  This document describes  the design of =vlabs-landing-pages=.
+
+* Design
+  :PROPERTIES:
+  :CUSTOM_ID: design
+  :END: 
+  
+  Landing page will be divided into 3 frames.
+  1) Header Iframe 
+  2) Content Iframe
+  3) Footer Iframe
+** Header Iframe 
+** Body Iframe
+   When the state changes, all the user actions will be loaded into the body Iframe. 
+** Footer Iframe
+   Footer will be served from footer service and will be loaded into footer
+   iframe of vlabs landing page.
