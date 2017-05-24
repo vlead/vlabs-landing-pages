@@ -19,11 +19,26 @@
 #+BEGIN_SRC html :tangle test_index.html :eval no :noweb yes
 <html>
   <head>
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet"href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/bootstrap.css">
+    <link rel="stylesheet" href="../static/css/font-awesome.css">
+    <link rel="stylesheet" href="../static/css/bootsnipp.css">
+    <link rel="stylesheet" href="../static/css/bootsnipp.css">
+    <link rel="stylesheet" href="../static/css/bootsnipp.css">
+    <link rel="stylesheet" href="../static/files/bootstrap.css">
+    <link rel="stylesheet" href="../static/files/font-awesome.css">
+    <link rel="stylesheet" href="../static/files/bootsnipp.css">
+    <script src="../staticfiles/jquery-1.js"></script>
+    <script src="../static/files/bootstrap.js"></script>
+    <script src="../static/files/scripts.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="../static/js/main.js"></script>
   </head>
   
 <body>
@@ -40,6 +55,48 @@
         </li>
         <li class="dropdown" ><a class="dropdown-toggle" data-toggle="dropdown" href="#">Disciplines <span class="caret"></span></a>
           <ul class="dropdown-menu filterDisComboBox" id="getDisName">
+          </ul>
+        </li>
+        <li class="">
+          <a href="http://vlabs.ac.in:5959/workshops/" class="dropdown-toggle " data-toggle="dropdown" aria-expanded="false">Workshops<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+
+            <li class=""><a href="http://vlabs.ac.in:5959/workshops/" class="">Online</a></li>
+           <li class=""><a href="http://vlabs.ac.in:5959/college-cloud-edition/" class="">College Cloud Edition</a></li>
+
+          </ul>
+        </li> 
+        <!--<li class="">
+          <a href="" class="dropdown-toggle " data-toggle="dropdown" aria-expanded="false">Development<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+
+            <li class=""><a href="http://dev.vlabs.ac.in/" class="">Virtual Labs Development </a></li>
+           
+
+
+          </ul>
+        </li>
+
+        <li class="">
+          <a href="#" class="dropdown-toggle " data-toggle="dropdown" aria-expanded="false">Community <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+
+            <li class=""><a href="https://plus.google.com/communities/104131148292250423165" class="">Teachers</a></li>
+            <li class=""><a href="https://groups.google.com/a/vlabs.ac.in/forum/#!forum/engineers" class="">Developers </a></li>
+	    <li class=""><a href="https://groups.google.com/a/vlabs.ac.in/forum/#!forum/users" class="">Students </a></li>
+
+
+          </ul>
+        </li>-->
+         <li class="">
+          <a href="" class="dropdown-toggle " data-toggle="dropdown" aria-expanded="false" s>FAQ<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+	    <li class=""><a href="http://vlabs.ac.in:5959/faq/index.html" class="">Virtual Labs</a></li>
+            <li class=""><a href="http://vlabs.ac.in:5959/faq/index.html" class="">Virtual Labs College Cloud Edition</a></li>
+            <li class=""><a href="http://vlabs.ac.in:5959/faq/index.html" class="">Expression of Interest For Workshops</a></li>
+           
+
+
           </ul>
         </li>
         <li><a href="javascript:getAllLabs()">All Labs</a></li>
@@ -206,7 +263,19 @@ function getAllLabs() {
 
 
 <iframe scrolling="no" width="100%" height="auto" src="demo_iframe.htm" name="iframe_a"></iframe>
-
+<!--<div class="container">
+      <iframe id="headerIframe" width="100%" height="150em"  src="header.html" name="header_iframe"></iframe>
+      <iframe id="contentIframe" width="100%" height="450em"
+              src="content_iframe.html" name="content_iframe">
+      </iframe>
+    </div>-->
+<div >
+<iframe id="headerIframe" id="logo" width="100%" allowtransparency="true" height="450px" frameborder="0" src="header.html" name="header_iframe" style="positon:relative; z-index:999;"></iframe>
+<!--<div class="col-md-12 container-fluid"><img src="../static/img/bg1.jpg" style="width:100%; height:430px;"></div>-->
+</div>
+    <div class="container" style="positon:relative; z-index:698;">    
+      <iframe id="contentIframe" width="100%" style="positon:relative; z-index:998;" height="100%" frameborder="0" src="content_iframe.html" name="content_iframe"></iframe>
+    </div>
 
 </body>
 </html>

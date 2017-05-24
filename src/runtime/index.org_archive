@@ -1,0 +1,40 @@
+#    -*- mode: org -*-
+
+
+Archived entries from file /home/balamma/projects/vlabs-landing-pages/src/runtime/index.org
+
+
+* Iframe
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2017-05-24 Wed 18:49
+  :ARCHIVE_FILE: ~/projects/vlabs-landing-pages/src/runtime/index.org
+  :ARCHIVE_OLPATH: Web App
+  :ARCHIVE_CATEGORY: index
+  :END:
+#+BEGIN_SRC html :tangle test_iframe.html :eval no :noweb yes 
+<!DOCTYPE html>
+<html>
+<body>
+<p><a href="https://w3schools.com" target="iframe_a">Home</a></p>
+
+
+<iframe scrolling="no" width="100%" height="auto" src="demo_iframe.htm" name="iframe_a"></iframe>
+<!--<div class="container">
+      <iframe id="headerIframe" width="100%" height="150em"  src="header.html" name="header_iframe"></iframe>
+      <iframe id="contentIframe" width="100%" height="450em"
+              src="content_iframe.html" name="content_iframe">
+      </iframe>
+    </div>-->
+<div >
+<iframe id="headerIframe" id="logo" width="100%" allowtransparency="true" height="450px" frameborder="0" src="header.html" name="header_iframe" style="positon:relative; z-index:999;"></iframe>
+<!--<div class="col-md-12 container-fluid"><img src="../static/img/bg1.jpg" style="width:100%; height:430px;"></div>-->
+</div>
+    <div class="container" style="positon:relative; z-index:698;">    
+      <iframe id="contentIframe" width="100%" style="positon:relative; z-index:998;" height="100%" frameborder="0" src="content_iframe.html" name="content_iframe"></iframe>
+    </div>
+
+</body>
+</html>
+
+
+#+END_SRC
