@@ -83,15 +83,17 @@ function getLabs(){
   var lab_url = keyword_url+keyword;
   console.log(lab_url);
   manageFrames(lab_url);
+  manageFrames(labs);
   $.getJSON(lab_url, function(data) {
     console.log(lab_url);
     var labs = '';
     $.each(data, function(key, value){
-      lab_name = value['lab_name'];
-      hosted_url = value['hosting_info'][0]['hosted_url'];
+      lab_url = value['lab_name'][0]['hosted_url'];
+     // lab_name = value['lab_name'];
+      hosted_url = value['hosted_info'][0]['hosted_url'];
       //      image =value['assets'][0]['path']
         labs += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
-        + lab_name +'<div class="thumbnail"></a></div></div>';
+        + lab_name +'<div class="thumbnail"></a></div></div>'; 
       
       //      labs += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
       //        + lab_name +'<div class="thumbnail"><img src='+ image +'></img></a></div></div>';
