@@ -23,6 +23,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </style>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="../static/css/bootstrap.css">
     <link rel="stylesheet" href="../static/css/font-awesome.css">
@@ -158,7 +159,7 @@ $.getJSON(dis_url, function(data) {
   });
   $('.filterDisComboBox').append(items);
 })
-  .done(function() {
+.done(function() {
     console.log( "second success" );
   })
   .fail(function() {
