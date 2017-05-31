@@ -152,7 +152,7 @@ jQuery.support.cors = true;
 
 $.ajax({
                       type: "GET",
-                                          url: "http://localhost:5000/labs?keyword_lab_name=computer",
+                                          url: "http://localhost:5000/labs?keyword_lab_name=" + keyword,
                                           async: false,
                                           contentType: "application/json",
                                           jsonpCallback: "jsonCallback",
@@ -168,7 +168,7 @@ $.ajax({
                                               hosted_url = value['hosting_info'][0]['hosted_url'];
                                               console.log(hosted_url)
                                               $("div").append(value + " ");
-                                              image =value['assets'][0]['path']
+                                              
                                               labs += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
                                                + lab_name +'<div class="thumbnail"></a></div></div>';
 
