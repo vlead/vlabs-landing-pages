@@ -18,6 +18,7 @@
 ** Index HTML
    This is the index page with a content iframe where all the results will be loaded.
 #+BEGIN_SRC html :tangle templates/index.html :eval no :noweb yes
+
 <html>
    <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -27,7 +28,7 @@
   </head>
   <body>
     <div class="container">
-      <iframe id="headerIframe" width="100%" height="150em"  src="header.html"
+      <iframe id="headerIframe" width="100%" height="430em"  src="header.html"
       name="header_iframe" frameborder="0"> </iframe>
       <iframe id="contentIframe" width="100%" height="450em"
               src="content_iframe.html" name="content_iframe" frameborder="0">
@@ -453,6 +454,9 @@ function getAllLabs() {
       <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
     </ul>
 
+    </div>
+    <div>
+      <img src="../static/img/bg1.jpg" style="height:350em position:relative; width:100%;">
     </div>
   </nav>
 
