@@ -123,10 +123,10 @@ function getLabs(){
 
 #+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
 function manageFrames(labs){
-  console.log("manageFrames");
-  var elem = parent.frames["content_iframe"].document.getElementById("content");
-  console.log("elem = " + elem);
-  console.log("new htdfdfml = " + labs);
+  console.log("==manageFrames==");
+  iframe =parent.frames['contentIframe']
+  iframe.setAttribute('src', "http://localhost:8000/templates/content_iframe.html");
+  var elem = iframe.contentWindow.document.getElementById('content');
   elem.innerHTML = labs;
 }
 
