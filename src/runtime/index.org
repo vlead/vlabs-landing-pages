@@ -20,6 +20,7 @@
 #+BEGIN_SRC html :tangle templates/index.html :eval no :noweb yes
 <html>
    <head>
+    <meta charset="utf-8"> 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -63,11 +64,13 @@ var base_url = 'http://localhost:5000';
 var keyword_url = base_url+"/labs?keyword_lab_name="
 var lab_url = base_url+"/labs";
  $(document).ready(function() {
+   
    getAllInstitutes();
    getAllDisciplines();
-//   $("button").click(function(){
+   //$("button").click(function(event){
+       //event.preventDefault();
 //     getLabs();
-//   });
+  // });
  });
 
 #+END_SRC
@@ -78,39 +81,94 @@ var lab_url = base_url+"/labs";
     result in the content iframe.
 
 #+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
+
 function getLabs(){
+jQuery.support.cors = true;
+//$('button').on('click', function (event) {
+// event.preventDefault()       
   var keyword = document.getElementById("keyword").value;
   var lab_url = keyword_url+keyword;
+  console.log(keyword)
   console.log(lab_url);
-  manageFrames(lab_url);
-  $.getJSON(lab_url, function(data) {
-    console.log(lab_url);
-    var labs = '';
+  console.log(keyword_url);
+  console.log("hi");
+  //manageFrames(lab_url);
+ 
+ /*$.getJSON(lab_url, function(data) {
+ //  $.getJSON("http://localhost:5000/labs?keyword_lab_name=computer", function() {
+//    console.log("HI");
+//    console.log(lab_url);
+//    alert(data['return']);
+//    var labs = '';
     $.each(data, function(key, value){
-      lab_name = value['lab_name'];
-      hosted_url = value['hosting_info'][0]['hosted_url'];
+      //lab_name = value['lab_name'];
+      //console.log(lab_name)
+     // hosted_url = value['hosting_info'][0]['hosted_url'];
+    //  console.log(hosted_url)
+      $("div").append(value + " ");
       //      image =value['assets'][0]['path']
-        labs += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
-        + lab_name +'<div class="thumbnail"></a></div></div>';
-      
+       // labs += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
+       // + lab_name +'<div class="thumbnail"></a></div></div>';
+  //    
       //      labs += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
       //        + lab_name +'<div class="thumbnail"><img src='+ image +'></img></a></div></div>';
     });
     console.log(labs);
-    manageFrames(labs);
+   // manageFrames(labs);
       //$('#content').append(labs);
   })
-    .done(function() {
+    .done(function(data) {
       console.log( "second success" );
     })
-    .fail(function() {
-      console.log(jqXHR);
+    .fail(function(data) {
+      console.log(data);
       console.log( "error in getAllkeyword labs" );
     })
     .always(function() {
       console.log( "complete" );
-    });
+    });*/
 
+
+/*  $.ajax("http://localhost:5000/labs?keyword_lab_name=" + keyword, function(data){
+//jQuery.ajax(lab_url, function(data){
+   // localStorage.setItem(data, JSON.stringify(MyJSON));
+    console.log( data );
+    console.log("success");
+  })
+
+  .done(function(data){
+    console.log( "second success" );
+  })
+  .fail(function(data, a, b){
+    console.log( "error" );
+    console.log( data );
+    console.log(a);
+    console.log(b);
+  })
+  .always(function(data){
+    console.log( "complete" );
+  });*/
+//});
+
+$.ajax({
+                      type: "GET",
+                                          url: "http://localhost:5000/labs?keyword_lab_name=computer",
+                                          async: false,
+                                          contentType: "application/json",
+                                          jsonpCallback: "jsonCallback",
+                                          crossDomain: true,
+                                          success: function(data){
+                                          console.log("HELLO");
+                                          console.log(data);
+                                          console.log("HELLO AGAIN");
+                                          $.each(data, function(key, value){
+                                             $("div").append(value + " ");
+                                          })
+                      },
+                                          error:function(errorStatus,xhr){
+                                              console.log("Error"+JSON.stringify(errorStatus));
+                                          }
+                    });
 }
 #+END_SRC
 *** Manage Frames
@@ -177,7 +235,7 @@ function getAllInstitutes(){
     =Disciplines= combo box.
 
 #+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
-function getAllDisciplines(){
+function getAllDisciplines(){ 
   dis_url = base_url+"/disciplines";
   $.getJSON(dis_url, function(data) {
     var labs = '';
