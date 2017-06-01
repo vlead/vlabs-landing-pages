@@ -43,13 +43,14 @@
 #+BEGIN_SRC html :tangle templates/content_iframe.html :eval no :noweb yes
 <html>
   <head>
+    <meta charset="utf-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="../static/js/main.js"></script>
   </head>  
   <body>
-    <div id="content">welcome to virutal labs</div>
+    <div id="content">welcome to virtual labs</div>
   </body>
 </html>
 
@@ -86,9 +87,11 @@ var lab_url = base_url+"/labs";
   jQuery.support.cors = true;
         
       var keyword = document.getElementById("keyword").value;
+    
       var lab_url = keyword_url+keyword;
       
       $.ajax({
+
           type: "GET",
           url: "http://localhost:5000/labs?keyword_lab_name=" + keyword,
           async: false,
@@ -98,11 +101,15 @@ var lab_url = base_url+"/labs";
           success: function(data){
               
               var labs = '';
+
               $.each(data, function(key, value){
                   lab_name = value['lab_name'];
                   console.log(lab_name)
+
                   hosted_url = value['hosting_info'][0]['hosted_url'];
+
                   console.log(hosted_url)
+                  
                   $("div").append(value + " ");
                                                 
                   labs += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
@@ -111,6 +118,7 @@ var lab_url = base_url+"/labs";
                                                
               })
                   console.log(labs);
+
               manageFrames(labs);
           },
   
@@ -121,6 +129,8 @@ var lab_url = base_url+"/labs";
           }
       });
   }
+
+
 #+END_SRC
 *** Manage Frames
     =Manage Frames()= function takes the =labs= as input and displays the
@@ -128,6 +138,7 @@ var lab_url = base_url+"/labs";
     overrides the previous results.
 
 #+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
+
 function manageFrames(labs){
   console.log("manageFrames");
   var elem = parent.frames["content_iframe"].document.getElementById("content");
