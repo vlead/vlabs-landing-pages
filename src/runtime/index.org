@@ -29,9 +29,7 @@
   <body>
     <div class="container">
       <iframe id="headerIframe" width="100%" height="150em"  src="header.html" name="header_iframe"></iframe>
-      <iframe id="contentIframe" width="100%" height="450em"
-              src="content_iframe.html" name="content_iframe">
-      </iframe>
+      <iframe id="contentIframe" width="100%" height="450em" src="content_iframe.html" name="content_iframe"> </iframe>
     </div>
   </body>
 </html>
@@ -47,7 +45,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="../static/js/main.js"></script>
+    <script src="./static/js/main.js"></script>
   </head>  
   <body>
     <div id="content">welcome to virtual labs</div>
@@ -84,6 +82,7 @@ var lab_url = base_url+"/labs";
 #+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
   
   function getLabs(){
+
   jQuery.support.cors = true;
         
       var keyword = document.getElementById("keyword").value;
@@ -93,7 +92,7 @@ var lab_url = base_url+"/labs";
       $.ajax({
 
           type: "GET",
-          url: "http://localhost:5000/labs?keyword_lab_name=" + keyword,
+          url: base_url + "/labs?keyword_lab_name=" + keyword,
           async: false,
           contentType: "application/json",
           jsonpCallback: "jsonCallback",
@@ -139,13 +138,40 @@ var lab_url = base_url+"/labs";
 
 #+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
 
+
 function manageFrames(labs){
+//window.location.reload();
   console.log("manageFrames");
+
+jQuery.support.cors = true;
+$.ajax({
+type : "get",
+async:false,
+url : "http://localhost:8000/templates",
+dataType : "jsonp",
+jsonp: "callbackparam",
+jsonpCallback:"success_jsonpCallback",
+crossDomain: true,
+success : function(json){
+   iframe.src = "http://localhost:8000/templates";
+   //$.load('http://www.mit.edu');
+    window.location.reload(url);
+   // end_loader();
+}
+});
+  
+//  manageNewFrame(labs);
+
   var elem = parent.frames["content_iframe"].document.getElementById("content");
   console.log("elem = " + elem);
   console.log("new htdfdfml = " + labs);
   elem.innerHTML = labs;
+  
 }
+
+
+
+
 
 #+END_SRC
 *** Sign In 
@@ -281,11 +307,11 @@ function getLabsByInstitute() {
 //        labs += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
 //          + lab_name +'<div class="thumbnail"><img src='+ image +'></img></a></div></div>';
 
-        labs += '  <span id="getLabsbyInst"></span><div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
-          + lab_name +'<div class="thumbnail"></a></div></div>';
-
-//        labs += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
+//        labs += '  <span id="getLabsbyInst"></span><div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
 //          + lab_name +'<div class="thumbnail"></a></div></div>';
+
+        labs += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
+          + lab_name +'<div class="thumbnail"></a></div></div>';
       });
       manageFrames(labs);
     })
@@ -463,7 +489,8 @@ function getAllLabs() {
             </div>
           </div>
         </form>        
-        <li><a href="http://vlabs.ac.in" target="content_iframe"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a href="http://54.193.74.107/register" target="content_iframe"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <!--<li><a href="https://www.iitbombayx.in/register" target="content_iframe"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>-->
       <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
     </ul>
 
