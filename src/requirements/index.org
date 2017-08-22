@@ -18,28 +18,14 @@
   :CUSTOM_ID: requirements
   :END: 
 
-** Req1
-  :PROPERTIES:
-  :CUSTOM_ID: req1
-  :END: 
-   - Ability to display =All Labs=
+** Requirement 1
+   Dynamically build Vlabs landing pages by fetching data
+   from [[https://github.com/vlead/lab-data-service][lab data service]].
 
-** Req2 
-  :PROPERTIES:
-  :CUSTOM_ID: req2
-  :END: 
-   - Ability to display the labs developed by =Partner Institutes=.
+** Requirement 2
+   Build a header service
 
-** Req3
-  :PROPERTIES:
-  :CUSTOM_ID: req3
-  :END: 
-   - Ability to display all  =Discipline and Domain= wise labs.
+** Requirement 3
+   Build a search facility for the labs. 
 
-** Req4
-  :PROPERTIES:
-  :CUSTOM_ID: req4
-  :END: 
-  - Ability to Search all the labs based on the =lab name=
-
-    
+   

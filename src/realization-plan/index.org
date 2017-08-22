@@ -1,0 +1,21 @@
+#+TITLE: 
+#+AUTHOR:VLEAD
+#+DATE:
+#+SETUPFILE: ../org-templates/level-1.org
+#+TAGS: boilerplate(b)
+#+EXCLUDE_TAGS: boilerplate
+#+OPTIONS: ^:nil
+
+
+* Introduction
+  This document contains the different milestones planned to
+  realize this project. 
+
+* Milestones
+** Milestone 1
+   During this milestone, 
+   1. the project members will set up all the necessary
+      services required to build the vlabs landing pages in
+      the development environment.
+   2. Set up the development environment for writing
+      literate style documents. 
