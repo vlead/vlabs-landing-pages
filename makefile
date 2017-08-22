@@ -15,8 +15,6 @@ init:
 
 build: init
 	make -f tangle-make -k all
-	rsync -a ${SRC_DIR}/static ${CODE_DIR}/runtime/
-	rsync -a ${SRC_DIR}/templates ${CODE_DIR}/runtime/
 
 install-pep:
 	sudo pip install pep8
