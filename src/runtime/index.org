@@ -16,20 +16,21 @@
   Data will be provided by =Lab Data Service=.
 * Web App
 ** Index HTML
-#+BEGIN_SRC html :tangle index.html :eval no :noweb yes
-
+#+BEGIN_SRC html :tangle templates/index.html :eval no :noweb yes
 <html>
-  <iframe width="100%" height="150em"  src="./header.html" name="iframe_header"></iframe>
-  <head>
+   <head>
+    <meta charset="utf-8"> 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="./main.js"></script>
+    <script src="../static/js/main.js"></script>
   </head>
   <body>
     <div class="container">
-      <p><a href="https://w3schools.com" target="iframe_a">vlabs landing page</a></p>
-      <iframe width="100%" height="450em"  src="./test_index.html" name="iframe_a"></iframe>
+      <iframe id="headerIframe" width="100%" height="150em"  src="header.html" name="header_iframe"></iframe>
+      <iframe id="contentIframe" width="100%" height="450em"
+              src="content_iframe.html" name="content_iframe">
+      </iframe>
     </div>
   </body>
 </html>
@@ -37,166 +38,137 @@
 #+END_SRC
 
 ** Index HTML Part II
-#+BEGIN_SRC html :tangle test_index.html :eval no :noweb yes
+#+BEGIN_SRC html :tangle templates/content_iframe.html :eval no :noweb yes
 
 <html>
   <head>
+    <meta charset="utf-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="./main.js"></script>
+    <script src="../static/js/main.js"></script>
   </head>  
   <body>
-    <span id="allLabs">welcome to virutal labs</span>
+    <div id="content">welcome to virtual labs</div>
   </body>
 </html>
+
 #+END_SRC
 
 ** JS
-#+BEGIN_SRC javascript :tangle main.js :eval no :noweb yes
+#+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
 
-function manage_frames(){
-  console.log("manage_frames");
-  var elem = document.getElementById("allLabs");
-  elem.parentNode.removeChild(elem);
-  var x = document.createElement("span");
-  x.id="allLabs";
-  document.body.appendChild(x);
-}
 var base_url = 'http://lds.vlabs.ac.in';
-var inst_url = base_url+"/institutes";
-$.getJSON(inst_url, function(data) {
-  var items = '';
-  $.each(data, function(key, value){
-    inst_name = value['institute_name'];
-    items += '<li onclick="getLabsbyInstitute()" value="' + inst_name +
-      '" id="' + inst_name + '"><a href="#">' +
-      inst_name + '</a></li>';
-  });
-  $('.filterInstComboBox').append(items);
-})
-  .done(function() {
-    console.log( "second success" );
-  })
-  .fail(function() {
-    console.log( "error" );
-    location.reload();
-  })
-  .always(function() {
-    console.log( "complete" );
-  });
+var keyword_url = base_url+"/labs?keyword_lab_name="
+var lab_url = base_url+"/labs";
+ $(document).ready(function() {
+   
+   getAllInstitutes();
+   getAllDisciplines();
+   //$("button").click(function(event){
+       //event.preventDefault();
+//     getLabs();
+  // });
+ });
 
-dis_url = base_url+"/disciplines";
-$.getJSON(dis_url, function(data) {
-  var items = '';
-  $.each(data, function(key, value){
-    dis_name = value['discipline_name'];
-    items += '<li onclick="getLabsbyDiscipline()" value="' + dis_name +
-      '" id="' + dis_name + '"><a href="#">' +
-      dis_name + '</a></li>';
-  });
-  $('.filterDisComboBox').append(items);
-})
-  .done(function() {
-    console.log( "second success" );
+  
+  function getLabs(){
+  jQuery.support.cors = true;
+        
+      var keyword = document.getElementById("keyword").value;
+    
+      var lab_url = keyword_url+keyword;
+      
+      $.ajax({
+
+          type: "GET",
+          url: "http://localhost:5000/labs?keyword_lab_name=" + keyword,
+          async: false,
+          contentType: "application/json",
+          jsonpCallback: "jsonCallback",
+          crossDomain: true,
+          success: function(data){
+              
+              var labs = '';
+
+              $.each(data, function(key, value){
+                  lab_name = value['lab_name'];
+                  console.log(lab_name)
+
+                  hosted_url = value['hosting_info'][0]['hosted_url'];
+
+                  console.log(hosted_url)
+                  
+                  $("div").append(value + " ");
+                                                
+                  labs += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
+                                                 + lab_name +'<div class="thumbnail"></a></div></div>';
+  
+                                               
+              })
+                  console.log(labs);
+
+              manageFrames(labs);
+          },
+  
+  
+          
+          error:function(errorStatus,xhr){
+              console.log("Error"+JSON.stringify(errorStatus));
+          }
+      });
+  }
+
+function manageFrames(labs){
+  console.log("manageFrames");
+  var elem = parent.frames["content_iframe"].document.getElementById("content");
+  console.log("elem = " + elem);
+  console.log("new htdfdfml = " + labs);
+  elem.innerHTML = labs;
+}
+
+function getSignInPage(){
+  labs = "<html><head><body><div><ul><li><a href='http://vlabs.ac.in'>hello</a></li></ul><p>hello></p></div></body></head></html>"
+  manageFrames(labs)
+}
+
+function getAllInstitutes(){
+  console.log("getallinstitutes");
+  var inst_url = base_url+"/institutes";
+  $.getJSON(inst_url, function(data) {
+    var labs = '';
+    $.each(data, function(key, value){
+      inst_name = value['institute_name'];
+      labs += '<li onclick="getLabsByInstitute()" value="' + inst_name +
+        '" id="' + inst_name + '"><a href="#">' +
+        inst_name + '</a></li>';
+    });
+    
+    $('.filterInstComboBox').append(labs);
   })
-  .fail(function() {
-    console.log( "error" );
-  })
+    .done(function() {
+      console.log( "second success" );
+    })
+    .fail(function() {
+      console.log( "error" );
+      location.reload();
+    })
     .always(function() {
       console.log( "complete" );
     });
-
-function getLabsbyDiscipline() {
-  var x = document.getElementById("allLabs");
-  console.log("x="+ x);
-  manage_frames();
-  $("#getDisName li").click(function() {
-    labs_url = base_url+"/labs";
-    labs_by_dis_url = labs_url+"?discipline_name="+($(this).text());
-    console.log(labs_by_dis_url);
-    $.getJSON(labs_by_dis_url, function(data) {
-      var items = '';
-      $.each(data, function(key, value){
-        lab_name = value['lab_name'];
-        hosted_url = value['hosting_info'][0]['hosted_url'];
-//        image =value['assets'][0]['path']
-//        items += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
-//          + lab_name +'<div class="thumbnail"><img src='+ image +'></img></a></div></div>';
-        items += '  <span id="getLabsbyDis"></span><div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
-          + lab_name +'<div class="thumbnail"></a></div></div>';
-
-      });
-      $('#allLabs').append(items);
-    })
-      .done(function() {
-        console.log( "second success" );
-      })
-      .fail(function() {
-        console.log( "error" );
-        location.reload();
-      })
-      .always(function() {
-        console.log( "complete" );
-      });
-
-  });
 }
 
-function getLabsbyInstitute() {
-  manage_frames();  
-  $("#getInstName li").click(function() {
-    labs_url = base_url+"/labs";
-    labs_by_inst_url = labs_url+"?institute_name="+($(this).text());
-    console.log(labs_by_inst_url);
-    $.getJSON(labs_by_inst_url, function(data) {
-      var items = '';
-      $.each(data, function(key, value){
-        lab_name = value['lab_name'];
-        hosted_url = value['hosting_info'][0]['hosted_url'];
-//        image =value['assets'][0]['path']
-//        items += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
-//          + lab_name +'<div class="thumbnail"><img src='+ image +'></img></a></div></div>';
-        
-        items += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
-          + lab_name +'<div class="thumbnail"></a></div></div>';
-      });
-      $('#allLabs').append(items);
-    })
-      .done(function() {
-        console.log( "second success" );
-      })
-      .fail(function() {
-        console.log( "error" );
-        location.reload();
-      })
-      .always(function() {
-        console.log( "complete" );
-      });
-
-  });
-}
-
-lab_url = base_url+"/labs";
-
-function getAllLabs() {
-  manage_frames();
-  var x = document.getElementById("allLabs");
-  console.log("X="+x);
-  console.log(x);
-  $.getJSON(lab_url, function(data) {
-    var items = '';
+function getAllDisciplines(){ 
+  dis_url = base_url+"/disciplines";
+  $.getJSON(dis_url, function(data) {
+    var labs = '';
     $.each(data, function(key, value){
-      lab_name = value['lab_name'];
-      hosted_url = value['hosting_info'][0]['hosted_url'];
-//      image =value['assets'][0]['path']
-      items += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
-        + lab_name +'<div class="thumbnail"></a></div></div>';
-
-//      items += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
-//        + lab_name +'<div class="thumbnail"><img src='+ image +'></img></a></div></div>';
+      dis_name = value['discipline_name'];
+      labs += '<li onclick="getLabsByDiscipline()" value="' + dis_name +
+        '" id="' + dis_name + '"><a href="#">' +
+        dis_name + '</a></li>';
     });
-    $('#allLabs').append(items);
+    $('.filterDisComboBox').append(labs);
   })
     .done(function() {
       console.log( "second success" );
@@ -208,11 +180,109 @@ function getAllLabs() {
       console.log( "complete" );
     });
 }
+
+function getLabsByDiscipline() {
+  $("#getDisName li").click(function() {
+    labs_url = base_url+"/labs";
+    labs_by_dis_url = labs_url+"?discipline_name="+($(this).text());
+    console.log(labs_by_dis_url);
+    $.getJSON(labs_by_dis_url, function(data) {
+      var labs = '';
+      $.each(data, function(key, value){
+        lab_name = value['lab_name'];
+        hosted_url = value['hosting_info'][0]['hosted_url'];
+//        image =value['assets'][0]['path']
+//        labs += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
+//          + lab_name +'<div class="thumbnail"><img src='+ image +'></img></a></div></div>';
+        labs += '  <span id="getLabsbyDis"></span><div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
+          + lab_name +'<div class="thumbnail"></a></div></div>';
+      });
+      manageFrames(labs);
+
+    })
+      .done(function() {
+        console.log( "second success" );
+      })
+      .fail(function() {
+        console.log( "error" );
+        location.reload();
+      })
+      .always(function() {
+        console.log( "complete" );
+      });
+
+  });
+}
+
+function getLabsByInstitute() {
+  $("#getInstName li").click(function() {
+    labs_url = base_url+"/labs";
+    labs_by_inst_url = labs_url+"?institute_name="+($(this).text());
+    console.log(labs_by_inst_url);
+    $.getJSON(labs_by_inst_url, function(data) {
+      var labs = '';
+      $.each(data, function(key, value){
+        lab_name = value['lab_name'];
+        hosted_url = value['hosting_info'][0]['hosted_url'];
+//        image =value['assets'][0]['path']
+//        labs += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
+//          + lab_name +'<div class="thumbnail"><img src='+ image +'></img></a></div></div>';
+
+        labs += '  <span id="getLabsbyInst"></span><div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
+          + lab_name +'<div class="thumbnail"></a></div></div>';
+
+//        labs += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
+//          + lab_name +'<div class="thumbnail"></a></div></div>';
+      });
+      manageFrames(labs);
+    })
+      .done(function() {
+        console.log( "second success" );
+      })
+      .fail(function() {
+        console.log( "error" );
+        location.reload();
+      })
+      .always(function() {
+        console.log( "complete" );
+      });
+
+  });
+}
+
+function getAllLabs() {
+  $.getJSON(lab_url, function(data) {
+    var labs = '';
+    $.each(data, function(key, value){
+      lab_name = value['lab_name'];
+      hosted_url = value['hosting_info'][0]['hosted_url'];
+//      image =value['assets'][0]['path']
+      labs += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
+        + lab_name +'<div class="thumbnail"></a></div></div>';
+
+//      labs += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
+//        + lab_name +'<div class="thumbnail"><img src='+ image +'></img></a></div></div>';
+    });
+    manageFrames(labs);
+    //$('#content').append(labs);
+  })
+    .done(function() {
+      console.log( "second success" );
+    })
+    .fail(function() {
+      console.log(jqXHR);
+      console.log( "error in getAllLabs" );
+    })
+    .always(function() {
+      console.log( "complete" );
+    });
+}
+    
     
 #+END_SRC
    
 ** Iframe
-#+BEGIN_SRC html :tangle test_iframe.html :eval no :noweb yes 
+#+BEGIN_SRC html :tangle templates/test_iframe.html :eval no :noweb yes 
 <!DOCTYPE html>
 <html>
 <body>
@@ -301,32 +371,54 @@ function getAllLabs() {
 
 #+END_SRC
 ** Header
-#+BEGIN_SRC html :tangle header.html :eval no :noweb yes
+#+BEGIN_SRC html :tangle templates/header.html :eval no :noweb yes
 
 <header >
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/js/bootstrap.css">
+  <link rel="stylesheet" href="../static/js/font-awesome.css">
+  <link rel="stylesheet" href="../static/js/bootsnipp.css">
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="./main.js"></script>
-  <nav class="navbar navbar-inverse">
+  <script src="../static/js/main.js"></script>
+  <nav class="navbar navbar-fixed-top navbar-bootsnipp animate" role="navigation" style="z-index: 9999999">
+
     <div class="container-fluid">
+
       <div class="navbar-header">
-        <a class="navbar-brand" href="#">vlabs-logo</a>
+        <a class="navbar-brand main-logo-a" href="https://vlabs.ac.in" style=" width:100px; height:40px; margin-top:-13px"><img src="https://vlabs.ac.in/static/edx-bootstrap-theme/images/logo.7e034286282a.png" class="img-responsive main-logo" style="width:100%; maring-top:2px;"></a>
+
       </div>
+
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Home</a></li>
+
         <li class="dropdown" ><a class="dropdown-toggle" data-toggle="dropdown" href="#">Institutes <span class="caret"></span></a>
           <ul class="dropdown-menu filterInstComboBox" id="getInstName">
           </ul>
-        </li>
+          
         <li class="dropdown" ><a class="dropdown-toggle" data-toggle="dropdown" href="#">Disciplines <span class="caret"></span></a>
           <ul class="dropdown-menu filterDisComboBox" id="getDisName">
-          </ul>
-        </li>
-        <li><a href="javascript:getAllLabs()" target="iframe_a">All Labs</a></li>
+          </ul></li>
+          
+        <li><a href="javascript:getAllLabs()" target="content_iframe">All
+            Labs</a></li>
+        
       </ul>
       <ul class="nav navbar-nav navbar-right">
-      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <form class="navbar-form navbar-left">
+          <div class="input-group">
+            <input id="keyword" type="text" class="form-control" placeholder="Lab Name">
+            <div class="input-group-btn">
+              <button onclick="javascript:getLabs()" target="content_iframe" class="btn btn-default" type="submit">
+                <i class="glyphicon glyphicon-search"></i>
+              </button>
+            </div>
+          </div>
+        </form>        
+        <li><a href="http://vlabs.ac.in" target="content_iframe"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
       <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
     </ul>
 
