@@ -63,7 +63,7 @@ function manage_frames(){
   x.id="allLabs";
   document.body.appendChild(x);
 }
-var base_url = 'http://localhost:5000';
+var base_url = 'http://lds.vlabs.ac.in';
 var inst_url = base_url+"/institutes";
 $.getJSON(inst_url, function(data) {
   var items = '';
