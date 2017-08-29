@@ -1,0 +1,27 @@
+#+TITLE: Configuration
+#+AUTHOR: VLEAD
+#+DATE: [2017-08-29 Tue]
+#+SETUPFILE: ../../org-templates/level-2.org
+#+TAGS: boilerplate(b)
+#+EXCLUDE_TAGS: boilerplate
+#+OPTIONS: ^:nil
+
+* Introduction
+
+This holds the application's configuration parameters.
+
+
+* Application Configuration
+  Configuration for the application. 
+#+NAME: app_config
+#+BEGIN_SRC python
+base_url = 'http://lds.vlabs.ac.in'
+keyword_url = base_url+"/labs?keyword_lab_name="
+lab_url = base_url+"/labs"
+#+END_SRC
+
+* Tangling                                                      :boilerplate:
+** app_config
+#+BEGIN_SRC python :tangle app_config.py :eval no :noweb yes
+<<app_config>>
+#+end_src

@@ -59,7 +59,7 @@
 #+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
 
 var base_url = 'http://lds.vlabs.ac.in';
-var keyword_url = base_url+"/labs?keyword_lab_name="
+var keyword_url = base_url+"/labs?keyword_lab_name=";
 var lab_url = base_url+"/labs";
  $(document).ready(function() {
    

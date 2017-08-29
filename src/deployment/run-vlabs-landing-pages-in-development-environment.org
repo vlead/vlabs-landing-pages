@@ -25,3 +25,18 @@
 * Access the application  
   - The application is accessed at =http://localhost:8000=
     
+* configuring the application
+  - Open the folder from terminal
+  #+BEGIN_EXAMPLE 
+  cd src/runtime/config
+  #+END_EXAMPLE
+  - Open config file
+  #+BEGIN_EXAMPLE 
+  emacs config.org
+  #+END_EXAMPLE  
+  - Paste the following lines in the config.org file
+  #+BEGIN_EXAMPLE 
+  base_url = 'http://lds.vlabs.ac.in'
+  keyword_url = base_url+"/labs?keyword_lab_name="
+  lab_url = base_url+"/labs"
+  #+END_EXAMPLE
