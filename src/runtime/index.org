@@ -11,11 +11,13 @@
   :PROPERTIES:
   :CUSTOM_ID: introduction
   :END: 
-  
-  This document illustrates building of  =Vlabs landing Pages= dynamically.
-  Data will be provided by =Lab Data Service=.
+  This "Literate Document" is an illustration of building =Vlabs landing Pages=
+  dynamically. Data will be provided by =Lab Data Service=.
+
 * Web App
 ** Index HTML
+   The App is used to get the content based on Institutes, Disciplines, All
+   labs. Here's the basic skeleton. 
 #+BEGIN_SRC html :tangle templates/index.html :eval no :noweb yes
 <html>
    <head>
@@ -56,6 +58,20 @@
 #+END_SRC
 
 ** JS
+  The functionality of the Vlabs landing page is to make a Get Request through
+  the URL with the AJAX call to Lab Data Service. As response it loads the
+  information about the institute, disciplines and all labs, which include data
+  with images, logos and icons dynamically. The additional functionality is
+  providing search of institutes, disciplines and all labs. Main functionality
+  include loading the following
+  - Getting data based on the institute.
+  - Getting data based on the disciplines.
+  - Getting data of lab with respect to the Institute.
+  - Getting data of lab with respect to the Discipline.
+  - Getting data of all the labs from lab data service.
+  Displaying data is in the form of iframes where we have 3 that includes
+  header and footer, a service and content is also displayed in one of the
+  iframes. 
 #+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
 
 var base_url = 'http://lds.vlabs.ac.in';
@@ -63,7 +79,7 @@ var keyword_url = base_url+"/labs?keyword_lab_name=";
 var lab_url = base_url+"/labs";
  $(document).ready(function() {
    
-   getAllInstitutes();
+   getAllInstitutes(); 
    getAllDisciplines();
    //$("button").click(function(event){
        //event.preventDefault();
@@ -82,7 +98,7 @@ var lab_url = base_url+"/labs";
       $.ajax({
 
           type: "GET",
-          url: "http://localhost:5000/labs?keyword_lab_name=" + keyword,
+          url: base_url + "/labs?keyword_lab_name=" + keyword, 
           async: false,
           contentType: "application/json",
           jsonpCallback: "jsonCallback",
@@ -306,10 +322,9 @@ function getAllLabs() {
 
 </body>
 </html>
-
-
 #+END_SRC
 ** Footer
+   Footer service is merged in this application
 #+BEGIN_SRC html :tangle footer.html :eval no :noweb yes 
 <head>
   <link rel="stylesheet" type="text/css" href="static/css/main.css">
@@ -383,6 +398,9 @@ function getAllLabs() {
 
 #+END_SRC
 ** Header
+   This includes the content that has to be displayed in the header. Institute,
+   disciplines and all labs along with drop down with institutes, disciplines
+   and also all labs.
 #+BEGIN_SRC html :tangle templates/header.html :eval no :noweb yes
 
 <header >
