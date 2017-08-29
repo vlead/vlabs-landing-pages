@@ -1,0 +1,27 @@
+#+TITLE: Running Vlabs Landing Page on Developement Environment
+#+Author: VLEAD
+#+Date: [2017-08-29 Tue]
+#+PROPERTY: results output
+#+PROPERTY: exports code
+#+SETUPFILE: ./org-templates/level-0.org
+#+options: ^:nil
+
+* Initial make
+  - Run make from vlabs-landing-page directory to build the application.
+  The code gets tangled but the test cases will fail. This is because some of
+  the dependencies have not been set up. To insall the dependencies and run the 
+  application, follow the steps listed below.
+  #+BEGIN_EXAMPLE 
+  make
+  #+END_EXAMPLE
+
+* Running SimpleHTTPServer
+  - In your terminal, cd into whichever directory you wish to have accessible via
+  browsers and HTTP
+  #+BEGIN_EXAMPLE 
+  python -m SimpleHTTPServer
+  #+END_EXAMPLE
+
+* Access the application  
+  - The application is accessed at =http://localhost:8000=
+    

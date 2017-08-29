@@ -1,0 +1,4 @@
+* Vlabs-Landing-Pages
+** Run application on development environment
+   Use [[./src/deployment/run-vlabs-landing-pages-in-development-environment.org][Documentation]] to setup and run the application on
+   local/development environment.
