@@ -31,7 +31,7 @@
    part of a division. 
 
 ** Structure of the html
-#+begin_src html :tangle iframe.html
+#+begin_src html 
 <html>
   <head>
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
@@ -64,7 +64,7 @@
 #+end_src
 
 ** HTML loaded to iframe
-#+begin_src html :tangle iframe_template.html
+#+begin_src html 
 <html>
   <head></head>
   <body>
@@ -77,21 +77,19 @@
 #+end_src
 
 ** Document Domain
-Manipulation of iframe content from javascript loaded in the
-document is possible if the both the iframe content and the
-javascript manipulating the iframe are loaded from the same
-domain. 
+   Manipulation of iframe content from javascript loaded in the document is
+   possible if the both the iframe content and the javascript manipulating the
+   iframe are loaded from the same domain.
 
-#+BEGIN_SRC js :tangle iframe.js
+#+BEGIN_SRC js 
 document.domain="localhost"
 
 #+END_SRC
 ** Create a frame
-Provide the attributes, and an iframe is created and
-returned.  The attributes are name, id, width and height of
-the frame.
+   Provide the attributes, and an iframe is created and returned.  The
+   attributes are name, id, width and height of the frame.
 
-#+begin_src js :tangle iframe.js
+#+begin_src js 
 var createNewIframe = function(name, id, width, height) {
   var newIframe = document.createElement("iframe");
   newIframe.setAttribute("width", width);
@@ -104,10 +102,9 @@ var createNewIframe = function(name, id, width, height) {
 #+end_src
 
 ** Insert a Frame in a Division
-Given a division, and an iframe, the iframe is inserted in
-the division.
+   Given a division, and an iframe, the iframe is inserted in the division.
 
-#+begin_src js :tangle iframe.js
+#+begin_src js 
 var insertFrameInDivision = function(iframe, divId) {
   divElem = document.getElementById(divId);
   divElem.appendChild(iframe);
@@ -116,10 +113,9 @@ var insertFrameInDivision = function(iframe, divId) {
 #+end_src
 
 ** Delete Frame from a Division
-Given a frame and a division, an iframe within the division
-is deleted.
+   Given a frame and a division, an iframe within the division is deleted.
 
-#+begin_src js :tangle iframe.js
+#+begin_src js 
 var deleteFrameInDivision = function(frameId, divId) {
   if (document.getElementById(divId).hasChildNodes()) {
     frameElem = document.getElementById(frameId);
@@ -132,10 +128,10 @@ var deleteFrameInDivision = function(frameId, divId) {
 #+end_src
 
 ** Insert Frame
-Insert a frame in the =div_iframe= division.  The name and
-id of this frame is =iframe1=.
+   Insert a frame in the =div_iframe= division.  The name and id of this frame
+   is =iframe1=.
 
-#+begin_src js :tangle iframe.js
+#+begin_src js 
 var insertFrame = function() {
   newFrame = createNewIframe("iframe1", "iframe1", "100%", "30%");
   division = document.getElementById('div_iframe');
@@ -145,9 +141,9 @@ var insertFrame = function() {
 #+end_src
 
 ** Delete Frame
-Delete frame with id =frame1= in the =div_iframe= division.  
+   Delete frame with id =frame1= in the =div_iframe= division.
 
-#+begin_src js :tangle iframe.js
+#+begin_src js 
 var deleteFrame = function() {
   frame = document.getElementById('iframe1');
   division = document.getElementById('div_iframe');
@@ -157,9 +153,9 @@ var deleteFrame = function() {
 #+end_src
 
 ** Set source of iframe
-Set source of iframe with id =iframe1=.
+   Set source of iframe with id =iframe1=.
 
-#+begin_src js :tangle iframe.js
+#+begin_src js 
 var setWebAppInIframe = function() {
   var iframe = document.getElementById("iframe1");
   iframe.src = "http://dev.vlabs.ac.in";
@@ -168,11 +164,11 @@ var setWebAppInIframe = function() {
 #+end_src
 
 ** Set source in a sandboxed iframe
-Make an iframe sand boxed and set the source to it.
-Sometimes this is necessary since certain web pages expand
-out of iframe and these need to be sand boxed.
+   Make an iframe sand boxed and set the source to it.  Sometimes this is
+   necessary since certain web pages expand out of iframe and these need to be
+   sand boxed.
 
-#+begin_src js :tangle iframe.js
+#+begin_src js 
 var setWebAppInSandBoxedIframe = function() {
   deleteFrame();
   insertFrame();
@@ -195,7 +191,7 @@ var setWebAppInSandBoxedIframe = function() {
    manipulation where =template-div= is accessed and new
    content is set. 
 
-#+BEGIN_SRC js :tangle iframe.js
+#+BEGIN_SRC js 
 var setContent = function() {
   var iframe = document.getElementById("iframe1");
   var content = iframe.contentWindow.document;

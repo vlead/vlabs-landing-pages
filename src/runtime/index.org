@@ -30,6 +30,9 @@
   Displaying data is in the form of iframes where we have 3 that includes
   header and footer, a service and content is also displayed in one of the
   iframes. 
+
+
+
 #+BEGIN_SRC javascript :tangle iframe.js :eval no :noweb yes
 
 document.domain="localhost"
@@ -43,13 +46,18 @@ var createNewIframe = function(name, id, width, height) {
   newIframe.id = id;
   return newIframe;
 };
+#+END_SRC
 
+#+BEGIN_SRC javascript :tangle iframe.js :eval no :noweb yes
 var insertFrameInDivision = function(iframe, divId) {
   console.log("=======inserting iframe in division=====");
   divElem = parent.document.getElementById(divId);
   divElem.appendChild(iframe);
 };
 
+#+END_SRC
+
+#+BEGIN_SRC javascript :tangle iframe.js :eval no :noweb yes
 var deleteFrameInDivision = function(frameId, divId) {
   console.log("=======inside delete frame=====");
   if (parent.document.getElementById(divId).hasChildNodes()) {
@@ -60,6 +68,9 @@ var deleteFrameInDivision = function(frameId, divId) {
     }
   }
 };
+#+END_SRC
+
+#+BEGIN_SRC javascript :tangle iframe.js :eval no :noweb yes
 var loadIndex=function(){
   console.log("=======loading index page=====");
   insertHeaderIFrame();
@@ -67,7 +78,9 @@ var loadIndex=function(){
   insertContentIFrame();
   setContentInIframe();
 };
+#+END_SRC
 
+#+BEGIN_SRC javascript :tangle iframe.js :eval no :noweb yes
 var loadAllDisciplines =function(){
   console.log("=======loading all disciplines=====");
   deleteFrame();
@@ -76,6 +89,9 @@ var loadAllDisciplines =function(){
 
 };
 
+#+END_SRC
+
+#+BEGIN_SRC javascript :tangle iframe.js :eval no :noweb yes
 var loadAllInstitutes =function(){
   console.log("=======loading all institutes=====");
   deleteFrame();
@@ -84,6 +100,8 @@ var loadAllInstitutes =function(){
 
 };
 
+#+END_SRC
+#+BEGIN_SRC javascript :tangle iframe.js :eval no :noweb yes
 var setHeaderContentInIframe=function(){
   console.log("=======setting header in iframe=====");
  // deleteFrame();
@@ -93,12 +111,18 @@ var setHeaderContentInIframe=function(){
   //setTimeout(setContent, 100);
 
 };
+
+#+END_SRC
+#+BEGIN_SRC javascript :tangle iframe.js :eval no :noweb yes
 var insertHeaderIFrame = function() {
   console.log("=======creating header iframe=====");
   newFrame = createNewIframe("head_iframe1", "head_iframe1", "100%", "30%");
   division = document.getElementById('header_iframe');
   insertFrameInDivision(newFrame, division.id);
 };
+
+#+END_SRC
+#+BEGIN_SRC javascript :tangle iframe.js :eval no :noweb yes
 var insertContentIFrame = function() {
   console.log("=======creating content iframe=====");
   newFrame = createNewIframe("contentiframe", "contentiframe", "100%", "30%");
@@ -106,6 +130,8 @@ var insertContentIFrame = function() {
   insertFrameInDivision(newFrame, division.id);
 };
 
+#+END_SRC
+#+BEGIN_SRC javascript :tangle iframe.js :eval no :noweb yes
 var insertNewContentIFrame = function() {
   console.log("=======creating content iframe=====");
   newFrame = createNewIframe("contentiframe", "contentiframe", "100%", "30%");
@@ -119,6 +145,8 @@ var insertNewContentIFrame = function() {
   insertFrameInDivision(newFrame, divId);
 };
 
+#+END_SRC
+#+BEGIN_SRC javascript :tangle iframe.js :eval no :noweb yes
 var insertFrame = function() {
   console.log("=======insert iframe=====");
   newFrame = createNewIframe("iframe1", "iframe1", "100%", "30%");
@@ -126,7 +154,8 @@ var insertFrame = function() {
   insertFrameInDivision(newFrame, division.id);
 };
 
-
+#+END_SRC
+#+BEGIN_SRC javascript :tangle iframe.js :eval no :noweb yes
 var deleteFrame = function() {
   console.log("=======deleting content iframe=====");  
 //  frame = document.getElementById('header_iframe');
@@ -135,12 +164,16 @@ var deleteFrame = function() {
   deleteFrameInDivision(frame.id, division.id);
 };
 
+#+END_SRC
+#+BEGIN_SRC javascript :tangle iframe.js :eval no :noweb yes
 var setWebAppInIframe = function() {
   console.log("=======setting web app in an iframe=====");  
   var iframe = document.getElementById("iframe1");
   iframe.src = "http://dev.vlabs.ac.in";
 };
 
+#+END_SRC
+#+BEGIN_SRC javascript :tangle iframe.js :eval no :noweb yes
 var setWebAppInSandBoxedIframe = function() {
   console.log("=======setting web app in an sandboxed for content iframe=====");    
   deleteFrame();
@@ -150,6 +183,8 @@ var setWebAppInSandBoxedIframe = function() {
   iframe.src = "https://vlabs.ac.in";
 };
 
+#+END_SRC
+#+BEGIN_SRC javascript :tangle iframe.js :eval no :noweb yes
 var setContent = function() {
   console.log("=======setting content=====");      
   var iframe = document.getElementById("contentiframe");
@@ -158,6 +193,8 @@ var setContent = function() {
 //  elem.innerHTML = "<p>Hello world</p>";
 };
 
+#+END_SRC
+#+BEGIN_SRC javascript :tangle iframe.js :eval no :noweb yes
 var setNewContent = function() {
   console.log("=======setting new content=====");      
   var iframe = parent.document.getElementById("dis_iframe");
@@ -166,6 +203,8 @@ var setNewContent = function() {
 //  elem.innerHTML = "<p>Hello world</p>";
 };
 
+#+END_SRC
+#+BEGIN_SRC javascript :tangle iframe.js :eval no :noweb yes
 var setContentInIframe = function() {
   console.log("=======setting content to content iframe=====");        
 //  deleteFrame();
@@ -175,6 +214,8 @@ var setContentInIframe = function() {
   setTimeout(setContent, 100);
 };
 
+#+END_SRC
+#+BEGIN_SRC javascript :tangle iframe.js :eval no :noweb yes
 var setNewContentInIframe = function() {
   console.log("=======setting new content to content iframe=====");        
 //  deleteFrame();
@@ -184,6 +225,8 @@ var setNewContentInIframe = function() {
   setTimeout(setNewContent, 100);
 };
 
+#+END_SRC
+#+BEGIN_SRC javascript :tangle iframe.js :eval no :noweb yes
 var resetContentInIframe = function() {
   console.log("=======re setting content=====");        
   var iframe = document.getElementById("iframe1");
@@ -191,6 +234,7 @@ var resetContentInIframe = function() {
   var elem = content.getElementById('template-div');
   elem.innerHTML = "<p>Resetting Hello world</p>";
 };
+
 #+END_SRC
    
 ** Welcome
@@ -263,80 +307,6 @@ var resetContentInIframe = function() {
 </html>
 #+END_SRC
 
-** Footer
-   Footer service is merged in this application
-#+BEGIN_SRC html :tangle footer.html :eval no :noweb yes 
-<head>
-  <link rel="stylesheet" type="text/css" href="static/css/main.css">
-</head>
-
-<footer>
-  <div class="container-fluid footer-div" style="background: #404040; margin-top: 40px;  padding: 20px;">
-    <div class="col-md-4 border-right-green-dotted" >
-      <h2 class="text-h2-lightblue-small" style="font-weight: bold;margin-top: 0px;">Updates</h2>
-      <a href="http://community.virtual-labs.ac.in/w/index.php/Download" class="text-normal-gray-small nounderline" style="color: white" > Lab Integration Kit Releases</a><br>
-      <a href="http://community.virtual-labs.ac.in/w/index.php/First_Integration_workshop"
-	 class="text-normal-gray-small nounderline"
-	 style="color: white" >First Integration Workshop at IIIT Hyderabad</a><br>
-      <a href="http://community.virtual-labs.ac.in/w/index.php/Summer_Sprint_Integration_workshop" class="text-normal-gray-small nounderline" style="color: white" > Summer Integration Workshop at IIT Guwahati</a><br>
-      <a href="http://community.virtual-labs.ac.in/w/index.php/QA/Integration_workshop"
-	 class="text-normal-gray-small nounderline"
-	 style="color: white" > QA Integration
-	Workshop at IIIT Hyderabad</a><br>
-      <a href="http://community.virtual-labs.ac.in/w/index.php/A_new_set_of_25_Virtual_Labs_on_Portable_Media" class="text-normal-gray-small nounderline" style="color: white" > A new set of 25 Virtual Labs on Portable Media</a><br>
-    </div>
-    
-    <div class="col-md-2 border-right-green-dotted" >
-
-<!--      <a href="./faq.html" class="text-a-lightgreen" style="text-decoration: underline;" > FAQ</a><br>-->
-      <a href="http://community.virtual-labs.ac.in/w/index.php/Main_Page" class="text-a-lightgreen" style="text-decoration: underline;" >Community</a><br>
-      
-      <a href="http://outreach.vlabs.ac.in/ncentres"
-	 class="text-a-lightgreen"
-	 style="text-decoration: underline;" > Nodal Centers</a><br>
-      
-      
-      <a href="http://www.sakshat.ac.in/" class="text-a-lightgreen" style="text-decoration: underline;" > Sakshat Portal</a><br>
-
-      <a href="http://outreach.vlabs.ac.in/" class="text-a-lightgreen" style="text-decoration: underline;" > Outreach Portal</a><br>
-      <a href="http://118.102.191.38/vlabiitece/"
-	 class="text-a-lightgreen"
-	 style="text-decoration: underline;" > Labs
-	Developed by Nodal Centers</a><br>
-      
-    </div>
-    
-    <div class="col-md-3 border-right-green-dotted" id="contact" >
-      <h2 class="text-h2-lightblue-small" style="font-weight: bold;margin-top: 0px;"> Contact us</h2>
-      <a href="http://feedback.vlabs.ac.in/" class="text-a-lightgreen" style="text-decoration: underline;" > Feedback</a><br>
-      
-      <a class="text-a-lightgreen"style="text-decoration: underline;" href="mailto:support@vlabs.ac.in">support@vlabs.ac.in</a><br>
-      <a href="http://118.102.191.38/labassessment/assessmentform.html"
-	 class="text-a-lightgreen"
-	 style="text-decoration: underline;" > Lab
-	Assessment Form</a><br>
-
-    </div>
-    
-                        
-    <div class="col-md-2 border-right-green-dotted" >
-      <h2 class="text-h2-lightblue-small" style="font-weight: bold;margin-top: 0px;"> Follow us</h2>
-      <a href="https://www.facebook.com/pages/Virtual-Labs-IIT-Delhi/301510159983871" class="text-a-lightgreen nounderline"   target="_blank"> <img src="http://vlabs.ac.in/images/social/fb.png"  style="border-radius: 50%;"/> </a><br>
-      <a href="https://twitter.com/TheVirtualLabs" class="text-a-lightgreen nounderline"   target="_blank"> <img src="http://vlabs.ac.in/images/social/twitter.png"  style="border-radius: 50%;"/></a><br>
-      <a href="http://linkedin.com" class="text-a-lightgreen nounderline"  target="_blank" > <img src="http://vlabs.ac.in/images/social/linkedin.png" style="border-radius: 50%;" /></a><br>
-      <a href="https://www.youtube.com/watch?v=mVBYNXLaDdg"
-	 class="text-a-lightgreen nounderline"
-	 target="_blank" >
-	<img src="http://vlabs.ac.in/images/social/youtube.png"
-	     style="border-radius: 50%; width: 38px;
-		    height: 38px" /></a><br>
-      
-    </div>
-    
-  </div>
-</footer>
-
-#+END_SRC
 ** Header
    This includes the content that has to be displayed in the header. Institute,
    disciplines and all labs along with drop down with institutes, disciplines
