@@ -1,0 +1,399 @@
+#+TITLE: Runtime
+#+AUTHOR: VLEAD
+#+DATE: [2017-04-06 Thursday]
+#+PROPERTY: results output
+#+PROPERTY: exports code
+#+SETUPFILE: ../org-templates/level-1.org
+#+options: ^:nil
+#+LATEX: Literal LaTeX code for export
+
+* Introduction 
+  :PROPERTIES:
+  :CUSTOM_ID: introduction
+  :END: 
+  This "Literate Document" is an illustration of building =Vlabs landing Pages=
+  dynamically. Data will be provided by =Lab Data Service=.
+
+* Web App
+** JS
+  The functionality of the Vlabs landing page is to make a Get Request through
+  the URL with the AJAX call to Lab Data Service. As response it loads the
+  information about the institute, disciplines and all labs, which include data
+  with images, logos and icons dynamically. The additional functionality is
+  providing search of institutes, disciplines and all labs. Main functionality
+  include loading the following
+  - Getting data based on the institute.
+  - Getting data based on the disciplines.
+  - Getting data of lab with respect to the Institute.
+  - Getting data of lab with respect to the Discipline.
+  - Getting data of all the labs from lab data service.
+  Displaying data is in the form of iframes where we have 3 that includes
+  header and footer, a service and content is also displayed in one of the
+  iframes. 
+#+BEGIN_SRC javascript :tangle iframe.js :eval no :noweb yes
+
+document.domain="localhost"
+
+var createNewIframe = function(name, id, width, height) {
+  console.log("=======creating new frame=====");
+  var newIframe = document.createElement("iframe");
+  newIframe.setAttribute("width", width);
+  newIframe.setAttribute("height", height);
+  newIframe.name = name;
+  newIframe.id = id;
+  return newIframe;
+};
+
+var insertFrameInDivision = function(iframe, divId) {
+  console.log("=======inserting iframe in division=====");
+  divElem = parent.document.getElementById(divId);
+  divElem.appendChild(iframe);
+};
+
+var deleteFrameInDivision = function(frameId, divId) {
+  console.log("=======inside delete frame=====");
+  if (parent.document.getElementById(divId).hasChildNodes()) {
+    frameElem = parent.document.getElementById(frameId);
+    if (frameElem !== null) {
+      frameElem.parentNode.removeChild(frameElem);
+      console.log("======deleted====");
+    }
+  }
+};
+var loadIndex=function(){
+  console.log("=======loading index page=====");
+  insertHeaderIFrame();
+  setHeaderContentInIframe();
+  insertContentIFrame();
+  setContentInIframe();
+};
+
+var loadAllDisciplines =function(){
+  console.log("=======loading all disciplines=====");
+  deleteFrame();
+  insertNewContentIFrame();
+  setNewContentInIframe();
+
+};
+
+var loadAllInstitutes =function(){
+  console.log("=======loading all institutes=====");
+  deleteFrame();
+  insertNewContentIFrame();
+  setNewContentInIframe();
+
+};
+
+var setHeaderContentInIframe=function(){
+  console.log("=======setting header in iframe=====");
+ // deleteFrame();
+ // insertFrame();
+  var iframe = document.getElementById("head_iframe1");
+  iframe.src = "./header.html";
+  //setTimeout(setContent, 100);
+
+};
+var insertHeaderIFrame = function() {
+  console.log("=======creating header iframe=====");
+  newFrame = createNewIframe("head_iframe1", "head_iframe1", "100%", "30%");
+  division = document.getElementById('header_iframe');
+  insertFrameInDivision(newFrame, division.id);
+};
+var insertContentIFrame = function() {
+  console.log("=======creating content iframe=====");
+  newFrame = createNewIframe("contentiframe", "contentiframe", "100%", "30%");
+  division = document.getElementById('content_iframe');
+  insertFrameInDivision(newFrame, division.id);
+};
+
+var insertNewContentIFrame = function() {
+  console.log("=======creating content iframe=====");
+  newFrame = createNewIframe("contentiframe", "contentiframe", "100%", "30%");
+  var ids = parent.document.querySelectorAll('[id]');
+  Array.prototype.forEach.call( ids, function( el, i ) {
+    // "el" is your element
+    console.log( el.id ); // log the ID
+  });
+  division = parent.document.getElementById('dis_iframe');
+  var divId = division.id;
+  insertFrameInDivision(newFrame, divId);
+};
+
+var insertFrame = function() {
+  console.log("=======insert iframe=====");
+  newFrame = createNewIframe("iframe1", "iframe1", "100%", "30%");
+  division = document.getElementById('dis_iframe');
+  insertFrameInDivision(newFrame, division.id);
+};
+
+
+var deleteFrame = function() {
+  console.log("=======deleting content iframe=====");  
+//  frame = document.getElementById('header_iframe');
+  frame= parent.document.getElementById('content_iframe');
+  division = parent.document.getElementById('header_iframe');
+  deleteFrameInDivision(frame.id, division.id);
+};
+
+var setWebAppInIframe = function() {
+  console.log("=======setting web app in an iframe=====");  
+  var iframe = document.getElementById("iframe1");
+  iframe.src = "http://dev.vlabs.ac.in";
+};
+
+var setWebAppInSandBoxedIframe = function() {
+  console.log("=======setting web app in an sandboxed for content iframe=====");    
+  deleteFrame();
+  insertFrame();
+  var iframe = document.getElementById("iframe1");
+  iframe.sandbox = 'allow-forms allow-scripts allow-same-origin';
+  iframe.src = "https://vlabs.ac.in";
+};
+
+var setContent = function() {
+  console.log("=======setting content=====");      
+  var iframe = document.getElementById("contentiframe");
+  var content = iframe.contentWindow.document;
+//  var elem = content.getElementById('content_iframe');
+//  elem.innerHTML = "<p>Hello world</p>";
+};
+
+var setNewContent = function() {
+  console.log("=======setting new content=====");      
+  var iframe = parent.document.getElementById("dis_iframe");
+//  var content = iframe.contentWindow.document;
+//  var elem = content.getElementById('content_iframe');
+//  elem.innerHTML = "<p>Hello world</p>";
+};
+
+var setContentInIframe = function() {
+  console.log("=======setting content to content iframe=====");        
+//  deleteFrame();
+ // insertFrame();
+  var iframe = document.getElementById("contentiframe");
+  iframe.src = "./welcome.html";
+  setTimeout(setContent, 100);
+};
+
+var setNewContentInIframe = function() {
+  console.log("=======setting new content to content iframe=====");        
+//  deleteFrame();
+ // insertFrame();
+  var iframe = parent.document.getElementById("contentiframe");
+  iframe.src = "./re_welcome.html";
+  setTimeout(setNewContent, 100);
+};
+
+var resetContentInIframe = function() {
+  console.log("=======re setting content=====");        
+  var iframe = document.getElementById("iframe1");
+  var content = iframe.contentWindow.document;
+  var elem = content.getElementById('template-div');
+  elem.innerHTML = "<p>Resetting Hello world</p>";
+};
+#+END_SRC
+   
+** Welcome
+#+BEGIN_SRC html :tangle welcome.html :eval no :noweb yes
+<html>
+  <head>welcome</head>
+  <body>
+    <p> welcome to virtual labs!</p>
+  </body>
+  </html>
+#+END_SRC
+
+** Re Welcome
+#+BEGIN_SRC html :tangle re_welcome.html :eval no :noweb yes
+<html>
+  <head>welcome</head>
+  <body>
+    <p> welcome back to virtual labs!</p>
+  </body>
+  </html>
+#+END_SRC
+
+** Iframe
+#+BEGIN_SRC html :tangle iframe.html :eval no :noweb yes 
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <script type="text/javascript" src="iframe.js"></script>
+    <link rel="stylesheet" href="style.css"/>
+  </head>
+  <body onload="loadIndex()">
+    <div id='hello'>
+      <p> Hello </p>
+    </div>
+    <div id="header_iframe"></div>
+    <div id="content_iframe"></div>
+    <div id="dis_iframe"></div>
+    <div id="inst_iframe"></div>
+    <div id='insert_delete_frame_btns'>
+      <button onclick="insertFrame()">Insert frame</button>
+      <button onclick="deleteFrame()">Delete frame</button>
+    </div>
+
+    <div id='set_sources_to_frame_btns'>
+      <button onclick="setWebAppInIframe()">set webapp in iframe</button>
+      <button onclick="setWebAppInSandBoxedIframe()">set webapp in sandboxed iframe</button>
+    </div>
+   
+    <div id='manipualate_frame_content_btns'>
+      <button onclick="setContentInIframe()">set content in iframe</button>
+      <button onclick="resetContentInIframe()">reset content in iframe</button>
+    </div>
+  </body>
+</html>
+
+#+END_SRC
+** Iframe Template
+#+BEGIN_SRC html :tangle iframe_template.html :eval no :noweb yes
+
+<html>
+  <head></head>
+  <body>
+    <script>
+      document.domain="localhost"
+    </script>
+    <div id="template-div">
+    </div>
+</html>
+#+END_SRC
+
+** Footer
+   Footer service is merged in this application
+#+BEGIN_SRC html :tangle footer.html :eval no :noweb yes 
+<head>
+  <link rel="stylesheet" type="text/css" href="static/css/main.css">
+</head>
+
+<footer>
+  <div class="container-fluid footer-div" style="background: #404040; margin-top: 40px;  padding: 20px;">
+    <div class="col-md-4 border-right-green-dotted" >
+      <h2 class="text-h2-lightblue-small" style="font-weight: bold;margin-top: 0px;">Updates</h2>
+      <a href="http://community.virtual-labs.ac.in/w/index.php/Download" class="text-normal-gray-small nounderline" style="color: white" > Lab Integration Kit Releases</a><br>
+      <a href="http://community.virtual-labs.ac.in/w/index.php/First_Integration_workshop"
+	 class="text-normal-gray-small nounderline"
+	 style="color: white" >First Integration Workshop at IIIT Hyderabad</a><br>
+      <a href="http://community.virtual-labs.ac.in/w/index.php/Summer_Sprint_Integration_workshop" class="text-normal-gray-small nounderline" style="color: white" > Summer Integration Workshop at IIT Guwahati</a><br>
+      <a href="http://community.virtual-labs.ac.in/w/index.php/QA/Integration_workshop"
+	 class="text-normal-gray-small nounderline"
+	 style="color: white" > QA Integration
+	Workshop at IIIT Hyderabad</a><br>
+      <a href="http://community.virtual-labs.ac.in/w/index.php/A_new_set_of_25_Virtual_Labs_on_Portable_Media" class="text-normal-gray-small nounderline" style="color: white" > A new set of 25 Virtual Labs on Portable Media</a><br>
+    </div>
+    
+    <div class="col-md-2 border-right-green-dotted" >
+
+<!--      <a href="./faq.html" class="text-a-lightgreen" style="text-decoration: underline;" > FAQ</a><br>-->
+      <a href="http://community.virtual-labs.ac.in/w/index.php/Main_Page" class="text-a-lightgreen" style="text-decoration: underline;" >Community</a><br>
+      
+      <a href="http://outreach.vlabs.ac.in/ncentres"
+	 class="text-a-lightgreen"
+	 style="text-decoration: underline;" > Nodal Centers</a><br>
+      
+      
+      <a href="http://www.sakshat.ac.in/" class="text-a-lightgreen" style="text-decoration: underline;" > Sakshat Portal</a><br>
+
+      <a href="http://outreach.vlabs.ac.in/" class="text-a-lightgreen" style="text-decoration: underline;" > Outreach Portal</a><br>
+      <a href="http://118.102.191.38/vlabiitece/"
+	 class="text-a-lightgreen"
+	 style="text-decoration: underline;" > Labs
+	Developed by Nodal Centers</a><br>
+      
+    </div>
+    
+    <div class="col-md-3 border-right-green-dotted" id="contact" >
+      <h2 class="text-h2-lightblue-small" style="font-weight: bold;margin-top: 0px;"> Contact us</h2>
+      <a href="http://feedback.vlabs.ac.in/" class="text-a-lightgreen" style="text-decoration: underline;" > Feedback</a><br>
+      
+      <a class="text-a-lightgreen"style="text-decoration: underline;" href="mailto:support@vlabs.ac.in">support@vlabs.ac.in</a><br>
+      <a href="http://118.102.191.38/labassessment/assessmentform.html"
+	 class="text-a-lightgreen"
+	 style="text-decoration: underline;" > Lab
+	Assessment Form</a><br>
+
+    </div>
+    
+                        
+    <div class="col-md-2 border-right-green-dotted" >
+      <h2 class="text-h2-lightblue-small" style="font-weight: bold;margin-top: 0px;"> Follow us</h2>
+      <a href="https://www.facebook.com/pages/Virtual-Labs-IIT-Delhi/301510159983871" class="text-a-lightgreen nounderline"   target="_blank"> <img src="http://vlabs.ac.in/images/social/fb.png"  style="border-radius: 50%;"/> </a><br>
+      <a href="https://twitter.com/TheVirtualLabs" class="text-a-lightgreen nounderline"   target="_blank"> <img src="http://vlabs.ac.in/images/social/twitter.png"  style="border-radius: 50%;"/></a><br>
+      <a href="http://linkedin.com" class="text-a-lightgreen nounderline"  target="_blank" > <img src="http://vlabs.ac.in/images/social/linkedin.png" style="border-radius: 50%;" /></a><br>
+      <a href="https://www.youtube.com/watch?v=mVBYNXLaDdg"
+	 class="text-a-lightgreen nounderline"
+	 target="_blank" >
+	<img src="http://vlabs.ac.in/images/social/youtube.png"
+	     style="border-radius: 50%; width: 38px;
+		    height: 38px" /></a><br>
+      
+    </div>
+    
+  </div>
+</footer>
+
+#+END_SRC
+** Header
+   This includes the content that has to be displayed in the header. Institute,
+   disciplines and all labs along with drop down with institutes, disciplines
+   and also all labs.
+#+BEGIN_SRC html :tangle header.html :eval no :noweb yes
+<header >
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/js/bootstrap.css">
+  <link rel="stylesheet" href="../static/js/font-awesome.css">
+  <link rel="stylesheet" href="../static/js/bootsnipp.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="./iframe.js"></script>
+  <nav class="navbar navbar-fixed-top navbar-bootsnipp animate" role="navigation" style="z-index: 9999999">
+
+    <div class="container-fluid">
+
+      <div class="navbar-header">
+        <a class="navbar-brand main-logo-a" href="https://vlabs.ac.in" style=" width:100px; height:40px; margin-top:-13px"><img src="https://vlabs.ac.in/static/edx-bootstrap-theme/images/logo.7e034286282a.png" class="img-responsive main-logo" style="width:100%; maring-top:2px;"></a>
+
+      </div>
+
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+
+       <!-- <li class="dropdown" ><a class="dropdown-toggle" data-toggle="dropdown" href="#">Institutes <span class="caret"></span></a>
+          <ul class="dropdown-menu filterInstComboBox" id="getInstName">
+          </ul>
+          
+        <li class="dropdown" ><a class="dropdown-toggle" data-toggle="dropdown" href="#">Disciplines <span class="caret"></span></a>
+          <ul class="dropdown-menu filterDisComboBox" id="getDisName">
+          </ul></li>-->
+      <button onclick="loadAllInstitutes()">All Institutes</button>          
+      <button onclick="loadAllDisciplines()">All Disciplines</button>
+      <button onclick="setWebAppInSandBoxedIframe()">All Labs</button>
+
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <form class="navbar-form navbar-left">
+          <div class="input-group">
+            <input id="keyword" type="text" class="form-control" placeholder="Lab Name">
+            <div class="input-group-btn">
+              <button onclick="javascript:getLabs()" target="content_iframe" class="btn btn-default" type="submit">
+                <i class="glyphicon glyphicon-search"></i>
+              </button>
+            </div>
+          </div>
+        </form>        
+        <li><a href="http://vlabs.ac.in" target="content_iframe"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>
+
+    </div>
+  </nav>
+
+</header>
+#+END_SRC
