@@ -110,7 +110,7 @@ var createNewIframe = function(name, id, width, height) {
 
 var insertFrameInDivision = function(iframe, divId) {
   console.log("=======inserting iframe in division=====");
-  divElem = parent.document.getElementById(divId);
+  var divElem = parent.document.getElementById(divId);
   divElem.appendChild(iframe);
 };
 
@@ -125,7 +125,7 @@ var insertFrameInDivision = function(iframe, divId) {
 var deleteFrameInDivision = function(frameId, divId) {
   console.log("=======inside delete frame=====");
   if (parent.document.getElementById(divId).hasChildNodes()) {
-    frameElem = parent.document.getElementById(frameId);
+    var frameElem = parent.document.getElementById(frameId);
     if (frameElem !== null) {
       frameElem.parentNode.removeChild(frameElem);
       console.log("======deleted====");
@@ -159,8 +159,8 @@ var setHeaderContentInIframe=function() {
 
 var insertHeaderIFrame = function() {
   console.log("=======creating header iframe=====");
-  newFrame = createNewIframe("headerIframe", "headerIframe", "100%", "30%");
-  division = document.getElementById("headerDiv");
+  var newFrame = createNewIframe("headerIframe", "headerIframe", "100%", "30%");
+  var division = document.getElementById("headerDiv");
   insertFrameInDivision(newFrame, division.id);
 };
 
@@ -172,8 +172,8 @@ var insertHeaderIFrame = function() {
 
 var insertContentIFrame = function() {
   console.log("=======creating content iframe=====");
-  newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "30%");
-  division = document.getElementById("contentDiv");
+  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "30%");
+  var division = document.getElementById("contentDiv");
   insertFrameInDivision(newFrame, division.id);
 };
 
@@ -185,8 +185,8 @@ var insertContentIFrame = function() {
 #+BEGIN_SRC javascript :tangle main.js :eval no :noweb yes
 var insertFrame = function() {
   console.log("=======insert iframe=====");
-  newFrame = createNewIframe("iframe1", "iframe1", "100%", "30%");
-  division = document.getElementById('dis_iframe');
+  var newFrame = createNewIframe("iframe1", "iframe1", "100%", "30%");
+  var division = document.getElementById('dis_iframe');
   insertFrameInDivision(newFrame, division.id);
 };
 
@@ -201,9 +201,9 @@ var insertFrame = function() {
 var loadAllDisciplines = function() {
   console.log("=======loading all disciplines=====");
   deleteFrameInDivision("contentIframe", "contentDiv");
-  newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "30%");
+  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "30%");
   insertFrameInDivision(newFrame, "contentDiv");
-  disciplines = getAllDisciplines();
+  var disciplines = getAllDisciplines();
   setContentInIframe(disciplines);
 };
 
@@ -215,12 +215,19 @@ var loadAllDisciplines = function() {
 
 #+BEGIN_SRC javascript :tangle main.js :eval no :noweb yes
 
-var loadAllInstitutes = function(){
-  console.log("=======loading all institutes=====");
-  deleteFrame();
-  insertNewContentIFrame();
-  setNewContentInIframe();
+var loadAllInstitutes = function() {
+  console.log("=======loading all disciplines=====");
+  deleteFrameInDivision("contentIframe", "contentDiv");
+  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "30%");
+  insertFrameInDivision(newFrame, "contentDiv");
+  var institutes = getAllInstitutes();
+  console.log(institutes);
+  setContentInIframe(institutes);
 
+//  setInstituteContentInIframe();
+//  setNewContentInIframe();
+  //  var institutes = getAllInstitutes();
+//  setContentInIframe(institutes);
 };
 
 #+END_SRC
@@ -281,14 +288,14 @@ var setContentInIframe = function() {
 };
 
 
-var setNewContentInIframe = function(disciplines) {
+var setNewContentInIframe = function(data) {
   console.log("=======setting new content to content iframe=====");        
-  console.log(disciplines);
-  console.log(document.getElementById(window.name));
+  console.log(data);
+  console.log(parent.document.getElementById(window.name));
   var elem = parent.document.getElementById("contentIframe");
   console.log("elem = " + elem);
-  console.log("new htdfdfml = " + disciplines);
-  elem.contentDocument.write(disciplines);
+  console.log("new htdfdfml = " + data);
+  elem.contentDocument.write(data);
 //    setTimeout(setContent, 100);
 };
 
@@ -302,7 +309,7 @@ var resetContentInIframe = function() {
 
 var getAllDisciplines = function(){ 
   console.log("=========inside get all disciplines==========");
-  dis_url = base_url+"/disciplines";
+  var dis_url = base_url+"/disciplines";
   console.log(dis_url);
   $.getJSON(dis_url, function(data) {
     console.log(data);
@@ -327,6 +334,37 @@ var getAllDisciplines = function(){
       console.log( "complete" );
     });
 };
+
+
+var getAllInstitutes = function(){
+  console.log("getallinstitutes");
+  var inst_url = base_url+"/institutes";
+  $.getJSON(inst_url, function(data) {
+    var institutes = '';
+    $.each(data, function(key, value){
+      var inst_name = value['institute_name'];
+      institutes += inst_name;
+      // labs += '<li onclick="getLabsByInstitute()" value="' + inst_name +
+      //  '" id="' + inst_name + '"><a href="#">' +
+      //  inst_name + '</a></li>';
+    });
+    console.log(institutes);
+    setNewContentInIframe(institutes);
+    
+//    $('.filterInstComboBox').append(labs);
+  })
+    .done(function() {
+      console.log( "second success" );
+    })
+    .fail(function() {
+      console.log( "error" );
+      location.reload();
+    })
+    .always(function() {
+      console.log( "complete" );
+    });
+}
+
 
 #+END_SRC
    
@@ -421,5 +459,64 @@ var getAllDisciplines = function(){
   </nav>
 
 </header>
+
+#+END_SRC
+** Edits
+*** setting content to content iframe
+#+BEGIN_SRC js
+  var setInstituteContentInIframe = function() {
+  console.log("=======setting content to content iframe=====");        
+  var iframe = parent.document.getElementById("contentIframe");
+  iframe.src = "./re_welcome.html";
+};
+
+#+END_SRC
+
+ 
+*** creating content iframe
+#+BEGIN_SRC js
+var insertNewContentIFrame = function() {
+  console.log("=======creating content iframe=====");
+  var newFrame = createNewIframe("disiframe", "disiframe", "100%", "30%");
+  var ids = parent.document.querySelectorAll('[id]');
+  Array.prototype.forEach.call( ids, function( el, i ) {
+    // "el" is your element
+    console.log( el.id ); // log the ID
+  });
+  var division = parent.document.getElementById('dis_iframe');
+  var divId = division.id;
+  insertFrameInDivision(newFrame, divId);
+};
+
+#+END_SRC   
+*** deleting content iframe
+    #+BEGIN_SRC js
+    var deleteFrame = function() {
+  console.log("=======deleting content iframe=====");  
+  //  frame = document.getElementById('header_iframe');
+  var iframes= parent.document.getElementsByTagName("iframe");
+  for (var i=0; i<iframes.length;i++){
+    console.log("======frame to be deleted=====");
+    var frame_name = iframes[i].id;
+    console.log(frame_name);
+  }
+//    if(frame_name != 'head_iframe1'){
+    var frame= parent.document.getElementById('content_iframe');
+    var division = parent.document.getElementById('header_iframe');
+  deleteFrameInDivision(frame.id, division.id);
+
+  };
+
+    #+END_SRC
+ 
+*** setting new content
+#+BEGIN_SRC js
+var setNewContent = function(disciplines) {
+  console.log("=======setting new content=====");      
+  var iframe = parent.document.getElementById("dis_iframe");
+  var content = iframe.contentWindow.document;
+  var elem = parent.content.getElementById('dis_iframe');
+  elem.innerHTML = disciplines;
+};
 
 #+END_SRC
