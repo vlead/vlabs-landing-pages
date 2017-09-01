@@ -142,6 +142,7 @@ document.domain="localhost";
 // update this to lds url where your lds service was running
 var base_url = "http://localhost:5000"; 
 var institute_images_url = "../static/images/institutes/";
+var discipline_images_url = "../static/images/disciplines/";
 
 #+END_SRC
 
@@ -243,7 +244,7 @@ var insertHeaderIFrame = function() {
 
 var insertContentIFrame = function() {
   console.log("=======creating content iframe=====");
-  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "30%");
+  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "50%");
   var division = document.getElementById("contentDiv");
   insertFrameInDivision(newFrame, division.id);
 };
@@ -529,7 +530,10 @@ var getAllDisciplines = function(){
   $.getJSON(dis_url, function(data) {
     var disciplines = '';
     $.each(data, function(key, value){
-      disciplines += value['discipline_name'];
+      var discipline_name = value['discipline_name'];
+      var image_name = value['assets'][0]['path'];
+      var image_path = discipline_images_url + image_name;
+      disciplines += '<img src="' + image_path +'" id="' + discipline_name + '"></img>';
     });
     console.log(disciplines);
     setNewContentInIframe(disciplines);
@@ -544,6 +548,5 @@ var getAllDisciplines = function(){
       console.log( "complete" );
     });
 };
-
 
 #+END_SRC
