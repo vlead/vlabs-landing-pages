@@ -16,15 +16,15 @@
 
 * Implementation
 ** Structure of html
-#+BEGIN_SRC html :tangle main.html :eval no :noweb yes 
-
+#+BEGIN_SRC html :tangle templates/main.html :eval no :noweb yes 
 <!DOCTYPE html>
 <html>
   <head>
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta content="utf-8" http-equiv="encoding">
     <link rel="stylesheet" href="style.css"/>
-    <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="../static/js/app-config.js"></script>
+    <script type="text/javascript" src="../static/js/main.js"></script>
   </head>
   <body onload="loadIndex()">
     <div id="headerDiv"></div>
@@ -51,7 +51,7 @@
 #+END_SRC
 
 ** HTML loaded to iframe
-#+BEGIN_SRC html :tangle iframe_template.html :eval no :noweb yes
+#+BEGIN_SRC html :tangle templates/iframe_template.html :eval no :noweb yes
 
 <html>
   <head></head>
@@ -68,15 +68,15 @@
    Manipulation of iframe content from javascript loaded in the document is
    possible if the both the iframe content and the javascript manipulating the
    iframe are loaded from the same domain.
-#+BEGIN_SRC js :tangle main.js :eval no :noweb yes
+#+BEGIN_SRC js :tangle static/js/app-config.js :eval no :noweb yes
 document.domain="localhost";
 var base_url = 'http://lds.vlabs.ac.in';
 
 #+END_SRC
 
 ** Index page on load 
-   An index initially loads with a header iframe and content iframe.
-#+BEGIN_SRC javascript :tangle main.js :eval no :noweb yes
+   An index page will load initially with a header iframe and content iframe.
+#+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
 
 var loadIndex = function() {
   console.log("=======loading index page=====");
@@ -90,7 +90,7 @@ var loadIndex = function() {
 ** Create a frame
    Provide the attributes, and an iframe is created and returned.  The
    attributes are name, id, width and height of the frame.
-#+BEGIN_SRC javascript :tangle main.js :eval no :noweb yes
+#+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
 var createNewIframe = function(name, id, width, height) {
   console.log("=======creating new frame=====");
   var newIframe = document.createElement("iframe");
@@ -106,7 +106,7 @@ var createNewIframe = function(name, id, width, height) {
 ** Insert a Frame in a Division
    Given a division, and an iframe, the iframe is inserted in the division.
 
-#+BEGIN_SRC javascript :tangle main.js :eval no :noweb yes
+#+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
 
 var insertFrameInDivision = function(iframe, divId) {
   console.log("=======inserting iframe in division=====");
@@ -120,7 +120,7 @@ var insertFrameInDivision = function(iframe, divId) {
 ** Delete Frame from a Division
    Given a frame and a division, an iframe within the division is deleted.
 
-#+BEGIN_SRC javascript :tangle main.js :eval no :noweb yes
+#+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
 
 var deleteFrameInDivision = function(frameId, divId) {
   console.log("=======inside delete frame=====");
@@ -139,7 +139,7 @@ var deleteFrameInDivision = function(frameId, divId) {
 ** Set content in header iframe
    To display a header we give =header.html= as source of the iframe. The
    content of the =header.html= will be set immediately
-#+BEGIN_SRC javascript :tangle main.js :eval no :noweb yes
+#+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
 
 var setHeaderContentInIframe=function() {
   console.log("=======setting header in iframe=====");
@@ -155,7 +155,7 @@ var setHeaderContentInIframe=function() {
 
 ** Creating the header iframe
    Provide the header for selecting the institutes, disciplines and all labs.
-#+BEGIN_SRC javascript :tangle main.js :eval no :noweb yes
+#+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
 
 var insertHeaderIFrame = function() {
   console.log("=======creating header iframe=====");
@@ -168,7 +168,7 @@ var insertHeaderIFrame = function() {
 
 ** Creating the content iframe
    Displays the content iframe based on the selection of the institutes, disciplines and all labs. 
-#+BEGIN_SRC javascript :tangle main.js :eval no :noweb yes
+#+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
 
 var insertContentIFrame = function() {
   console.log("=======creating content iframe=====");
@@ -182,7 +182,7 @@ var insertContentIFrame = function() {
 ** Insert New Frame
    Insert a frame in the =dis_iframe= division.  The name and id of this frame
    is =iframe1=.
-#+BEGIN_SRC javascript :tangle main.js :eval no :noweb yes
+#+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
 var insertFrame = function() {
   console.log("=======insert iframe=====");
   newFrame = createNewIframe("iframe1", "iframe1", "100%", "30%");
@@ -196,7 +196,7 @@ var insertFrame = function() {
 
    On loading disciplines it deletes pre loaded content iframe and creates one
    new content iframe and set values to the newly created content iframe.
-#+BEGIN_SRC javascript :tangle main.js :eval no :noweb yes
+#+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
 
 var loadAllDisciplines = function() {
   console.log("=======loading all disciplines=====");
@@ -213,7 +213,7 @@ var loadAllDisciplines = function() {
    On loading institutes it deletes pre loaded content iframe and creates one
    new content iframe and set values to the newly created content iframe.
 
-#+BEGIN_SRC javascript :tangle main.js :eval no :noweb yes
+#+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
 
 var loadAllInstitutes = function(){
   console.log("=======loading all institutes=====");
@@ -227,7 +227,7 @@ var loadAllInstitutes = function(){
 
 ** Set source of iframe
    Set source of iframe with id =iframe1=.
-#+BEGIN_SRC javascript :tangle main.js :eval no :noweb yes
+#+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
 var setWebAppInIframe = function() {
   console.log("=======setting web app in an iframe=====");  
   var iframe = document.getElementById("iframe1");
@@ -242,7 +242,7 @@ var setWebAppInIframe = function() {
    necessary since certain web pages expand out of iframe and these need to be
    sand boxed.
 
-#+BEGIN_SRC javascript :tangle main.js :eval no :noweb yes
+#+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
 var setWebAppInSandBoxedIframe = function() {
   console.log("=======setting web app in an sandboxed for content iframe=====");    
   deleteFrame();
@@ -265,7 +265,7 @@ var setWebAppInSandBoxedIframe = function() {
    Resetting the content in the same frame is just element manipulation where
    == is accessed and new content is set.
    
- #+BEGIN_SRC javascript :tangle main.js :eval no :noweb yes
+ #+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
 var setContent = function() {
   console.log("=======setting content=====");      
   var iframe = parent.document.getElementById("disiframe");
@@ -331,7 +331,7 @@ var getAllDisciplines = function(){
 #+END_SRC
    
 ** Welcome
-#+BEGIN_SRC html :tangle content.html :eval no :noweb yes
+#+BEGIN_SRC html :tangle templates/content.html :eval no :noweb yes
 
 <html>
   <head>welcome
@@ -347,7 +347,7 @@ var getAllDisciplines = function(){
 #+END_SRC
 
 ** Re Welcome
-#+BEGIN_SRC html :tangle re_welcome.html :eval no :noweb yes
+#+BEGIN_SRC html :tangle templates/re_welcome.html :eval no :noweb yes
 
 <html>
   <head>welcome</head>
@@ -362,9 +362,7 @@ var getAllDisciplines = function(){
    This includes the content that has to be displayed in the header. Institute,
    disciplines and all labs along with drop down with institutes, disciplines
    and also all labs.
-#+BEGIN_SRC html :tangle header.html :eval no :noweb yes
-
-
+#+BEGIN_SRC html :tangle templates/header.html :eval no :noweb yes
 <header >
   <link rel="stylesheet"
         href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -374,7 +372,8 @@ var getAllDisciplines = function(){
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="main.js"></script>
+  <script type="text/javascript" src="../static/js/app-config.js"></script>
+  <script type="text/javascript" src="../static/js/main.js"></script>
   
 
   <nav class="navbar navbar-fixed-top navbar-bootsnipp animate" role="navigation" style="z-index: 9999999">
