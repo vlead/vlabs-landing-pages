@@ -31,21 +31,6 @@
     <div id="headerDiv"></div>
     <div id="contentDiv"></div>
     <div id="footerDiv"></div>
-
-    <div id='insert_delete_frame_btns'>
-      <button onclick="insertFrame()">Insert frame</button>
-      <button onclick="deleteFrame()">Delete frame</button>
-    </div>
-
-    <div id='set_sources_to_frame_btns'>
-      <button onclick="setWebAppInIframe()">set webapp in iframe</button>
-      <button onclick="setWebAppInSandBoxedIframe()">set webapp in sandboxed iframe</button>
-    </div>
-   
-    <div id='manipualate_frame_content_btns'>
-      <button onclick="setContentInIframe()">set content in iframe</button>
-      <button onclick="resetContentInIframe()">reset content in iframe</button>
-    </div>
   </body>
 </html>
 
@@ -65,13 +50,98 @@
 </html>
 
 #+END_SRC
+** Welcome
+#+BEGIN_SRC html :tangle templates/content.html :eval no :noweb yes
+
+<html>
+  <head>welcome
+    <script>
+      document.domain="localhost"
+    </script>
+  </head>
+  <body>
+    <p> welcome to virtual labs!</p>
+  </body>
+  </html>
+
+#+END_SRC
+
+** Header
+   This includes the content that has to be displayed in the header. Institute,
+   disciplines and all labs along with drop down with institutes, disciplines
+   and also all labs.
+#+BEGIN_SRC html :tangle templates/header.html :eval no :noweb yes
+
+
+<header >
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/js/bootstrap.css">
+  <link rel="stylesheet" href="../static/js/font-awesome.css">
+  <link rel="stylesheet" href="../static/js/bootsnipp.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="../static/js/app-config.js"></script>
+  <script type="text/javascript" src="../static/js/main.js"></script>
+  
+
+  <nav class="navbar navbar-fixed-top navbar-bootsnipp animate" role="navigation" style="z-index: 9999999">
+
+    <div class="container-fluid">
+
+      <div class="navbar-header">
+        <a class="navbar-brand main-logo-a" href="https://vlabs.ac.in" style=" width:100px; height:40px; margin-top:-13px"><img src="https://vlabs.ac.in/static/edx-bootstrap-theme/images/logo.7e034286282a.png" class="img-responsive main-logo" style="width:100%; maring-top:2px;"></a>
+
+      </div>
+
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+
+       <!-- <li class="dropdown" ><a class="dropdown-toggle" data-toggle="dropdown" href="#">Institutes <span class="caret"></span></a>
+          <ul class="dropdown-menu filterInstComboBox" id="getInstName">
+          </ul>
+          
+        <li class="dropdown" ><a class="dropdown-toggle" data-toggle="dropdown" href="#">Disciplines <span class="caret"></span></a>
+          <ul class="dropdown-menu filterDisComboBox" id="getDisName">
+          </ul></li>-->
+      <button onclick="loadAllInstitutes()">All Institutes</button>          
+      <button onclick="loadAllDisciplines()">All Disciplines</button>
+      <button onclick="setWebAppInSandBoxedIframe()">All Labs</button>
+
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <form class="navbar-form navbar-left">
+          <div class="input-group">
+            <input id="keyword" type="text" class="form-control" placeholder="Lab Name">
+            <div class="input-group-btn">
+              <button onclick="javascript:getLabs()" target="content_iframe" class="btn btn-default" type="submit">
+                <i class="glyphicon glyphicon-search"></i>
+              </button>
+            </div>
+          </div>
+        </form>        
+        <li><a href="http://vlabs.ac.in" target="content_iframe"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>
+
+    </div>
+  </nav>
+
+</header>
+
+#+END_SRC
+
 ** Document Domain
    Manipulation of iframe content from javascript loaded in the document is
    possible if the both the iframe content and the javascript manipulating the
    iframe are loaded from the same domain.
 #+BEGIN_SRC js :tangle static/js/app-config.js :eval no :noweb yes
 document.domain="localhost";
-var base_url = 'http://lds.vlabs.ac.in';
+// update this to lds url where your lds service was running
+var base_url = "http://localhost:5000"; 
+var institute_images_url = "../static/images/institutes/";
 
 #+END_SRC
 
@@ -217,18 +287,12 @@ var loadAllDisciplines = function() {
 #+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
 
 var loadAllInstitutes = function() {
-  console.log("=======loading all disciplines=====");
+  console.log("=======loading all institutes=====");
   deleteFrameInDivision("contentIframe", "contentDiv");
   var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "30%");
   insertFrameInDivision(newFrame, "contentDiv");
   var institutes = getAllInstitutes();
-  console.log(institutes);
   setContentInIframe(institutes);
-
-//  setInstituteContentInIframe();
-//  setNewContentInIframe();
-  //  var institutes = getAllInstitutes();
-//  setContentInIframe(institutes);
 };
 
 #+END_SRC
@@ -369,100 +433,6 @@ var getAllInstitutes = function(){
 
 #+END_SRC
    
-** Welcome
-#+BEGIN_SRC html :tangle templates/content.html :eval no :noweb yes
-
-<html>
-  <head>welcome
-    <script>
-      document.domain="localhost"
-    </script>
-  </head>
-  <body>
-    <p> welcome to virtual labs!</p>
-  </body>
-  </html>
-
-#+END_SRC
-
-** Re Welcome
-#+BEGIN_SRC html :tangle templates/re_welcome.html :eval no :noweb yes
-
-<html>
-  <head>welcome</head>
-  <body>
-    <p> welcome back to virtual labs!</p>
-  </body>
-  </html>
-
-#+END_SRC
-
-** Header
-   This includes the content that has to be displayed in the header. Institute,
-   disciplines and all labs along with drop down with institutes, disciplines
-   and also all labs.
-#+BEGIN_SRC html :tangle templates/header.html :eval no :noweb yes
-
-
-<header >
-  <link rel="stylesheet"
-        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="../static/js/bootstrap.css">
-  <link rel="stylesheet" href="../static/js/font-awesome.css">
-  <link rel="stylesheet" href="../static/js/bootsnipp.css">
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="../static/js/app-config.js"></script>
-  <script type="text/javascript" src="../static/js/main.js"></script>
-  
-
-  <nav class="navbar navbar-fixed-top navbar-bootsnipp animate" role="navigation" style="z-index: 9999999">
-
-    <div class="container-fluid">
-
-      <div class="navbar-header">
-        <a class="navbar-brand main-logo-a" href="https://vlabs.ac.in" style=" width:100px; height:40px; margin-top:-13px"><img src="https://vlabs.ac.in/static/edx-bootstrap-theme/images/logo.7e034286282a.png" class="img-responsive main-logo" style="width:100%; maring-top:2px;"></a>
-
-      </div>
-
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-
-       <!-- <li class="dropdown" ><a class="dropdown-toggle" data-toggle="dropdown" href="#">Institutes <span class="caret"></span></a>
-          <ul class="dropdown-menu filterInstComboBox" id="getInstName">
-          </ul>
-          
-        <li class="dropdown" ><a class="dropdown-toggle" data-toggle="dropdown" href="#">Disciplines <span class="caret"></span></a>
-          <ul class="dropdown-menu filterDisComboBox" id="getDisName">
-          </ul></li>-->
-      <button onclick="loadAllInstitutes()">All Institutes</button>          
-      <button onclick="loadAllDisciplines()">All Disciplines</button>
-      <button onclick="setWebAppInSandBoxedIframe()">All Labs</button>
-
-        
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <form class="navbar-form navbar-left">
-          <div class="input-group">
-            <input id="keyword" type="text" class="form-control" placeholder="Lab Name">
-            <div class="input-group-btn">
-              <button onclick="javascript:getLabs()" target="content_iframe" class="btn btn-default" type="submit">
-                <i class="glyphicon glyphicon-search"></i>
-              </button>
-            </div>
-          </div>
-        </form>        
-        <li><a href="http://vlabs.ac.in" target="content_iframe"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-    </ul>
-
-    </div>
-  </nav>
-
-</header>
-
-#+END_SRC
 ** Edits
 *** setting content to content iframe
 #+BEGIN_SRC js
@@ -520,5 +490,60 @@ var setNewContent = function(disciplines) {
   var elem = parent.content.getElementById('dis_iframe');
   elem.innerHTML = disciplines;
 };
+
+#+END_SRC
+** Get All Institutes
+#+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
+var getAllInstitutes = function(){
+  console.log("getallinstitutes");
+  var inst_url = base_url+"/institutes";
+  $.getJSON(inst_url, function(data) {
+    var institutes = '';
+    $.each(data, function(key, value){
+      var inst_name = value['institute_name'];
+      var image_name = value['assets'][0]['path'];
+      var image_path = institute_images_url + image_name;
+      institutes += '<img src="' + image_path +'" id="' + inst_name + '"></img>';
+    });
+    setNewContentInIframe(institutes);
+  })
+    .done(function() {
+      console.log( "second success" );
+    })
+    .fail(function() {
+      console.log( "error" );
+      location.reload();
+    })
+    .always(function() {
+      console.log( "complete" );
+    });
+};
+
+#+END_SRC
+** Get All Disciplines
+#+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
+var getAllDisciplines = function(){ 
+  console.log("=========inside get all disciplines==========");
+  var dis_url = base_url+"/disciplines";
+  console.log(dis_url);
+  $.getJSON(dis_url, function(data) {
+    var disciplines = '';
+    $.each(data, function(key, value){
+      disciplines += value['discipline_name'];
+    });
+    console.log(disciplines);
+    setNewContentInIframe(disciplines);
+  })
+    .done(function() {
+      console.log( "second success" );
+    })
+    .fail(function() {
+      console.log( "error" );
+    })
+    .always(function() {
+      console.log( "complete" );
+    });
+};
+
 
 #+END_SRC
