@@ -373,65 +373,6 @@ var resetContentInIframe = function() {
   elem.innerHTML = "<p>Resetting Hello world</p>";
 };
 
-var getAllDisciplines = function(){ 
-  console.log("=========inside get all disciplines==========");
-  var dis_url = base_url+"/disciplines";
-  console.log(dis_url);
-  $.getJSON(dis_url, function(data) {
-    console.log(data);
-    var disciplines = '';
-    $.each(data, function(key, value){
-      disciplines += value['discipline_name'];
-  //    labs += '<li onclick="getLabsByDiscipline()" value="' + dis_name +
-    //    '" id="' + dis_name + '"><a href="#">' +
-     //   dis_name + '</a></li>';
-    });
-    console.log(disciplines);
-    setNewContentInIframe(disciplines);
-//    $('.filterDisComboBox').append(labs);
-  })
-    .done(function() {
-      console.log( "second success" );
-    })
-    .fail(function() {
-      console.log( "error" );
-    })
-    .always(function() {
-      console.log( "complete" );
-    });
-};
-
-
-var getAllInstitutes = function(){
-  console.log("getallinstitutes");
-  var inst_url = base_url+"/institutes";
-  $.getJSON(inst_url, function(data) {
-    var institutes = '';
-    $.each(data, function(key, value){
-      var inst_name = value['institute_name'];
-      institutes += inst_name;
-      // labs += '<li onclick="getLabsByInstitute()" value="' + inst_name +
-      //  '" id="' + inst_name + '"><a href="#">' +
-      //  inst_name + '</a></li>';
-    });
-    console.log(institutes);
-    setNewContentInIframe(institutes);
-    
-//    $('.filterInstComboBox').append(labs);
-  })
-    .done(function() {
-      console.log( "second success" );
-    })
-    .fail(function() {
-      console.log( "error" );
-      location.reload();
-    })
-    .always(function() {
-      console.log( "complete" );
-    });
-}
-
-
 #+END_SRC
    
 ** Edits
