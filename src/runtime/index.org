@@ -474,7 +474,10 @@ var getAllDisciplines = function(){
       var discipline_name = value['discipline_name'];
       var image_name = value['assets'][0]['path'];
       var image_path = discipline_images_url + image_name;
-      disciplines += '<img src="' + image_path +'" id="' + discipline_name + '"></img><p>'+ discipline_name +'</p>';
+      disciplines += '<img onclick="getLabsByDiscipline("'+ discipline_name +'")" src="'
+        + image_path +'" id="' + discipline_name + '"></img><p>'+ discipline_name +'</p>';
+      //      disciplines += '<img src="' + image_path +'" id="' + discipline_name
+        //+ '"></img><p>'+ discipline_name +'</p>';
     });
     console.log(disciplines);
     setNewContentInIframe(disciplines);
@@ -489,5 +492,37 @@ var getAllDisciplines = function(){
       console.log( "complete" );
     });
 };
+
+#+END_SRC
+** Get Labs by Discipline
+#+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes 
+function getLabsByDiscipline(discipline_name) {
+    var labs_url = base_url+"/labs";
+    var labs_by_dis_url = labs_url+"?discipline_name="+(discipline_name);
+    console.log(labs_by_dis_url);
+    $.getJSON(labs_by_dis_url, function(data) {
+      var labs = '';
+      $.each(data, function(key, value){
+        var lab_name = value['lab_name'];
+        var hosted_url = value['hosting_info'][0]['hosted_url'];
+        labs += '  <span id="getLabsbyDis"></span><div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
+          + lab_name +'<div class="thumbnail"></a></div></div>';
+      });
+      console.log(labs);
+      setNewContentInIframe(labs);
+
+    })
+      .done(function() {
+        console.log( "second success" );
+      })
+      .fail(function() {
+        console.log( "error" );
+        location.reload();
+      })
+      .always(function() {
+        console.log( "complete" );
+      });
+
+  }
 
 #+END_SRC
