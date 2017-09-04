@@ -442,10 +442,10 @@ var getAllInstitutes = function(){
   $.getJSON(inst_url, function(data) {
     var institutes = '';
     $.each(data, function(key, value){
-      var inst_name = value['institute_name'];
+      var institute_name = value['institute_name'];
       var image_name = value['assets'][0]['path'];
       var image_path = institute_images_url + image_name;
-      institutes += '<img src="' + image_path +'" id="' + inst_name + '"></img>';
+      institutes += '<img src="' + image_path +'" id="' + institute_name + '"></img><p>'+ institute_name +'</p>';
     });
     setNewContentInIframe(institutes);
   })
@@ -474,7 +474,7 @@ var getAllDisciplines = function(){
       var discipline_name = value['discipline_name'];
       var image_name = value['assets'][0]['path'];
       var image_path = discipline_images_url + image_name;
-      disciplines += '<img src="' + image_path +'" id="' + discipline_name + '"></img>';
+      disciplines += '<img src="' + image_path +'" id="' + discipline_name + '"></img><p>'+ discipline_name +'</p>';
     });
     console.log(disciplines);
     setNewContentInIframe(disciplines);
