@@ -474,19 +474,12 @@ var getAllDisciplines = function(){
       var discipline_name = value['discipline_name'];
       var image_name = value['assets'][0]['path'];
       var image_path = discipline_images_url + image_name;
-      disciplines += '<img onclick="getLabsByDisciplineName()" src="' + image_path +'" id="' + discipline_name + '"></img><p>'+ discipline_name +'</p>';
+      console.log('<img onclick="getLabsByDisciplineName(this)" src="' + image_path +'" id="' + discipline_name + '"></img><p>'+ discipline_name +'</p>');
+      disciplines += '<img onclick="getLabsByDisciplineName(this)" src="' + image_path +'" id="' + discipline_name + '"></img><p>'+ discipline_name +'</p>';
     });
     console.log(disciplines);
     setNewContentInIframe(disciplines);
-    var contentIframe = parent.document.getElementById("contentIframe");
-    var script = contentIframe.contentWindow.document.createElement("script");
-    var url = '../static/js/main.js';
-    script.type = "text/javascript";
-    script.src = url;
-    var head = contentIframe.contentWindow.document.head;
-    console.log(head);
-    head.appendChild(script);
-
+    addScriptTags();
   })
     .done(function() {
       console.log( "second success" );
@@ -502,7 +495,36 @@ var getAllDisciplines = function(){
 #+END_SRC
 ** Get Labs by Discipline Name
 #+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes 
-var getLabsByDisciplineName = function() {
-  alert( "Hello World");
+var getLabsByDisciplineName = function(image) {
+  console.log("===========inside getLabsByDisciplineName==========");
+  var discipline_name = image.id;
+  var labs_url = base_url+"/labs";
+  console.log(labs_url);
+  var labs_by_dis_url = labs_url+"?discipline_name="+ discipline_name;
+  console.log(labs_by_dis_url);
 };
+#+END_SRC
+** Add Script Tags 
+#+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes 
+var addScriptTags = function(){
+  var contentIframe = parent.document.getElementById("contentIframe");
+  var script1 = contentIframe.contentWindow.document.createElement("script");
+  var js_url = '../static/js/main.js';
+  script1.type = "text/javascript";
+  script1.src = js_url;
+  var head = contentIframe.contentWindow.document.head;
+  console.log(head);
+  head.appendChild(script1);
+  var script2 = contentIframe.contentWindow.document.createElement("script");
+  var config_url = "../static/js/app-config.js";
+  script2.type = "text/javascript";
+  script2.src = config_url;
+  head.appendChild(script2);
+  var script3 = contentIframe.contentWindow.document.createElement("script");
+  var jquery_url = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js";
+  script3.type = "text/javascript";
+  script3.src = jquery_url;
+  head.appendChild(script3);  
+};
+
 #+END_SRC
