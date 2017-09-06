@@ -429,30 +429,35 @@ var setNewContent = function(disciplines) {
 ** Get All Institutes
    To feed the content iframe, image and name of the institutes are required.
 #+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
-var getAllInstitutes = function(){
-  console.log("getallinstitutes");
-  var inst_url = base_url+"/institutes";
-  $.getJSON(inst_url, function(data) {
+var getAllInstitutes = function(){ 
+  console.log("=========inside get all institutes==========");
+  var institute_url = base_url+"/institutes";
+  console.log(institute_url);
+  $.getJSON(institute_url, function(data) {
     var institutes = '';
     $.each(data, function(key, value){
       var institute_name = value['institute_name'];
       var image_name = value['assets'][0]['path'];
       var image_path = institute_images_url + image_name;
-      institutes += '<img src="' + image_path +'" id="' + institute_name + '"></img><p>'+ institute_name +'</p>';
+      console.log('<img onclick="getLabsByInstituteName(this)" src="' + image_path +'" id="' + institute_name + '"></img><p>'+ institute_name +'</p>');
+      institutes += '<img onclick="getLabsByInstituteName(this)" src="' + image_path +'" id="' + institute_name + '"></img><p>'+ institute_name +'</p>';
     });
+    console.log(institutes);
     setNewContentInIframe(institutes);
+    addScriptTags();
   })
     .done(function() {
       console.log( "second success" );
     })
     .fail(function() {
       console.log( "error" );
-      location.reload();
     })
     .always(function() {
       console.log( "complete" );
     });
 };
+
+
 
 #+END_SRC
 ** Get All Disciplines
@@ -527,6 +532,48 @@ var getLabsByDisciplineName = function(image) {
 };
 
 #+END_SRC
+** Get Labs by Institute Name
+     Getting the labs based on institute names on clicking of the respective
+   image.
+#+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
+var getLabsByInstituteName = function(image) {
+  console.log("===========inside getLabsByInstituteName==========");
+  var institute_name = image.id;
+  var labs_url = base_url+"/labs";
+  console.log(labs_url);
+  var labs_by_institute_url = labs_url+"?institute_name="+ institute_name;
+  console.log(labs_by_institute_url);
+  $.getJSON(labs_by_institute_url, function(data) {
+    var labs = '';
+    $.each(data, function(key, value){
+      var lab_name = value['lab_name'];
+//      var hosted_url = value['hosting_info'][0]['hosted_url'];
+      labs += lab_name;
+    //        image =value['assets'][0]['path']
+//        labs += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
+//          + lab_name +'<div class="thumbnail"><img src='+ image +'></img></a></div></div>';
+//    labs += '  <span id="getLabsbyDis"></span><div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
+  //        + lab_name +'<div class="thumbnail"></a></div></div>';
+    });
+    console.log(labs);
+    resetContentInIframe(labs);
+    })
+    .done(function() {
+      console.log( "second success" );
+    })
+    .fail(function() {
+      console.log( "error" );
+      location.reload();
+    })
+    .always(function() {
+      console.log( "complete" );
+    });
+
+};
+
+
+#+END_SRC
+
 ** Add Script Tags 
    To display the data in HTML, script files has to be loaded and append them
    to the script. So data will be loaded dynamically.
@@ -558,10 +605,10 @@ var addScriptTags = function(){
 var resetContentInIframe = function(data) {
   console.log("=======re setting content=====");        
   console.log(data);
-  var my_content = parent.document.getElementById('contentIframe').contentWindow.document;
-  console.log(my_content);
-  my_content.body.innerHTML="";
-  my_content.write(data);
+  var content = parent.document.getElementById('contentIframe').contentWindow.document;
+  console.log(content);
+  content.body.innerHTML="";
+  content.write(data);
 };
 
 #+END_SRC
