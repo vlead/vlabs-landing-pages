@@ -364,15 +364,7 @@ var setNewContentInIframe = function(data) {
   elem.contentDocument.write(data);
 //    setTimeout(setContent, 100);
 };
-
-var resetContentInIframe = function() {
-  console.log("=======re setting content=====");        
-  var iframe = document.getElementById("iframe1");
-  var content = iframe.contentWindow.document;
-  var elem = content.getElementById('template-div');
-  elem.innerHTML = "<p>Resetting Hello world</p>";
-};
-
+ 
 #+END_SRC
    
 ** Edits
@@ -502,7 +494,34 @@ var getLabsByDisciplineName = function(image) {
   console.log(labs_url);
   var labs_by_dis_url = labs_url+"?discipline_name="+ discipline_name;
   console.log(labs_by_dis_url);
+  $.getJSON(labs_by_dis_url, function(data) {
+    var labs = '';
+    $.each(data, function(key, value){
+      var lab_name = value['lab_name'];
+//      var hosted_url = value['hosting_info'][0]['hosted_url'];
+      labs += lab_name;
+    //        image =value['assets'][0]['path']
+//        labs += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
+//          + lab_name +'<div class="thumbnail"><img src='+ image +'></img></a></div></div>';
+//    labs += '  <span id="getLabsbyDis"></span><div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
+  //        + lab_name +'<div class="thumbnail"></a></div></div>';
+    });
+    console.log(labs);
+    resetContentInIframe(labs);
+    })
+    .done(function() {
+      console.log( "second success" );
+    })
+    .fail(function() {
+      console.log( "error" );
+      location.reload();
+    })
+    .always(function() {
+      console.log( "complete" );
+    });
+
 };
+
 #+END_SRC
 ** Add Script Tags 
 #+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes 
@@ -525,6 +544,18 @@ var addScriptTags = function(){
   script3.type = "text/javascript";
   script3.src = jquery_url;
   head.appendChild(script3);  
+};
+
+#+END_SRC
+** Resetting content in Iframe
+#+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes  
+var resetContentInIframe = function(data) {
+  console.log("=======re setting content=====");        
+  console.log(data);
+  var my_content = parent.document.getElementById('contentIframe').contentWindow.document;
+  console.log(my_content);
+  my_content.body.innerHTML="";
+  my_content.write(data);
 };
 
 #+END_SRC
