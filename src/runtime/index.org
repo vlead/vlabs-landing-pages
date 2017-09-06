@@ -545,14 +545,15 @@ var getLabsByInstituteName = function(image) {
     var labs = '';
     $.each(data, function(key, value){
       var lab_name = value['lab_name'];
-//      var hosted_url = value['hosting_info'][0]['hosted_url'];
-      labs += lab_name;
+      var hosted_url = value['hosting_info'][0]['hosted_url'];
+     // labs += lab_name;
+      labs += '<div id=' + lab_name + '><a href='+ hosted_url + '>' + lab_name +'<div class="thumbnail"></a></div></div>';
+    });
     //        image =value['assets'][0]['path']
 //        labs += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
 //          + lab_name +'<div class="thumbnail"><img src='+ image +'></img></a></div></div>';
 //    labs += '  <span id="getLabsbyDis"></span><div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
   //        + lab_name +'<div class="thumbnail"></a></div></div>';
-    });
     console.log(labs);
     resetContentInIframe(labs);
     })
