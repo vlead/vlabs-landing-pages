@@ -427,6 +427,7 @@ var setNewContent = function(disciplines) {
 
 #+END_SRC
 ** Get All Institutes
+   To feed the content iframe, image and name of the institutes are required.
 #+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
 var getAllInstitutes = function(){
   console.log("getallinstitutes");
@@ -455,6 +456,7 @@ var getAllInstitutes = function(){
 
 #+END_SRC
 ** Get All Disciplines
+      To feed the content iframe, image and name of the disciplines are required.
 #+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
 var getAllDisciplines = function(){ 
   console.log("=========inside get all disciplines==========");
@@ -486,6 +488,8 @@ var getAllDisciplines = function(){
 
 #+END_SRC
 ** Get Labs by Discipline Name
+   Getting the labs based on discipline name on clicking of the respective
+   image.
 #+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes 
 var getLabsByDisciplineName = function(image) {
   console.log("===========inside getLabsByDisciplineName==========");
@@ -524,6 +528,8 @@ var getLabsByDisciplineName = function(image) {
 
 #+END_SRC
 ** Add Script Tags 
+   To display the data in HTML, script files has to be loaded and append them
+   to the script. So data will be loaded dynamically.
 #+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes 
 var addScriptTags = function(){
   var contentIframe = parent.document.getElementById("contentIframe");
