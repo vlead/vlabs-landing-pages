@@ -170,6 +170,7 @@ var createNewIframe = function(name, id, width, height) {
   var newIframe = document.createElement("iframe");
   newIframe.setAttribute("width", width);
   newIframe.setAttribute("height", height);
+  newIframe.setAttribute("frameBorder", frameBorder);
   newIframe.name = name;
   newIframe.id = id;
   return newIframe;
@@ -246,7 +247,7 @@ var insertHeaderIFrame = function() {
 
 var insertContentIFrame = function() {
   console.log("=======creating content iframe=====");
-  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "1200");
+  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "1200" "0");
   var division = document.getElementById("contentDiv");
   insertFrameInDivision(newFrame, division.id);
 };
@@ -259,7 +260,7 @@ var insertContentIFrame = function() {
 #+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
 var insertFrame = function() {
   console.log("=======insert iframe=====");
-  var newFrame = createNewIframe("iframe1", "iframe1", "100%", "1200");
+  var newFrame = createNewIframe("iframe1", "iframe1", "100%", "1200" "0");
   var division = document.getElementById('dis_iframe');
   insertFrameInDivision(newFrame, division.id);
 };
