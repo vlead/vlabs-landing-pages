@@ -107,8 +107,7 @@
           </ul></li>-->
       <button onclick="loadAllInstitutes()">All Institutes</button>          
       <button onclick="loadAllDisciplines()">All Disciplines</button>
-      <button onclick="setWebAppInSandBoxedIframe()">All Labs</button>
-
+      <button onclick="loadAllLabs()">All Labs</button>
         
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -298,33 +297,16 @@ var loadAllInstitutes = function() {
 
 #+END_SRC
 
-** Set source of iframe
-   Set source of iframe with id =iframe1=.
-#+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
-var setWebAppInIframe = function() {
-  console.log("=======setting web app in an iframe=====");  
-  var iframe = document.getElementById("iframe1");
-  iframe.src = "http://dev.vlabs.ac.in";
+** Loading all labs
+#+BEGIN_SRC  javascript :tangle static/js/main.js :eval no :noweb yes
+var loadAllLabs = function() {
+  console.log("=======loading all labs=====");
+  deleteFrameInDivision("contentIframe", "contentDiv");
+  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "30%");
+  insertFrameInDivision(newFrame, "contentDiv");
+  var labs = getAllLabs();
+  setContentInIframe(labs);
 };
-
-
-#+END_SRC
-
-** Set source in a sandboxed iframe
-   Make an iframe sand boxed and set the source to it.  Sometimes this is
-   necessary since certain web pages expand out of iframe and these need to be
-   sand boxed.
-
-#+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
-var setWebAppInSandBoxedIframe = function() {
-  console.log("=======setting web app in an sandboxed for content iframe=====");    
-  deleteFrame();
-  insertFrame();
-  var iframe = document.getElementById("iframe1");
-  iframe.sandbox = 'allow-forms allow-scripts allow-same-origin';
-  iframe.src = "https://vlabs.ac.in";
-};
-
 #+END_SRC
 
 ** Change the content of an iframe
@@ -492,6 +474,36 @@ var getAllDisciplines = function(){
 };
 
 #+END_SRC
+** Get All Labs
+ #+BEGIN_SRC  javascript :tangle static/js/main.js :eval no :noweb yes
+ var getAllLabs = function(){ 
+  console.log("=========inside get all labs==========");
+  var lab_url = base_url+"/labs";
+  console.log(lab_url);
+  $.getJSON(lab_url, function(data) {
+    var labs = '';
+    $.each(data, function(key, value){
+      var lab_name = value['lab_name'];
+      var hosted_url = value['hosting_info'][0]['hosted_url'];
+      labs += '<div id=' + lab_name + '><a href='+ hosted_url + '>' + lab_name +'<div class="thumbnail"></a></div></div>';
+
+    });
+    console.log(labs);
+    setNewContentInIframe(labs);
+    addScriptTags();
+  })
+    .done(function() {
+      console.log( "second success" );
+    })
+    .fail(function() {
+      console.log( "error" );
+    })
+    .always(function() {
+      console.log( "complete" );
+    });
+};
+
+ #+END_SRC
 ** Get Labs by Discipline Name
    Getting the labs based on discipline name on clicking of the respective
    image.
