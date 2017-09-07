@@ -107,10 +107,10 @@
           
         <li class="dropdown" ><a class="dropdown-toggle" data-toggle="dropdown" href="#">Disciplines <span class="caret"></span></a>
           <ul class="dropdown-menu filterDisComboBox" id="getDisName">
-          </ul></li>  -->
+          </ul></li>  
       <button onclick="loadAllInstitutes()">All Institutes</button>          
       <button onclick="loadAllDisciplines()">All Disciplines</button>
-      <button onclick="loadAllLabs()">All Labs</button>
+      <button onclick="loadAllLabs()">All Labs</button>-->
         
       </ul>
       <ul class="nav navbar-nav navbar-right">
