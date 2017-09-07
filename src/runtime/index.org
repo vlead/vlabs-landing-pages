@@ -97,6 +97,9 @@
 
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Home</a></li>
+        <li onclick="loadAllInstitutes()"><a href="#">All Institutes</a></li>
+        <li onclick="loadAllDisciplines()"><a href="#">All Disciplines</a></li>
+        <li onclick="loadAllLabs()"><a href="#">All Labs</a></li>
 
        <!-- <li class="dropdown" ><a class="dropdown-toggle" data-toggle="dropdown" href="#">Institutes <span class="caret"></span></a>
           <ul class="dropdown-menu filterInstComboBox" id="getInstName">
@@ -104,12 +107,7 @@
           
         <li class="dropdown" ><a class="dropdown-toggle" data-toggle="dropdown" href="#">Disciplines <span class="caret"></span></a>
           <ul class="dropdown-menu filterDisComboBox" id="getDisName">
-          </ul></li>
-           <li onclick="loadAllInstitutes()"><a href="#">All Institutes</a></li>
-           <li onclick="loadAllDisciplines()"><a href="#">All Disciplines</a></li>
-           <li onclick="loadAllLabs()"><a href="#">All Labs</a></li>
-          
-          -->
+          </ul></li>  -->
       <button onclick="loadAllInstitutes()">All Institutes</button>          
       <button onclick="loadAllDisciplines()">All Disciplines</button>
       <button onclick="loadAllLabs()">All Labs</button>
