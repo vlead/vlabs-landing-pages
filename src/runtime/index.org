@@ -243,7 +243,7 @@ var insertHeaderIFrame = function() {
 
 var insertContentIFrame = function() {
   console.log("=======creating content iframe=====");
-  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "50%");
+  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "1200");
   var division = document.getElementById("contentDiv");
   insertFrameInDivision(newFrame, division.id);
 };
@@ -256,7 +256,7 @@ var insertContentIFrame = function() {
 #+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
 var insertFrame = function() {
   console.log("=======insert iframe=====");
-  var newFrame = createNewIframe("iframe1", "iframe1", "100%", "30%");
+  var newFrame = createNewIframe("iframe1", "iframe1", "100%", "1200");
   var division = document.getElementById('dis_iframe');
   insertFrameInDivision(newFrame, division.id);
 };
@@ -272,7 +272,7 @@ var insertFrame = function() {
 var loadAllDisciplines = function() {
   console.log("=======loading all disciplines=====");
   deleteFrameInDivision("contentIframe", "contentDiv");
-  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "30%");
+  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "1200");
   insertFrameInDivision(newFrame, "contentDiv");
   var disciplines = getAllDisciplines();
   setContentInIframe(disciplines);
@@ -289,7 +289,7 @@ var loadAllDisciplines = function() {
 var loadAllInstitutes = function() {
   console.log("=======loading all institutes=====");
   deleteFrameInDivision("contentIframe", "contentDiv");
-  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "30%");
+  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "1200");
   insertFrameInDivision(newFrame, "contentDiv");
   var institutes = getAllInstitutes();
   setContentInIframe(institutes);
@@ -302,7 +302,7 @@ var loadAllInstitutes = function() {
 var loadAllLabs = function() {
   console.log("=======loading all labs=====");
   deleteFrameInDivision("contentIframe", "contentDiv");
-  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "30%");
+  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "1200");
   insertFrameInDivision(newFrame, "contentDiv");
   var labs = getAllLabs();
   setContentInIframe(labs);
