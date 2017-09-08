@@ -118,7 +118,8 @@
 #+BEGIN_SRC js :tangle static/js/app-config.js :eval no :noweb yes
   document.domain="localhost";
   // update this to base url to lds url where your lds service was running
-  var base_url = "http://localhost:5000"; 
+  var base_url = "http://ld.base4.vlabs.ac.in"; 
+//  var base_url = "http://localhost:5000"; 
   var institute_images_url = "../static/images/institutes/";
   var discipline_images_url = "../static/images/disciplines/";
 
@@ -411,8 +412,19 @@
            var labs = '';
            $.each(data, function(key, value){
                var lab_name = value['lab_name'];
-               var hosted_url = value['hosting_info'][0]['hosted_url'];
+               var hosting_info = value['hosting_info'];
+               for(var i=0;i< hosting_info.length;i++){
+                   var hosted_on = value['hosting_info'][i]['hosted_on'];
+                   if (hosted_on == 'open-edx'){
+                       var hosted_url = value['hosting_info'][1]['hosted_url'];
+                   }
+                   else
+                   {
+                       var hosted_url = value['hosting_info'][0]['hosted_url'];
+                   }
+               }
                labs += '<div id=' + lab_name + '><a href='+ hosted_url + '>' + lab_name +'<div class="thumbnail"></a></div></div>';
+
            });
            console.log(labs);
            setNewContentInIframe(labs);
