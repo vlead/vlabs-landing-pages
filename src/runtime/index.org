@@ -17,51 +17,48 @@
 * Implementation
 ** Structure of html
 #+BEGIN_SRC html :tangle templates/main.html :eval no :noweb yes 
-
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
-    <meta content="utf-8" http-equiv="encoding">
-    <link rel="stylesheet" href="style.css"/>
-  <script type="text/javascript" src="../static/js/app-config.js"></script>
-    <script type="text/javascript" src="../static/js/main.js"></script>
-  </head>
-  <body onload="loadIndex()">
-    <div id="headerDiv"></div>
-    <div id="contentDiv"></div>
-    <div id="footerDiv"></div>
-  </body>
-</html>
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+      <meta content="utf-8" http-equiv="encoding">
+      <link rel="stylesheet" href="style.css"/>
+      <script type="text/javascript" src="../static/js/app-config.js"></script>
+      <script type="text/javascript" src="../static/js/main.js"></script>
+    </head>
+    <body onload="loadIndex()">
+      <div id="headerDiv"></div>
+      <div id="contentDiv"></div>
+      <div id="footerDiv"></div>
+    </body>
+  </html>
 
 #+END_SRC
 
 ** HTML loaded to iframe
 #+BEGIN_SRC html :tangle templates/iframe_template.html :eval no :noweb yes
-
-<html>
-  <head></head>
-  <body>
-    <script>
-      document.domain="localhost"
-    </script>
-    <div id="template-div">
-    </div>
-</html>
+  <html>
+    <head></head>
+    <body>
+      <script>
+        document.domain="localhost"
+      </script>
+      <div id="template-div">
+      </div>
+  </html>
 
 #+END_SRC
 ** Welcome
 #+BEGIN_SRC html :tangle templates/content.html :eval no :noweb yes
-
-<html>
-  <head>welcome
-    <script>
-      document.domain="localhost"
-    </script>
-  </head>
-  <body>
-    <p> welcome to virtual labs!</p>
-  </body>
+  <html>
+    <head>welcome
+      <script>
+        document.domain="localhost"
+      </script>
+    </head>
+    <body>
+      <p> welcome to virtual labs!</p>
+    </body>
   </html>
 
 #+END_SRC
@@ -151,14 +148,15 @@ var discipline_images_url = "../static/images/disciplines/";
 ** Index page on load 
    An index initially loads with a header iframe and content iframe.
 #+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
-
-var loadIndex = function() {
-  console.log("=======loading index page=====");
-  insertHeaderIFrame();
-  setHeaderContentInIframe();
-  insertContentIFrame();
-  setContentInIframe();
-};
+  var loadIndex = function() {
+      console.log("=======loading index page=====");
+      insertHeaderIFrame();
+      setHeaderContentInIframe();
+      insertContentIFrame();
+      setContentInIframe();
+      insertFooterIFrame();
+      setFooterContentInIframe();
+  };
 
 #+END_SRC
 ** Create a frame
@@ -210,23 +208,6 @@ var deleteFrameInDivision = function(frameId, divId) {
 
 #+END_SRC
 
-** Set content in header iframe
-   To display a header we give =header.html= as source of the iframe. The
-   content of the =header.html= will be set immediately
-#+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
-
-var setHeaderContentInIframe=function() {
-  console.log("=======setting header in iframe=====");
- // deleteFrame();
- // insertFrame();
-  var iframe = document.getElementById("headerIframe");
-  iframe.src = "./header.html";
-  //setTimeout(setContent, 100);
-
-};
-
-#+END_SRC
-
 ** Creating the header iframe
    Provide the header for selecting the institutes, disciplines and all labs.
 #+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
@@ -240,6 +221,18 @@ var insertHeaderIFrame = function() {
 
 #+END_SRC
 
+** Set content in header iframe
+   To display a header we give =header.html= as source of the iframe. The
+   content of the =header.html= will be set immediately
+#+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
+  var setHeaderContentInIframe=function() {
+      console.log("=======setting header in iframe=====");
+      var iframe = document.getElementById("headerIframe");
+      iframe.src = "./header.html";
+  };
+
+#+END_SRC
+
 ** Creating the content iframe
    Displays the content iframe based on the selection of the institutes, disciplines and all labs. 
 #+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
@@ -249,6 +242,31 @@ var insertContentIFrame = function() {
   var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "1200");
   var division = document.getElementById("contentDiv");
   insertFrameInDivision(newFrame, division.id);
+};
+
+#+END_SRC
+
+** Creating the footer iframe
+   Creation of Footer iframe.
+#+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
+  var insertFooterIFrame = function() {
+      console.log("=======creating footer iframe=====");
+      var newFrame = createNewIframe("footerIframe", "footerIframe", "100%", "30%");
+      var division = document.getElementById("footerDiv");
+      insertFrameInDivision(newFrame, division.id);
+  };
+
+#+END_SRC
+
+** Set content in footer iframe
+   To display the footer we give =http://footer.vlabs.ac.in/footer= as source
+   of the iframe. The content of the footer will be dynamically served from the
+   footer service.
+#+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
+var setFooterContentInIframe=function() {
+  console.log("=======setting footer in iframe=====");
+  var iframe = document.getElementById("footerIframe");
+  iframe.src = "http://footer.vlabs.ac.in/footer";
 };
 
 #+END_SRC
