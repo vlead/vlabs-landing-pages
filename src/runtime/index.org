@@ -233,7 +233,7 @@ var setHeaderContentInIframe=function() {
 
 var insertHeaderIFrame = function() {
   console.log("=======creating header iframe=====");
-  var newFrame = createNewIframe("headerIframe", "headerIframe", "100%", "75px");
+  var newFrame = createNewIframe("headerIframe", "headerIframe", "100%", "80px");
   var division = document.getElementById("headerDiv");
   insertFrameInDivision(newFrame, division.id);
 };
@@ -259,7 +259,7 @@ var insertContentIFrame = function() {
 #+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
 var insertFrame = function() {
   console.log("=======insert iframe=====");
-  var newFrame = createNewIframe("iframe1", "iframe1", "100%", "1200");
+  var newFrame = createNewIframe("iframe1", "iframe1", "100%", "1200);
   var division = document.getElementById('dis_iframe');
   insertFrameInDivision(newFrame, division.id);
 };
@@ -371,7 +371,7 @@ var setNewContentInIframe = function(data) {
 #+BEGIN_SRC js
 var insertNewContentIFrame = function() {
   console.log("=======creating content iframe=====");
-  var newFrame = createNewIframe("disiframe", "disiframe", "100%", "30%");
+  var newFrame = createNewIframe("disiframe", "disiframe", "100%", "30%);
   var ids = parent.document.querySelectorAll('[id]');
   Array.prototype.forEach.call( ids, function( el, i ) {
     // "el" is your element
