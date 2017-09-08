@@ -301,6 +301,9 @@ var loadAllInstitutes = function() {
 #+END_SRC
 
 ** Loading all labs
+    On loading all labs it deletes pre loaded content iframe and creates one
+   new content iframe and set values to the newly created content iframe.
+
 #+BEGIN_SRC  javascript :tangle static/js/main.js :eval no :noweb yes
 var loadAllLabs = function() {
   console.log("=======loading all labs=====");
@@ -478,6 +481,7 @@ var getAllDisciplines = function(){
 
 #+END_SRC
 ** Get All Labs
+   To feed the content iframe, getting data of labs are required.
  #+BEGIN_SRC  javascript :tangle static/js/main.js :eval no :noweb yes
  var getAllLabs = function(){ 
   console.log("=========inside get all labs==========");
