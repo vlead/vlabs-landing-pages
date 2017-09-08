@@ -371,7 +371,7 @@ var setNewContentInIframe = function(data) {
 #+BEGIN_SRC js
 var insertNewContentIFrame = function() {
   console.log("=======creating content iframe=====");
-  var newFrame = createNewIframe("disiframe", "disiframe", "100%", "30%);
+  var newFrame = createNewIframe("disiframe", "disiframe", "100%", "30%");
   var ids = parent.document.querySelectorAll('[id]');
   Array.prototype.forEach.call( ids, function( el, i ) {
     // "el" is your element
