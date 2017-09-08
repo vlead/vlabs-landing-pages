@@ -233,7 +233,7 @@ var setHeaderContentInIframe=function() {
 
 var insertHeaderIFrame = function() {
   console.log("=======creating header iframe=====");
-  var newFrame = createNewIframe("headerIframe", "headerIframe", "100%", "74px");
+  var newFrame = createNewIframe("headerIframe", "headerIframe", "100%", "75px");
   var division = document.getElementById("headerDiv");
   insertFrameInDivision(newFrame, division.id);
 };
