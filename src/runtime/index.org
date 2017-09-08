@@ -296,7 +296,6 @@ var loadAllInstitutes = function() {
 ** Loading all labs
    On loading all labs it deletes pre loaded content iframe and creates one new
    content iframe and set values to the newly created content iframe.
-
 #+NAME: load-all-labs
 #+BEGIN_SRC javascript 
 var loadAllLabs = function() {
