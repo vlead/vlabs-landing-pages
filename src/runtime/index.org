@@ -103,7 +103,7 @@
 </body>
 </html>
 #+END_SRC
-** Document Domain
+** Config
    Manipulation of iframe content from javascript loaded in the document is
    possible if the both the iframe content and the javascript manipulating the
    iframe are loaded from the same domain.
@@ -115,6 +115,7 @@ var base_url = "http://ld.base4.vlabs.ac.in";
 //  var base_url = "http://localhost:5000"; 
 var institute_images_url = "../static/images/institutes/";
 var discipline_images_url = "../static/images/disciplines/";
+var lab_images_url = "../static/images/labs/";
 
 #+END_SRC
 
@@ -479,10 +480,20 @@ var getLabsByDisciplineName = function(image) {
           var hosted_url = value['hosting_info'][0]['hosted_url'];
         }
       }
-      //      var image =value['assets'][0]['path'];
-      //      labs += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
-      //       + lab_name +'<div class="thumbnail"><img src='+ image +'></img></a></div></div>';
-      labs += '<div id=' + lab_name + '><a href='+ hosted_url + '>' + lab_name +'<div class="thumbnail"></a></div></div>';
+      var assets = value['assets'];
+      console.log(assets);
+      for(var i=0;i< assets.length;i++){
+        var  asset_type = value['assets'][i]['asset_type']['asset_type'];
+        var path = value['assets'][i]['path'];
+        if (asset_type == 'image'){
+          var image_name = value['assets'][i]['path'];
+          console.log(image_name);
+          var path = lab_images_url + image_name;
+          console.log(path);
+        }
+      }
+      labs += '<div id=' + lab_name + '><a href='+ hosted_url + '><img src="'
+        + path +'" width="250px" height="160px" alt="image"/> </a><p>'+lab_name +'</p></div></div>';
     });
     console.log(labs);
     resetContentInIframe(labs);
