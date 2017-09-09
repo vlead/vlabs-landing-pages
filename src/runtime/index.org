@@ -361,8 +361,9 @@ var getAllInstitutes = function(){
       var image_path = institute_images_url + image_name;
       institutes += '<img onclick="getLabsByInstituteName(this)" src="' + image_path +'" id="' + institute_name + '"></img><p>'+ institute_name +'</p>';
     });
+    var institute_list = '<div>'+ institutes +'/<div>';
     console.log(institutes);
-    setNewContentInIframe(institutes);
+    setNewContentInIframe(institute_list);
     addScriptTags();
   })
     .done(function() {
