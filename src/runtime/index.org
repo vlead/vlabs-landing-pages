@@ -468,7 +468,17 @@ var getLabsByDisciplineName = function(image) {
     var labs = '';
     $.each(data, function(key, value){
       var lab_name = value['lab_name'];
-      var hosted_url = value['hosting_info'][0]['hosted_url'];
+      var hosting_info = value['hosting_info'];
+      for(var i=0;i< hosting_info.length;i++){
+        var hosted_on = value['hosting_info'][i]['hosted_on'];
+        if (hosted_on == 'open-edx'){
+          var hosted_url = value['hosting_info'][1]['hosted_url'];
+        }
+        else
+        {
+          var hosted_url = value['hosting_info'][0]['hosted_url'];
+        }
+      }
       //      var image =value['assets'][0]['path'];
       //      labs += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
       //       + lab_name +'<div class="thumbnail"><img src='+ image +'></img></a></div></div>';
@@ -507,7 +517,18 @@ var getLabsByInstituteName = function(image) {
     var labs = '';
     $.each(data, function(key, value){
       var lab_name = value['lab_name'];
-      var hosted_url = value['hosting_info'][0]['hosted_url'];
+      var hosting_info = value['hosting_info'];
+      for(var i=0;i< hosting_info.length;i++){
+        var hosted_on = value['hosting_info'][i]['hosted_on'];
+        if (hosted_on == 'open-edx'){
+          var hosted_url = value['hosting_info'][1]['hosted_url'];
+        }
+        else
+        {
+          var hosted_url = value['hosting_info'][0]['hosted_url'];
+        }
+      }
+
       labs += '<div id=' + lab_name + '><a href='+ hosted_url + '>' + lab_name +'<div class="thumbnail"></a></div></div>';
     });
     //        image =value['assets'][0]['path']
@@ -528,7 +549,6 @@ var getLabsByInstituteName = function(image) {
     .always(function() {
       console.log( "complete" );
     });
-  
 };
 
 #+END_SRC
