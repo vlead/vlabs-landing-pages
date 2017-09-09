@@ -361,7 +361,9 @@ var getAllInstitutes = function(){
       var institute_name = value['institute_name'];
       var image_name = value['assets'][0]['path'];
       var image_path = institute_images_url + image_name;
-      institutes += '<img onclick="getLabsByInstituteName(this)" src="' + image_path +'" id="' + institute_name + '"></img><p>'+ institute_name +'</p>';
+      institutes += '<img onclick="getLabsByInstituteName(this)" src="'
+        + image_path +'" id="' + institute_name + '"></img><p>'
+        + institute_name +'</p>';
     });
     console.log(institutes);
     setNewContentInIframe(institutes);
@@ -393,7 +395,9 @@ var getAllDisciplines = function(){
       var discipline_name = value['discipline_name'];
       var image_name = value['assets'][0]['path'];
       var image_path = discipline_images_url + image_name;
-      disciplines += '<img onclick="getLabsByDisciplineName(this)" src="' + image_path +'" id="' + discipline_name + '"></img><p>'+ discipline_name +'</p>';
+      disciplines += '<img onclick="getLabsByDisciplineName(this)" src="'
+        + image_path +'" id="' + discipline_name + '"></img><p>'
+        + discipline_name +'</p>';
     });
     console.log(disciplines);
     setNewContentInIframe(disciplines);
@@ -434,8 +438,21 @@ var getAllLabs = function(){
           var hosted_url = value['hosting_info'][0]['hosted_url'];
         }
       }
-      labs += '<div id=' + lab_name + '><a href='+ hosted_url + '>' + lab_name +'<div class="thumbnail"></a></div></div>';
-      
+      var assets = value['assets'];
+      console.log(assets);
+      for(var i=0;i< assets.length;i++){
+        var  asset_type = value['assets'][i]['asset_type']['asset_type'];
+        var path = value['assets'][i]['path'];
+        if (asset_type == 'image'){
+          var image_name = value['assets'][i]['path'];
+          console.log(image_name);
+          var path = lab_images_url + image_name;
+          console.log(path);
+        }
+      }
+      labs += '<div id=' + lab_name + '><a href='+ hosted_url + '><img src="'
+        + path +'" width="250px" height="160px" alt="image"/> </a><p>'
+        +lab_name +'</p></div></div>';
     });
     console.log(labs);
     setNewContentInIframe(labs);
@@ -493,7 +510,8 @@ var getLabsByDisciplineName = function(image) {
         }
       }
       labs += '<div id=' + lab_name + '><a href='+ hosted_url + '><img src="'
-        + path +'" width="250px" height="160px" alt="image"/> </a><p>'+lab_name +'</p></div></div>';
+        + path +'" width="250px" height="160px" alt="image"/> </a><p>'
+        +lab_name +'</p></div></div>';
     });
     console.log(labs);
     resetContentInIframe(labs);
@@ -539,14 +557,23 @@ var getLabsByInstituteName = function(image) {
           var hosted_url = value['hosting_info'][0]['hosted_url'];
         }
       }
+      var assets = value['assets'];
+      console.log(assets);
+      for(var i=0;i< assets.length;i++){
+        var  asset_type = value['assets'][i]['asset_type']['asset_type'];
+        var path = value['assets'][i]['path'];
+        if (asset_type == 'image'){
+          var image_name = value['assets'][i]['path'];
+          console.log(image_name);
+          var path = lab_images_url + image_name;
+          console.log(path);
+        }
+      }
+      labs += '<div id=' + lab_name + '><a href='+ hosted_url + '><img src="'
+        + path +'" width="250px" height="160px" alt="image"/> </a><p>'
+        +lab_name +'</p></div></div>';
 
-      labs += '<div id=' + lab_name + '><a href='+ hosted_url + '>' + lab_name +'<div class="thumbnail"></a></div></div>';
     });
-    //        image =value['assets'][0]['path']
-    //        labs += '<div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
-    //          + lab_name +'<div class="thumbnail"><img src='+ image +'></img></a></div></div>';
-    //    labs += '  <span id="getLabsbyDis"></span><div class="col-md-4" id=' + lab_name + '><a href='+ hosted_url + '>'
-    //        + lab_name +'<div class="thumbnail"></a></div></div>';
     console.log(labs);
     resetContentInIframe(labs);
   })
