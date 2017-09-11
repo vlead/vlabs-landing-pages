@@ -621,23 +621,23 @@ var addScriptTags = function(){
   
   var js_script = contentIframe.contentWindow.document.createElement("script");
   var js_url = '../static/js/main.js';
-  script1.type = "text/javascript";
-  script1.src = js_url;
+  js_script.type = "text/javascript";
+  js_script.src = js_url;
   var head = contentIframe.contentWindow.document.head;
   console.log(head);
-  head.appendChild(script1);
+  head.appendChild(js_script);
   
   var config_script = contentIframe.contentWindow.document.createElement("script");
   var config_url = "../static/js/app-config.js";
-  script2.type = "text/javascript";
-  script2.src = config_url;
-  head.appendChild(script2);
+  config_script.type = "text/javascript";
+  config_script.src = config_url;
+  head.appendChild(config_script);
   
   var jquery_script = contentIframe.contentWindow.document.createElement("script");
   var jquery_url = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js";
-  script3.type = "text/javascript";
-  script3.src = jquery_url;
-  head.appendChild(script3);  
+  jquery_script.type = "text/javascript";
+  jquery_script.src = jquery_url;
+  head.appendChild(jquery_script);  
 };
 
 #+END_SRC
