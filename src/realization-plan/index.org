@@ -16,86 +16,86 @@
   :END: 
   Dynamically populate all institutes and discipline wise labs using =LDS=. 
 
-|-----+-------------------+--------+-----------+--------+-----------+--------+----------+-----------|
-|  S. | Tasks             | Github | Expected  | Actual | Estimated | Actual | Status   | Assignee  |
-|  NO |                   | Issues | Effort    | Effort | Start,    | Start, |          |           |
-|     |                   |        | (in       | (in    | End       | End    |          |           |
-|     |                   |        | person    | person | Dates     | Dates  |          |           |
-|     |                   |        | hours)    | hours) |           |        |          |           |
-|-----+-------------------+--------+-----------+--------+-----------+--------+----------+-----------|
-|  1. | Ability to        | [[https://github.com/vlead/vlabs-landing-pages/issues/2][#2]]     |           |        |           |        | Done     | Madhavi   |
-|     | display the       |        |           |        |           |        |          |           |
-|     | labs              |        |           |        |           |        |          |           |
-|     | developed         |        |           |        |           |        |          |           |
-|     | by Partner        |        |           |        |           |        |          |           |
-|     | Institutes        |        |           |        |           |        |          |           |
-|-----+-------------------+--------+-----------+--------+-----------+--------+----------+-----------|
-|  2. | Dynamic footer    | [[https://github.com/vlead/vlabs-landing-pages/issues/21][#21]]    |           |        |           |        | Done     | Sanchita  |
-|     | service need to   |        |           |        |           |        |          |           |
-|     | be integrated     |        |           |        |           |        |          |           |
-|     | into an iframe    |        |           |        |           |        |          |           |
-|     | of landing page   |        |           |        |           |        |          |           |
-|-----+-------------------+--------+-----------+--------+-----------+--------+----------+-----------|
-|  3. | collect thumbnail | [[https://github.com/vlead/vlabs-landing-pages/issues/24][#24]]    |           |        |           |        | Done     | Balamma   |
-|     | images for all    |        |           |        |           |        |          |           |
-|     | the labs          |        |           |        |           |        |          |           |
-|-----+-------------------+--------+-----------+--------+-----------+--------+----------+-----------|
-|  4. | Ability to        | [[https://github.com/vlead/vlabs-landing-pages/issues/3][#3]]     |           |        |           |        | Done     | Madhavi   |
-|     | display all       |        |           |        |           |        |          | Mrudhvika |
-|     | Discipline        |        |           |        |           |        |          |           |
-|     | and Domain        |        |           |        |           |        |          |           |
-|     | wise labs         |        |           |        |           |        |          |           |
-|-----+-------------------+--------+-----------+--------+-----------+--------+----------+-----------|
-|  5. | check the         | [[https://github.com/vlead/vlabs-landing-pages/issues/25][#25]]    |           |        |           |        | Done     | Sanchita  |
-|     | hosting urls      |        |           |        |           |        |          |           |
-|     | for all the       |        |           |        |           |        |          |           |
-|     | labs              |        |           |        |           |        |          |           |
-|-----+-------------------+--------+-----------+--------+-----------+--------+----------+-----------|
-|  6. | create ADS        | [[https://github.com/vlead/vlabs-landing-pages/issues/26][#26]]    |           |        |           |        | backlog  | Madhvi    |
-|     | vagrant box       |        |           |        |           |        |          | Mrudhvika |
-|     | in the            |        |           |        |           |        |          | Sanchita  |
-|     | development       |        |           |        |           |        |          | Balamma   |
-|     | environment       |        |           |        |           |        |          |           |
-|-----+-------------------+--------+-----------+--------+-----------+--------+----------+-----------|
-|  7. | Labs hosted on    | [[https://github.com/vlead/vlabs-landing-pages/issues/30][#30]]    |           |        |           |        | Done     | Madhavi   |
-|     | 'open-edx' are    |        |           |        |           |        |          |           |
-|     | not loading       |        |           |        |           |        |          |           |
-|     | in an iframe      |        |           |        |           |        |          |           |
-|-----+-------------------+--------+-----------+--------+-----------+--------+----------+-----------|
-|  8. | current theming   | [[https://github.com/vlead/vlabs-landing-pages/issues/31][#31]]    |           |        |           |        |          |           |
-|     | for open-edx      |        |           |        |           |        |          |           |
-|     | labs has to       |        |           |        |           |        |          |           |
-|     | be removed        |        |           |        |           |        |          |           |
-|-----+-------------------+--------+-----------+--------+-----------+--------+----------+-----------|
-|  9. | Remove theming    | [[https://github.com/vlead/vlabs-landing-pages/issues/34][#34]]    | 8 person  |        |           |        | backlog  | Balamma   |
-|     | from test         |        | hours     |        |           |        |          |           |
-|     | instance of       |        |           |        |           |        |          |           |
-|     | open-edx          |        |           |        |           |        |          |           |
-|-----+-------------------+--------+-----------+--------+-----------+--------+----------+-----------|
-| 10. | Add a new row to  | [[https://github.com/vlead/vlabs-landing-pages/issues/35][#35]]    | 8 person  |        |           |        | backlog  | Mrudhvika |
-|     | 'hosting_info'    |        | hours     |        |           |        |          |           |
-|     | of 'lab' table    |        |           |        |           |        |          |           |
-|     | and update        |        |           |        |           |        |          |           |
-|     | 'hosted_on' to    |        |           |        |           |        |          |           |
-|     | 'test-open-edx'   |        |           |        |           |        |          |           |
-|     | and also          |        |           |        |           |        |          |           |
-|     | update            |        |           |        |           |        |          |           |
-|     | 'hosted_url'      |        |           |        |           |        |          |           |
-|-----+-------------------+--------+-----------+--------+-----------+--------+----------+-----------|
-| 11. | Update config in  | [[https://github.com/vlead/vlabs-landing-pages/issues/36][#36]]    | 2 person  |        |           |        | backlog  | Madhavi   |
-|     | the vlabs landing |        | hours     |        |           |        |          |           |
-|     | pages to read     |        |           |        |           |        |          |           |
-|     | either the        |        |           |        |           |        |          |           |
-|     | hosted url of     |        |           |        |           |        |          |           |
-|     | production or     |        |           |        |           |        |          |           |
-|     | test instance of  |        |           |        |           |        |          |           |
-|     | openedx           |        |           |        |           |        |          |           |
-|-----+-------------------+--------+-----------+--------+-----------+--------+----------+-----------|
-| 12. | Some labs are     | [[https://github.com/vlead/vlabs-landing-pages/issues/37][#37]]    | 16 person |        |           |        | In       | Sanchita  |
-|     | not captured in   |        | hours     |        |           |        | Progress |           |
-|     | lds database      |        |           |        |           |        |          |           |
-|-----+-------------------+--------+-----------+--------+-----------+--------+----------+-----------|
-|     |                   |        |           |        |           |        |          |           |
+|-----+-------------------+--------+-----------+--------+------------+------------+----------+-----------|
+|  S. | Tasks             | Github | Expected  | Actual |  Estimated |     Actual | Status   | Assignee  |
+|  NO |                   | Issues | Effort    | Effort |     Start, |     Start, |          |           |
+|     |                   |        | (in       | (in    |        End |        End |          |           |
+|     |                   |        | person    | person |      Dates |      Dates |          |           |
+|     |                   |        | hours)    | hours) |            |            |          |           |
+|-----+-------------------+--------+-----------+--------+------------+------------+----------+-----------|
+|  1. | Ability to        | [[https://github.com/vlead/vlabs-landing-pages/issues/2][#2]]     | 42        | 30     | 31-08-2017 | 31-08-2017 | Done     | Madhavi   |
+|     | display the       |        | person    | person | 09-09-2017 | 07-09-2017 |          | Mrudhvika |
+|     | labs              |        | hours     | hours  |            |            |          |           |
+|     | developed         |        |           |        |            |            |          |           |
+|     | by Partner        |        |           |        |            |            |          |           |
+|     | Institutes        |        |           |        |            |            |          |           |
+|-----+-------------------+--------+-----------+--------+------------+------------+----------+-----------|
+|  2. | Dynamic footer    | [[https://github.com/vlead/vlabs-landing-pages/issues/21][#21]]    |           |        |            |            | Done     | Sanchita  |
+|     | service need to   |        |           |        |            |            |          |           |
+|     | be integrated     |        |           |        |            |            |          |           |
+|     | into an iframe    |        |           |        |            |            |          |           |
+|     | of landing page   |        |           |        |            |            |          |           |
+|-----+-------------------+--------+-----------+--------+------------+------------+----------+-----------|
+|  3. | collect thumbnail | [[https://github.com/vlead/vlabs-landing-pages/issues/24][#24]]    |           |        |            |            | Done     | Balamma   |
+|     | images for all    |        |           |        |            |            |          |           |
+|     | the labs          |        |           |        |            |            |          |           |
+|-----+-------------------+--------+-----------+--------+------------+------------+----------+-----------|
+|  4. | Ability to        | [[https://github.com/vlead/vlabs-landing-pages/issues/3][#3]]     | 42        | 30     | 31-08-2017 | 31-08-2017 | Done     | Madhavi   |
+|     | display all       |        | person    | person | 09-09-2017 | 09-09-2017 |          | Mrudhvika |
+|     | Discipline        |        | hours     | hours  |            |            |          |           |
+|     | and Domain        |        |           |        |            |            |          |           |
+|     | wise labs         |        |           |        |            |            |          |           |
+|-----+-------------------+--------+-----------+--------+------------+------------+----------+-----------|
+|  5. | check the         | [[https://github.com/vlead/vlabs-landing-pages/issues/25][#25]]    |           |        |            |            | Done     | Sanchita  |
+|     | hosting urls      |        |           |        |            |            |          |           |
+|     | for all the       |        |           |        |            |            |          |           |
+|     | labs              |        |           |        |            |            |          |           |
+|-----+-------------------+--------+-----------+--------+------------+------------+----------+-----------|
+|  6. | create ADS        | [[https://github.com/vlead/vlabs-landing-pages/issues/26][#26]]    |           |        |            |            | backlog  | Madhvi    |
+|     | vagrant box       |        |           |        |            |            |          | Mrudhvika |
+|     | in the            |        |           |        |            |            |          | Sanchita  |
+|     | development       |        |           |        |            |            |          | Balamma   |
+|     | environment       |        |           |        |            |            |          |           |
+|-----+-------------------+--------+-----------+--------+------------+------------+----------+-----------|
+|  7. | Labs hosted on    | [[https://github.com/vlead/vlabs-landing-pages/issues/30][#30]]    | 8         | 0.5    | 11-09-2017 | 11-09-2017 | Done     | Madhavi   |
+|     | 'open-edx' are    |        | person    | person | 11-09-2017 | 11-09-2017 |          |           |
+|     | not loading       |        | hours     | hours  |            |            |          |           |
+|     | in an iframe      |        |           |        |            |            |          |           |
+|-----+-------------------+--------+-----------+--------+------------+------------+----------+-----------|
+|  8. | current theming   | [[https://github.com/vlead/vlabs-landing-pages/issues/31][#31]]    |           |        |            |            |          |           |
+|     | for open-edx      |        |           |        |            |            |          |           |
+|     | labs has to       |        |           |        |            |            |          |           |
+|     | be removed        |        |           |        |            |            |          |           |
+|-----+-------------------+--------+-----------+--------+------------+------------+----------+-----------|
+|  9. | Remove theming    | [[https://github.com/vlead/vlabs-landing-pages/issues/34][#34]]    | 8 person  |        |            |            | backlog  | Balamma   |
+|     | from test         |        | hours     |        |            |            |          |           |
+|     | instance of       |        |           |        |            |            |          |           |
+|     | open-edx          |        |           |        |            |            |          |           |
+|-----+-------------------+--------+-----------+--------+------------+------------+----------+-----------|
+| 10. | Add a new row to  | [[https://github.com/vlead/vlabs-landing-pages/issues/35][#35]]    | 8 person  |        | 12-09-2017 |            | backlog  | Mrudhvika |
+|     | 'hosting_info'    |        | hours     |        | 12-09-2017 |          1 |          |           |
+|     | of 'lab' table    |        |           |        |            |            |          |           |
+|     | and update        |        |           |        |            |            |          |           |
+|     | 'hosted_on' to    |        |           |        |            |            |          |           |
+|     | 'test-open-edx'   |        |           |        |            |            |          |           |
+|     | and also          |        |           |        |            |            |          |           |
+|     | update            |        |           |        |            |            |          |           |
+|     | 'hosted_url'      |        |           |        |            |            |          |           |
+|-----+-------------------+--------+-----------+--------+------------+------------+----------+-----------|
+| 11. | Update config in  | [[https://github.com/vlead/vlabs-landing-pages/issues/36][#36]]    | 2 person  |        | 13-09-2017 |            | backlog  | Madhavi   |
+|     | the vlabs landing |        | hours     |        | 13-09-2017 |            |          |           |
+|     | pages to read     |        |           |        |            |            |          |           |
+|     | either the        |        |           |        |            |            |          |           |
+|     | hosted url of     |        |           |        |            |            |          |           |
+|     | production or     |        |           |        |            |            |          |           |
+|     | test instance of  |        |           |        |            |            |          |           |
+|     | openedx           |        |           |        |            |            |          |           |
+|-----+-------------------+--------+-----------+--------+------------+------------+----------+-----------|
+| 12. | Some labs are     | [[https://github.com/vlead/vlabs-landing-pages/issues/37][#37]]    | 16 person |        |            |            | In       | Sanchita  |
+|     | not captured in   |        | hours     |        |            |            | Progress |           |
+|     | lds database      |        |           |        |            |            |          |           |
+|-----+-------------------+--------+-----------+--------+------------+------------+----------+-----------|
+|     |                   |        |           |        |            |            |          |           |
 
 * Realization 
     :PROPERTIES:
