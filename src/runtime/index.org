@@ -11,8 +11,15 @@
   :PROPERTIES:
   :CUSTOM_ID: introduction
   :END: 
-  This "Literate Document" is an illustration of building =Vlabs landing Pages=
-  dynamically. Data will be provided by =Lab Data Service=.
+  This "Literate Document" is an illustration of building =Vlabs landing
+  Pages=. It includes updating the data in the web page, using =Lab Data
+  Service=. This helps us achieve a lot of tasks, Some of them are mentioned
+  below
+  - It explains the approach to access the data of labs that are segregated
+    based on institutes. 
+  - It explains the approach to access the data of labs that are segregated
+    based on disciplines.
+  - Accessing all the data of labs.
 
 * Implementation
 ** Structure of html
@@ -53,9 +60,9 @@
 #+END_SRC
 
 ** Header
-   This includes the content that has to be displayed in the header. Institute,
-   disciplines and all labs along with drop down with institutes, disciplines
-   and also all labs.
+   This represents a container for introductory content or a set of
+   navigational links. A header typically contains: one or more heading
+   elements, logo or icon.
 #+NAME: header-html
 #+BEGIN_SRC html 
 <html>
@@ -181,7 +188,9 @@ var deleteFrameInDivision = function(frameId, divId) {
 #+END_SRC
 
 ** Creating the header iframe
-   Provide the header for selecting the institutes, disciplines and all labs.
+   This defines a header which is created as an iframe for a html page
+   represents a container for introductory content or a set of navigational
+   links to another iframe.
 #+NAME: insert-header-iframe
 #+BEGIN_SRC javascript 
 var insertHeaderIFrame = function() {
@@ -207,8 +216,8 @@ var setHeaderContentInIframe=function() {
 #+END_SRC
 
 ** Creating the content iframe
-   Displays the content iframe based on the selection of the institutes,
-   disciplines and all labs.
+   Displays the content iframe based on the selection of the elements with
+   respect to the header iframe.
 #+NAME: insert-content-iframe
 #+BEGIN_SRC javascript 
 var insertContentIFrame = function() {
@@ -221,7 +230,9 @@ var insertContentIFrame = function() {
 #+END_SRC
 
 ** Creating the footer iframe
-   Creation of Footer iframe.
+   This defines a footer which is created as an iframe for a html page. A
+   footer includes information about its containing element. It typically
+   contains: authorship information.
 #+NAME: insert-footer-iframe
 #+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
 var insertFooterIFrame = function() {
@@ -234,9 +245,9 @@ var insertFooterIFrame = function() {
 #+END_SRC
 
 ** Set content in footer iframe
-   To display the footer we give =http://footer.vlabs.ac.in/footer= as source
-   of the iframe. The content of the footer will be dynamically served from the
-   footer service.
+   Once the footer iframe is created to display the footer we give
+   =http://footer.vlabs.ac.in/footer= as source of the iframe. The content of
+   the footer will be dynamically served from the footer service.
 #+NAME: set-footer-content-in-iframe
 #+BEGIN_SRC javascript
 var setFooterContentInIframe=function() {
@@ -262,8 +273,8 @@ var insertFrame = function() {
 #+END_SRC
 
 ** Loading all disciplines
-   On loading disciplines it deletes pre loaded content iframe and creates one
-   new content iframe and set values to the newly created content iframe.
+   This allows to manipulate the content of an iframe by accessing the
+   elements within the iframe.
 #+NAME: load-all-disciplines
 #+BEGIN_SRC javascript 
 var loadAllDisciplines = function() {
@@ -278,9 +289,8 @@ var loadAllDisciplines = function() {
 #+END_SRC
 
 ** Loading all institutes
-   On loading institutes it deletes pre loaded content iframe and creates one
-   new content iframe and set values to the newly created content iframe.
-
+   This allows to manipulate the content of an iframe by accessing the
+   elements within the iframe.
 #+NAME: load-all-institutes
 #+BEGIN_SRC javascript 
 var loadAllInstitutes = function() {
@@ -295,9 +305,8 @@ var loadAllInstitutes = function() {
 #+END_SRC
 
 ** Loading all labs
-   On loading all labs it deletes pre loaded content iframe and creates one new
-   content iframe and set values to the newly created content iframe.
-
+   This allows to manipulate the contents of an iframe by accessing the
+   elements within the iframe.
 #+NAME: load-all-labs
 #+BEGIN_SRC javascript 
 var loadAllLabs = function() {
@@ -349,7 +358,7 @@ var setNewContentInIframe = function(data) {
 #+END_SRC
    
 ** Get All Institutes
-   To feed the content iframe, image and name of the institutes are required.
+      We show this by loading a =institute_url= as source of the iframe.
 #+NAME: get-all-institutes
 #+BEGIN_SRC javascript 
 var getAllInstitutes = function(){ 
@@ -383,7 +392,7 @@ var getAllInstitutes = function(){
 
 #+END_SRC
 ** Get All Disciplines
-   To feed the content iframe, image and name of the disciplines are required.
+      We show this by loading a =discipline_url= as source of the iframe.
 #+NAME: get-all-disciplines
 #+BEGIN_SRC javascript 
 var getAllDisciplines = function(){ 
@@ -417,7 +426,12 @@ var getAllDisciplines = function(){
 
 #+END_SRC
 ** Get All Labs
-   To feed the content iframe, getting data of labs are required.
+   This function will be invoked when =All Labs= tab is clicked. It invokes a
+   call to =LDS= database and fetches all the labs info and calls
+   =setNewContentInIframe()= function to display the data in an iframe. Also
+   calls =addScriptTags()= function to append =main.js=, =jquery= and
+   =app-config= to =<head>= tag as =<script>=.
+   
 #+NAME: get-all-labs
 #+BEGIN_SRC  javascript 
 var getAllLabs = function(){ 
@@ -472,8 +486,11 @@ var getAllLabs = function(){
 
  #+END_SRC
 ** Get Labs by Discipline Name
-   Getting the labs based on discipline name on clicking of the respective
-   image.
+   =getAllDisciplines()= function will invokes this function. This function
+   dynamically fetches the labs based on the 'click' event occurs on discipline
+   name. This function also invokes =resetContentInIframe(data)= function to
+   replace currently available content with the given =data=.
+
 #+NAME: get-labs-by-discipline-name
 #+BEGIN_SRC javascript 
 var getLabsByDisciplineName = function(image) {
@@ -532,8 +549,10 @@ var getLabsByDisciplineName = function(image) {
 
 #+END_SRC
 ** Get Labs by Institute Name
-   Getting the labs based on institute names on clicking of the respective
-   image.
+   =getAllInstitutes()= function will invokes this function.This function
+   dynamically fetches the labs based on the 'click' event occurs on institute
+   name.
+
 #+NAME: get-labs-by-institute-name
 #+BEGIN_SRC javascript 
 var getLabsByInstituteName = function(image) {
@@ -593,14 +612,14 @@ var getLabsByInstituteName = function(image) {
 #+END_SRC
 
 ** Add Script Tags 
-   To display the data in HTML, script files has to be loaded and append them
-   to the script. So data will be loaded dynamically.
+   Script tags are created dynamically and appended to the =<head>= tag.
+
 #+NAME: add-script-tags
 #+BEGIN_SRC javascript 
 var addScriptTags = function(){
   var contentIframe = parent.document.getElementById("contentIframe");
   
-  var script1 = contentIframe.contentWindow.document.createElement("script");
+  var js_script = contentIframe.contentWindow.document.createElement("script");
   var js_url = '../static/js/main.js';
   script1.type = "text/javascript";
   script1.src = js_url;
@@ -608,13 +627,13 @@ var addScriptTags = function(){
   console.log(head);
   head.appendChild(script1);
   
-  var script2 = contentIframe.contentWindow.document.createElement("script");
+  var config_script = contentIframe.contentWindow.document.createElement("script");
   var config_url = "../static/js/app-config.js";
   script2.type = "text/javascript";
   script2.src = config_url;
   head.appendChild(script2);
   
-  var script3 = contentIframe.contentWindow.document.createElement("script");
+  var jquery_script = contentIframe.contentWindow.document.createElement("script");
   var jquery_url = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js";
   script3.type = "text/javascript";
   script3.src = jquery_url;
@@ -623,7 +642,8 @@ var addScriptTags = function(){
 
 #+END_SRC
 ** Resetting content in Iframe
-
+   Resetting the content in the same frame is just element manipulation where
+   =contentIframe= is accessed and new content is set.
 #+NAME: reset-content
 #+BEGIN_SRC javascript 
 var resetContentInIframe = function(data) {
