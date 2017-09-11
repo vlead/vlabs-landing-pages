@@ -23,6 +23,10 @@
 
 * Implementation
 ** Structure of html
+   On Load, this page invokes =loadIndex()= function which loads the default header,
+   content, and footer pages in place of =headerDiv=, =contentDiv= and
+   =footerDiv= divisions.
+
 #+NAME: main-html
 #+BEGIN_SRC html 
 <!DOCTYPE html>
