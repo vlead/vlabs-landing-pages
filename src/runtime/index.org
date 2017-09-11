@@ -340,6 +340,7 @@ var setNewContentInIframe = function(data) {
   console.log(data);
   console.log(parent.document.getElementById(window.name));
   var elem = parent.document.getElementById("contentIframe");
+  elem.sandbox = 'allow-forms allow-scripts allow-same-origin';
   console.log("elem = " + elem);
   console.log("new htdfdfml = " + data);
   elem.contentDocument.write(data);
@@ -622,6 +623,7 @@ var addScriptTags = function(){
 
 #+END_SRC
 ** Resetting content in Iframe
+
 #+NAME: reset-content
 #+BEGIN_SRC javascript 
 var resetContentInIframe = function(data) {
