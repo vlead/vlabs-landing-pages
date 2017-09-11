@@ -283,7 +283,7 @@ var insertFrame = function() {
 ** Loading all disciplines
    This allows to manipulate the content of an iframe by invoking
    =getAllDisciplines()= function and set the obtained disciplines by invoking
-   =setContentInIframe(disciplines)= in the content iframe.
+   =setContentInIframe()= in the content iframe.
 #+NAME: load-all-disciplines
 #+BEGIN_SRC javascript 
 var loadAllDisciplines = function() {
@@ -300,7 +300,7 @@ var loadAllDisciplines = function() {
 ** Loading all institutes
    This allows to manipulate the content of an iframe by invoking
    =getAllInstitutes()= function and set the obtained institutes by invoking
-   =setContentInIframe(institutes)= in the content iframe.#+NAME:
+   =setContentInIframe()= in the content iframe.#+NAME:
    load-all-institutes
 #+BEGIN_SRC javascript 
 var loadAllInstitutes = function() {
@@ -317,7 +317,7 @@ var loadAllInstitutes = function() {
 ** Loading all labs
    This allows to manipulate the content of an iframe by invoking
    =getAllLabs()= function and set the obtained labs by invoking
-   =setContentInIframe(labs)= in the content iframe.#+NAME: load-all-institutes
+   =setContentInIframe()= in the content iframe.#+NAME: load-all-institutes
 #+NAME: load-all-labs
 #+BEGIN_SRC javascript 
 var loadAllLabs = function() {
@@ -366,7 +366,11 @@ var setNewContentInIframe = function(data) {
 #+END_SRC
    
 ** Get All Institutes
-      We show this by loading a =institute_url= as source of the iframe.
+   This function will be invoked when =All Institutes= tab is clicked. It invokes a
+   call to =LDS= database and fetches all the institutes info and calls
+   =setNewContentInIframe()= function to display the data in an iframe. Also
+   calls =addScriptTags()= function to append =main.js=, =jquery= and
+   =app-config= to =<head>= tag as =<script>=.
 #+NAME: get-all-institutes
 #+BEGIN_SRC javascript 
 var getAllInstitutes = function(){ 
@@ -400,7 +404,11 @@ var getAllInstitutes = function(){
 
 #+END_SRC
 ** Get All Disciplines
-      We show this by loading a =discipline_url= as source of the iframe.
+   This function will be invoked when =All Disciplines= tab is clicked. It invokes a
+   call to =LDS= database and fetches all the disciplines info and calls
+   =setNewContentInIframe()= function to display the data in an iframe. Also
+   calls =addScriptTags()= function to append =main.js=, =jquery= and
+   =app-config= to =<head>= tag as =<script>=.
 #+NAME: get-all-disciplines
 #+BEGIN_SRC javascript 
 var getAllDisciplines = function(){ 
