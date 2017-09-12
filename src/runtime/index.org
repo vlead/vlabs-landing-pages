@@ -64,7 +64,7 @@
     </script>
   </head>
   <body>
-<p>welcoem to Virtural Labs</p>
+<p>Welcome to Virtural Labs</p>
   </body>
 </html>
 
