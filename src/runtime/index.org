@@ -11,14 +11,14 @@
   :PROPERTIES:
   :CUSTOM_ID: introduction
   :END: 
-  This "Literate Document" is an illustration of building =Vlabs landing
-  Pages=. It includes updating the data in the web page, using =Lab Data
-  Service=. This helps us achieve a lot of tasks, Some of them are mentioned
-  below
-  - It explains the approach to access the data of labs that are segregated
-    based on institutes. 
-  - It explains the approach to access the data of labs that are segregated
-    based on disciplines.
+  This "Literate Document" is an illustration of building
+  =Vlabs landing Pages=. It includes updating the data in
+  the web page, using =Lab Data Service=. This helps us
+  achieve a lot of tasks, Some of them are mentioned below
+  - It explains the approach to access the data of labs that
+    are segregated based on institutes.
+  - It explains the approach to access the data of labs that
+    are segregated based on disciplines.
   - Accessing all the data of labs.
 
 * Implementation
