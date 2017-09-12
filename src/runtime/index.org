@@ -77,116 +77,108 @@
 #+NAME: header-html
 #+BEGIN_SRC html 
 <html>
-<body>
-<header>
-<link rel="stylesheet"
-   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="../static/js/bootstrap.css">
-<link rel="stylesheet" href="../static/js/font-awesome.css">
-<link rel="stylesheet" href="../static/js/bootsnipp.css">
-<link rel="stylesheet" href="../static/css/style.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../static/js/app-config.js"></script>
-<script type="text/javascript" src="../static/js/main.js"></script>
-<link rel="stylesheet" href="https://info.vlabs.ac.in/common/header/files/bootstrap.css">
-<link rel="stylesheet" href="https://info.vlabs.ac.in/common/header/files/bootsnipp.css">
-<nav class="navbar navbar-fixed-top navbar-bootsnipp animate" role="navigation" style="z-index: 9999999">
-<div class="container">
-   <nav class="navbar ">
-      <div class="navbar-header">
-         <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse">
-         <span class="sr-only">Toggle navigation</span>
-         <span class="icon-bar"></span>
-         <span class="icon-bar"></span>
-         <span class="icon-bar"></span>
-         </button>
-         <a class="navbar-brand main-logo-a" href="https://vlabs.ac.in" style=" width:100px; height:40px; margin-top:-13px"><img src="https://vlabs.ac.in/static/edx-bootstrap-theme/images/logo.7e034286282a.png" class="img-responsive main-logo" style="width:100%; maring-top:2px;"></a>
-      </div>
-      <div class="collapse navbar-collapse js-navbar-collapse">
-         <ul class="nav navbar-nav">
-            <li class="dropdown mega-dropdown">
-               <a onclick="loadAllLabs()" href="#" class="dropdown-toggle"
-                  data-toggle="dropdown">All Labs </a>				
-            </li>
-            <li class="dropdown mega-dropdown">
-               <a onclick="loadAllInstitutes()"  href="#" class="dropdown-toggle"
-                  data-toggle="dropdown">All Institutes </a>				
-            </li>
-            <li class="dropdown mega-dropdown">
-               <a onclick="loadAllDisciplines()" href="#" class="dropdown-toggle"
+  <body>
+    <header>
+      <link rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <link rel="stylesheet" href="../static/js/bootsnipp.css">
+      <link rel="stylesheet" href="../static/css/style.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="../static/js/app-config.js"></script>
+      <script type="text/javascript" src="../static/js/main.js"></script>
+      <link rel="stylesheet" href="https://info.vlabs.ac.in/common/header/files/bootsnipp.css">
+      <nav class="navbar navbar-fixed-top navbar-bootsnipp animate" role="navigation" style="z-index: 9999999">
+        <div class="container">
+          <nav class="navbar ">
+            <div class="navbar-header">
+              <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand main-logo-a" href="https://vlabs.ac.in" style=" width:100px; height:40px; margin-top:-13px"><img src="https://vlabs.ac.in/static/edx-bootstrap-theme/images/logo.7e034286282a.png" class="img-responsive main-logo" style="width:100%; maring-top:2px;"></a>
+            </div>
+            <div class="collapse navbar-collapse js-navbar-collapse">
+              <ul class="nav navbar-nav">
+                <li class="dropdown mega-dropdown">
+                  <a onclick="loadAllLabs()" href="#" class="dropdown-toggle"
+                     data-toggle="dropdown">All Labs </a>				
+                </li>
+                <li class="dropdown mega-dropdown">
+                  <a onclick="loadAllInstitutes()"  href="#" class="dropdown-toggle"
+                     data-toggle="dropdown">All Institutes </a>				
+                </li>
+                <li class="dropdown mega-dropdown">
+                  <a onclick="loadAllDisciplines()" href="#" class="dropdown-toggle"
                   data-toggle="dropdown">All Disciplines </a>				
-            </li>
-            <li class="dropdown mega-dropdown">
-               <a href="#" class="dropdown-toggle" data-toggle="dropdown">About<span class="caret"></span></a>				
-               <ul class="dropdown-menu mega-dropdown-menu">
-                  <li class="col-sm-2">
-                     <ul>
+                </li>
+                <li class="dropdown mega-dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">About<span class="caret"></span></a>				
+                  <ul class="dropdown-menu mega-dropdown-menu">
+                    <li class="col-sm-2">
+                      <ul>
                         <li class="dropdown-header">Comminity</li>
                         <li><a href="#">Teachers</a></li>
                         <li><a href="#">Developers</a></li>
                         <li><a href="#">Students</a></li>
-                     </ul>
-                  </li>
-                  <li class="col-sm-2">
-                     <ul>
+                      </ul>
+                    </li>
+                    <li class="col-sm-2">
+                      <ul>
                         <li class="dropdown-header">Development</li>
                         <li><a href="#">Virtual Development</a></li>
                      </ul>
-                  </li>
-                  <li class="col-sm-2">
-                     <ul>
+                    </li>
+                    <li class="col-sm-2">
+                      <ul>
                         <li class="dropdown-header">Workshops</li>
                         <li><a href="#">Online</a></li>
                         <li><a href="#">College Cloud Edition</a></li>
                      </ul>
-                  </li>
-                  <li class="col-sm-3">
-                     <ul>
+                    </li>
+                    <li class="col-sm-3">
+                      <ul>
                         <li class="dropdown-header">FAQ</li>
                         <li><a href="#">Virtual Labs</a></li>
                         <li><a href="#">Virtuals
-                           College Cloud Edition</a>
+                            College Cloud Edition</a>
                         </li>
                         <li><a href="#">Expression  of Interest for Workshops</a></li>
-                     </ul>
-                  </li>
-                  <li class="col-sm-2">
-                     <ul>
+                      </ul>
+                    </li>
+                    <li class="col-sm-2">
+                      <ul>
                         <li class="dropdown-header">Information</li>
                         <li><a href="#">Announcements</a></li>
                         <li><a href="#">Contact us</a></li>
                         <li><a href="#">2017-summer-intership</a></li>
-                     </ul>
-                  </li>
-                  </li>
-               </ul>
-            </li>
-         </ul>
-         <ul class="nav navbar-nav navbar-right">
-            <form class="navbar-form navbar-left">
-               <div class="input-group">
-                  <input id="keyword" type="text" class="form-control" placeholder="Lab Name">
-                  <div class="input-group-btn">
-                     <button onclick="javascript:getLabs()" target="content_iframe" class="btn btn-default" type="submit">
-                     <i class="glyphicon glyphicon-search"></i>
-                     </button>
-                  </div>
-               </div>
-            </form>
-            <li><a href="http://vlabs.ac.in" target="content_iframe"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-         </ul>
+                      </ul>
+                    </li>
+                </li>
+                </ul>
+</li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+  <form class="navbar-form navbar-left">
+    <div class="input-group">
+      <input id="keyword" type="text" class="form-control" placeholder="Lab Name">
+      <div class="input-group-btn">
+        <button onclick="javascript:getLabs()" target="content_iframe" class="btn btn-default" type="submit">
+          <i class="glyphicon glyphicon-search"></i>
+        </button>
       </div>
-      <!-- /.nav-collapse -->
-   </nav>
+    </div>
+  </form>
+  <li><a href="http://vlabs.ac.in" target="content_iframe"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+  <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+</ul>
 </div>
-
-
-
+<!-- /.nav-collapse -->
+</nav>
+</div>
 </header>
-
-
 </body>
 </html>
 #+END_SRC
@@ -222,6 +214,7 @@ var loadIndex = function() {
   setContentInIframe();
   insertFooterIFrame();
   setFooterContentInIframe();
+  mouse_hover();
 };
 
 #+END_SRC
@@ -283,7 +276,7 @@ var deleteFrameInDivision = function(frameId, divId) {
 #+BEGIN_SRC javascript 
 var insertHeaderIFrame = function() {
   console.log("=======creating header iframe=====");
-  var newFrame = createNewIframe("headerIframe", "headerIframe", "100%", "800px");
+  var newFrame = createNewIframe("headerIframe", "headerIframe", "100%", "200em");
   var division = document.getElementById("headerDiv");
   insertFrameInDivision(newFrame, division.id);
 };
@@ -473,9 +466,10 @@ var getAllInstitutes = function(){
       var institute_name = value['institute_name'];
       var image_name = value['assets'][0]['path'];
       var image_path = institute_images_url + image_name;
-      institutes += '<img onclick="getLabsByInstituteName(this)" src="' + image_path +'" id="' + institute_name + '"></img><p>'+ institute_name +'</p>';
+      institutes += '<div class="col-lg-3 col-md-4 col-xs-6 thumb"><a class="thumbnail"><img onclick="getLabsByInstituteName(this)" src="' + image_path +'" id="' + institute_name + '"></a></div>';
     });
-    var institute_list = '<div>'+ institutes +'/<div>';
+    var institute_list = '<div class="container"><div class="row"><div class="col-lg-12">'
+        + institutes +'</div></div></div>';
     
     console.log(institutes);
     setNewContentInIframe(institute_list);
@@ -727,18 +721,20 @@ var resetContentInIframe = function(data) {
 ** Mouse Over
 #+NAME: mouse-over
 #+BEGIN_SRC javascript
-$(document).ready(function(){
-$(".dropdown").hover(            
-function() {
-$('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideDown("400");
-$(this).toggleClass('open');        
-},
-function() {
-$('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideUp("400");
-$(this).toggleClass('open');       
-}
-);
-});
+var mouse_hover = function(){
+  $(document).ready(function(){
+    $(".dropdown").hover(            
+      function() {
+        $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideDown("400");
+        $(this).toggleClass('open');        
+      },
+      function() {
+        $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideUp("400");
+        $(this).toggleClass('open');       
+      }
+    );
+ });
+};
 
 #+END_SRC
 
