@@ -9,15 +9,15 @@
 
 * Introduction
   - This document contains the realization plan for
-    implementing the VLABS portal driven by data. 
+    implementing the VLABS portal driven by data.
 
 * Plan 
 ** [[https://github.com/vlead/vlabs-landing-pages/milestone/4][Milestone One]]
   :PROPERTIES:
   :CUSTOM_ID: plan-for-milestone-one
   :END: 
-  Once this milestone is realized, the following are done
-  to the VLABS portal:
+  Once this milestone is realized, the following are done to
+  the VLABS portal:
   1. dynamically populate all the institutes.
   2. dynamically populate all the disciplines.
   3. dynamically populate the labs of each institute on
