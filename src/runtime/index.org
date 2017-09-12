@@ -304,7 +304,7 @@ var setHeaderContentInIframe=function() {
 #+BEGIN_SRC javascript 
 var insertContentIFrame = function() {
   console.log("=======creating content iframe=====");
-  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "1200");
+  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "800");
   var division = document.getElementById("contentDiv");
   insertFrameInDivision(newFrame, division.id);
 };
