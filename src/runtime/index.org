@@ -37,6 +37,7 @@
 #+END_SRC
 
 ** Content HTML
+   This is the initial content in content iframe as =content.html=
 #+NAME: content-html
 #+BEGIN_SRC html 
 <html>
@@ -53,16 +54,17 @@
 #+END_SRC
 
 ** Header
-   This includes the content that has to be displayed in the header. Institute,
-   disciplines and all labs along with drop down with institutes, disciplines
-   and also all labs.
+   This represents a container for introductory content or a set of
+   navigational links. A header typically contains: one or more heading
+   elements, logo or icon. On click of institutes, disciplines and labs it
+   invokes =loadAllInstitutes()=, =loadAllDisciplines()= and =loadAllLabs()= to
+   load data dynamically in the =content iframe=
+
 #+NAME: header-html
 #+BEGIN_SRC html 
 <html>
 <body>
 <header>
- 
-
 <link rel="stylesheet"
    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="../static/js/bootstrap.css">
@@ -171,10 +173,9 @@
 </body>
 </html>
 #+END_SRC
-** Document Domain
-   Manipulation of iframe content from javascript loaded in the document is
-   possible if the both the iframe content and the javascript manipulating the
-   iframe are loaded from the same domain.
+** Config
+   Getting data from the lab data service and feeding the content iframe. Also
+   getting images of institute, disciplines and all labs from file server
 #+NAME: app-config
 #+BEGIN_SRC javascript
 document.domain="localhost";
@@ -187,7 +188,9 @@ var discipline_images_url = "../static/images/disciplines/";
 #+END_SRC
 
 ** Index page on load 
-   An index initially loads with a header iframe and content iframe.
+   An index initially loads with a header, content, footer iframe and set the
+   content in respective iframe by invoking =setHeaderContentInIframe()=,
+   =setContentInIframe()=, =setFooterContentInIframe()= functions .
 #+NAME: load-index
 #+BEGIN_SRC javascript 
 var loadIndex = function() {
@@ -330,8 +333,10 @@ var insertFrame = function() {
 #+END_SRC
 
 ** Loading all disciplines
-   On loading disciplines it deletes pre loaded content iframe and creates one
-   new content iframe and set values to the newly created content iframe.
+   This allows to manipulate the content of an iframe by invoking
+   =getAllDisciplines()= function and set the obtained disciplines by invoking
+   =setContentInIframe()= in the content iframe.
+
 #+NAME: load-all-disciplines
 #+BEGIN_SRC javascript 
 var loadAllDisciplines = function() {
@@ -346,9 +351,9 @@ var loadAllDisciplines = function() {
 #+END_SRC
 
 ** Loading all institutes
-   On loading institutes it deletes pre loaded content iframe and creates one
-   new content iframe and set values to the newly created content iframe.
-
+   This allows to manipulate the content of an iframe by invoking
+   =getAllInstitutes()= function and set the obtained institutes by invoking
+   =setContentInIframe()= in the content iframe.
 #+NAME: load-all-institutes
 #+BEGIN_SRC javascript 
 var loadAllInstitutes = function() {
@@ -363,8 +368,9 @@ var loadAllInstitutes = function() {
 #+END_SRC
 
 ** Loading all labs
-   On loading all labs it deletes pre loaded content iframe and creates one new
-   content iframe and set values to the newly created content iframe.
+   This allows to manipulate the content of an iframe by invoking
+   =getAllLabs()= function and set the obtained labs by invoking
+   =setContentInIframe()= in the content iframe.
 #+NAME: load-all-labs
 #+BEGIN_SRC javascript 
 var loadAllLabs = function() {
@@ -381,13 +387,10 @@ var loadAllLabs = function() {
 ** Change the content of an iframe
    Sometimes it might be handy to manipulate the contents of an iframe by
    accessing the elements within the iframe.  We show this by loading a
-   =welcome.html= as source of the iframe.  =main.html= has a division
-   identified by =dis_iframe=.  The content of the newly created iframe cannot
-   be set immediately, therefore we wait for some time and then set the content
-   of the newly created frame.
+   =welcome.html= as source of the iframe. The content of the newly created
+   iframe cannot be set immediately, therefore we wait for some time and then
+   set the content of the newly created frame.
 
-   Resetting the content in the same frame is just element manipulation where
-   == is accessed and new content is set.
 #+NAME: set-content
 #+BEGIN_SRC javascript 
 var setContent = function() {
@@ -415,7 +418,12 @@ var setNewContentInIframe = function(data) {
 #+END_SRC
    
 ** Get All Institutes
-   To feed the content iframe, image and name of the institutes are required.
+   This function will be invoked when =All Institutes= tab is clicked. It
+   invokes a call to =LDS= database and fetches all the institutes info and
+   calls =setNewContentInIframe()= function to display the data in an
+   iframe. Also calls =addScriptTags()= function to append =main.js=, =jquery=
+   and =app-config= to =<head>= tag as =<script>=.
+
 #+NAME: get-all-institutes
 #+BEGIN_SRC javascript 
 var getAllInstitutes = function(){ 
@@ -449,7 +457,12 @@ var getAllInstitutes = function(){
 
 #+END_SRC
 ** Get All Disciplines
-   To feed the content iframe, image and name of the disciplines are required.
+   This function will be invoked when =All Disciplines= tab is clicked. It
+   invokes a call to =LDS= database and fetches all the disciplines info and
+   calls =setNewContentInIframe()= function to display the data in an
+   iframe. Also calls =addScriptTags()= function to append =main.js=, =jquery=
+   and =app-config= to =<head>= tag as =<script>=.
+
 #+NAME: get-all-disciplines
 #+BEGIN_SRC javascript 
 var getAllDisciplines = function(){ 
