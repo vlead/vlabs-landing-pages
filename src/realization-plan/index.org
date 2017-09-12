@@ -110,8 +110,8 @@
 |       | not captured in     |        |          |        |            | 11-09-2017 | Progress |           |
 |       | lds database        |        |          |        |            |            |          |           |
 |-------+---------------------+--------+----------+--------+------------+------------+----------+-----------|
-|   14. | Styling for         |        |          |        |            |            |          |           |
-|       | vlabs-landing-pages | [[https://github.com/vlead/vlabs-landing-pages/issues/29][#29]]    |          |        |            |            |          |           |
+|   14. | Styling for         |        |          |        |            |            | In       | Balamma   |
+|       | vlabs-landing-pages | [[https://github.com/vlead/vlabs-landing-pages/issues/29][#29]]    |          |        |            |            | progress |           |
 |-------+---------------------+--------+----------+--------+------------+------------+----------+-----------|
 |   15. | Populate 'Asset     |        |       12 |      8 | 09-09-2017 | 09-09-2017 | Done     | Mrudhvika |
 |       | Urls' for all       | [[https://github.com/vlead/vlabs-landing-pages/issues/28][#28]]    |          |        | 09-09-2017 | 09-09-2017 |          |           |
