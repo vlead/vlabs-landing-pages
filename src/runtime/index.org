@@ -41,7 +41,7 @@
   </head>
   <body onload="loadIndex()">
     <div id="headerDiv"></div>
-    <div id="contentDiv" style="height:40em;"></div>
+    <div id="contentDiv" style="height:45em;"></div>
     <div id="footerDiv"></div>
     </body>
 </html>
@@ -64,7 +64,7 @@
     </script>
   </head>
   <body>
-<p>Welcome to Virtural Labs</p>
+   <p>Welcome to Virtual Labs</p>
   </body>
 </html>
 
