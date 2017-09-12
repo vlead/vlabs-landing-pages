@@ -169,7 +169,10 @@
 </div>
 
 
+
 </header>
+
+
 </body>
 </html>
 #+END_SRC
@@ -182,8 +185,9 @@ document.domain="localhost";
 // update this to base url to lds url where your lds service was running
 var base_url = "http://ld.base4.vlabs.ac.in"; 
 //  var base_url = "http://localhost:5000"; 
-var institute_images_url = "../static/images/institutes/";
-var discipline_images_url = "../static/images/disciplines/";
+var institute_images_url ="http://files.vlabs.ac.in/lds/images/institutes/";
+var discipline_images_url = "http://files.vlabs.ac.in/lds/images/disciplines/";
+var lab_images_url = "http://files.vlabs.ac.in/lds/images/labs/";
 
 #+END_SRC
 
@@ -257,7 +261,7 @@ var deleteFrameInDivision = function(frameId, divId) {
 #+BEGIN_SRC javascript 
 var insertHeaderIFrame = function() {
   console.log("=======creating header iframe=====");
-  var newFrame = createNewIframe("headerIframe", "headerIframe", "100%", "30%");
+  var newFrame = createNewIframe("headerIframe", "headerIframe", "100%", "800px");
   var division = document.getElementById("headerDiv");
   insertFrameInDivision(newFrame, division.id);
 };
