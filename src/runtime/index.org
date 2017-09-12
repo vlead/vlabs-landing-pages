@@ -431,6 +431,7 @@ var getAllInstitutes = function(){
       institutes += '<img onclick="getLabsByInstituteName(this)" src="' + image_path +'" id="' + institute_name + '"></img><p>'+ institute_name +'</p>';
     });
     var institute_list = '<div>'+ institutes +'/<div>';
+    
     console.log(institutes);
     setNewContentInIframe(institute_list);
     addScriptTags();
@@ -657,7 +658,7 @@ var resetContentInIframe = function(data) {
 
 ** Style Sheet
 #+NAME: styles-sheet
-#+BEGIN_SRC css 
+#+BEGIN_SRC css
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
 body {
   font-family: 'Open Sans', 'sans-serif';
