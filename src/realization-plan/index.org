@@ -87,8 +87,8 @@
 |       | instance of         |        |          |        |            |            |          |           |
 |       | open-edx            |        |          |        |            |            |          |           |
 |-------+---------------------+--------+----------+--------+------------+------------+----------+-----------|
-|   11. | Add a new row to    | [[https://github.com/vlead/vlabs-landing-pages/issues/35][#35]]    |        8 |        |            | 12-09-2017 | backlog  | Mrudhvika |
-|       | 'hosting_info'      |        |          |        |            | 12-09-2017 |          |           |
+|   11. | Add a new row to    | [[https://github.com/vlead/vlabs-landing-pages/issues/35][#35]]    |        8 |        |            | 13-09-2017 | backlog  | Mrudhvika |
+|       | 'hosting_info'      |        |          |        |            | 13-09-2017 |          |           |
 |       | of 'lab' table      |        |          |        |            |            |          |           |
 |       | and update          |        |          |        |            |            |          |           |
 |       | 'hosted_on' to      |        |          |        |            |            |          |           |
