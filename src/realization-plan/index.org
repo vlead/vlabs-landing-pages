@@ -12,7 +12,7 @@
     implementing the VLABS portal driven by data. 
 
 * Plan 
-** [[https://github.com/vlead/lab-data-service-dashboard/milestone/1][Milestone One]]
+** [[https://github.com/vlead/vlabs-landing-pages/milestone/4][Milestone One]]
   :PROPERTIES:
   :CUSTOM_ID: plan-for-milestone-one
   :END: 
