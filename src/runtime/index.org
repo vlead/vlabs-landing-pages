@@ -178,7 +178,7 @@ var createNewIframe = function(name, id, width, height) {
    Given a division, and an iframe, the iframe is inserted
    in the division.
 #+NAME: delete-frame-in-division
-#+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
+#+BEGIN_SRC javascript 
 var insertFrameInDivision = function(iframe, divId) {
   console.log("=======inserting iframe in division=====");
   var divElem = parent.document.getElementById(divId);
@@ -191,7 +191,7 @@ var insertFrameInDivision = function(iframe, divId) {
    Given a frame and a division, an iframe within the
    division is deleted.
 #+NAME: delete-frame-in-division
-#+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
+#+BEGIN_SRC javascript 
 var deleteFrameInDivision = function(frameId, divId) {
   console.log("=======inside delete frame=====");
   if (parent.document.getElementById(divId).hasChildNodes()) {
@@ -254,7 +254,7 @@ var insertContentIFrame = function() {
    containing element. It typically contains: authorship
    information.
 #+NAME: insert-footer-iframe
-#+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
+#+BEGIN_SRC javascript 
 var insertFooterIFrame = function() {
   console.log("=======creating footer iframe=====");
   var newFrame = createNewIframe("footerIframe", "footerIframe", "100%", "30%");
@@ -283,7 +283,7 @@ var setFooterContentInIframe=function() {
    Insert a frame in the =dis_iframe= division.  The name
    and id of this frame is =iframe1=.
 #+NAME: insert-frame
-#+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes
+#+BEGIN_SRC javascript 
 var insertFrame = function() {
   console.log("=======insert iframe=====");
   var newFrame = createNewIframe("iframe1", "iframe1", "100%", "1200");
