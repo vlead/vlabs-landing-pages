@@ -656,23 +656,41 @@ var resetContentInIframe = function(data) {
 
 #+END_SRC
 
-** Style Sheet
-#+NAME: styles-sheet
+** Mouse Over
+#+NAME: mouse-over
+#+BEGIN_SRC javascript
+$(document).ready(function(){
+$(".dropdown").hover(            
+function() {
+$('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideDown("400");
+$(this).toggleClass('open');        
+},
+function() {
+$('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideUp("400");
+$(this).toggleClass('open');       
+}
+);
+});
+
+#+END_SRC
+
+** style sheets
+#+NAME: style-sheets
 #+BEGIN_SRC css
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
 body {
   font-family: 'Open Sans', 'sans-serif';
 }
 .mega-dropdown {
   position: static !important;
 }
-.mega-dropdown-menu {
-    padding: 20px 0px;
-    width: 100%;
-    box-shadow: none;
-    -webkit-box-shadow: none;
+.mega-dropdown-menu .dropdown-header {
+  font-size: 18px;
+  color:  #5FB0E4;
+  padding: 5px 60px 5px 5px;
+  line-height: 30px;
 }
-.mega-dropdown-menu > li > ul {
+
+/*.mega-dropdown-menu > li > ul {
   padding: 0;
   margin: 0;
 }
@@ -687,13 +705,7 @@ body {
 .mega-dropdown-menu > li ul > li > a:hover,
 .mega-dropdown-menu > li ul > li > a:focus {
   text-decoration: none;
-}
-.mega-dropdown-menu .dropdown-header {
-  font-size: 18px;
-  color:  #5FB0E4;
-  padding: 5px 60px 5px 5px;
-  line-height: 30px;
-}
+}*/
 
 .carousel-control {
   width: 30px;
@@ -716,26 +728,6 @@ body {
 }
 
 #+END_SRC
-
-** Mouse Over 
-#+NAME: mouse-over
-#+BEGIN_SRC mouseover 
-$(document).ready(function(){
-$(".dropdown").hover(            
-function() {
-$('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideDown("400");
-$(this).toggleClass('open');        
-},
-function() {
-$('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideUp("400");
-$(this).toggleClass('open');       
-}
-);
-});
-
-#+END_SRC
-
-
 * Tangle 
 ** sources
 *** Javascript
@@ -777,8 +769,7 @@ $(this).toggleClass('open');
 <<content-html>>
 #+END_SRC
 
-** Stylesheet
-#+BEGIN_SRC css :tangle static/css/style.css 
-<<style-sheet>>
-
+*** CSS
+#+BEGIN_SRC css :tangle static/css/style.css :eval no :noweb yes 
+<<style-sheets>>
 #+END_SRC
