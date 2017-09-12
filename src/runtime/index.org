@@ -300,8 +300,9 @@ var loadAllDisciplines = function() {
 ** Loading all institutes
    This allows to manipulate the content of an iframe by invoking
    =getAllInstitutes()= function and set the obtained institutes by invoking
-   =setContentInIframe()= in the content iframe.#+NAME:
-   load-all-institutes
+   =setContentInIframe()= in the content iframe.
+
+#+NAME:load-all-institutes
 #+BEGIN_SRC javascript 
 var loadAllInstitutes = function() {
   console.log("=======loading all institutes=====");
