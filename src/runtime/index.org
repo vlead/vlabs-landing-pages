@@ -772,6 +772,8 @@ var addScriptTags = function(){
 
 };
 
+
+
 #+END_SRC
 ** Resetting content in Iframe
    Resetting the content in the same frame is just element
