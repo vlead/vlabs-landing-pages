@@ -542,8 +542,7 @@ var getAllDisciplines = function(){
    all the labs info and calls =setNewContentInIframe()=
    function to display the data in an iframe. Also calls
    =addScriptTags()= function to append =main.js=, =jquery=
-   and =app-config= to =<head>= tag as =<script>=.
-   
+   and =app-config= to =<head>= tag as =<script>=.   
 #+NAME: get-all-labs
 #+BEGIN_SRC  javascript 
 var getAllLabs = function(){ 
@@ -577,11 +576,12 @@ var getAllLabs = function(){
           console.log(path);
         }
       }
-      labs += '<div id=' + lab_name + '><a href='+ hosted_url + '><img src="'
+      labs += '<div class="col-sm-3" id=' + lab_name + '><a href='+ hosted_url + '><img src="'
         + path +'" width="250px" height="160px" alt="image"/> </a><p>'
-        +lab_name +'</p></div></div>';
+        +lab_name +'</p></div></div>';      
     });
     console.log(labs);
+    var labs_list = '<div class="container-fluid"><div class="row">'+ labs +'</div></div>';
     setNewContentInIframe(labs);
     addScriptTags();
   })
@@ -595,7 +595,6 @@ var getAllLabs = function(){
       console.log( "complete" );
     });
 };
-
 
  #+END_SRC
 ** Get Labs by Discipline Name
