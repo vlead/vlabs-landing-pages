@@ -514,10 +514,14 @@ var getAllDisciplines = function(){
       var discipline_name = value['discipline_name'];
       var image_name = value['assets'][0]['path'];
       var image_path = discipline_images_url + image_name;
-      disciplines += '<div style="float:left;"><img onclick="getLabsByDisciplineName(this)" src="'+ image_path +'" id="' + discipline_name + '"></img><p>'+ discipline_name +'</p></div>';
+      disciplines += '<div class="col-sm-3"><img onclick="getLabsByDisciplineName(this)" src="'
+        + image_path +'" id="' + discipline_name + '"></img><p>'+ discipline_name +'</p></div>';
     });
+    var discipline_list = '<div class="container-fluid"><div class="row">'
+        + disciplines +'</div></div>';
+
     console.log(disciplines);
-    setNewContentInIframe(disciplines);
+    setNewContentInIframe(discipline_list);
     addScriptTags();
   })
     .done(function() {
