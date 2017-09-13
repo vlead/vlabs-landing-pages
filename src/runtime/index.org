@@ -472,13 +472,10 @@ var getAllInstitutes = function(){
       var institute_name = value['institute_name'];
       var image_name = value['assets'][0]['path'];
       var image_path = institute_images_url + image_name;
-      institutes += '<div class="col-lg-3 col-md-4 col-xs-6 thumb"><a class="thumbnail"><img onclick="getLabsByInstituteName(this)" src="' + image_path +'" id="' + institute_name + '"></a></div>';
+      institutes += '<div style="float:left;"><img onclick="getLabsByInstituteName(this)" src="' + image_path +'" id="' + institute_name + '"></div>';
     });
-    var institute_list = '<html><head></head><body><div class="container"><div class="row"><div class="col-lg-12">'
-        + institutes +'</div></div></div></body></html>';
-    
     console.log(institutes);
-    setNewContentInIframe(institute_list);
+    setNewContentInIframe(institutes);
     addScriptTags();
   })
     .done(function() {
@@ -513,7 +510,7 @@ var getAllDisciplines = function(){
       var discipline_name = value['discipline_name'];
       var image_name = value['assets'][0]['path'];
       var image_path = discipline_images_url + image_name;
-      disciplines += '<img onclick="getLabsByDisciplineName(this)" src="' + image_path +'" id="' + discipline_name + '"></img><p>'+ discipline_name +'</p>';
+      disciplines += '<div style="float:left;"><img onclick="getLabsByDisciplineName(this)" src="'+ image_path +'" id="' + discipline_name + '"></img><p>'+ discipline_name +'</p></div>';
     });
     console.log(disciplines);
     setNewContentInIframe(disciplines);
