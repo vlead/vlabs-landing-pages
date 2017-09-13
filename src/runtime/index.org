@@ -472,10 +472,14 @@ var getAllInstitutes = function(){
       var institute_name = value['institute_name'];
       var image_name = value['assets'][0]['path'];
       var image_path = institute_images_url + image_name;
-      institutes += '<div style="float:left;"><img onclick="getLabsByInstituteName(this)" src="' + image_path +'" id="' + institute_name + '"></div>';
+      institutes += '<div class="col-sm-3"><img onclick="getLabsByInstituteName(this)" src="'
+        + image_path +'" id="' + institute_name + '"></div>';
+      
     });
+    var institute_list = '<div class="container-fluid"><div class="row">'
+        + institutes +'</div></div>';
     console.log(institutes);
-    setNewContentInIframe(institutes);
+    setNewContentInIframe(institute_list);
     addScriptTags();
   })
     .done(function() {
@@ -729,7 +733,7 @@ var addScriptTags = function(){
   var contentIframe = parent.document.getElementById("contentIframe");
   
   var js_script = contentIframe.contentWindow.document.createElement("script");
-  var js_url = '../static/js/main.js';
+  var js_url = "../static/js/main.js";
   js_script.type = "text/javascript";
   js_script.src = js_url;
   var head = contentIframe.contentWindow.document.head;
@@ -747,6 +751,25 @@ var addScriptTags = function(){
   jquery_script.type = "text/javascript";
   jquery_script.src = jquery_url;
   head.appendChild(jquery_script);  
+
+  var bootstrap_js = contentIframe.contentWindow.document.createElement("script");
+  var bootstrap_js_url = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js";
+  bootstrap_js.type = "text/javascript";
+  bootstrap_js.src = bootstrap_js_url;
+  head.appendChild(bootstrap_js);  
+
+  var styles = contentIframe.contentWindow.document.createElement("link");
+  var css_url = "../static/css/style.css";
+  styles.type = "text/stylesheet";
+  styles.href = css_url;
+  head.appendChild(styles);
+
+  var bootstrap_styles = contentIframe.contentWindow.document.createElement("link");
+  var bootstrap_css_url = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css";
+  bootstrap_styles.rel = "stylesheet";
+  bootstrap_styles.href = bootstrap_css_url;
+  head.appendChild(bootstrap_styles);
+
 };
 
 #+END_SRC
