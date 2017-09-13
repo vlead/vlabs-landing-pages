@@ -728,40 +728,25 @@ var getLabsByInstituteName = function(image) {
 var addScriptTags = function(){
   var contentIframe = parent.document.getElementById("contentIframe");
   
-  var script1 = contentIframe.contentWindow.document.createElement("script");
+  var js_script = contentIframe.contentWindow.document.createElement("script");
   var js_url = '../static/js/main.js';
-  script1.type = "text/javascript";
-  script1.src = js_url;
+  js_script.type = "text/javascript";
+  js_script.src = js_url;
   var head = contentIframe.contentWindow.document.head;
   console.log(head);
-  head.appendChild(script1);
+  head.appendChild(js_script);
   
-  var script2 = contentIframe.contentWindow.document.createElement("script");
+  var config_script = contentIframe.contentWindow.document.createElement("script");
   var config_url = "../static/js/app-config.js";
-  script2.type = "text/javascript";
-  script2.src = config_url;
-  head.appendChild(script2);
+  config_script.type = "text/javascript";
+  config_script.src = config_url;
+  head.appendChild(config_script);
   
-  var script3 = contentIframe.contentWindow.document.createElement("script");
+  var jquery_script = contentIframe.contentWindow.document.createElement("script");
   var jquery_url = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js";
-  script3.type = "text/javascript";
-  script3.src = jquery_url;
-  head.appendChild(script3);  
-
-  var styles = contentIframe.contentWindow.document.createElement("link");
-  var css_url = '../static/css/style.css';
-  styles.type = "text/stylesheet";
-  styles.href = css_url;
-  head.appendChild(styles);
-
-  var bootstrap_styles = contentIframe.contentWindow.document.createElement("link");
-  var bootstrap_css_url = 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css';
-  bootstrap_styles.type = "text/stylesheet";
-  bootstrap_styles.href = bootstrap_css_url;
-  var body = contentIframe.contentWindow.document.body;
-  console.log(body);
-  body.appendChild(bootstrap_styles);
-
+  jquery_script.type = "text/javascript";
+  jquery_script.src = jquery_url;
+  head.appendChild(jquery_script);  
 };
 
 #+END_SRC
