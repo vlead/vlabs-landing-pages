@@ -126,38 +126,40 @@
                     <li class="col-sm-2">
                       <ul>
                         <li class="dropdown-header">Comminity</li>
-                        <a href="#">Teachers</a>
-                        <a href="#">Developers</a>
-                        <a href="#">Students</a>
+                        <li><a href="#">Teachers</a></li>
+                        <li><a href="#">Developers</a></li>
+                        <li><a href="#">Students</a></li>
                       </ul>
                     </li>
                     <li class="col-sm-2">
                       <ul>
                         <li class="dropdown-header">Development</li>
-                        <a href="#">Virtual Development</a>
+                        <li><a href="#">Virtual Development</a></li>
                      </ul>
                     </li>
                     <li class="col-sm-2">
                       <ul>
                         <li class="dropdown-header">Workshops</li>
-                        <a href="#">Online</a>
-                        <a href="#">College Cloud Edition</a>
+                        <li><a href="#">Online</a></li>
+                        <li><a href="#">College Cloud Edition</a></li>
                      </ul>
                     </li>
                     <li class="col-sm-3">
                       <ul>
                         <li class="dropdown-header">FAQ</li>
-                        <a href="#">Virtual Labs</a>
-                        <a href="#">Virtuals College Cloud Edition</a>
-                        <a href="#">Expression of Interest for Workshops</a>
+                        <li><a href="#">Virtual Labs</a></li>
+                        <li><a href="#">Virtuals
+                            College Cloud Edition</a>
+                        </li>
+                        <li><a href="#">Expression  of Interest for Workshops</a></li>
                       </ul>
                     </li>
                     <li class="col-sm-2">
                       <ul>
                         <li class="dropdown-header">Information</li>
-                        <a href="#">Announcements</a>
-                        <a href="#">Contact us</a>
-                        <a href="#">2017-summer-intership</a>
+                        <li><a href="#">Announcements</a></li>
+                        <li><a href="#">Contact us</a></li>
+                        <li><a href="#">2017-summer-intership</a></li>
                       </ul>
                     </li>
                 </li>
