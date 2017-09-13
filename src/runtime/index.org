@@ -746,8 +746,23 @@ var addScriptTags = function(){
   var jquery_url = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js";
   jquery_script.type = "text/javascript";
   jquery_script.src = jquery_url;
-  head.appendChild(jquery_script);  
+  head.appendChild(jquery_script); 
+
+  var styles = contentIframe.contentWindow.document.createElement("link");
+  var css_url = '../static/css/style.css';
+  styles.type = "text/stylesheet";
+  styles.href = css_url;
+  head.appendChild(styles);
+  
+  var bootstrap_styles = contentIframe.contentWindow.document.createElement("link");
+  var bootstrap_css_url = 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css';
+  styles.type = "text/stylesheet";
+  styles.href = bootstrap_css_url;
+  head.appendChild(bootstrap_styles); 
+
 };
+
+
 
 #+END_SRC
 ** Resetting content in Iframe
