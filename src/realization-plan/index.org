@@ -18,15 +18,16 @@
   :END: 
   Once this milestone is realized, the following are done to
   the VLABS portal:
-  1. dynamically populate all the institutes.
-  2. dynamically populate all the disciplines.
-  3. dynamically populate the labs of each institute on
-     clicking an institute.
-  4. dynamically populate the labs of each discipline on
-     clicking a discipline.
-  5. dynamically populate all the labs.
-  6. dynamically apply styles.
-  7. integrate footer service.
+  1. All institutes can be populated dynamically.
+  2. All Disciplines can be populated dynamically.
+  3. All labs can be populated dynamically on clicking on
+     each institute.
+  4. All labs can be populated dynamically clicking on each
+     discipline.
+  5. All labs can be populated dynamically.
+  6. Styles can be applied dynamically.
+  7. Footer service can be integrated as a service.
+ 
 
 #+caption:  realization-plan
 #+name: tbl-realization-plan
