@@ -586,7 +586,7 @@ var getAllLabs = function(){
       }
       labs += '<div class="col-sm-3" id=' + lab_name + '><a href='+ hosted_url + '><img src="'
         + path +'" width="250px" height="160px" alt="image"/> </a><p>'
-        +lab_name +'</p></div></div>';      
+        +lab_name +'</p></div>';      
     });
     console.log(labs);
     var labs_list = '<div class="container-fluid"><div class="row">'+ labs +'</div></div>';
