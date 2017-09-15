@@ -446,6 +446,7 @@ var setNewContentInIframe = function(data) {
   console.log(data);
   console.log(parent.document.getElementById(window.name));
   var elem = parent.document.getElementById("contentIframe");
+  elem.sandbox = 'allow-forms allow-scripts allow-same-origin';
   console.log("elem = " + elem);
   console.log("new htdfdfml = " + data);
   elem.contentDocument.write(data);
