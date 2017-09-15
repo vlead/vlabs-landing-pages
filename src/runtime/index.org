@@ -374,7 +374,7 @@ var insertFrame = function() {
 var loadAllDisciplines = function() {
   console.log("=======loading all disciplines=====");
   deleteFrameInDivision("contentIframe", "contentDiv");
-  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "1400");
+  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "650em");
   insertFrameInDivision(newFrame, "contentDiv");
   var disciplines = getAllDisciplines();
   setContentInIframe(disciplines);
@@ -393,7 +393,7 @@ var loadAllDisciplines = function() {
 var loadAllInstitutes = function() {
   console.log("=======loading all institutes=====");
   deleteFrameInDivision("contentIframe", "contentDiv");
-  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "1400");
+  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "400em");
   insertFrameInDivision(newFrame, "contentDiv");
   var institutes = getAllInstitutes();
   setContentInIframe(institutes);
@@ -411,7 +411,7 @@ var loadAllInstitutes = function() {
 var loadAllLabs = function() {
   console.log("=======loading all labs=====");
   deleteFrameInDivision("contentIframe", "contentDiv");
-  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "1400");
+  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "1400em");
   insertFrameInDivision(newFrame, "contentDiv");
   var labs = getAllLabs();
   setContentInIframe(labs);
