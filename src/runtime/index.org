@@ -486,13 +486,18 @@ var getAllLabs = function(){
       var hosting_info = value['hosting_info'];
       for(var i=0;i< hosting_info.length;i++){
         var hosted_on = value['hosting_info'][i]['hosted_on'];
-        if (hosted_on == 'open-edx'){
-          var hosted_url = value['hosting_info'][1]['hosted_url'];
+        if (hosting_info.length == 1){
+          var hosted_url = value['hosting_info'][0]['hosted_url'];
+        }
+        else if(labs_hosted_platform == hosted_on)
+        {
+          var hosted_url = value['hosting_info'][i]['hosted_url'];
         }
         else
         {
-          var hosted_url = value['hosting_info'][0]['hosted_url'];
+          continue;
         }
+        
       }
       var assets = value['assets'];
       console.log(assets);
