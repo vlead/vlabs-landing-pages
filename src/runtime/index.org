@@ -446,6 +446,7 @@ var setNewContentInIframe = function(data) {
   console.log(data);
   console.log(parent.document.getElementById(window.name));
   var elem = parent.document.getElementById("contentIframe");
+  elem.sandbox = 'allow-forms allow-scripts allow-same-origin';
   console.log("elem = " + elem);
   console.log("new htdfdfml = " + data);
   elem.contentDocument.write(data);
@@ -721,7 +722,7 @@ var getLabsByInstituteName = function(image) {
           console.log(path);
         }
       }
-      labs += '<div class="col-sm-3 id=' + lab_name + '><a href='+ hosted_url + '><img src="'
+      labs += '<div class="col-sm-3" id=' + lab_name + '><a href='+ hosted_url + '><img src="'
         + path +'" width="250px" height="160px" alt="image"/> </a><p>'
         +lab_name +'</p></div></div>';
 
