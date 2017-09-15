@@ -121,7 +121,7 @@
                   data-toggle="dropdown">All Disciplines </a>				
                 </li>
                 <li class="dropdown mega-dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">About<span class="caret"></span></a>				
+                  <a class="dropdown-toggle" data-toggle="dropdown">About<span class="caret"></span></a>				
                   <ul class="dropdown-menu mega-dropdown-menu">
                     <li class="col-sm-2">
                       <ul>
@@ -222,7 +222,6 @@ var loadIndex = function() {
   setContentInIframe();
   insertFooterIFrame();
   setFooterContentInIframe();
-  mouse_hover();
 };
 
 #+END_SRC
@@ -816,20 +815,18 @@ var resetContentInIframe = function(data) {
 ** Mouse Over
 #+NAME: mouse-over
 #+BEGIN_SRC javascript
-var mouse_hover = function(){
-  $(document).ready(function(){
-    $(".dropdown").hover(            
-      function() {
-        $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideDown("400");
-        $(this).toggleClass('open');        
-      },
-      function() {
-        $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideUp("400");
-        $(this).toggleClass('open');       
-      }
-    );
- });
-};
+$(document).ready(function(){
+  $(".dropdown").hover(            
+    function() {
+      $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideDown("400");
+      $(this).toggleClass('open');        
+    },
+    function() {
+      $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideUp("400");
+      $(this).toggleClass('open');       
+    }
+  );
+});
 
 #+END_SRC
 
