@@ -411,7 +411,7 @@ var loadAllInstitutes = function() {
 var loadAllLabs = function() {
   console.log("=======loading all labs=====");
   deleteFrameInDivision("contentIframe", "contentDiv");
-  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "1400em");
+  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "9500em");
   insertFrameInDivision(newFrame, "contentDiv");
   var labs = getAllLabs();
   setContentInIframe(labs);
