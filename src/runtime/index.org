@@ -41,7 +41,7 @@
   </head>
   <body onload="loadIndex()">
     <div id="headerDiv"></div>
-    <div id="contentDiv" style="height:45em;"></div>
+    <div id="contentDiv" ></div>
     <div id="footerDiv"></div>
     </body>
 </html>
@@ -133,7 +133,7 @@
                     </li>
                     <li class="col-sm-2">
                       <ul>
-                        <a class="dropdown-header">Development</a>
+                        <li class="dropdown-header">Development</li>
                         <li><a href="#">Virtual Development</a></li>
                      </ul>
                     </li>
@@ -374,7 +374,7 @@ var insertFrame = function() {
 var loadAllDisciplines = function() {
   console.log("=======loading all disciplines=====");
   deleteFrameInDivision("contentIframe", "contentDiv");
-  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "1200");
+  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "1400");
   insertFrameInDivision(newFrame, "contentDiv");
   var disciplines = getAllDisciplines();
   setContentInIframe(disciplines);
@@ -393,7 +393,7 @@ var loadAllDisciplines = function() {
 var loadAllInstitutes = function() {
   console.log("=======loading all institutes=====");
   deleteFrameInDivision("contentIframe", "contentDiv");
-  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "1200");
+  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "1400");
   insertFrameInDivision(newFrame, "contentDiv");
   var institutes = getAllInstitutes();
   setContentInIframe(institutes);
@@ -411,7 +411,7 @@ var loadAllInstitutes = function() {
 var loadAllLabs = function() {
   console.log("=======loading all labs=====");
   deleteFrameInDivision("contentIframe", "contentDiv");
-  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "1200");
+  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "1400");
   insertFrameInDivision(newFrame, "contentDiv");
   var labs = getAllLabs();
   setContentInIframe(labs);
