@@ -87,13 +87,12 @@
     <header>
       <link rel="stylesheet"
             href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-      <link rel="stylesheet" href="../static/js/bootsnipp.css">
+      <link rel="stylesheet" href="http://files.vlabs.ac.in/lds/libraries/css/bootsnipp.css">
       <link rel="stylesheet" href="../static/css/style.css">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
       <script type="text/javascript" src="../static/js/app-config.js"></script>
       <script type="text/javascript" src="../static/js/main.js"></script>
-      <link rel="stylesheet" href="https://info.vlabs.ac.in/common/header/files/bootsnipp.css">
       <nav class="navbar navbar-fixed-top navbar-bootsnipp animate" role="navigation" style="z-index: 9999999">
         <div class="container">
           <nav class="navbar ">
@@ -444,11 +443,11 @@ var setNewContentInIframe = function(data) {
   console.log("=======setting new content to content iframe=====");        
   console.log(data);
   console.log(parent.document.getElementById(window.name));
-  var elem = parent.document.getElementById("contentIframe");
-  elem.sandbox = 'allow-forms allow-scripts allow-same-origin';
-  console.log("elem = " + elem);
+  var element = parent.document.getElementById("contentIframe");
+  element.sandbox = 'allow-forms allow-scripts allow-same-origin';
+  console.log("element = " + element);
   console.log("new htdfdfml = " + data);
-  elem.contentDocument.write(data);
+  element.contentDocument.write(data);
 };
 
 #+END_SRC
