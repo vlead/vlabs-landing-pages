@@ -1,0 +1,140 @@
+{
+    "lab": {
+        "build_requirements": {
+            "platform": {
+                "arch": "i386", 
+                "build_steps": {
+                    "build": ["make -C ../src"], 
+                    "configure": [], 
+                    "post_build": [], 
+                    "pre_build": [], 
+                    "status": []
+                }, 
+                "installer": [], 
+                "os": "ubuntu", 
+                "osVersion": "12", 
+                "service_pack": ""
+            }
+        }, 
+        "description": {
+            "developer": [
+                {
+                    "contact": {
+                        "alternate_email": "", 
+                        "email": "sanchita@vlabs.ac.in", 
+                        "mobile_number": "", 
+                        "office_number": ""
+                    }, 
+                    "department": "", 
+                    "institute": "IIIT Hyderabad", 
+                    "name": "sanchita-dixit", 
+                    "organization": "", 
+                    "role": "Project Engineer", 
+                    "title": "", 
+                    "web": ""
+                }, 
+                {
+                    "contact": {
+                        "alternate_email": "", 
+                        "email": "balamma@vlabs.ac.in ", 
+                        "mobile_number": "", 
+                        "office_number": ""
+                    }, 
+                    "department": "", 
+                    "institute": "IIIT Hyderabad", 
+                    "name": "Balamma", 
+                    "organization": "", 
+                    "role": "Project Enginner", 
+                    "title": "", 
+                    "web": ""
+                }, 
+                {
+                    "contact": {
+                        "alternate_email": "", 
+                        "email": "mrudhvika@vlabs.ac.in", 
+                        "mobile_number": "", 
+                        "office_number": ""
+                    }, 
+                    "department": "", 
+                    "institute": "IIIT Hyderabad", 
+                    "name": "Mrudhvika", 
+                    "organization": "", 
+                    "role": "Project Engineer", 
+                    "title": "", 
+                    "web": ""
+                }, 
+                {
+                    "contact": {
+                        "alternate_email": "", 
+                        "email": "madhavi@vlabs.ac.in", 
+                        "mobile_number": "", 
+                        "office_number": ""
+                    }, 
+                    "department": "", 
+                    "institute": "IIIT Hyderabad", 
+                    "name": "Madhavi Puliraju", 
+                    "organization": "", 
+                    "role": "Project Engineer", 
+                    "title": "", 
+                    "web": ""
+                }, 
+                {
+                    "contact": {
+                        "alternate_email": "", 
+                        "email": "sravanthimodepu@vlabs.ac.in ", 
+                        "mobile_number": "", 
+                        "office_number": ""
+                    }, 
+                    "department": "", 
+                    "institute": "IIIT Hyderabad", 
+                    "name": "sravanthimodepu", 
+                    "organization": "", 
+                    "role": "Project Assistant Engineer", 
+                    "title": "", 
+                    "web": ""
+                }
+            ], 
+            "discipline": [
+                ""
+            ], 
+            "id": "www.vlabs.ac.in", 
+            "integration_level": 5, 
+            "name": "vlab-web-pages", 
+            "server-side": true, 
+            "status": "Released", 
+            "type": ""
+        }, 
+        "runtime_requirements": {
+            "platform": {
+                "arch": "i386", 
+                "hosting": "dedicated", 
+                "installer": ["sudo apt-get update",
+                "sudo apt-get install -y php5 apache2"], 
+                "lab_actions": {
+                    "backup": [], 
+                    "clean": [], 
+                    "init": ["mv /var/www/index.html", "cp -rf ../build/* /var/www/"], 
+                    "pause": [], 
+                    "publish": [], 
+                    "restore": [], 
+                    "resume": [], 
+                    "shutdown": ["service apache2 stop"], 
+                    "start": ["service apache2 start"],  
+                    "stats": [], 
+                    "stop": []
+                }, 
+                "memory": {
+                    "max_required": "2gb", 
+                    "min_required": "256mb"
+                }, 
+                "os": "ubuntu", 
+                "osVersion": "12", 
+                "servicepack": "", 
+                "storage": {
+                    "min_required": "10gb"
+                }
+            }
+        }
+    }, 
+    "template": "1.0"
+}
