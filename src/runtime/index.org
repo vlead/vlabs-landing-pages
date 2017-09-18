@@ -373,7 +373,7 @@ var insertFrame = function() {
 var loadAllDisciplines = function() {
   console.log("=======loading all disciplines=====");
   deleteFrameInDivision("contentIframe", "contentDiv");
-  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "650em");
+  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "850em");
   insertFrameInDivision(newFrame, "contentDiv");
   var disciplines = getAllDisciplines();
   setContentInIframe(disciplines);
@@ -517,7 +517,7 @@ var getAllDisciplines = function(){
     var image_name = value['assets'][0]['path'];
     var image_path = discipline_images_url + image_name;
     disciplines += '<div class="col-lg-3 col-md-4 col-xs-6 thumb"> <a class="thumbnail" href="#"><img class="img-responsive"onclick="getLabsByDisciplineName(this)" src="'
-    + image_path +'" id="' + discipline_name + '"><p>'+ discipline_name +'</p></a></div>';
+    + image_path +'" id="' + discipline_name + '"><p style="text-align:center;">'+ discipline_name +'</p></a></div>';
     });
     var discipline_list = '<div class="container-fluid"><div class="row">'
     + disciplines +'</div></div>';
@@ -584,7 +584,7 @@ var getAllLabs = function(){
         }
       }
       labs += '<div class="col-lg-3 col-md-4 col-xs-6 thumb" id=' + lab_name + '><a class="thumbnail" href='+ hosted_url + '><img class="img-responsive" src="'
-        + path +'" width="250px" height="160px" alt="image"/><p>'
+        + path +'" width="250px" height="160px" alt="image"/><p style="text-align:center;">'
         +lab_name +'</p> </a></div>';      
     });
     console.log(labs);
@@ -654,7 +654,7 @@ var getLabsByDisciplineName = function(image) {
         }
       }
       labs += '<div class="col-sm-3" id=' + lab_name + '><a href='+ hosted_url + '><img src="'
-        + path +'" width="250px" height="160px" alt="image"/> </a><p>'
+        + path +'" width="250px" height="160px" alt="image"/> </a><p style="text-align:center;">'
         +lab_name +'</p></div></div>';
     });
     console.log(labs);
