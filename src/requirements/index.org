@@ -44,7 +44,7 @@
    away from this dependence, the styling of VLABS portal is
    done while the pages are rendered from the new portal.
 
-** Requiremnt 5 
+** Requirement 5 
    Register and Sign In :: Registration and Sign In to Open
    edX platfrom is tied from the portal.  This ensures that
    when a lab that is not hosted on Open edX platform is
