@@ -73,7 +73,7 @@
    set of navigational links. A header typically contains:
    one or more heading elements, logo or icon. On click of
    institutes, disciplines and labs it invokes
-   =loadAllInstitutes()=, =loadAllDisciplines()= and
+   =getAllInstitutesInCombobox()=, =getAllDisciplinessInCombobox()= and
    =loadAllLabs()= to load data dynamically in the =content
    iframe=
 #+NAME: header-html
@@ -774,6 +774,11 @@ var getLabsByInstituteName = function(image) {
 #+END_SRC
 
 ** Get All Institutes in Combo box
+   =getAllInstitutesInCombobox()= function will invokes this
+   function. This function dynamically fetches the labs
+   based on the 'hover' event occurs on institute which
+   gives a dropdown with all institutes and each institute
+   respectively.
 #+NAME: get-all-institutes-in-combobox
 #+BEGIN_SRC javascript
 var getAllInstitutesInCombobox = function(){
@@ -806,6 +811,11 @@ var getAllInstitutesInCombobox = function(){
 
 #+END_SRC
 ** Get All Disciplines in Combo box
+   =getAllDisciplinesInCombobox()= function will invokes
+   this function. This function dynamically fetches the labs
+   based on the 'hover' event occurs on discipline which
+   gives a dropdown with all disciplines and each discipline
+   respectively.
 #+NAME: get-all-disciplines-in-combobox
 #+BEGIN_SRC javascript
 var getAllDisciplinesInCombobox = function(){
