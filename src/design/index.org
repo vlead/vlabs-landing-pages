@@ -23,7 +23,16 @@
   2) Content Iframe
   3) Footer Iframe
 ** Header Iframe 
-** Body Iframe
+   On click of header tabs like institutes, disciplines and
+   labs it has to load the data of institutes, disciplines
+   and labs dynamically in content iframe. On Click of any
+   loaded data like list of institutes, disciplines or labs
+   it has to call a function such that it loads all labs in
+   institutes, disciplines, labs respectively. once the list
+   of labs are displayed users can access based on their
+   choice.
+
+** Content Iframe
    When the state changes, all the user actions will be loaded into the body Iframe. 
 ** Footer Iframe
    Footer will be served from footer service and will be loaded into footer
