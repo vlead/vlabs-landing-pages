@@ -151,9 +151,31 @@
 |   24. | Set up              | [[https://github.com/vlead/vlabs-landing-pages/issues/18][#18]]    |        1 |      1 | 31-08-2017 | 31-08-2017 | Done     | Madhavi    |
 |       | lab data service    |        |          |        | 31-08-2017 | 31-08-2017 |          | Mrudhvika  |
 |-------+---------------------+--------+----------+--------+------------+------------+----------+------------|
-|       |                     |        |          |        |            |            |          |            |
+|   25. | change 'institute'  | [[https://github.com/vlead/vlabs-landing-pages/issues/51][#51]]    |          |        |            |            |          |            |
+|       | tab in the header   |        |          |        |            |            |          |            |
+|       | to drop down menu   |        |          |        |            |            |          |            |
+|       | to display all      |        |          |        |            |            |          |            |
+|       | institutes          |        |          |        |            |            |          |            |
 |-------+---------------------+--------+----------+--------+------------+------------+----------+------------|
-|       |                     |        |          |        |            |            |          |            |
+|   26. | change 'discipline' | [[https://github.com/vlead/vlabs-landing-pages/issues/52][#52]]    |          |        |            |            |          |            |
+|       | tab in the header   |        |          |        |            |            |          |            |
+|       | to drop down menu   |        |          |        |            |            |          |            |
+|       | to display all      |        |          |        |            |            |          |            |
+|       | disciplines         |        |          |        |            |            |          |            |
+|-------+---------------------+--------+----------+--------+------------+------------+----------+------------|
+|   27. | check the images    | [[https://github.com/vlead/vlabs-landing-pages/issues/54][#54]]    |          |        |            |            |          |            |
+|       | for all the labs    |        |          |        |            |            |          |            |
+|-------+---------------------+--------+----------+--------+------------+------------+----------+------------|
+|   28. | Syntax error in     | [[https://github.com/vlead/vlabs-landing-pages/issues/55][#55]]    |          |        |            |            |          |            |
+|       | footer              |        |          |        |            |            |          |            |
+|-------+---------------------+--------+----------+--------+------------+------------+----------+------------|
+|   29. | Reference Error:    | [[https://github.com/vlead/vlabs-landing-pages/issues/56][#56]]    |          |        |            |            |          |            |
+|       | $ is not defined    |        |          |        |            |            |          |            |
+|-------+---------------------+--------+----------+--------+------------+------------+----------+------------|
+|   30. | TypeError:          | [[https://github.com/vlead/vlabs-landing-pages/issues/57][#57]]    |          |        |            |            |          |            |
+|       | element.            |        |          |        |            |            |          |            |
+|       | contentDocument     |        |          |        |            |            |          |            |
+|       | is null             |        |          |        |            |            |          |            |
 |-------+---------------------+--------+----------+--------+------------+------------+----------+------------|
 | Total |                     |        |    357.5 |        |            |            |          |            |
 |     ^ |                     |        |    total |        |            |            |          |            |
