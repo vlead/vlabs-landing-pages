@@ -87,9 +87,9 @@
 |       | from test           |        |          |        |            |            |          | Raghupathi |
 |       | instance of         |        |          |        |            |            |          |            |
 |       | open-edx            |        |          |        |            |            |          |            |
+|       | 'hosting_info'      |        |          |        | 14-09-2017 | 14-09-2017 |          |            |
 |-------+---------------------+--------+----------+--------+------------+------------+----------+------------|
 |   11. | Add a new row to    | [[https://github.com/vlead/vlabs-landing-pages/issues/35][#35]]    |        8 |        | 14-09-2017 | 14-09-2017 | Done     | Mrudhvika  |
-|       | 'hosting_info'      |        |          |        | 14-09-2017 | 14-09-2017 |          |            |
 |       | of 'lab' table      |        |          |        |            |            |          |            |
 |       | and update          |        |          |        |            |            |          |            |
 |       | 'hosted_on' to      |        |          |        |            |            |          |            |

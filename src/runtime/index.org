@@ -53,8 +53,6 @@
    =content.html=
 #+NAME: content-html
 #+BEGIN_SRC html 
-
-    
 <html>
   <head>
 <link rel="stylesheet"
@@ -68,8 +66,6 @@
   </body>
 </html>
 
-
-
 #+END_SRC
 
 ** Header
@@ -82,6 +78,7 @@
    iframe=
 #+NAME: header-html
 #+BEGIN_SRC html 
+
 <html>
   <body>
     <header>
@@ -112,13 +109,20 @@
                      data-toggle="dropdown">All Labs </a>				
                 </li>
                 <li class="dropdown mega-dropdown">
-                  <a onclick="loadAllInstitutes()"  href="#" class="dropdown-toggle"
-                     data-toggle="dropdown">All Institutes </a>				
-                </li>
-                <li class="dropdown mega-dropdown">
                   <a onclick="loadAllDisciplines()" href="#" class="dropdown-toggle"
                   data-toggle="dropdown">All Disciplines </a>				
                 </li>
+                <li>
+                  <a href="#" class="dropdown-toggle " data-toggle="dropdown"  aria-expanded="false">Institutes <span class="caret"></span></a>
+                  <ul class="dropdown-menu filterInstComboBox" id="getInstName" >
+                  </ul>
+                </li>
+                <li class="">
+                  <a href="#" class="dropdown-toggle " data-toggle="dropdown" id="getDisName" aria-expanded="false">Disciplines <span class="caret"></span></a>
+                  <ul class="dropdown-menu filterDisComoBox">
+                  </ul>
+                </li>
+
                 <li class="dropdown mega-dropdown">
                   <a class="dropdown-toggle" data-toggle="dropdown">About<span class="caret"></span></a>				
                   <ul class="dropdown-menu mega-dropdown-menu">
@@ -186,6 +190,7 @@
 </header>
 </body>
 </html>
+
 #+END_SRC
 ** Config
    Getting data from the lab data service and feeding the
@@ -749,6 +754,38 @@ var getLabsByInstituteName = function(image) {
 
 #+END_SRC
 
+** Load All Institutes in Combo box
+#+NAME: get-all-institutes-in-combobox
+#+BEGIN_SRC javascript
+var getAllInstitutesInCombobox = function(){
+  console.log("=========inside get all institutes in combobox==========");
+  var institute_url = base_url+"/institutes";
+  console.log(institute_url);
+  $.getJSON(institute_url, function(data) {
+    var institutes = '';
+    $.each(data, function(key, value){
+      var institute_name = value['institute_name'];
+      institutes += '<li onclick="getLabsByInstituteName(this)" value="'
+        + institute_name + '" id="' + institute_name + '"><a href="#">' +
+        institute_name + '</a></li>';
+    });
+    var institute_list = '<li onclick="loadAllInstitutes()">\
+<a href="#">All Institutes</a></li>' + institutes;
+    console.log(institute_list);
+    $('.filterInstComboBox').append(institute_list);
+  })
+    .done(function() {
+      console.log( "second success" );
+    })
+    .fail(function() {
+      console.log( "error" );
+    })
+    .always(function() {
+      console.log( "complete" );
+    });
+};
+
+#+END_SRC
 ** Add Script Tags 
    Script tags are created dynamically and appended to the
    =<head>= tag.
@@ -822,6 +859,7 @@ var resetContentInIframe = function(data) {
 #+NAME: mouse-over
 #+BEGIN_SRC javascript
 $(document).ready(function(){
+  getAllInstitutesInCombobox(); 
   $(".dropdown").hover(            
     function() {
       $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideDown("400");
@@ -894,6 +932,7 @@ height:650px;
 }
 
 #+END_SRC
+
 * Tangle 
 ** sources
 *** Javascript
@@ -916,6 +955,7 @@ height:650px;
 <<get-all-labs>>
 <<get-labs-by-discipline-name>>
 <<get-labs-by-institute-name>>
+<<get-all-institutes-in-combobox>>
 <<add-script-tags>>
 <<reset-content>>
 <<mouse-over>>
