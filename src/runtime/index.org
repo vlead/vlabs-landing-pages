@@ -752,7 +752,7 @@ var getLabsByInstituteName = function(image) {
       labs += '<div class="col-sm-3" id=' + lab_name + 
         '><a class="thumbnail" href='+ hosted_url +
         '><img class="img-responsive" src="' + path +
-        '"alt="image"/><p>'
+        '"alt="image"/><p style="text-align:center";>'
         +lab_name +'</p></a></div></div>';
 
     });
