@@ -929,6 +929,7 @@ var resetContentInIframe = function(data) {
 #+NAME: mouse-over
 #+BEGIN_SRC javascript
 $(document).ready(function(){
+  loadAllDisciplines();
   getAllInstitutesInCombobox(); 
   getAllDisciplinesInCombobox(); 
   $(".dropdown").hover(            
