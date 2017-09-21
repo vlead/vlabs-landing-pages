@@ -207,6 +207,10 @@
 </nav>
 </div>
 </header>
+<img src="http://files.vlabs.ac.in/lds/images/slider-images/slider-img-01.jpg"
+                     class="img-responsive main-logo"
+                     style="width:100%; maring-top:2px;">
+
 </body>
 </html>
 
@@ -306,7 +310,7 @@ var deleteFrameInDivision = function(frameId, divId) {
 #+BEGIN_SRC javascript 
 var insertHeaderIFrame = function() {
   console.log("=======creating header iframe=====");
-  var newFrame = createNewIframe("headerIframe", "headerIframe", "100%", "200em");
+  var newFrame = createNewIframe("headerIframe", "headerIframe", "100%", "600em");
   var division = document.getElementById("headerDiv");
   insertFrameInDivision(newFrame, division.id);
 };
