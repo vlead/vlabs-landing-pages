@@ -88,7 +88,7 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
       <script type="text/javascript" src="../static/js/app-config.js"></script>
-      <script type="text/javascript" src="../static/js/main.js"></script>
+      <script type="text/javascript" src="../static/js/header.js"></script>
       <nav class="navbar navbar-fixed-top navbar-bootsnipp animate" role="navigation"
            style="z-index: 9999999">
         <div class="container">
@@ -179,15 +179,15 @@
                     </li>
                 </li>
                 </ul>
-</li>
-</ul>
-<ul class="nav navbar-nav navbar-right">
-  <form class="navbar-form navbar-left">
-    <div class="input-group">
-      <input id="keyword" type="text" class="form-control"
-             placeholder="Lab Name">
-      <div class="input-group-btn">
-        <button style="pointer-events: none;"
+                </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                <form class="navbar-form navbar-left">
+                <div class="input-group">
+                <input id="keyword" type="text" class="form-control"
+                placeholder="Lab Name">
+                <div class="input-group-btn">
+                <button style="pointer-events: none;"
                 onclick="javascript:getLabs()"
                 target="content_iframe" class="btn btn-default" type="submit">
           <i class="glyphicon glyphicon-search"></i>
@@ -247,15 +247,16 @@ animation-name: fadeInDown;"
             <span id="server_usage">6,68,971</span> <sup>+</sup></h3>
         </div>
       </div>                
-      <div style="visibility: visible; animation-duration:1000ms; 
+      <div style="visibility: visible; animation-duration:
+                  1000ms; 
                   animation-delay: 600ms; animation-name: fadeInDown;"
            class="col-md-4 col-sm-6 wow fadeInDown animated"
            data-wow-duration="1000ms" data-wow-delay="600ms">
         <div class="feature-wrap">
           <h3 class="text-h3-darkblack-bold"
               style="text-align: center;">
-            <a onclick="setUsageInIframe()" href="#" 
-               class="broad-labs-a">Workshop Usage</a>
+            <a href="https://info.vlabs.ac.in/analytics/analytics/usage.html"
+               class="broad-labs-a" target="_blank">Workshop Usage</a>
             <span id="usage">19,88,398</span> <sup>+</sup></h3>
         </div>
       </div> 
@@ -323,7 +324,7 @@ var createNewIframe = function(name, id, width, height) {
 ** Insert a Frame in a Division
    Given a division, and an iframe, the iframe is inserted
    in the division.
-#+NAME: delete-frame-in-division
+#+NAME: insert-frame-in-division
 #+BEGIN_SRC javascript 
 var insertFrameInDivision = function(iframe, divId) {
   console.log("=======inserting iframe in division=====");
@@ -1086,10 +1087,12 @@ height:650px;
 * Tangle 
 ** sources
 *** Javascript
+**** Main JS
 #+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes 
 <<load-index>>
 <<create-new-iframe>>
 <<delete-frame-in-division>>
+<<insert-frame-in-division>>
 <<set-header-content-in-iframe>>
 <<set-usage-in-iframe>>
 <<insert-content-iframe>>
@@ -1097,19 +1100,30 @@ height:650px;
 <<set-footer-content-in-iframe>>
 <<insert-header-iframe>>
 <<insert-frame>>
+<<set-content>>
+<<get-labs-by-discipline-name>>
+<<get-labs-by-institute-name>>
+<<reset-content>>
+
+#+END_SRC
+**** Header JS
+#+BEGIN_SRC javascript :tangle static/js/header.js :eval no :noweb yes 
+<<get-all-institutes-in-combobox>>
+<<get-all-disciplines-in-combobox>>
+<<get-labs-by-discipline-name>>
+<<get-labs-by-institute-name>>
 <<load-all-disciplines>>
 <<load-all-institutes>>
 <<load-all-labs>>
-<<set-content>>
+<<create-new-iframe>>
+<<delete-frame-in-division>>
+<<insert-frame-in-division>>
 <<get-all-institutes>>
 <<get-all-disciplines>>
 <<get-all-labs>>
-<<get-labs-by-discipline-name>>
-<<get-labs-by-institute-name>>
-<<get-all-institutes-in-combobox>>
-<<get-all-disciplines-in-combobox>>
-<<add-script-tags>>
+<<set-content>>
 <<reset-content>>
+<<add-script-tags>>
 <<mouse-over>>
 #+END_SRC
 *** Config
