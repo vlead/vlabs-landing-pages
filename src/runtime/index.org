@@ -35,7 +35,7 @@
   <head>
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta content="utf-8" http-equiv="encoding">
-    <link rel="stylesheet" href="../style.css"/>
+    <link rel="stylesheet" href="../static/css/style.css"/>
     <script type="text/javascript" src="../static/js/app-config.js"></script>
     <script type="text/javascript" src="../static/js/main.js"></script>
   </head>
@@ -243,8 +243,8 @@ animation-name: fadeInDown;"
         <div class="feature-wrap">
           <h3 class="text-h3-darkblack-bold"
               style="text-align: center;">
-            <a href="https://info.vlabs.ac.in/analytics/analytics/usage.html"
-               class="broad-labs-a" target="_blank">Usage</a>
+            <a onclick="setUsageInIframe()" href="#" 
+               class="broad-labs-a" >Usage</a>
             <span id="server_usage">6,68,971</span> <sup>+</sup></h3>
         </div>
       </div>                
@@ -382,6 +382,16 @@ var setHeaderContentInIframe=function() {
 
 #+END_SRC
 
+** Set usage in Iframe
+#+NAME: set-usage-in-iframe
+#+BEGIN_SRC javascript 
+var setUsageInIframe = function() {
+  console.log("=======setting usage to content iframe=====");        
+  var iframe = parent.document.getElementById("contentIframe");
+  iframe.src = "https://info.vlabs.ac.in/analytics/analytics/usage.html";
+};
+
+#+END_SRC
 ** Creating the content iframe
    Displays the content iframe based on the selection of the
    elements with respect to the header iframe.
@@ -1083,6 +1093,7 @@ height:650px;
 <<create-new-iframe>>
 <<delete-frame-in-division>>
 <<set-header-content-in-iframe>>
+<<set-usage-in-iframe>>
 <<insert-content-iframe>>
 <<insert-footer-iframe>>
 <<set-footer-content-in-iframe>>
