@@ -141,7 +141,7 @@
                   <ul class="dropdown-menu mega-dropdown-menu">
                     <li class="col-sm-2">
                       <ul>
-                        <li class="dropdown-header">Comminity</li>
+                        <li class="dropdown-header">Community</li>
                         <li><a href="#">Teachers</a></li>
                         <li><a href="#">Developers</a></li>
                         <li><a href="#">Students</a></li>
