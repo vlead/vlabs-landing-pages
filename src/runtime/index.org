@@ -662,7 +662,7 @@ var getAllLabs = function(){
           console.log(path);
         }
       }
-      labs += '<div class="col-sm-3 col-md-4 col-xs-6 thumb" id='+ lab_name +
+      labs += '<div class="col-sm-3 col-md-3 col-xs-6 thumb" id='+ lab_name +
         '><a class="thumbnail" href='+ hosted_url +
         '><img class="img-responsive" src="' + path +
         '"alt="image"/><a href='+ hosted_url +
@@ -741,7 +741,7 @@ var getLabsByDisciplineName = function(image) {
           console.log(path);
         }
       }
-      labs += '<div class="col-sm-3 col-md-4 col-xs-6 thumb" id='+ lab_name +
+      labs += '<div class="col-sm-3 col-md-3 col-xs-6 thumb" id='+ lab_name +
         '><a class="thumbnail" href='+ hosted_url +
         '><img class="img-responsive" src="' + path +
         '"alt="image"/><a href='+ hosted_url +
@@ -812,7 +812,7 @@ var getLabsByInstituteName = function(image) {
           console.log(path);
         }
       }
-      labs += '<div class="col-sm-3 col-md-4 col-xs-6 thumb" id='+ lab_name +
+      labs += '<div class="col-sm-3 col-md-3 col-xs-6 thumb" id='+ lab_name +
         '><a class="thumbnail" href='+ hosted_url +
         '><img class="img-responsive" src="' + path +
         '"alt="image"/><a href='+ hosted_url +
