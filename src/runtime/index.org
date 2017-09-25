@@ -563,7 +563,7 @@ var getAllInstitutes = function(){
       var image_path = institute_images_url + image_name;
       institutes += '<div class="col-lg-3 col-md-4 col-xs-6 thumb"><a class="thumbnail" href="#"><img class="img-responsive" onclick="getLabsByInstituteName(this)" src="'
         + image_path +'" id="' + institute_name +
-        '"><p style="text-align:center; font-family:'Raleway' !important; font-size:14px;">'+ institute_name +'</p></a></div>';
+        '"><p style="text-align:center; font-family:'Raleway'; font-size:14px;">'+ institute_name +'</p></a></div>';
       
     });
     var institute_list = '<div class="container-fluid"><div class="row">'
@@ -831,7 +831,7 @@ var getLabsByInstituteName = function(image) {
     console.log(labs);
     resetContentInIframe(labs);
   })
-    .done(function() {
+  .done(function() {
       console.log( "second success" );
     })
     .fail(function() {
