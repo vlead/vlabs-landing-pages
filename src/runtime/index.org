@@ -1087,7 +1087,7 @@ height:650px;
   display: inline-block;
   margin-right: -4px;
   font-size: 14px;
-  padding: px 20px; !important
+  padding: 1px 20px; !important
   font-family:'Raleway' !important;
 }
 
