@@ -255,8 +255,8 @@ animation-name: fadeInDown;"
         <div class="feature-wrap">
           <h3 class="text-h3-darkblack-bold"
               style="text-align: center;">
-            <a href="https://info.vlabs.ac.in/analytics/analytics/usage.html"
-               class="broad-labs-a" target="_blank">Workshop Usage</a>
+            <a onclick="setUsageInIframe()" href="#" 
+               class="broad-labs-a">Workshop Usage</a>
             <span id="usage">19,88,398</span> <sup>+</sup></h3>
         </div>
       </div> 
@@ -1094,7 +1094,6 @@ height:650px;
 <<delete-frame-in-division>>
 <<insert-frame-in-division>>
 <<set-header-content-in-iframe>>
-<<set-usage-in-iframe>>
 <<insert-content-iframe>>
 <<insert-footer-iframe>>
 <<set-footer-content-in-iframe>>
@@ -1108,6 +1107,7 @@ height:650px;
 #+END_SRC
 **** Header JS
 #+BEGIN_SRC javascript :tangle static/js/header.js :eval no :noweb yes 
+<<set-usage-in-iframe>>
 <<get-all-institutes-in-combobox>>
 <<get-all-disciplines-in-combobox>>
 <<get-labs-by-discipline-name>>
