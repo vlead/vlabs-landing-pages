@@ -2,19 +2,19 @@
 
 ** Agenda
 
-   Building a login page which when the login is successful, empties the iframe's source and dynamically populates the iframe with all the available courses.
+****   Building a login page which when the login is successful, empties the iframe's source and dynamically populates the iframe with all the available courses.
 
 ** Discussion Points
 
-    Next time there is a meeting, the team should be ready with a presentation. The team members should upload the minutes of meeting in the specified manner. For reference, take a look at the guideline.org in the ssad repo.
-    All the talking must be in the form of issues on github. SSAD tag must be added in the issue, so that it would be clear for the person who is looking into that issue.
-    Requirements table should be updated every week.
-    Work on the fork, make a pull request evry week.
-    Coming to the login part which has to be implemented, there should be a login button before we login and also a signup button.
-    After logging in, there should be a logout button present.
-    As soon as the page is loaded, we start checking for a particular string in the login iframe, by parsing it's source. If login is successful, we redirect it to our own page.
-    Also store the login information in a cookie, so we can know the login status of the user.
-    Login should be made compulsory for viewing any lab. This is the pusrpose of doing all this.
+****    Next time there is a meeting, the team should be ready with a presentation. The team members should upload the minutes of meeting in the specified manner. For reference, take a look at the guideline.org in the ssad repo.
+****    All the talking must be in the form of issues on github. SSAD tag must be added in the issue, so that it would be clear for the person who is looking into that issue.
+****    Requirements table should be updated every week.
+****    Work on the fork, make a pull request evry week.
+****    Coming to the login part which has to be implemented, there should be a login button before we login and also a signup button.
+****    After logging in, there should be a logout button present.
+****    As soon as the page is loaded, we start checking for a particular string in the login iframe, by parsing it's source. If login is successful, we redirect it to our own page.
+****    Also store the login information in a cookie, so we can know the login status of the user.
+****    Login should be made compulsory for viewing any lab. This is the pusrpose of doing all this.
 
 ** Action
 
