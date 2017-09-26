@@ -29,7 +29,7 @@
 |                              |                              |                              |                              |
 +------------------------------+------------------------------+------------------------------+------------------------------+
 |                              |                              |                              |                              |
-|  Implement the login page    |   [[https://github.com/vlead/vlabs-landing-pages/issues/50][Issue 50]]                   |                              |    In progress               |
+|  Implement the login page    |   [[https://github.com/vlead/vlabs-landing-pages/issues/50][Issue 50]]                   |     [[https://github.com/SurendraTelidevara/vlabs-landing-pages/blob/master/src/runtime/index.org][Source code]]              |    In progress               |
 |  as described  in the        |                              |                              |                              |
 |  discussion points           |                              |                              |                              |
 |                              |                              |                              |                              |
