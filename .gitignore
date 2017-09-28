@@ -1,6 +1,5 @@
 # OS generated files #
 ######################
-.#*
 *.DS_Store
 *.DS_Store?
 ._*
@@ -29,3 +28,4 @@ lint_output
 literate-tools
 src/sitemap.org
 elisp
+
