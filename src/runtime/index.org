@@ -38,6 +38,9 @@
     <link rel="stylesheet" href="../static/css/style.css"/>
     <script type="text/javascript" src="../static/js/app-config.js"></script>
     <script type="text/javascript" src="../static/js/main.js"></script>
+    <script>
+    document.domain="localhost"
+    </script>
   </head>
   <body onload="loadIndex()">
     <div id="headerDiv"></div>
@@ -89,6 +92,9 @@
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
       <script type="text/javascript" src="../static/js/app-config.js"></script>
       <script type="text/javascript" src="../static/js/header.js"></script>
+      <script>
+        document.domain="localhost"
+      </script>
       <nav class="navbar navbar-fixed-top navbar-bootsnipp animate" role="navigation"
            style="z-index: 9999999">
         <div class="container">
@@ -462,8 +468,9 @@ var loadAllDisciplines = function() {
   deleteFrameInDivision("contentIframe", "contentDiv");
   var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "850em");
   insertFrameInDivision(newFrame, "contentDiv");
-  var disciplines = getAllDisciplines();
-  setContentInIframe(disciplines);
+  getAllDisciplines();
+//  var disciplines = getAllDisciplines();
+//  setContentInIframe(disciplines);
 };
 
 #+END_SRC
@@ -481,8 +488,9 @@ var loadAllInstitutes = function() {
   deleteFrameInDivision("contentIframe", "contentDiv");
   var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "650em");
   insertFrameInDivision(newFrame, "contentDiv");
-  var institutes = getAllInstitutes();
-  setContentInIframe(institutes);
+  getAllInstitutes();
+//  var institutes = getAllInstitutes();
+//  setContentInIframe(institutes);
 };
 
 #+END_SRC
@@ -529,17 +537,26 @@ var setContentInIframe = function() {
 
 var setNewContentInIframe = function(data) {
   console.log("=======setting new content to content iframe=====");        
-  console.log(data);
+  //  console.log(data);
+  console.log(window.name);
   console.log(parent.document.getElementById(window.name));
-  var element = parent.document.getElementById("contentIframe");
-  element.sandbox = 'allow-forms allow-scripts allow-same-origin';
-  console.log("element = " + element);
-  console.log("new htdfdfml = " + data);
-  element.contentDocument.write(data);
+  var iframe = parent.document.getElementById("contentIframe");
+  iframe.sandbox = 'allow-forms allow-scripts allow-same-origin';
+  console.log("element = " + iframe);
+  //  console.log("new htdfdfml = " + data);
+  try {
+    cnt = iframe.contentDocument;
+    console.log("cnt: " +  cnt);
+    cnt.write(data);
+  } catch(err) {
+    console.log(err);
+//    setNewContentInIframe(data);
+  }
+  
 };
 
 #+END_SRC
-   
+
 ** Get All Institutes
    This function will be invoked when =All Institutes= tab
    is clicked. It invokes a call to =LDS= database and
