@@ -468,8 +468,9 @@ var loadAllDisciplines = function() {
   deleteFrameInDivision("contentIframe", "contentDiv");
   var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "850em");
   insertFrameInDivision(newFrame, "contentDiv");
-  var disciplines = getAllDisciplines();
-  setContentInIframe(disciplines);
+  getAllDisciplines();
+//  var disciplines = getAllDisciplines();
+//  setContentInIframe(disciplines);
 };
 
 #+END_SRC
@@ -487,8 +488,9 @@ var loadAllInstitutes = function() {
   deleteFrameInDivision("contentIframe", "contentDiv");
   var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "650em");
   insertFrameInDivision(newFrame, "contentDiv");
-  var institutes = getAllInstitutes();
-  setContentInIframe(institutes);
+  getAllInstitutes();
+//  var institutes = getAllInstitutes();
+//  setContentInIframe(institutes);
 };
 
 #+END_SRC
