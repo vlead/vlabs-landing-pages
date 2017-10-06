@@ -29,9 +29,17 @@
    Build a search facility for the labs. 
    
 ** Requirement 4
-     
-     Building a login page with two iframes in it, one with the header part and the other with the actual login page. This should be done by manipulating iframes. After log in, we should parse
-     the source code of the iframe for a success string. if login is successful, set the iframe's source to NULL and populate the iframe dynamically with our custom HTML.
+   Building a login page with two iframes in it, one with the header part and the 
+   other with the actual login page. This should be done by manipulating iframes.
+   After log in, we should parse the source code of the iframe for a success 
+   string. if login is successful, set the iframe's source to NULL and 
+   populate the iframe dynamically with our custom HTML.
 ** Requirement 5
-
-    After logging in, the user should be able to view the courses taken by him/her. This should be dynamically done by getting data from LDS. 
+   After logging in, the user should be able to view the courses taken by 
+   him/her. This should be dynamically done by getting data from LDS. 
+   
+** Requirement 6
+   Building a login page with two iframes in it. This should be done by 
+   manipulating iframes. If login is successful, the service inside the 
+   iframe sends a success message to the parent service. This is implemented
+   using post messages.
