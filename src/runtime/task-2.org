@@ -1,0 +1,243 @@
+#+TITLE: Demo to get the login status of the User 
+#+AUTHOR: Surendra
+#+DATE: [2017-09-25 Mon]
+#+SETUPFILE: ./org-templates/level-0.org
+#+TAGS: boilerplate()
+#+EXCLUDE_TAGS: boilerplate
+#+OPTIONS: ^:nil
+
+* Introduction
+  This document is a demo version to get the login status
+  of the user. This basically implements cross origin 
+  communication between iframes using post messages.
+
+* Design
+  In this model, we use the postMessages functionality in 
+  javascript with which iframe posts a message to the 
+  parent. The parent html file has a script embedded which 
+  is basically an event listener to the message being post-
+  ed. As soon as the message is received, the content of the
+  div is populated dynamically.
+
+* Implementation  
+  The solution is divided over 2 files: iframe_template.html,
+  iframe.html. 
+
+** Structure of the html
+   The script file in this html page has an event listener
+   which listens to a message. When it receives the 
+   message, the function receiveMessage is called.
+   event.data will give the message sent by the child 
+   iframe. Depending on the message, the appropriate 
+   string is set as the innerHTML.
+ 
+#+begin_src html :tangle iframe.html
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <script type="text/javascript" src="iframe.js"></script>
+    <link rel="stylesheet" href="style.css"/>
+    <script>
+      window.addEventListener("message", receiveMessage, false);
+      function receiveMessage(event)
+      {
+        if(event.data == 'Logged in..!')
+        {
+          document.getElementById("hello").innerHTML = 'User is Logged in..!';
+        }
+        else
+        {
+          document.getElementById("hello").innerHTML = 'User is Logged out..!';
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id='hello'>
+      <p> Hello </p>
+    </div>
+    <br><br>
+    <div id="div_iframe"></div>
+    <div id='insert_delete_frame_btns'>
+      <button onclick="insertFrame()">Insert frame</button>
+      <button onclick="deleteFrame()">Delete frame</button>
+    </div>
+
+    <div id='manipualate_frame_content_btns'>
+      <button onclick="setContentInIframe()">set content in iframe</button>
+      <button onclick="resetContentInIframe()">reset content in iframe</button>
+    </div>
+  </body>
+</html>
+
+#+end_src
+
+** HTML loaded to iframe
+   The script in this html page has two functions,
+   onLogin and onLogout. When the login button is clicked, 
+   the onLogin function is called. This function hides the
+   login div entirely and displays the logout div. It then 
+   sends a message to the parent ("http://localhost:8000").
+   Similarly, the onLogout function sends message to the 
+   parent and hides the logout div. It also displays the 
+   login div.
+
+#+begin_src html :tangle iframe_template.html
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+      document.domain="localhost";
+    </script>
+    <script>
+      function onLogin()
+      {
+         document.getElementById("template1").style.display = "none";
+         document.getElementById("template2").style.display = "block";
+         $('#login').show();
+         parent.postMessage("Logged in..!", "http://localhost:8000");
+      }
+      function onLogout()
+      {
+         document.getElementById("template2").style.display = "none";
+         document.getElementById("template1").style.display = "block";
+         $('#logout').show();
+         parent.postMessage("Logged out..!", "http://localhost:8000"); 
+      }
+    </script>
+  </head>
+  <body>
+    <div id="template1">
+        <button onclick="onLogin()">Login</button>
+	    <div id="login" style="display:none">
+	        <p>Logged out..!</p>
+	    </div>
+    </div>
+    <div id="template2" style="display: none">
+        <button onclick="onLogout()">Logout</button>
+         <div id="logout">
+	        <p>Logged in..!</p>
+	 </div>
+    </div>
+  </body>
+</html>
+#+end_src
+** Document Domain
+Manipulation of iframe content from javascript loaded in the
+document is possible if the both the iframe content and the
+javascript manipulating the iframe are loaded from the same
+domain. 
+
+#+BEGIN_SRC js :tangle iframe.js
+document.domain="localhost"
+
+#+END_SRC
+** Create a frame
+Provide the attributes, and an iframe is created and
+returned.  The attributes are name, id, width and height of
+the frame.
+
+#+begin_src js :tangle iframe.js
+var createNewIframe = function(name, id, width, height) {
+  var newIframe = document.createElement("iframe");
+  newIframe.setAttribute("width", width);
+  newIframe.setAttribute("height", height);
+  newIframe.name = name;
+  newIframe.id = id;
+  return newIframe;
+};
+
+#+end_src
+
+** Insert a Frame in a Division
+Given a division, and an iframe, the iframe is inserted in
+the division.
+
+#+begin_src js :tangle iframe.js
+var insertFrameInDivision = function(iframe, divId) {
+  divElem = document.getElementById(divId);
+  divElem.appendChild(iframe);
+};
+
+#+end_src
+
+** Delete Frame from a Division
+Given a frame and a division, an iframe within the division
+is deleted.
+
+#+begin_src js :tangle iframe.js
+var deleteFrameInDivision = function(frameId, divId) {
+  if (document.getElementById(divId).hasChildNodes()) {
+    frameElem = document.getElementById(frameId);
+    if (frameElem !== null) {
+      frameElem.parentNode.removeChild(frameElem);
+    }
+  }
+};
+
+#+end_src
+
+** Insert Frame
+Insert a frame in the =div_iframe= division.  The name and
+id of this frame is =iframe1=.
+
+#+begin_src js :tangle iframe.js
+var insertFrame = function() {
+  newFrame = createNewIframe("iframe1", "iframe1", "100%", "30%");
+  division = document.getElementById('div_iframe');
+  insertFrameInDivision(newFrame, division.id);
+};
+
+#+end_src
+
+** Delete Frame
+Delete frame with id =frame1= in the =div_iframe= division.  
+
+#+begin_src js :tangle iframe.js
+var deleteFrame = function() {
+  frame = document.getElementById('iframe1');
+  division = document.getElementById('div_iframe');
+  deleteFrameInDivision(frame.id, division.id);
+};
+
+#+end_src
+** Change the content of an iframe
+   Sometimes it might be handy to manipulate the contents of
+   an iframe by accessing the elements within the iframe.
+   We show this by loading a =template.html= as source of
+   the iframe.  =template.html= has a division identified by
+   =template-div=.  The content of the newly created iframe
+   cannot be set immediately, therefore we wait for some
+   time and then set the content of the newly created frame.
+
+   Resetting the content in the same frame is just element
+   manipulation where =template-div= is accessed and new
+   content is set. 
+
+#+BEGIN_SRC js :tangle iframe.js
+var setContent = function() {
+  var iframe = document.getElementById("iframe1");
+  var content = iframe.contentWindow.document;
+  var elem = content.getElementById('template-div');
+  elem.innerHTML = "<p>Hello world</p>";
+};
+
+var setContentInIframe = function() {
+  deleteFrame();
+  insertFrame();
+  var iframe = document.getElementById("iframe1");
+  iframe.src = "./iframe_template.html";
+  setTimeout(setContent, 100);
+};
+
+var resetContentInIframe = function() {
+  var iframe = document.getElementById("iframe1");
+  var content = iframe.contentWindow.document;
+  var elem = content.getElementById('template-div');
+  elem.innerHTML = "<p>Resetting Hello world</p>";
+};
+
+
+#+END_SRC

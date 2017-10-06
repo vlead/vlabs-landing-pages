@@ -1,0 +1,28 @@
+
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <script type="text/javascript" src="iframe.js"></script>
+    <link rel="stylesheet" href="style.css"/>
+  </head>
+  <body>
+    <div id='hello'>
+      <p> Hello </p>
+    </div>
+    <div id="div_iframe"></div>
+    <div id='insert_delete_frame_btns'>
+      <button onclick="insertFrame()">Insert frame</button>
+      <button onclick="deleteFrame()">Delete frame</button>
+    </div>
+
+    <div id='set_sources_to_frame_btns'>
+      <button onclick="setWebAppInIframe()">set webapp in iframe</button>
+      <button onclick="setWebAppInSandBoxedIframe()">set webapp in sandboxed iframe</button>
+    </div>
+    <div id='manipualate_frame_content_btns'>
+      <button onclick="setContentInIframe()">set content in iframe</button>
+      <button onclick="resetContentInIframe()">reset content in iframe</button>
+    </div>
+  </body>
+</html>

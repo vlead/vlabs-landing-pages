@@ -3,7 +3,6 @@
 ** Agenda
   + Building a login page which when the login is successful, empties the iframe's source and dynamically populates the iframe with all the available courses.
 
-
 ** Discussion Points
 
   + Next time there is a meeting, the team should be ready with a presentation. The team members should upload the minutes of meeting in the specified manner. For reference, take a look at the guideline.org in the ssad repo.
@@ -15,7 +14,6 @@
   + As soon as the page is loaded, we start checking for a particular string in the login iframe, by parsing it's source. If login is successful, we redirect it to our own page.
   + Also store the login information in a cookie, so we can know the login status of the user.
   + Login should be made compulsory for viewing any lab. This is the purpose of doing all this.
-
 
 ** Action
 
@@ -34,6 +32,7 @@
 |                          |                          |                          |                          |
 +--------------------------+--------------------------+--------------------------+--------------------------+
 
+
 * [2017-10-3 Tue]
 
 ** Agenda 
@@ -51,8 +50,6 @@
 
 ** Action
 
-
-
 +--------------------+--------------------+--------------------+--------------------+
 |                    |                    |                    |                    |
 |                    |                    |                    |                    |
@@ -66,3 +63,4 @@
 |      messages      |                    |                    |                    |
 |                    |                    |                    |                    |
 +--------------------+--------------------+--------------------+--------------------+
+
