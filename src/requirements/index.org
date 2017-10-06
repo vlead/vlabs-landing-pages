@@ -19,26 +19,51 @@
   :END: 
 
 ** Requirement 1
-   Dynamically build Vlabs landing pages by fetching data
-   from [[https://github.com/vlead/lab-data-service][lab data service]].
+   Build Vlabs portal from data provided by [[https://github.com/vlead/lab-data-service][lab data
+   service]].  Currently, the VLABS portal is made of static
+   web pages while the data contained in the static web
+   pages like the url of a lab or an image are changing.  To
+   obviate the need for changing the pages whenever the data
+   changes, the portal is built using the data provided by
+   lab data service.
 
 ** Requirement 2
-   Build a header service
+   Build a footer service.  Currently, the footer is
+   embedded in multiple pages of virtual labs.  This is
+   against the principle of DRY (Do not repeat yourself).
+   Instead a footer service is built, which is consumed by
+   multiple pages of virtual labs.
 
 ** Requirement 3
    Build a search facility for the labs. 
-   
+
 ** Requirement 4
+   Currently, the styling of the VLABS portal is tied to the
+   Open edX platform.  This is constraint in terms of
+   maintenence and the ease of applying new styles.  To move
+   away from this dependence, the styling of VLABS portal is
+   done while the pages are rendered from the new portal.
+
+** Requiremnt 5 
+   Register and Sign In :: Registration and Sign In to Open
+   edX platfrom is tied from the portal.  This ensures that
+   when a lab that is not hosted on Open edX platform is
+   accessed, the user is forced to go through the
+   registration/sign-in similar to a lab hosted on Open edX
+   platform.
+
+** Requirement 6
    Building a login page with two iframes in it, one with the header part and the 
    other with the actual login page. This should be done by manipulating iframes.
    After log in, we should parse the source code of the iframe for a success 
    string. if login is successful, set the iframe's source to NULL and 
    populate the iframe dynamically with our custom HTML.
-** Requirement 5
+
+** Requirement 7
    After logging in, the user should be able to view the courses taken by 
    him/her. This should be dynamically done by getting data from LDS. 
    
-** Requirement 6
+** Requirement 8
    Building a login page with two iframes in it. This should be done by 
    manipulating iframes. If login is successful, the service inside the 
    iframe sends a success message to the parent service. This is implemented
