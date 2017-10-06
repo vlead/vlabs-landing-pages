@@ -1,33 +1,36 @@
 #+TITLE: Demo to get the login status of the User 
-#+AUTHOR: VLEAD
+#+AUTHOR: Surendra
 #+DATE: [2017-09-25 Mon]
 #+SETUPFILE: ./org-templates/level-0.org
-#+TAGS: boilerplate(b)
+#+TAGS: boilerplate()
 #+EXCLUDE_TAGS: boilerplate
 #+OPTIONS: ^:nil
 
 * Introduction
   This document is a demo version to get the login status
-  of the user. This serves as a model to build the final 
-  code once the problems with vagrant installation has 
-  been solved.
+  of the user. This basically implements cross origin 
+  communication between iframes using post messages.
 
 * Design
-  The source of the iframe is captured every 1 second
-  and searched for specific keywords like "My Courses"
-  to know the login status. If the user logged into 
-  the website inside the iframe, then a success message 
-  is displayed. If the user hasn't logged in, then a 
-  search for keywords like "Invalid" is performed.
-  If it returns as true, then the user is redirected
-  back to the login page.
+  In this model, we use the postMessages functionality in 
+  javascript with which iframe posts a message to the 
+  parent. The parent html file has a script embedded which 
+  is basically an event listener to the message being post-
+  ed. As soon as the message is received, the content of the
+  div is populated dynamically.
 
 * Implementation  
-  A search for specific keywords is performed every
-  1 second. If the search returns true, then success
-  message is displayed.
+  The solution is divided over 2 files: iframe_template.html,
+  iframe.html. 
 
 ** Structure of the html
+   The script file in this html page has an event listener
+   which listens to a message. When it receives the 
+   message, the function receiveMessage is called.
+   event.data will give the message sent by the child 
+   iframe. Depending on the message, the appropriate 
+   string is set as the innerHTML.
+ 
 #+begin_src html :tangle iframe.html
 <html>
   <head>
@@ -35,21 +38,32 @@
     <meta content="utf-8" http-equiv="encoding">
     <script type="text/javascript" src="iframe.js"></script>
     <link rel="stylesheet" href="style.css"/>
+    <script>
+      window.addEventListener("message", receiveMessage, false);
+      function receiveMessage(event)
+      {
+        if(event.data == 'Logged in..!')
+        {
+          document.getElementById("hello").innerHTML = 'User is Logged in..!';
+        }
+        else
+        {
+          document.getElementById("hello").innerHTML = 'User is Logged out..!';
+        }
+      }
+    </script>
   </head>
   <body>
     <div id='hello'>
       <p> Hello </p>
     </div>
+    <br><br>
     <div id="div_iframe"></div>
     <div id='insert_delete_frame_btns'>
       <button onclick="insertFrame()">Insert frame</button>
       <button onclick="deleteFrame()">Delete frame</button>
     </div>
 
-    <div id='set_sources_to_frame_btns'>
-      <button onclick="setWebAppInIframe()">set webapp in iframe</button>
-      <button onclick="setWebAppInSandBoxedIframe()">set webapp in sandboxed iframe</button>
-    </div>
     <div id='manipualate_frame_content_btns'>
       <button onclick="setContentInIframe()">set content in iframe</button>
       <button onclick="resetContentInIframe()">reset content in iframe</button>
@@ -60,6 +74,15 @@
 #+end_src
 
 ** HTML loaded to iframe
+   The script in this html page has two functions,
+   onLogin and onLogout. When the login button is clicked, 
+   the onLogin function is called. This function hides the
+   login div entirely and displays the logout div. It then 
+   sends a message to the parent ("http://localhost:8000").
+   Similarly, the onLogout function sends message to the 
+   parent and hides the logout div. It also displays the 
+   login div.
+
 #+begin_src html :tangle iframe_template.html
 <!DOCTYPE html>
 <html>
@@ -67,14 +90,36 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
       document.domain="localhost";
-  	</script>
+    </script>
+    <script>
+      function onLogin()
+      {
+         document.getElementById("template1").style.display = "none";
+         document.getElementById("template2").style.display = "block";
+         $('#login').show();
+         parent.postMessage("Logged in..!", "http://localhost:8000");
+      }
+      function onLogout()
+      {
+         document.getElementById("template2").style.display = "none";
+         document.getElementById("template1").style.display = "block";
+         $('#logout').show();
+         parent.postMessage("Logged out..!", "http://localhost:8000"); 
+      }
+    </script>
   </head>
   <body>
-    <div id="template-div">
-        <button onclick="$('#log').show()">Login</button>
-	    <div id="log" style="display:none">
-	        <p>MyCourses</p>
+    <div id="template1">
+        <button onclick="onLogin()">Login</button>
+	    <div id="login" style="display:none">
+	        <p>Logged out..!</p>
 	    </div>
+    </div>
+    <div id="template2" style="display: none">
+        <button onclick="onLogout()">Logout</button>
+         <div id="logout">
+	        <p>Logged in..!</p>
+	 </div>
     </div>
   </body>
 </html>
@@ -158,33 +203,6 @@ var deleteFrame = function() {
 };
 
 #+end_src
-
-** Set source of iframe
-Set source of iframe with id =iframe1=.
-
-#+begin_src js :tangle iframe.js
-var setWebAppInIframe = function() {
-  var iframe = document.getElementById("iframe1");
-  iframe.src = "http://dev.vlabs.ac.in";
-};
-
-#+end_src
-
-** Set source in a sandboxed iframe
-Make an iframe sand boxed and set the source to it.
-Sometimes this is necessary since certain web pages expand
-out of iframe and these need to be sand boxed.
-
-#+begin_src js :tangle iframe.js
-var setWebAppInSandBoxedIframe = function() {
-  deleteFrame();
-  insertFrame();
-  var iframe = document.getElementById("iframe1");
-  iframe.sandbox = 'allow-forms allow-scripts allow-same-origin';
-  iframe.src = "https://vlabs.ac.in";
-};
-
-#+end_src
 ** Change the content of an iframe
    Sometimes it might be handy to manipulate the contents of
    an iframe by accessing the elements within the iframe.
@@ -223,21 +241,3 @@ var resetContentInIframe = function() {
 
 
 #+END_SRC
-** Search for keywords
-  A search for specific keywords is performed every
-  1 second. If the search returns true, then success
-  message is displayed.
-
-#+begin_src js :tangle iframeold.js
-setInterval(function(){
-  search();
-}, 1000);
-
-var search = function () {
-  var elem = content.getElementById('template-div');
-  var srch = elem.search("MyCourses");
-  if(srch){
-    alert("user logged in!");
-  }
-};
-#+end_src
