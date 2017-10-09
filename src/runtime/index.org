@@ -1171,6 +1171,16 @@ height:650px;
   font-family:'Raleway' !important;
 }
 
+
+.btn {
+    display: inline-block !important;
+    padding: 9px 12px !important;
+    margin-bottom: 0 !important;
+    font-size: 15px !important;
+    
+}
+
+
 #+END_SRC
 
 * Tangle 
