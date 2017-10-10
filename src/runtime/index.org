@@ -189,16 +189,16 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                 <form class="navbar-form navbar-left">
-                <div class="input-group">
+                <div  class="input-group stylish-input-group">
                 <input id="keyword" type="text" class="form-control"
                 placeholder="Lab Name">
-                <div class="input-group-btn">
+                 <span class="input-group-addon">
                 <button 
                 onclick="javascript:getLabsByKeyword()"
                 target="content_iframe" class="btn btn-default" type="submit">
-          <i class="glyphicon glyphicon-search"></i>
+          <span class="glyphicon glyphicon-search"></span>
         </button>
-      </div>
+      </span>
     </div>
   </form>
   <li><a style="pointer-events: none;"
@@ -1172,14 +1172,47 @@ height:650px;
 }
 
 
-.btn {
-    display: inline-block !important;
-    padding: 9px 12px !important;
-    margin-bottom: 0 !important;
-    font-size: 14px !important;
+/* search placeholder styles */
+}
+.stylish-input-group .input-group-addon{
+    background: white !important; 
+}
+.stylish-input-group .form-control{
+	border-right:0; 
+	box-shadow:0 0 0; 
+	border-color:#ccc;
+}
+.stylish-input-group button{
+    border:0;
+    background:transparent;
+}
+/*overwrting the search icon properties from less bootstrap library*/
+.input-group-addon {
     
+    padding: 0px 0px !important;
+    font-size: 0px !important;
+    font-weight: 400;
+    line-height: 1;
+    color: #555;
+    text-align: center;
+    background-color: #fff !important;
+    border: 1px solid #ccc;
+    border-left-width: 1px;
+    border-left-style: solid;
+    border-left-color: rgb(204, 204, 204);
+    border-radius: 4px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+
 }
 
+/* search icon hover color properties */
+.btn-default:hover {
+    color: #333;
+    color: #007db8;
+    border-color: #adadad;
+    background-color: #fff !important;
+}
 
 #+END_SRC
 
