@@ -304,25 +304,96 @@
   completed in the VLABS portal:
   1. Search functionality
   2. Sign n functionality 
-  3. Register functionality 
+  3. Register functionality
+
   
 #+caption:  realization-plan
 #+name: tbl-realization-plan
-|-------+--------------------+--------+----------+--------+--------+-----------+--------+----------|
-| S.    | Tasks              | Github | Expected | Actual | Actual | Estimated | Status | Assignee |
-| NO    |                    | Issues | Effort   | Effort | Start, | Start/    |        |          |
-|       |                    |        | (in      | (in    | End    | End       |        |          |
-|       |                    |        | person   | person | Dates  | Dates     |        |          |
-|       |                    |        | hours)   | hours) |        |           |        |          |
-|-------+--------------------+--------+----------+--------+--------+-----------+--------+----------|
-| 1.    | Adding login       | [[https://github.com/vlead/vlabs-landing-pages/issues/89][#89]]    |          |        |        |           |        |          |
-|       | functionality for  |        |          |        |        |           |        |          |
-|       | vlabs landing page |        |          |        |        |           |        |          |
-|-------+--------------------+--------+----------+--------+--------+-----------+--------+----------|
-| 2.    |                    |        |          |        |        |           |        |          |
-|-------+--------------------+--------+----------+--------+--------+-----------+--------+----------|
-| Total |                    |        | 357.5    |        |        |           |        |          |
-| ^     |                    |        | total    |        |        |           |        |          |
-|-------+--------------------+--------+----------+--------+--------+-----------+--------+----------|
+|-------+---------------------+--------+----------+--------+--------+-----------+-------------+-----------|
+|    S. | Tasks               | Github | Expected | Actual | Actual | Estimated | Status      | Assignee  |
+|    NO |                     | Issues | Effort   | Effort | Start, | Start/    |             |           |
+|       |                     |        | (in      | (in    | End    | End       |             |           |
+|       |                     |        | person   | person | Dates  | Dates     |             |           |
+|       |                     |        | hours)   | hours) |        |           |             |           |
+|-------+---------------------+--------+----------+--------+--------+-----------+-------------+-----------|
+|    1. | Adding login        | [[https://github.com/vlead/vlabs-landing-pages/issues/89][#89]]    |          |        |        |           | backlog     | Madhavi   |
+|       | functionality for   |        |          |        |        |           |             | Balamma   |
+|       | vlabs landing page  |        |          |        |        |           |             | Mrudhvika |
+|-------+---------------------+--------+----------+--------+--------+-----------+-------------+-----------|
+|    2. | Adding signup       | [[https://github.com/vlead/vlabs-landing-pages/issues/88][#88]]    |          |        |        |           | backlog     | Madhavi   |
+|       | functionality for   |        |          |        |        |           |             | Balamma   |
+|       | vlabs landing page  |        |          |        |        |           |             | Mrudhvika |
+|-------+---------------------+--------+----------+--------+--------+-----------+-------------+-----------|
+|    3. | Enable Sign up      | [[https://github.com/vlead/vlabs-landing-pages/issues/87][#87]]    |          |        |        |           | backlog     | Madhavi   |
+|       | and Login buttons   |        |          |        |        |           |             | Mrudhvika |
+|       |                     |        |          |        |        |           |             | Balamma   |
+|-------+---------------------+--------+----------+--------+--------+-----------+-------------+-----------|
+|    4. | Adding key word     | [[https://github.com/vlead/vlabs-landing-pages/issues/86][#86]]    |          |        |        |           | backlog     | Madhavi   |
+|       | based search        |        |          |        |        |           |             |           |
+|       | feature             |        |          |        |        |           |             |           |
+|-------+---------------------+--------+----------+--------+--------+-----------+-------------+-----------|
+|    5. | Unable to navigate  | [[https://github.com/vlead/vlabs-landing-pages/issues/85][#85]]    |          |        |        |           | bug         | Mrudhvika |
+|       | institute wise      |        |          |        |        |           |             | Balamma   |
+|       | labs from           |        |          |        |        |           |             |           |
+|       | experiment page     |        |          |        |        |           |             |           |
+|-------+---------------------+--------+----------+--------+--------+-----------+-------------+-----------|
+|    6. | Header and footer   | [[https://github.com/vlead/vlabs-landing-pages/issues/84][#84]]    |          |        |        |           | bug         | Balamma   |
+|       | not visible in      |        |          |        |        |           |             | Mrudhvika |
+|       | open-edx labs       |        |          |        |        |           |             |           |
+|-------+---------------------+--------+----------+--------+--------+-----------+-------------+-----------|
+|    7. | Add a Favicon to    | [[https://github.com/vlead/vlabs-landing-pages/issues/83][#83]]    |          |        |        |           | backlog     | Balamma   |
+|       | vlabs landing page  |        |          |        |        |           |             | Mrudhvika |
+|-------+---------------------+--------+----------+--------+--------+-----------+-------------+-----------|
+|    8. | Setting of search   | [[https://github.com/vlead/vlabs-landing-pages/issues/82][#82]]    |          |        |        |           | done        | Balamma   |
+|       | icon width and      |        |          |        |        |           |             |           |
+|       | height              |        |          |        |        |           |             | Mrudhvika |
+|-------+---------------------+--------+----------+--------+--------+-----------+-------------+-----------|
+|    9. | Fix Grid layout     | [[https://github.com/vlead/vlabs-landing-pages/issues/81][#81]]    |          |        |        |           | bug         | Balamma   |
+|       | styles              |        |          |        |        |           | In progress | Mrudhvika |
+|-------+---------------------+--------+----------+--------+--------+-----------+-------------+-----------|
+|   10. | Header is repeating | [[https://github.com/vlead/vlabs-landing-pages/issues/80][#80]]    |          |        |        |           | bug         | Mrudhvika |
+|       | twice when broswer  |        |          |        |        |           |             | Balamma   |
+|       | 'back' button was   |        |          |        |        |           |             |           |
+|       | clicked             |        |          |        |        |           |             |           |
+|-------+---------------------+--------+----------+--------+--------+-----------+-------------+-----------|
+|   11. | Micro biology I     | [[https://github.com/vlead/vlabs-landing-pages/issues/90][#90]]    |          |        |        |           | done        | Mrudhvika |
+|       | and Molecular       |        |          |        |        |           |             |           |
+|       | fluorescence        |        |          |        |        |           |             |           |
+|       | spectroscopy        |        |          |        |        |           |             |           |
+|       | have same images    |        |          |        |        |           |             |           |
+|-------+---------------------+--------+----------+--------+--------+-----------+-------------+-----------|
+|   12. | Verifying the list  | [[https://github.com/vlead/vlabs-landing-pages/issues/91][#91]]    |          |        |        |           | done        | Mrudhvika |
+|       | of captured labs.   |        |          |        |        |           |             |           |
+|-------+---------------------+--------+----------+--------+--------+-----------+-------------+-----------|
+|   13. | Remove hyperlink of | [[https://github.com/vlead/vlabs-landing-pages/issues/92][#92]]    |          |        |        |           | done        | Mrudhvika |
+|       | disciplines titles  |        |          |        |        |           |             | Balamma   |
+|       | on all disciplines  |        |          |        |        |           |             |           |
+|       | page.               |        |          |        |        |           |             |           |
+|-------+---------------------+--------+----------+--------+--------+-----------+-------------+-----------|
+|   14. | Remove hyperlink of | [[https://github.com/vlead/vlabs-landing-pages/issues/93][#93]]    |          |        |        |           | done        | Mrudhvika |
+|       | institutes titles   |        |          |        |        |           |             | Balamma   |
+|       | on all institutes   |        |          |        |        |           |             |           |
+|       | page.               |        |          |        |        |           |             |           |
+|-------+---------------------+--------+----------+--------+--------+-----------+-------------+-----------|
+|   15. | Align institutes    | [[https://github.com/vlead/vlabs-landing-pages/issues/94][#94]]    |          |        |        |           | Inprogress  | Balamma   |
+|       | titles along with   |        |          |        |        |           |             | Mrudhvika |
+|       | institute logos     |        |          |        |        |           |             |           |
+|       | on all institutes.  |        |          |        |        |           |             |           |
+|-------+---------------------+--------+----------+--------+--------+-----------+-------------+-----------|
+|   16. | Align disciplines   | [[https://github.com/vlead/vlabs-landing-pages/issues/95][#95]]    |          |        |        |           | In progress | Balamma   |
+|       | titles along with   |        |          |        |        |           |             | Mrudhvika |
+|       | disciplines logos   |        |          |        |        |           |             |           |
+|       | on all disciplines  |        |          |        |        |           |             |           |
+|       | page.               |        |          |        |        |           |             |           |
+|-------+---------------------+--------+----------+--------+--------+-----------+-------------+-----------|
+|   17. | Align lab titles    | [[https://github.com/vlead/vlabs-landing-pages/issues/96][#96]]    |          |        |        |           | backlog     | Balamma   |
+|       | along with labs     |        |          |        |        |           |             | Mrudhvika |
+|       | images on all labs  |        |          |        |        |           |             |           |
+|       | page                |        |          |        |        |           |             |           |
+|-------+---------------------+--------+----------+--------+--------+-----------+-------------+-----------|
+|     = |                     |        |          |        |        |           |             |           |
+| Total |                     |        | 357.5    |        |        |           |             |           |
+|     ^ |                     |        | total    |        |        |           |             |           |
+|-------+---------------------+--------+----------+--------+--------+-----------+-------------+-----------|
 #+TBLFM: $total=vsum(@II+1..@-1)
 
