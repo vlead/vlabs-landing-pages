@@ -295,3 +295,34 @@
 |-------+----------------------+--------+----------+--------+------------+------------+----------+------------|
 #+TBLFM: $total=vsum(@II+1..@-1)
 
+
+** [[https://github.com/vlead/vlabs-landing-pages/milestone/4][Milestone two]]
+  :PROPERTIES:
+  :CUSTOM_ID: plan-for-milestone-one
+  :END: 
+  Once this milestone is realized, the following are
+  completed in the VLABS portal:
+  1. Search functionality
+  2. Sign n functionality 
+  3. Register functionality 
+  
+#+caption:  realization-plan
+#+name: tbl-realization-plan
+|-------+--------------------+--------+----------+--------+--------+-----------+--------+----------|
+| S.    | Tasks              | Github | Expected | Actual | Actual | Estimated | Status | Assignee |
+| NO    |                    | Issues | Effort   | Effort | Start, | Start/    |        |          |
+|       |                    |        | (in      | (in    | End    | End       |        |          |
+|       |                    |        | person   | person | Dates  | Dates     |        |          |
+|       |                    |        | hours)   | hours) |        |           |        |          |
+|-------+--------------------+--------+----------+--------+--------+-----------+--------+----------|
+| 1.    | Adding login       | [[https://github.com/vlead/vlabs-landing-pages/issues/89][#89]]    |          |        |        |           |        |          |
+|       | functionality for  |        |          |        |        |           |        |          |
+|       | vlabs landing page |        |          |        |        |           |        |          |
+|-------+--------------------+--------+----------+--------+--------+-----------+--------+----------|
+| 2.    |                    |        |          |        |        |           |        |          |
+|-------+--------------------+--------+----------+--------+--------+-----------+--------+----------|
+| Total |                    |        | 357.5    |        |        |           |        |          |
+| ^     |                    |        | total    |        |        |           |        |          |
+|-------+--------------------+--------+----------+--------+--------+-----------+--------+----------|
+#+TBLFM: $total=vsum(@II+1..@-1)
+
