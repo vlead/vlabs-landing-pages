@@ -35,6 +35,9 @@
   <head>
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta content="utf-8" http-equiv="encoding">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../static/css/style.css"/>
     <script type="text/javascript" src="../static/js/app-config.js"></script>
     <script type="text/javascript" src="../static/js/main.js"></script>
@@ -689,12 +692,12 @@ var getAllLabs = function(){
           console.log(path);
         }
       }
-      labs += '<div class="col-sm-3 col-md-3 col-xs-6 thumb" id='+ lab_name +
-        '><a class="thumbnail" href='+ hosted_url +
+      labs += '<div class=" col-md-3 " id='+ lab_name +
+        '><div class="thumbnail"><a  href='+ hosted_url +
         '><img class="img-responsive" src="' + path +
         '"alt="image"/><a href='+ hosted_url +
-        '><p style="text-align:center;">'+lab_name +
-        '</p></a></div>';
+        '><div class="caption" style="min-height: 110px;"><h4 style="text-align:left; color:#2c99ce;  ">'+lab_name +
+        '</h4></div></a></div></div>';
 
 //      labs += '<div class="col-lg-3 col-md-4 col-xs-6 thumb" id='
 //        + lab_name + '><a class="thumbnail" href='+ hosted_url +
@@ -1214,6 +1217,10 @@ height:650px;
     background-color: #fff !important;
 }
 
+.thumbnail {
+    padding: 0px !important;
+    
+}
 
 
 
