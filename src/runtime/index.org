@@ -693,7 +693,7 @@ var getAllLabs = function(){
         }
       }
       labs += '<div class=" col-md-3 " id='+ lab_name +
-        '><div class="thumbnail"><a  href='+ hosted_url +
+        '><div class="thumbnail" style="padding: 0px !important;"><a  href='+ hosted_url +
         '><img class="img-responsive" src="' + path +
         '"alt="image"/><a href='+ hosted_url +
         '><div class="caption" style="min-height: 110px;"><h4 style="text-align:left; color:#2c99ce;  ">'+lab_name +
@@ -1218,9 +1218,18 @@ height:650px;
 }
 
 .thumbnail {
+    display: block;
     padding: 0px !important;
+    margin-bottom: 20px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
     
 }
+
+
+
 
 
 
