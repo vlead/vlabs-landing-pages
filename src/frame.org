@@ -216,3 +216,97 @@ var resetContentInIframe = function() {
 
 
 #+END_SRC
+
+** Post message between iframes
+   Post message is used to talk between two iframes
+*** Main page
+    #+BEGIN_SRC 
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <script>
+    document.domain="base4.vlabs.ac.in"
+    </script>
+    <body>
+
+    <iframe src="http://main.base4.vlabs.ac.in/header.html" height="200" width="800" id="headerIframe">
+
+    </iframe>
+
+    <iframe src="http://content.base4.vlabs.ac.in/content.html" height="200" width="800" id="contentIframe"></iframe>
+    </body>
+    </html>
+
+    #+END_SRC
+*** header iframe   
+    #+BEGIN_SRC 
+    <html>
+    <head>
+    <script>
+       document.domain="base4.vlabs.ac.in"
+       function displayMessage (evt) {
+           var message;
+           if (evt.origin !== "http://192.168.33.6") {
+              message = "You are not worthy";
+              }
+              else {
+                    message = "I got " + evt.data + " from " + evt.origin;
+                    <!-- alert(message); -->
+                    parent.document.getElementById("login").innerHTML = message;
+                    
+              }
+       }
+
+       if (window.addEventListener) {
+          // For standards-compliant web browsers
+          window.addEventListener("message", displayMessage, false);
+       }
+       else {
+           window.attachEvent("onmessage", displayMessage);
+       }
+    </script>
+    </head>
+    <body>
+
+    <h1>header html</h1>
+    <p id="login">Login</p>
+    <p id="register">Register</p>
+
+    </body>
+    </html>
+    #+END_SRC
+*** Post message
+    #+BEGIN_SRC 
+    <html>
+    <script>
+
+    document.domain="base4.vlabs.ac.in"
+    var postM = function() {
+          var headerIframe = parent.document.getElementById("headerIframe");
+          console.log("header Iframe: " + headerIframe);
+          var headerContentWindow = headerIframe.contentWindow;
+          console.log("header Iframe contentWindow: " + headerContentWindow);
+          var contentIframe = parent.document.getElementById("contentIframe");
+          textOfContentIframe = contentIframe.contentDocument.body.innerText;
+          console.log(textOfContentIframe);
+          msg = headerContentWindow.postMessage(textOfContentIframe, "http://main.base4.vlabs.ac.in");
+    };
+
+    </script>
+    </head>
+    <body onload="postM();">
+
+    </body>
+    </html>
+    #+END_SRC
+*** Content iframe
+    #+BEGIN_SRC 
+    <html>                                                                                                                                                                       
+    <body> 
+       <h1>content html</h1>
+       <p>This is lab content</p>
+    </body>
+    </html>
+
+
+    #+END_SRC
