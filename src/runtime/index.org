@@ -1086,7 +1086,9 @@ var addScriptTags = function(){
 var resetContentInIframe = function(data) {
   console.log("=======re setting content=====");        
   console.log(data);
-  var content = parent.document.getElementById('contentIframe').contentWindow.document;
+  var iframe = parent.document.getElementById("contentIframe");
+  iframe.sandbox = 'allow-forms allow-scripts allow-same-origin';
+  var content = iframe.contentWindow.document;
   console.log(content);
   content.body.innerHTML="";
   content.write(data);
