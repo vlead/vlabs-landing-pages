@@ -1259,6 +1259,18 @@ height:650px;
 
 #+END_SRC
 
+** Favicon
+#+NAME: favicon
+#+BEGIN_SRC javascript 
+master = window.parent.document;
+head = master.getElementsByTagName("head")[0];
+favicon = master.createElement("link");
+favicon.rel = "shortcut icon";
+favicon.type = "image/png";
+favicon.href = "http://files.vlabs.ac.in/lds/images/vlabs-logo/favicon.ico";
+head.appendChild(favicon);
+
+#+END_SRC
 
 * Tangle 
 ** sources
@@ -1303,7 +1315,7 @@ height:650px;
 <<add-script-tags>>
 <<mouse-over>>
 <<labs-by-keyword-search>>
-<<add-favicon>> 
+<<favicon>> 
 
 #+END_SRC
 *** Config
