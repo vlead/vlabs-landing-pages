@@ -183,7 +183,7 @@
                         <li class="dropdown-header">Information</li>
                         <li><a href="#">Announcements</a></li>
                         <li><a href="#">Contact us</a></li>
-                        <li><a href="#">2017-summer-intership</a></li>
+                       <li><a href="#">2017-summer-intership</a></li>
                       </ul>
                     </li>
                 </li>
@@ -215,14 +215,24 @@
 </nav>
 </div>
 </header>
-<img src="http://files.vlabs.ac.in/lds/images/slider-images/slider-img-01.jpg"
-                     class="img-responsive main-logo"
-                     style="width:100%; maring-top:2px;">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <img src="http://files.vlabs.ac.in/lds/images/slider-images/slider-img-01.jpg" class="img-responsive main-logo" style="width:100%; maring-top:2px;">
+      <div>
+        <div class="col-md-6"></div>
+        <div class="col-md-6" style="margin-top:-229px; color:white;"><h1 class="animation animated-item-1" style="font-color:Black"><b>Online labs and experiments </b>
+            from top technical institutes Now available
+            in <a href="https://info.vlabs.ac.in/college-cloud-edition/">offline
+              edition</a> for your college</h1></div>
+  </div></div></div>
+</div>
+
 <div class="row">
   <div class="features">
     <div style="visibility: visible; 
-animation-duration: 1000ms; animation-delay: 600ms;
-animation-name: fadeInDown;"
+                animation-duration: 1000ms; animation-delay: 600ms;
+                animation-name: fadeInDown;"
          class="col-md-2 col-sm-6 wow fadeInDown animated"
          data-wow-duration="1000ms" data-wow-delay="600ms">
       <div class="feature-wrap">
@@ -1053,7 +1063,16 @@ var addScriptTags = function(){
   bootstrap_styles.href = bootstrap_css_url;
   head.appendChild(bootstrap_styles);
 
+  var favicon = contentIframe.contentWindow.document.createElement("link");
+  var favicon_url = "";
+  favicon.type = "image/x-icon";
+  favicon.href = favicon_url;
+  head.appendChild(favicon);
+
+
+
 };
+
 
 
 
@@ -1238,6 +1257,7 @@ height:650px;
 
 #+END_SRC
 
+
 * Tangle 
 ** sources
 *** Javascript
@@ -1280,6 +1300,8 @@ height:650px;
 <<add-script-tags>>
 <<mouse-over>>
 <<labs-by-keyword-search>>
+<<add-favicon>> 
+
 #+END_SRC
 *** Config
 #+BEGIN_SRC javascript :tangle static/js/app-config.js :eval no :noweb yes 
