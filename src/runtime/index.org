@@ -1090,6 +1090,8 @@ var resetContentInIframe = function(data) {
   console.log(content);
   content.body.innerHTML="";
   content.write(data);
+  addScriptTags();
+
 };
 
 #+END_SRC
@@ -1277,6 +1279,7 @@ height:650px;
 <<get-labs-by-discipline-name>>
 <<get-labs-by-institute-name>>
 <<reset-content>>
+<<add-script-tags>>
 
 #+END_SRC
 **** Header JS
