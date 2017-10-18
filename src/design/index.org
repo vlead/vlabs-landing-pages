@@ -8,32 +8,149 @@
 #+LATEX: Literal LaTeX code for export
 
 * Introduction 
-  :PROPERTIES:
-  :CUSTOM_ID: introduction
-  :END: 
   This document describes  the design of =vlabs-landing-pages=.
 
 * Design
-  :PROPERTIES:
-  :CUSTOM_ID: design
-  :END: 
-  
-  Landing page will be divided into 3 frames.
-  1) Header Iframe 
-  2) Content Iframe
-  3) Footer Iframe
-** Header Iframe 
-   On click of header tabs like institutes, disciplines and
-   labs it has to load the data of institutes, disciplines
-   and labs dynamically in content iframe. On Click of any
-   loaded data like list of institutes, disciplines or labs
-   it has to call a function such that it loads all labs in
-   institutes, disciplines, labs respectively. once the list
-   of labs are displayed users can access based on their
-   choice.
+  The virtual labs portal is built dynamically using lab
+  data service since the data related to a lab - hosting
+  information, lab image, etc. will change over time.  The
+  lab data service provides data about different
+  disciplines, institutes, labs and their hosted url.
 
-** Content Iframe
-   When the state changes, all the user actions will be loaded into the body Iframe. 
-** Footer Iframe
-   Footer will be served from footer service and will be loaded into footer
-   iframe of vlabs landing page.
+** The case for iframes
+  Each lab in virtual labs is a web application.  Since each
+  lab is a web application without any API, the access to
+  its content which is laid out as html files is through the
+  url for each html file.  Therefore, each lab becomes an
+  external source to the vlabs portal which has to be
+  embedded into the virtual labs portal.  To display the
+  contents from an external source, an [[https://www.w3schools.com/TAgs/tag_iframe.asp][iframe]] is used.
+
+** Layout
+   The landing page is divided into three main
+   divisions: 1. header, 2. content and 3. footer. 
+
+   #+caption: layout of landing page
+   #+name: fig:layout
+   [[./img/layout.png]]
+
+   The header contains all the control actions.  It is the
+   controller for the portal.  The content division has an
+   iframe to display the lab.  The footer division also has
+   an iframe to contain the footer.html served from footer
+   server. 
+
+** Header Division
+   #+caption: layout of header division
+   #+name: fig:header
+   [[./img/header.png]]
+   
+   Event handlers are attached to each of the elements in
+   the header division.  The event here is either click or
+   select and on the occurrence of the event, the iframe in
+   the content division is loaded.  =All Labs=, =Search=,
+   =Login= and =Register= are buttons while =Institutes= and
+   =Disciplines= are dropdown menus.
+
+   Events on =Login= and =Register= load login page and
+   register page from the Open edX platform respectively in
+   the iframe contained in the content division. 
+   
+   Events on the elements in the header division load the
+   listing of labs in the iframe contained in the content
+   division.
+
+   The handler for either the click or select event on the
+   elements -- =All Labs=, =Institutes=, =Disciplines= and
+   =Search= -- constructs the content with event handlers
+   attached for the click event on each of lab element
+   listed.  The attached event handler opens the lab on the
+   =click= event in the same iframe.
+
+** Content Division
+   This division contains the iframe.  The handlers attached
+   to the elements in the header division manipulate the src
+   of this iframe to display the content of the labs.
+
+** Footer Division
+   This division contains an iframe whose source is set to
+   =footer.html= served from a footer service.
+
+* Iframe Management
+  The event handlers responsible for lab listing in the
+  content division and the event handlers attached to each
+  lab within content division manipulate the iframe inside
+  it.
+
+  Once a lab is loaded into the iframe, the handlers served
+  from the portal cannot reset the content since they are of
+  different origin.  To overcome this problem, every time
+  content is created by the handlers in the header division,
+  the existing iframe in the content division is deleted, a
+  new one is created and content that is dynamically
+  generated is set to the iframe.
+
+  The handler attached for each lab listed within this
+  iframe, sets the source of the iframe to the url of the
+  lab.
+
+* Login and Registration
+  Open edX platform login & registration infrastructure is
+  used for all the labs.  
+  
+  A handler attached to each lab checks a cookie if a login
+  happened in that browser.  If the login has not happened,
+  the iframe in the content division is loaded with the
+  login/registration page from Open edX platform.  If the
+  user is inactive for a certain period after successful
+  login/registration, the session cookie is cleared.
+
+  Open edX does not provide the login/registration as
+  services through API.  If this was not the case, the
+  portal could have displayed it's own login/registration
+  and made REST calls to the login/registration API of Open
+  edX.  Since this was not the case, the portal has to
+  depend on the login/registration web pages served from
+  Open edX platform.
+
+  The event handler attached to the click event on the
+  login/register buttons loads these pages in the iframe
+  contained in the content division.  But how will the
+  controller -- header division -- know that the user has
+  either successfully logged in or registered.  The state of
+  the iframe changes on a successful login or a registration
+  and this state has to be captured by the controller and
+  the login and register buttons should be flipped to
+  =logout= button.
+
+** Capture the state
+   Since the login/register pages are served from a
+   different origin than the landing pages, the controller
+   in the header division cannot access the DOM element of
+   the iframe to read the contents and identify the state
+   change.  Instead [[https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage][postMessage]] mechanism is used to relay
+   the state change information from the iframe in the
+   content division to the header division.  The listener in
+   the header division intercepts the post message and takes
+   the appropriate action of:
+   1. flipping the login/register to logout and vice versa
+      and
+   2. setting or clearing the cookie used by the handlers to
+      determine if the user is logged in that session. 
+
+
+** Embedding the javascript to post message
+   Since the login/register pages are served from Open edX
+   portal whose code is black box, the javascript code to
+   post messages from these pages has to be inserted.  Open
+   edX platform used nginx as it's web server.  To
+   accomplish this, nginx's [[http://nginx.org/en/docs/http/ngx_http_addition_module.html][http addition module]] is
+   harnessed.  This module allows to add additional html to
+   the requested resource.
+
+   When login/register pages are requested, before the
+   response is sent back by the ngnix server on the Open edX
+   platform, the javascript code to post messages is
+   appended.
+   
+  
