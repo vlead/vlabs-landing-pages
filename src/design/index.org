@@ -1,4 +1,4 @@
-#+TITLE: Vlabs Landing Pages
+#+TITLE: Design of Vlabs Landing Pages
 #+AUTHOR: VLEAD
 #+DATE: [2017-05-03 Wednesday]
 #+PROPERTY: results output
@@ -22,7 +22,7 @@
   lab is a web application without any API, the access to
   its content which is laid out as html files is through the
   url for each html file.  Therefore, each lab becomes an
-  external source to the vlabs portal which has to be
+  external source to the vlabs portal that will have to be
   embedded into the virtual labs portal.  To display the
   contents from an external source, an [[https://www.w3schools.com/TAgs/tag_iframe.asp][iframe]] is used.
 
@@ -78,7 +78,7 @@
 
 * Iframe Management
   The event handlers responsible for lab listing in the
-  content division and the event handlers attached to each
+  header division and the event handlers attached to each
   lab within content division manipulate the iframe inside
   it.
 
@@ -91,7 +91,7 @@
   generated is set to the iframe.
 
   The handler attached for each lab listed within this
-  iframe, sets the source of the iframe to the url of the
+  iframe sets the source of the iframe to the url of the
   lab.
 
 * Login and Registration
@@ -108,8 +108,8 @@
   Open edX does not provide the login/registration as
   services through API.  If this was not the case, the
   portal could have displayed it's own login/registration
-  and made REST calls to the login/registration API of Open
-  edX.  Since this was not the case, the portal has to
+  pages and made REST calls to the login/registration API of
+  Open edX.  Since this was not the case, the portal has to
   depend on the login/registration web pages served from
   Open edX platform.
 
@@ -128,7 +128,7 @@
    different origin than the landing pages, the controller
    in the header division cannot access the DOM element of
    the iframe to read the contents and identify the state
-   change.  Instead [[https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage][postMessage]] mechanism is used to relay
+   change.  Therefore [[https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage][postMessage]] mechanism is used to relay
    the state change information from the iframe in the
    content division to the header division.  The listener in
    the header division intercepts the post message and takes
@@ -141,12 +141,13 @@
 
 ** Embedding the javascript to post message
    Since the login/register pages are served from Open edX
-   portal whose code is black box, the javascript code to
+   portal whose code is a black box, the javascript code to
    post messages from these pages has to be inserted.  Open
-   edX platform used nginx as it's web server.  To
-   accomplish this, nginx's [[http://nginx.org/en/docs/http/ngx_http_addition_module.html][http addition module]] is
-   harnessed.  This module allows to add additional html to
-   the requested resource.
+   edX platform uses nginx as it's web server.  To
+   accomplish the insertion of javascript for posting
+   messages, nginx's [[http://nginx.org/en/docs/http/ngx_http_addition_module.html][http addition module]] is harnessed.
+   This module allows addition of html to the requested
+   resource in the response. 
 
    When login/register pages are requested, before the
    response is sent back by the ngnix server on the Open edX
