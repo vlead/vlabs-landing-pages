@@ -220,14 +220,16 @@
     <div class="col-md-12">
       <img src="http://files.vlabs.ac.in/lds/images/slider-images/slider-img-01.jpg" class="img-responsive main-logo" style="width:100%; maring-top:2px;">
       <div>
-        <div class="col-md-6"></div>
-        <div class="col-md-6" style="margin-top:-229px; color:white;"><h1 class="animation animated-item-1" style="font-color:Black"><b>Online labs and experiments </b>
+      <div>
+        <div class="col-md-4"></div>
+        <div style="margin-top:-217px; color:white;padding-left: 101;" class="col-md-8"><h1 class="animation animated-item-1" style="font-color:Black"><b>Online labs and experiments </b>
             from top technical institutes Now available
             in <a href="https://info.vlabs.ac.in/college-cloud-edition/">offline
               edition</a> for your college</h1></div>
-  </div></div></div>
-</div>
-
+              </div>
+              </div></div>
+              </div>
+              
 <div class="row">
   <div class="features">
     <div style="visibility: visible; 
