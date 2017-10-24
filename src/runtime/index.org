@@ -150,9 +150,8 @@
                   </span>
                 </div>
               </form>
-              <li><a href=""
-                     target="content_iframe"><span class="glyphicon glyphicon-user"></span>Register</a></li>
-              <li><a class="glyphicon glyphicon-log-in" href=""> Login</a></li>
+              <li><a onclick="setRegisterUrlInIframe();"><span class="glyphicon glyphicon-user"></span>Register</a></li>
+              <li><a class="glyphicon glyphicon-log-in"> Login</a></li>
             </ul>
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
@@ -316,6 +315,18 @@ var setUsageInIframe = function() {
 };
 
 #+END_SRC
+** Set register url to Iframe
+#+NAME: set-register-url-to-content-iframe
+#+BEGIN_SRC javascript 
+var setRegisterUrlInIframe = function() {
+  console.log("=======setting registre url to content iframe=====");        
+  var iframe = document.getElementById("contentIframe");
+  iframe.src = "http://content.base5.vlabs.ac.in/register";
+  iframe.sandbox = 'allow-forms allow-scripts allow-same-origin';
+};
+
+#+END_SRC
+
 ** Creating the content iframe
    Displays the content iframe based on the selection of the
    elements with respect to the header iframe.
@@ -1269,7 +1280,7 @@ head.appendChild(favicon);
 <<get-labs-by-institute-name>>
 <<reset-content>>
 <<add-script-tags>>
-
+<<set-register-url-to-content-iframe>>
 #+END_SRC
 **** Header JS
 #+BEGIN_SRC javascript :tangle static/js/header.js :eval no :noweb yes 
