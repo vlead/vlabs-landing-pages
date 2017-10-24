@@ -192,7 +192,7 @@
                 </div>
               </form>
               <li><a onclick="setRegisterUrlInContentIframe();"><span class="glyphicon glyphicon-user"></span>Register</a></li>
-              <li><a onclick="setLoginUrlContentInIframe();" class="glyphicon glyphicon-log-in"> Login</a></li>
+              <li><a onclick="setLoginUrlInContentIframe();" id="login" class="glyphicon glyphicon-log-in"> Login</a></li>
             </ul>
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
