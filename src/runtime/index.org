@@ -184,17 +184,27 @@
       </nav>
       </div>
 
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
           <img src="http://files.vlabs.ac.in/lds/images/slider-images/slider-img-01.jpg" class="img-responsive main-logo" style="width:100%; maring-top:2px;">
         </div>
       </div>
-    </div>
+
+      <div>
+        <div class="col-md-4"></div>
+        <div style="margin-top:-217px; color:white; padding-left:5em;" class="col-md-8"><h1 class="animation animated-item-1" style="font-color:Black"><b>Online labs and experiments </b>
+            from top technical institutes. Now available
+            in <a href="https://info.vlabs.ac.in/college-cloud-edition/">offline
+              edition</a> for your college.</h1></div>
+      </div>
+</div></div>
+</div>
+</div>
     
-    <div id="contentDiv" >
+    <div id="contentDiv" class="container-fluid" style="padding-top:2em" >
     </div>
-    <div id="footerDiv">
+    <div id="footerDiv" class="container-fluid">
     </div>
 
 </body>
@@ -395,7 +405,7 @@ var insertContentIFrame = function() {
 #+BEGIN_SRC javascript 
 var insertFooterIFrame = function() {
   console.log("=======creating footer iframe=====");
-  var newFrame = createNewIframe("footerIframe", "footerIframe", "100%", "310em");
+  var newFrame = createNewIframe("footerIframe", "footerIframe", "100%", "390em");
   var division = document.getElementById("footerDiv");
   insertFrameInDivision(newFrame, division.id);
 };
