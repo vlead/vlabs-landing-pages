@@ -46,6 +46,32 @@
     <script type="text/javascript" src="../static/js/main.js"></script>
     <script>
       document.domain="localhost"
+      function displayMessage (evt) {
+           var message;
+           if (evt.origin !== "http://content.base5.vlabs.ac.in") {
+                  message = "You are not worthy";
+               }
+           else {
+                 if (evt.data.includes("FIND COURSES")){
+                     document.getElementById("login").innerHTML = "Logout";
+                     }
+                 else if (evt.data.includes("Sign in")){
+                     document.getElementById("login").innerHTML = "Login";
+                     }
+                 else {
+                      document.getElementById("login").innerHTML = "Login";
+                      }
+                  }
+           }
+
+           if (window.addEventListener) {
+              // For standards-compliant web browsers
+              window.addEventListener("message", displayMessage, false);
+           }
+           else {
+               window.attachEvent("onmessage", displayMessage);
+               }
+
     </script>    
     <title>Virtual Labs</title>    
   </head>
@@ -150,8 +176,8 @@
                   </span>
                 </div>
               </form>
-              <li><a onclick="setRegisterUrlInIframe();"><span class="glyphicon glyphicon-user"></span>Register</a></li>
-              <li><a class="glyphicon glyphicon-log-in"> Login</a></li>
+              <li><a onclick="setRegisterUrlInContentIframe();"><span class="glyphicon glyphicon-user"></span>Register</a></li>
+              <li><a onclick="setLoginUrlContentInIframe();" class="glyphicon glyphicon-log-in"> Login</a></li>
             </ul>
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
@@ -315,13 +341,24 @@ var setUsageInIframe = function() {
 };
 
 #+END_SRC
-** Set register url to Iframe
+** Set register url to content iframe
 #+NAME: set-register-url-to-content-iframe
 #+BEGIN_SRC javascript 
-var setRegisterUrlInIframe = function() {
+var setRegisterUrlInContentIframe = function() {
   console.log("=======setting registre url to content iframe=====");        
   var iframe = document.getElementById("contentIframe");
   iframe.src = "http://content.base5.vlabs.ac.in/register";
+  iframe.sandbox = 'allow-forms allow-scripts allow-same-origin';
+};
+
+#+END_SRC
+** Set Login url to content iframe
+#+NAME: set-login-url-to-content-iframe
+#+BEGIN_SRC javascript 
+var setLoginUrlInContentIframe = function() {
+  console.log("=======setting registre url to content iframe=====");        
+  var iframe = document.getElementById("contentIframe");
+  iframe.src = "http://content.base5.vlabs.ac.in/login";
   iframe.sandbox = 'allow-forms allow-scripts allow-same-origin';
 };
 
@@ -1281,6 +1318,7 @@ head.appendChild(favicon);
 <<reset-content>>
 <<add-script-tags>>
 <<set-register-url-to-content-iframe>>
+<<set-login-url-to-content-iframe>>
 #+END_SRC
 **** Header JS
 #+BEGIN_SRC javascript :tangle static/js/header.js :eval no :noweb yes 
