@@ -150,9 +150,9 @@
                   </span>
                 </div>
               </form>
-              <li><a href="http://content.base5.vlabs.ac.in/register"
+              <li><a href=""
                      target="content_iframe"><span class="glyphicon glyphicon-user"></span>Register</a></li>
-              <li><a class="glyphicon glyphicon-log-in" href="http://content.base5.vlabs.ac.in/login"> Login</a></li>
+              <li><a class="glyphicon glyphicon-log-in" href=""> Login</a></li>
             </ul>
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
