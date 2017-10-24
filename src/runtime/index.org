@@ -76,7 +76,7 @@
     <title>Virtual Labs</title>    
   </head>
   <body onload="loadIndex()">
-    <div id="headerDiv" >
+    <div  >
       <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
           <!-- Brand and toggle get grouped for better mobile display -->
@@ -243,8 +243,8 @@ var labs_hosted_platform = "test-openedx";
 #+BEGIN_SRC javascript 
 var loadIndex = function() {
   console.log("=======loading index page=====");
-  insertHeaderIFrame();
-  setHeaderContentInIframe();
+/*  insertHeaderIFrame();
+  setHeaderContentInIframe();*/
   insertContentIFrame();
   setContentInIframe();
   insertFooterIFrame();
