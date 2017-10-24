@@ -45,23 +45,39 @@
     <script type="text/javascript" src="../static/js/app-config.js"></script>
     <script type="text/javascript" src="../static/js/main.js"></script>
     <script>
-      document.domain="localhost"
+      document.domain="base5.vlabs.ac.in";
+
+      <!-- document.cookie = "loginHandler=''"; -->
+      <!-- var loginHandler = ""; -->
       function displayMessage (evt) {
            var message;
            if (evt.origin !== "http://content.base5.vlabs.ac.in") {
-                  message = "You are not worthy";
+                  message = "Unauthorized domain";
                }
            else {
                  if (evt.data.includes("FIND COURSES")){
-                     document.getElementById("login").innerHTML = "Logout";
-                     }
+                     loginHandler = "logged in";
+                     document.cookie = "loginHandler='logged in'";
+                 }
                  else if (evt.data.includes("Sign in")){
-                     document.getElementById("login").innerHTML = "Login";
+                     loginHandler = "logged out";
+                     document.cookie = "loginHandler='logged out'";
                      }
                  else {
-                      document.getElementById("login").innerHTML = "Login";
+                      console.log(loginHandler);
                       }
-                  }
+               }
+           if(document.cookie.includes("logged in")){
+                var loginDiv = document.getElementById("login")
+                loginDiv.innerHTML = "Logout";
+             }
+           else if(document.cookie.includes("logged out")){
+                  document.getElementById("login").innerHTML = "Login";
+             }
+           else{
+                console.log(loginHandler);
+             }
+
            }
 
            if (window.addEventListener) {
@@ -71,7 +87,6 @@
            else {
                window.attachEvent("onmessage", displayMessage);
                }
-
     </script>    
     <title>Virtual Labs</title>    
   </head>
@@ -177,7 +192,7 @@
                 </div>
               </form>
               <li><a onclick="setRegisterUrlInContentIframe();"><span class="glyphicon glyphicon-user"></span>Register</a></li>
-              <li><a onclick="setLoginUrlContentInIframe();" class="glyphicon glyphicon-log-in"> Login</a></li>
+              <li><a onclick="setLoginUrlInContentIframe();" id="login" class="glyphicon glyphicon-log-in"> Login</a></li>
             </ul>
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
