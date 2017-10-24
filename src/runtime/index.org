@@ -91,7 +91,7 @@
     <title>Virtual Labs</title>    
   </head>
   <body onload="loadIndex()">
-    <div  >
+    <div>
       <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
           <!-- Brand and toggle get grouped for better mobile display -->
@@ -118,12 +118,12 @@
                 <a onclick="loadAllLabs()" "#" class="dropdown-toggle" data-toggle="dropdown">All Labs <b ></b></a>
               </li>
               <li class="dropdown">
-                <a  href="#" class="dropdown-toggle" data-toggle="dropdown">Institutes <b class="caret"></b></a>
+                <a class="dropdown-toggle" data-toggle="dropdown">Institutes <b class="caret"></b></a>
                 <ul class="dropdown-menu filterInstituteComboBox" id="getInstituteName" >
                 </ul>
                 
               <li class="dropdown">
-                <a  href="#" class="dropdown-toggle" data-toggle="dropdown">Disciplines <b class="caret"></b></a>
+                <a class="dropdown-toggle" data-toggle="dropdown">Disciplines <b class="caret"></b></a>
                 <ul  class="dropdown-menu filterDisciplineComboBox" >
                 </ul>
                 
@@ -197,9 +197,17 @@
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
       </nav>
-</div>
+      </div>
 
-    <div id="contentDiv" style="padding-top:172px;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <img src="http://files.vlabs.ac.in/lds/images/slider-images/slider-img-01.jpg" class="img-responsive main-logo" style="width:100%; maring-top:2px;">
+        </div>
+      </div>
+    </div>
+    
+    <div id="contentDiv" >
     </div>
     <div id="footerDiv">
     </div>
@@ -560,7 +568,7 @@ var getAllInstitutes = function(){
       var institute_name = value['institute_name'];
       var image_name = value['assets'][0]['path'];
       var image_path = institute_images_url + image_name;
-      institutes += '<div class="col-lg-3 col-md-4 col-xs-6 thumb"><div  class="thumbnail"> <a href="#"><img class="img-responsive" onclick="getLabsByInstituteName(this)" src="'
+      institutes += '<div class="col-lg-3 col-md-4 col-xs-6 thumb"><div  class="thumbnail"> <a><img class="img-responsive" onclick="getLabsByInstituteName(this)" src="'
       + image_path +'" id="' + institute_name +
       '"></a><div><p style="text-align:center; color: #888; ">'+ institute_name +'</p></div></div></div>';
       
@@ -603,7 +611,7 @@ var getAllDisciplines = function(){
     var discipline_name = value['discipline_name'];
     var image_name = value['assets'][0]['path'];
     var image_path = discipline_images_url + image_name;
-    disciplines += '<div class="col-lg-3 col-md-4 col-xs-6 thumb"> <div class="thumbnail"> <a  href="#"><img class="img-responsive"onclick="getLabsByDisciplineName(this)" src="'
+    disciplines += '<div class="col-lg-3 col-md-4 col-xs-6 thumb"> <div class="thumbnail"> <a><img class="img-responsive"onclick="getLabsByDisciplineName(this)" src="'
     + image_path +'" id="' + discipline_name + '"></a><div ><p style="text-align:center; color: #888; ">'+ discipline_name +'</p></div></div></div>';
     });
     var discipline_list = '<div class="container-fluid"><div class="row">'
@@ -863,11 +871,11 @@ var getAllInstitutesInCombobox = function(){
     $.each(data, function(key, value){
       var institute_name = value['institute_name'];
       institutes +=  '<li onclick="getLabsByInstituteName(this)" value="'
-        + institute_name + '" id="' + institute_name + '"><a href="#">' +
+        + institute_name + '" id="' + institute_name + '"><a >' +
         institute_name + '</a></li>';
     });
     var institute_list = '<li onclick="loadAllInstitutes()">\
-<a href="#">All Institutes</a></li>' + institutes;
+<a >All Institutes</a></li>' + institutes;
     console.log(institute_list);
     $('.filterInstituteComboBox').append(institute_list);
   })
@@ -900,11 +908,11 @@ var getAllDisciplinesInCombobox = function(){
     $.each(data, function(key, value){
     var discipline_name = value['discipline_name'];
       disciplines += '<li onclick="getLabsByDisciplineName(this)" value="'
-        + discipline_name + '" id="' + discipline_name + '"><a href="#">' +
+        + discipline_name + '" id="' + discipline_name + '"><a >' +
         discipline_name + '</a></li>';
     });
     var discipline_list = '<li onclick="loadAllDisciplines()">\
-<a href="#">All Disciplines</a></li>' + disciplines;
+<a>All Disciplines</a></li>' + disciplines;
     console.log(discipline_list);
     $('.filterDisciplineComboBox').append(discipline_list);
 
@@ -1060,7 +1068,56 @@ var resetContentInIframe = function(data) {
   console.log(content);
   content.body.innerHTML="";
   content.write(data);
-  addScriptTags();
+//  addScriptTags();
+
+var js_script = iframe.contentWindow.document.createElement("script");
+  var js_url = "../static/js/main.js";
+  js_script.type = "text/javascript";
+  js_script.src = js_url;
+  var head = iframe.contentWindow.document.head;
+  console.log(head);
+  head.appendChild(js_script);
+  
+  var config_script = iframe.contentWindow.document.createElement("script");
+  var config_url = "../static/js/app-config.js";
+  config_script.type = "text/javascript";
+  config_script.src = config_url;
+  head.appendChild(config_script);
+  
+  var jquery_script = iframe.contentWindow.document.createElement("script");
+  var jquery_url = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js";
+  jquery_script.type = "text/javascript";
+  jquery_script.src = jquery_url;
+  head.appendChild(jquery_script);  
+
+  var bootstrap_js = iframe.contentWindow.document.createElement("script");
+  var bootstrap_js_url = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js";
+  bootstrap_js.type = "text/javascript";
+  bootstrap_js.src = bootstrap_js_url;
+  head.appendChild(bootstrap_js);  
+
+  var styles = iframe.contentWindow.document.createElement("link");
+  var css_url = "../static/css/style.css";
+  styles.type = "text/stylesheet";
+  styles.href = css_url;
+  head.appendChild(styles);
+
+  var bootstrap_styles = iframe.contentWindow.document.createElement("link");
+  var bootstrap_css_url = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css";
+  bootstrap_styles.rel = "stylesheet";
+  bootstrap_styles.href = bootstrap_css_url;
+  head.appendChild(bootstrap_styles);
+
+  var favicon = iframe.contentWindow.document.createElement("link");
+  var favicon_url = "";
+  favicon.type = "image/x-icon";
+  favicon.href = favicon_url;
+  head.appendChild(favicon);
+
+
+
+
+
 
 };
 
@@ -1318,6 +1375,20 @@ head.appendChild(favicon);
 **** Main JS
 #+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes 
 <<load-index>>
+<<set-usage-in-iframe>>
+<<get-all-institutes>>
+<<get-all-disciplines>>
+<<get-all-labs>>
+<<get-all-institutes-in-combobox>>
+<<create-new-iframe>>
+<<delete-frame-in-division>>
+<<insert-frame-in-division>>
+<<get-all-disciplines-in-combobox>>
+<<get-labs-by-discipline-name>>
+<<get-labs-by-institute-name>>
+<<load-all-disciplines>>
+<<load-all-institutes>>
+<<load-all-labs>>
 <<create-new-iframe>>
 <<delete-frame-in-division>>
 <<insert-frame-in-division>>
@@ -1334,28 +1405,15 @@ head.appendChild(favicon);
 <<add-script-tags>>
 <<set-register-url-to-content-iframe>>
 <<set-login-url-to-content-iframe>>
+<<add-script-tags>>
+<<labs-by-keyword-search>>
+<<mouse-over>>
+
 #+END_SRC
 **** Header JS
 #+BEGIN_SRC javascript :tangle static/js/header.js :eval no :noweb yes 
-<<set-usage-in-iframe>>
-<<get-all-institutes-in-combobox>>
-<<get-all-disciplines-in-combobox>>
-<<get-labs-by-discipline-name>>
-<<get-labs-by-institute-name>>
-<<load-all-disciplines>>
-<<load-all-institutes>>
-<<load-all-labs>>
-<<create-new-iframe>>
-<<delete-frame-in-division>>
-<<insert-frame-in-division>>
-<<get-all-institutes>>
-<<get-all-disciplines>>
-<<get-all-labs>>
 <<set-content>>
 <<reset-content>>
-<<add-script-tags>>
-<<mouse-over>>
-<<labs-by-keyword-search>>
 <<favicon>> 
 
 #+END_SRC
