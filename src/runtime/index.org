@@ -71,9 +71,12 @@
            if(document.cookie.includes("logged in")){
                 var loginDiv = document.getElementById("login")
                 loginDiv.innerHTML = "Logout";
+                loginDiv.setAttribute( "onClick", "setLoginUrlInContentIframe('logout')" );
+                console.log(loginDiv);
              }
            else if(document.cookie.includes("logged out")){
                   document.getElementById("login").innerHTML = "Login";
+                  document.getElementById("login").setAttribute( "onClick", "setLoginUrlInContentIframe('login')" );
              }
            else{
                 console.log(loginHandler);
@@ -445,11 +448,19 @@ var setRegisterUrlInContentIframe = function() {
 ** Set Login url to content iframe
 #+NAME: set-login-url-to-content-iframe
 #+BEGIN_SRC javascript 
-var setLoginUrlInContentIframe = function() {
-  console.log("=======setting registre url to content iframe=====");        
+var setLoginUrlInContentIframe = function(event) {
+  console.log("=======setting login url to content iframe=====");
   var iframe = document.getElementById("contentIframe");
-  iframe.src = "http://content.base5.vlabs.ac.in/login";
-  iframe.sandbox = 'allow-forms allow-scripts allow-same-origin';
+  if(event == "login"){
+      iframe.src = "http://content.base5.vlabs.ac.in/login";
+      iframe.sandbox = 'allow-forms allow-scripts allow-same-origin';
+  }
+  else{
+      iframe.src = "http://content.base5.vlabs.ac.in/logout";
+      document.getElementById("login").innerHTML = "Login";
+      document.getElementById("login").setAttribute( "onClick", "setLoginUrlInContentIframe('login')" );
+      iframe.src = "./content.html";
+  }
 };
 
 #+END_SRC
