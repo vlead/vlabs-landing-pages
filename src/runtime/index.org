@@ -798,9 +798,9 @@ var getAllLabs = function(){
 #+BEGIN_SRC javascript 
 var getLabsByDisciplineName = function(image) {
   console.log("===========inside getLabsByDisciplineName==========");
-  // deleteFrameInDivision("contentIframe", "contentDiv");
-  // var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "650em");
-  // insertFrameInDivision(newFrame, "contentDiv");
+//  deleteFrameInDivision("contentIframe", "contentDiv");
+//  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "650em");
+//  insertFrameInDivision(newFrame, "contentDiv");
   var discipline_name = image.id;
   var labs_url = base_url+"/labs";
   console.log(labs_url);
