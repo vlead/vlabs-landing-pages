@@ -798,9 +798,9 @@ var getAllLabs = function(){
 #+BEGIN_SRC javascript 
 var getLabsByDisciplineName = function(image) {
   console.log("===========inside getLabsByDisciplineName==========");
-  deleteFrameInDivision("contentIframe", "contentDiv");
-  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "650em");
-  insertFrameInDivision(newFrame, "contentDiv");
+  // deleteFrameInDivision("contentIframe", "contentDiv");
+  // var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "650em");
+  // insertFrameInDivision(newFrame, "contentDiv");
   var discipline_name = image.id;
   var labs_url = base_url+"/labs";
   console.log(labs_url);
@@ -873,9 +873,9 @@ var getLabsByDisciplineName = function(image) {
 #+BEGIN_SRC javascript 
 var getLabsByInstituteName = function(image) {
   console.log("===========inside getLabsByInstituteName==========");
-  deleteFrameInDivision("contentIframe", "contentDiv");
-  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "650em");
-  insertFrameInDivision(newFrame, "contentDiv");
+  // deleteFrameInDivision("contentIframe", "contentDiv");
+  // var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "650em");
+  // insertFrameInDivision(newFrame, "contentDiv");
   var institute_name = image.id;
   var labs_url = base_url+"/labs";
   console.log(labs_url);
@@ -1429,7 +1429,6 @@ head.appendChild(favicon);
 <<set-login-url-to-content-iframe>>
 <<set-usage-in-iframe>>
 <<get-all-disciplines-in-combobox>>
-<<get-labs-by-discipline-name>>
 <<get-labs-by-institute-name>>
 <<load-all-disciplines>>
 <<load-all-institutes>>
