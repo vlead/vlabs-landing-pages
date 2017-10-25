@@ -274,7 +274,7 @@
 
 
     
-    <div id="contentDiv" class="container-fluid" style="padding-top:4em" >
+    <div id="contentDiv" class="container-fluid" style="padding-top:5em" >
     </div>
     <div id="footerDiv" class="container-fluid">
     </div>
@@ -523,7 +523,7 @@ var insertFrame = function() {
 var loadAllDisciplines = function() {
   console.log("=======loading all disciplines=====");
   deleteFrameInDivision("contentIframe", "contentDiv");
-  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "850em");
+  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "1180em");
   insertFrameInDivision(newFrame, "contentDiv");
   getAllDisciplines();
 //  var disciplines = getAllDisciplines();
@@ -543,7 +543,7 @@ var loadAllDisciplines = function() {
 var loadAllInstitutes = function() {
   console.log("=======loading all institutes=====");
   deleteFrameInDivision("contentIframe", "contentDiv");
-  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "650em");
+  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "790em");
   insertFrameInDivision(newFrame, "contentDiv");
   getAllInstitutes();
 //  var institutes = getAllInstitutes();
@@ -635,9 +635,9 @@ var getAllInstitutes = function(){
       var institute_name = value['institute_name'];
       var image_name = value['assets'][0]['path'];
       var image_path = institute_images_url + image_name;
-      institutes += '<div class="col-lg-3 col-md-4 col-xs-6 thumb"><div  class="thumbnail"> <a><img class="img-responsive" onclick="getLabsByInstituteName(this)" src="'
+      institutes += '<div class="col-lg-3 col-md-4 col-xs-6 thumb"><div  class="thumbnail" style="padding: 0px !important;"> <a><img class="img-responsive" onclick="getLabsByInstituteName(this)" src="'
       + image_path +'" id="' + institute_name +
-      '"></a><div><p style="text-align:center; color: #888; ">'+ institute_name +'</p></div></div></div>';
+      '"></a><div class="caption" style="min-height: 110px;"><h4 style="text-align:center; color:#2c99ce;">'+ institute_name +'</h4></div></div></div>';
       
     });
     var institute_list = '<div class="container-fluid"><div class="row">'
@@ -678,8 +678,8 @@ var getAllDisciplines = function(){
     var discipline_name = value['discipline_name'];
     var image_name = value['assets'][0]['path'];
     var image_path = discipline_images_url + image_name;
-    disciplines += '<div class="col-lg-3 col-md-4 col-xs-6 thumb"> <div class="thumbnail"> <a><img class="img-responsive"onclick="getLabsByDisciplineName(this)" src="'
-    + image_path +'" id="' + discipline_name + '"></a><div ><p style="text-align:center; color: #888; ">'+ discipline_name +'</p></div></div></div>';
+    disciplines += '<div class="col-lg-3 col-md-4 col-xs-6 thumb"> <div class="thumbnail"  style="padding: 0px !important;"> <a><img class="img-responsive"onclick="getLabsByDisciplineName(this)" src="'
+    + image_path +'" id="' + discipline_name + '"></a><div class="caption" style="min-height: 110px;"><h4 style="text-align:center; color:#2c99ce;  ">'+ discipline_name +'</h4></div></div></div>';
     });
     var discipline_list = '<div class="container-fluid"><div class="row">'
     + disciplines +'</div></div>';
@@ -1135,56 +1135,7 @@ var resetContentInIframe = function(data) {
   console.log(content);
   content.body.innerHTML="";
   content.write(data);
-//  addScriptTags();
-
-var js_script = iframe.contentWindow.document.createElement("script");
-  var js_url = "../static/js/main.js";
-  js_script.type = "text/javascript";
-  js_script.src = js_url;
-  var head = iframe.contentWindow.document.head;
-  console.log(head);
-  head.appendChild(js_script);
-  
-  var config_script = iframe.contentWindow.document.createElement("script");
-  var config_url = "../static/js/app-config.js";
-  config_script.type = "text/javascript";
-  config_script.src = config_url;
-  head.appendChild(config_script);
-  
-  var jquery_script = iframe.contentWindow.document.createElement("script");
-  var jquery_url = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js";
-  jquery_script.type = "text/javascript";
-  jquery_script.src = jquery_url;
-  head.appendChild(jquery_script);  
-
-  var bootstrap_js = iframe.contentWindow.document.createElement("script");
-  var bootstrap_js_url = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js";
-  bootstrap_js.type = "text/javascript";
-  bootstrap_js.src = bootstrap_js_url;
-  head.appendChild(bootstrap_js);  
-
-  var styles = iframe.contentWindow.document.createElement("link");
-  var css_url = "../static/css/style.css";
-  styles.type = "text/stylesheet";
-  styles.href = css_url;
-  head.appendChild(styles);
-
-  var bootstrap_styles = iframe.contentWindow.document.createElement("link");
-  var bootstrap_css_url = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css";
-  bootstrap_styles.rel = "stylesheet";
-  bootstrap_styles.href = bootstrap_css_url;
-  head.appendChild(bootstrap_styles);
-
-  var favicon = iframe.contentWindow.document.createElement("link");
-  var favicon_url = "";
-  favicon.type = "image/x-icon";
-  favicon.href = favicon_url;
-  head.appendChild(favicon);
-
-
-
-
-
+  addScriptTags();
 
 };
 
@@ -1193,21 +1144,21 @@ var js_script = iframe.contentWindow.document.createElement("script");
 ** Mouse Over
 #+NAME: mouse-over
 #+BEGIN_SRC javascript
-$(document).ready(function(){
+//$(document).ready(function(){
 //  loadAllDisciplines();
-  getAllInstitutesInCombobox(); 
-  getAllDisciplinesInCombobox(); 
-  $(".dropdown").hover(            
-    function() {
-      $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideDown("400");
-      $(this).toggleClass('open');        
-    },
-    function() {
-      $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideUp("400");
-      $(this).toggleClass('open');       
-    }
-  );
-});
+//});
+getAllInstitutesInCombobox(); 
+getAllDisciplinesInCombobox(); 
+$(".dropdown").hover(            
+  function() {
+    $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideDown("400");
+    $(this).toggleClass('open');        
+  },
+  function() {
+    $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideUp("400");
+    $(this).toggleClass('open');       
+  }
+);
 
 #+END_SRC
 
@@ -1442,20 +1393,7 @@ head.appendChild(favicon);
 **** Main JS
 #+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes 
 <<load-index>>
-<<set-usage-in-iframe>>
-<<get-all-institutes>>
-<<get-all-disciplines>>
-<<get-all-labs>>
 <<get-all-institutes-in-combobox>>
-<<create-new-iframe>>
-<<delete-frame-in-division>>
-<<insert-frame-in-division>>
-<<get-all-disciplines-in-combobox>>
-<<get-labs-by-discipline-name>>
-<<get-labs-by-institute-name>>
-<<load-all-disciplines>>
-<<load-all-institutes>>
-<<load-all-labs>>
 <<create-new-iframe>>
 <<delete-frame-in-division>>
 <<insert-frame-in-division>>
@@ -1472,7 +1410,16 @@ head.appendChild(favicon);
 <<add-script-tags>>
 <<set-register-url-to-content-iframe>>
 <<set-login-url-to-content-iframe>>
-<<add-script-tags>>
+<<set-usage-in-iframe>>
+<<get-all-disciplines-in-combobox>>
+<<get-labs-by-discipline-name>>
+<<get-labs-by-institute-name>>
+<<load-all-disciplines>>
+<<load-all-institutes>>
+<<load-all-labs>>
+<<get-all-institutes>>
+<<get-all-disciplines>>
+<<get-all-labs>>
 <<labs-by-keyword-search>>
 <<mouse-over>>
 
