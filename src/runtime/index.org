@@ -689,8 +689,13 @@ var getAllDisciplines = function(){
     var discipline_name = value['discipline_name'];
     var image_name = value['assets'][0]['path'];
     var image_path = discipline_images_url + image_name;
-    disciplines += '<div class="col-lg-3 col-md-4 col-xs-6 thumb"> <div class="thumbnail"  style="padding: 0px !important;"> <a><img class="img-responsive"onclick="getLabsByDisciplineName(this)" src="'
-    + image_path +'" id="' + discipline_name + '"></a><div class="caption" style="min-height: 110px;"><h4 style="text-align:center; color:#2c99ce;  ">'+ discipline_name +'</h4></div></div></div>';
+    disciplines += '<div class="col-lg-3 col-md-4 col-xs-6 thumb"> <div class="thumbnail"  \
+style="padding: 0px !important;"> <a><img class="img-responsive"\
+onclick="getLabsByDisciplineName(this, 0)" src="'
+    + image_path +'" id="' + discipline_name + '">\
+</a><div class="caption" style="min-height: 110px;">\
+<h4 style="text-align:center; color:#2c99ce;  ">'
+        + discipline_name +'</h4></div></div></div>';
     });
     var discipline_list = '<div class="container-fluid"><div class="row">'
     + disciplines +'</div></div>';
@@ -796,11 +801,15 @@ var getAllLabs = function(){
 
 #+NAME: get-labs-by-discipline-name
 #+BEGIN_SRC javascript 
-var getLabsByDisciplineName = function(image) {
+var getLabsByDisciplineName = function(image, flag) {
   console.log("===========inside getLabsByDisciplineName==========");
-//  deleteFrameInDivision("contentIframe", "contentDiv");
-//  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "650em");
-//  insertFrameInDivision(newFrame, "contentDiv");
+  console.log("===========flag==========");
+  console.log(flag);
+  if (flag==1){
+    deleteFrameInDivision("contentIframe", "contentDiv");
+    var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "650em");
+    insertFrameInDivision(newFrame, "contentDiv");
+  }
   var discipline_name = image.id;
   var labs_url = base_url+"/labs";
   console.log(labs_url);
@@ -991,7 +1000,7 @@ var getAllDisciplinesInCombobox = function(){
     var disciplines = '';
     $.each(data, function(key, value){
     var discipline_name = value['discipline_name'];
-      disciplines += '<li onclick="getLabsByDisciplineName(this)" value="'
+      disciplines += '<li onclick="getLabsByDisciplineName(this, 1)" value="'
         + discipline_name + '" id="' + discipline_name + '"><a >' +
         discipline_name + '</a></li>';
     });
