@@ -47,9 +47,8 @@
     <script type="text/javascript" src="../static/js/main.js"></script>
     <script>
       document.domain="localhost";
+      window.loggedin=false;
 
-      <!-- document.cookie = "loginHandler=''"; -->
-      <!-- var loginHandler = ""; -->
       function displayMessage (evt) {
            var message;
            if (evt.origin !== "http://content.base5.vlabs.ac.in") {
@@ -57,19 +56,18 @@
                }
            else {
                  if (evt.data.includes("FIND COURSES")){
-                     loginHandler = "logged in";
                      document.cookie = "loginHandler='logged in'";
                  }
                  else if (evt.data.includes("Sign in")){
-                     loginHandler = "logged out";
                      document.cookie = "loginHandler='logged out'";
                      }
                  else {
-                      console.log(loginHandler);
+                      console.log("");
                       }
                }
            if(document.cookie.includes("logged in")){
                 var loginDiv = document.getElementById("login")
+                window.loggedin=true;
                 loginDiv.innerHTML = "Logout";
                 loginDiv.setAttribute( "onClick", "setLoginUrlInContentIframe('logout')" );
                 console.log(loginDiv);
@@ -79,9 +77,8 @@
                   document.getElementById("login").setAttribute( "onClick", "setLoginUrlInContentIframe('login')" );
              }
            else{
-                console.log(loginHandler);
+                console.log("");
              }
-
            }
 
            if (window.addEventListener) {
@@ -464,6 +461,25 @@ var setLoginUrlInContentIframe = function(event) {
 };
 
 #+END_SRC
+** Validate Authentication
+#+NAME: validate-authentication
+#+BEGIN_SRC javascript 
+var validateAuthentication = function(url) {
+  var lab_url = url.id;
+  var loggedinHandler = parent.window.loggedin;
+  var iframe = parent.document.getElementById("contentIframe");
+  if(loggedinHandler == false){
+      iframe.src = "http://content.base5.vlabs.ac.in/login";
+      //iframe.sandbox = 'allow-forms allow-scripts allow-same-origin';
+  }
+  else{
+      iframe.src = lab_url;
+  }
+
+};
+
+#+END_SRC
+
 
 ** Creating the content iframe
    Displays the content iframe based on the selection of the
@@ -850,12 +866,11 @@ var getLabsByDisciplineName = function(image, flag) {
         }
       }
       labs += '<div class=" col-md-3 " id='+ lab_name +
-        '> <div class="thumbnail" style="padding: 0px !important;"><a href='+ hosted_url +
-        '><img class="img-responsive" src="' + path +
-        '"alt="image"/><a href='+ hosted_url +
-        '> <div class="caption" style="min-height: 110px;" ><h4 style="text-align:left; color:#2c99ce;">'+lab_name +
-        '</h4></div></a></div></div>';
-    });
+           '> <div class="thumbnail" style="padding: 0px !important;"><a id="' + hosted_url + '" onclick="javascript:validateAuthentication(this);"><img class="img-responsive" src="' + path +
+           '"alt="image"/><a href='+ hosted_url +
+           '> <div class="caption" style="min-height: 110px;" ><h4 style="text-align:left; color:#2c99ce;">'+lab_name +
+           '</h4></div></a></div></div>';
+      });
     console.log(labs);
     var labs_list = '<div class="container-fluid"><div class="row">'+ labs +'</div></div>';
     resetContentInIframe(labs);
@@ -1442,6 +1457,7 @@ head.appendChild(favicon);
 <<add-script-tags>>
 <<set-register-url-to-content-iframe>>
 <<set-login-url-to-content-iframe>>
+<<validate-authentication>>
 <<set-usage-in-iframe>>
 <<get-all-disciplines-in-combobox>>
 <<get-labs-by-institute-name>>
