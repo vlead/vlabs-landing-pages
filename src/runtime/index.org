@@ -1457,9 +1457,6 @@ head.appendChild(favicon);
 #+END_SRC
 **** Header JS
 #+BEGIN_SRC javascript :tangle static/js/header.js :eval no :noweb yes 
-<<set-content>>
-<<reset-content>>
-<<favicon>> 
 
 #+END_SRC
 *** Config
