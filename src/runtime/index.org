@@ -336,7 +336,8 @@ var loadIndex = function() {
 /*  insertHeaderIFrame();
   setHeaderContentInIframe();*/
   insertContentIFrame();
-  setContentInIframe();
+//  setContentInIframe();
+  loadAllDisciplines();
   insertFooterIFrame();
   setFooterContentInIframe();
 };
@@ -479,7 +480,6 @@ var validateAuthentication = function(url) {
 };
 
 #+END_SRC
-
 
 ** Creating the content iframe
    Displays the content iframe based on the selection of the
