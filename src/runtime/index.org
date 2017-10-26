@@ -1455,10 +1455,6 @@ head.appendChild(favicon);
 <<mouse-over>>
 
 #+END_SRC
-**** Header JS
-#+BEGIN_SRC javascript :tangle static/js/header.js :eval no :noweb yes 
-
-#+END_SRC
 *** Config
 #+BEGIN_SRC javascript :tangle static/js/app-config.js :eval no :noweb yes 
 <<app-config>>
