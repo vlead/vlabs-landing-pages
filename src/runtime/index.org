@@ -187,7 +187,7 @@
                   <input id="keyword" type="text" class="form-control"
                          placeholder="Lab Name">
                   <span class="input-group-addon">
-                    <button 
+                    <button type="button"
                        onclick="javascript:getLabsByKeyword()"
                        target="content_iframe" class="btn btn-default" type="submit">
                       <span class="glyphicon glyphicon-search"></span>
