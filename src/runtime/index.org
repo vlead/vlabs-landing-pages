@@ -464,6 +464,18 @@ var setLoginUrlInContentIframe = function(event) {
 };
 
 #+END_SRC
+** Validate Authentication
+#+NAME: validate-authentication
+#+BEGIN_SRC javascript 
+var validateAuthentication = function(url) {
+  console.log(url.id);
+  alert(window.cookie);
+  
+  console.log("=======setting login url to content iframe=====");
+};
+
+#+END_SRC
+
 
 ** Creating the content iframe
    Displays the content iframe based on the selection of the
@@ -850,12 +862,11 @@ var getLabsByDisciplineName = function(image, flag) {
         }
       }
       labs += '<div class=" col-md-3 " id='+ lab_name +
-        '> <div class="thumbnail" style="padding: 0px !important;"><a href='+ hosted_url +
-        '><img class="img-responsive" src="' + path +
-        '"alt="image"/><a href='+ hosted_url +
-        '> <div class="caption" style="min-height: 110px;" ><h4 style="text-align:left; color:#2c99ce;">'+lab_name +
-        '</h4></div></a></div></div>';
-    });
+           '> <div class="thumbnail" style="padding: 0px !important;"><a id="' + hosted_url + '" onclick="javascript:validateAuthentication(this);"><img class="img-responsive" src="' + path +
+           '"alt="image"/><a href='+ hosted_url +
+           '> <div class="caption" style="min-height: 110px;" ><h4 style="text-align:left; color:#2c99ce;">'+lab_name +
+           '</h4></div></a></div></div>';
+      });
     console.log(labs);
     var labs_list = '<div class="container-fluid"><div class="row">'+ labs +'</div></div>';
     resetContentInIframe(labs);
@@ -1442,6 +1453,7 @@ head.appendChild(favicon);
 <<add-script-tags>>
 <<set-register-url-to-content-iframe>>
 <<set-login-url-to-content-iframe>>
+<<validate-authentication>>
 <<set-usage-in-iframe>>
 <<get-all-disciplines-in-combobox>>
 <<get-labs-by-institute-name>>
