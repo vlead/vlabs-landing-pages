@@ -47,9 +47,8 @@
     <script type="text/javascript" src="../static/js/main.js"></script>
     <script>
       document.domain="localhost";
+      window.loggedin=false;
 
-      <!-- document.cookie = "loginHandler=''"; -->
-      <!-- var loginHandler = ""; -->
       function displayMessage (evt) {
            var message;
            if (evt.origin !== "http://content.base5.vlabs.ac.in") {
@@ -57,19 +56,18 @@
                }
            else {
                  if (evt.data.includes("FIND COURSES")){
-                     loginHandler = "logged in";
                      document.cookie = "loginHandler='logged in'";
                  }
                  else if (evt.data.includes("Sign in")){
-                     loginHandler = "logged out";
                      document.cookie = "loginHandler='logged out'";
                      }
                  else {
-                      console.log(loginHandler);
+                      console.log("");
                       }
                }
            if(document.cookie.includes("logged in")){
                 var loginDiv = document.getElementById("login")
+                window.loggedin=true;
                 loginDiv.innerHTML = "Logout";
                 loginDiv.setAttribute( "onClick", "setLoginUrlInContentIframe('logout')" );
                 console.log(loginDiv);
@@ -79,9 +77,8 @@
                   document.getElementById("login").setAttribute( "onClick", "setLoginUrlInContentIframe('login')" );
              }
            else{
-                console.log(loginHandler);
+                console.log("");
              }
-
            }
 
            if (window.addEventListener) {
@@ -468,10 +465,17 @@ var setLoginUrlInContentIframe = function(event) {
 #+NAME: validate-authentication
 #+BEGIN_SRC javascript 
 var validateAuthentication = function(url) {
-  console.log(url.id);
-  alert(window.cookie);
-  
-  console.log("=======setting login url to content iframe=====");
+  var lab_url = url.id;
+  var loggedinHandler = parent.window.loggedin;
+  var iframe = parent.document.getElementById("contentIframe");
+  if(loggedinHandler == false){
+      iframe.src = "http://content.base5.vlabs.ac.in/login";
+      //iframe.sandbox = 'allow-forms allow-scripts allow-same-origin';
+  }
+  else{
+      iframe.src = lab_url;
+  }
+
 };
 
 #+END_SRC
