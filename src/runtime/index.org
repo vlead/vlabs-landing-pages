@@ -663,7 +663,7 @@ var getAllInstitutes = function(){
       var image_name = value['assets'][0]['path'];
       var image_path = institute_images_url + image_name;
       institutes += '<div class="col-lg-3 col-md-4 col-xs-6 thumb"><div  \
-class="thumbnail" style="padding: 0px !important;"> <a><img class="img-responsive" \
+class="thumbnail" style="padding: 0px !important; padding-top:15px !important;"> <a><img class="img-responsive" \
 onclick="getLabsByInstituteName(this, 0)" src="' + image_path +'" id="' + institute_name +
       '"></a><div class="caption" style="min-height: 110px;">\
 <h4 style="text-align:center; color:#2c99ce;">'+ institute_name +'</h4></div></div></div>';
@@ -708,7 +708,7 @@ var getAllDisciplines = function(){
     var image_name = value['assets'][0]['path'];
     var image_path = discipline_images_url + image_name;
     disciplines += '<div class="col-lg-3 col-md-4 col-xs-6 thumb"> <div class="thumbnail"  \
-style="padding: 0px !important;"> <a><img class="img-responsive"\
+style="padding: 0px !important; padding-top:15px !important;"> <a><img class="img-responsive"\
 onclick="getLabsByDisciplineName(this, 0)" src="'
     + image_path +'" id="' + discipline_name + '">\
 </a><div class="caption" style="min-height: 110px;">\
