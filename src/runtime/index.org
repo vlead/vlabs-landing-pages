@@ -711,10 +711,11 @@ var getAllDisciplines = function(){
 style="padding: 0px !important; padding-top:15px !important;"> <a><img class="img-responsive"\
 onclick="getLabsByDisciplineName(this, 0)" src="'
     + image_path +'" id="' + discipline_name + '">\
-</a><div class="caption" style="min-height: 110px;">\
+<div class="caption" style="min-height: 110px;">\
 <h4 style="text-align:center; color:#2c99ce;  ">'
-        + discipline_name +'</h4></div></div></div>';
+        + discipline_name +'</h4></div></a></div></div>';
     });
+
     var discipline_list = '<div class="container-fluid"><div class="row">'
     + disciplines +'</div></div>';
     
@@ -1245,6 +1246,7 @@ font-family:'Raleway' !important;
   display: block;
   color: #222;
   padding: 3px 5px;
+  font-size:16px;
 }
 .mega-dropdown-menu > li ul > li > a:hover,
 .mega-dropdown-menu > li ul > li > a:focus {
@@ -1345,78 +1347,23 @@ height:650px;
     
 }
 
-/*the following css used for nav bar*/
-    body {
-		padding: 60px 0px;
-	}
-	.navbar-collapse {
-		position: relative;
-		padding-top: 30px !important;
-		max-height: 270px;
-	}
-	.navbar-collapse form[role="search"] {
-		position: absolute;
-		top: 0px;
-		right: 0px;
-		width: 100%;
-		padding: 0px;
-		margin: 0px;
-		z-index: 0;
-	}
-	.navbar-collapse form[role="search"] button,
-	.navbar-collapse form[role="search"] input {
-		padding: 8px 12px;
-		border-radius: 0px;
-		border-width: 0px;
-		color: rgb(119, 119, 119);
-		background-color: rgb(248, 248, 248);
-		border-color: rgb(231, 231, 231);
-		box-shadow: none;
-		outline: none;
-	}
-	.navbar-collapse form[role="search"] input {
-		padding: 16px 12px;
-		font-size: 14pt;
-		font-style: italic;
-		color: rgb(160, 160, 160);
-		box-shadow: none;
-	}
-	.navbar-collapse form[role="search"] button[type="reset"] {
-		display: none;
-	}
-
-	@media (min-width: 768px) {
-		.navbar-collapse {
-			padding-top: 0px !important;
-			padding-right: 38px !important;
-		}
-		.navbar-collapse form[role="search"] {
-			width: 38px;
-		}
-		.navbar-collapse form[role="search"] button,
-		.navbar-collapse form[role="search"] input {
-			padding: 15px 12px;
-		}
-		.navbar-collapse form[role="search"] input {
-			font-size: 18pt;
-			opacity: 0;
-			display: none;            
-            height: 50px;
-		}
-		.navbar-collapse form[role="search"].active {
-			width: 100%;
-		}
-		.navbar-collapse form[role="search"].active button,
-		.navbar-collapse form[role="search"].active input {
-			display: table-cell;
-			opacity: 1;
-		}
-    	.navbar-collapse form[role="search"].active input {
-			width: 100%;
-		}
-	}
-
 .cursor-pointer{cursor: pointer;}
+
+.navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover
+{
+color:#5FB0E4 !important;
+
+
+}
+
+.navbar-default .navbar-nav{
+font-size:16px;
+}
+.dropdown-menu{
+cursor: pointer !important;
+border-left: 0 solid #5FB0E4 !important;
+font-size:16px;
+}
 
 
 
