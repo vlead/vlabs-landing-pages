@@ -1,4 +1,4 @@
-#+TITLE: Runtime
+c#+TITLE: Runtime
 #+AUTHOR: VLEAD
 #+DATE: [2017-04-06 Thursday]
 #+PROPERTY: results output
@@ -116,20 +116,20 @@
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
               <li >
-                <a onclick="loadAllLabs()" "#" class="dropdown-toggle" data-toggle="dropdown">All Labs <b ></b></a>
+                <a onclick="loadAllLabs()" "#" class="dropdown-toggle cursor-pointer" data-toggle="dropdown">All Labs <b ></b></a>
               </li>
               <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown">Institutes <b class="caret"></b></a>
+                <a class="dropdown-toggle cursor-pointer" data-toggle="dropdown"  >Institutes <b class="caret"></b></a>
                 <ul class="dropdown-menu filterInstituteComboBox" id="getInstituteName" >
                 </ul>
                 
               <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown">Disciplines <b class="caret"></b></a>
+                <a class="dropdown-toggle cursor-pointer" data-toggle="dropdown">Disciplines <b class="caret"></b></a>
                 <ul  class="dropdown-menu filterDisciplineComboBox" >
                 </ul>
                 
               <li class="dropdown mega-dropdown">
-                <a class="dropdown-toggle"
+                <a class="dropdown-toggle cursor-pointer "
                    data-toggle="dropdown">About
                   <span class="caret"></span></a>				
                 <ul class="dropdown-menu mega-dropdown-menu">
@@ -663,10 +663,10 @@ var getAllInstitutes = function(){
       var image_name = value['assets'][0]['path'];
       var image_path = institute_images_url + image_name;
       institutes += '<div class="col-lg-3 col-md-4 col-xs-6 thumb"><div  \
-class="thumbnail" style="padding: 0px !important; padding-top:15px !important;"> <a><img class="img-responsive" \
+class="thumbnail" style="padding: 0px !important; padding-top:15px !important;"> <a><img class="img-responsive cursor-pointer" \
 onclick="getLabsByInstituteName(this, 0)" src="' + image_path +'" id="' + institute_name +
       '"></a><div class="caption" style="min-height: 110px;">\
-<h4 style="text-align:center; color:#2c99ce;">'+ institute_name +'</h4></div></div></div>';
+<h4 class="cursor-pointer" style="text-align:center; color:#2c99ce;" >'+ institute_name +'</h4></div></div></div>';
       
     });
     var institute_list = '<div class="container-fluid"><div class="row">'
@@ -1196,6 +1196,7 @@ var resetContentInIframe = function(data) {
 //});
 getAllInstitutesInCombobox(); 
 getAllDisciplinesInCombobox(); 
+
 $(".dropdown").hover(            
   function() {
     $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideDown("400");
@@ -1415,7 +1416,7 @@ height:650px;
 		}
 	}
 
-
+.cursor-pointer{cursor: pointer;}
 
 
 
