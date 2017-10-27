@@ -29,27 +29,257 @@
    divisions.
 
 #+NAME: main-html
-#+BEGIN_SRC html 
+#+BEGIN_SRC html
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
-    <meta content="utf-8" http-equiv="encoding">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <link rel="stylesheet" href="http://files.vlabs.ac.in/lds/libraries/css/bootsnipp.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="icon" type="image/x-icon" href="http://files.vlabs.ac.in/lds/images/vlabs-logo/favicon.ico">
     <link rel="stylesheet" href="../static/css/style.css"/>
     <script type="text/javascript" src="../static/js/app-config.js"></script>
     <script type="text/javascript" src="../static/js/main.js"></script>
     <script>
-    document.domain="localhost"
-    </script>
+      document.domain="localhost";
+      window.loggedin=false;
+
+      function displayMessage (evt) {
+           var message;
+           if (evt.origin !== "http://content.base5.vlabs.ac.in") {
+                  message = "Unauthorized domain";
+               }
+           else {
+                 if (evt.data.includes("FIND COURSES")){
+                     document.cookie = "loginHandler='logged in'";
+                 }
+                 else if (evt.data.includes("Sign in")){
+                     document.cookie = "loginHandler='logged out'";
+                     }
+                 else {
+                      console.log("");
+                      }
+               }
+           if(document.cookie.includes("logged in")){
+                var loginDiv = document.getElementById("login")
+                window.loggedin=true;
+                loginDiv.innerHTML = "Logout";
+                loginDiv.setAttribute( "onClick", "setLoginUrlInContentIframe('logout')" );
+                console.log(loginDiv);
+             }
+           else if(document.cookie.includes("logged out")){
+                  document.getElementById("login").innerHTML = "Login";
+                  document.getElementById("login").setAttribute( "onClick", "setLoginUrlInContentIframe('login')" );
+             }
+           else{
+                console.log("");
+             }
+           }
+
+           if (window.addEventListener) {
+              // For standards-compliant web browsers
+              window.addEventListener("message", displayMessage, false);
+           }
+           else {
+               window.attachEvent("onmessage", displayMessage);
+               }
+    </script>    
+    <title>Virtual Labs</title>    
   </head>
   <body onload="loadIndex()">
-    <div id="headerDiv"></div>
-    <div id="contentDiv" ></div>
-    <div id="footerDiv"></div>
-    </body>
+    <div>
+      <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand main-logo-a"
+               href="https://vlabs.ac.in"
+               style=" width:100px; height:40px;
+                      margin-top:-13px">
+              <img src="https://vlabs.ac.in/static/edx-bootstrap-theme/images/logo.7e034286282a.png"
+                   class="img-responsive main-logo"
+                   style="width:100%; maring-top:2px;"></a>
+          </div>
+          
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li >
+                <a onclick="loadAllLabs()" "#" class="dropdown-toggle" data-toggle="dropdown">All Labs <b ></b></a>
+              </li>
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">Institutes <b class="caret"></b></a>
+                <ul class="dropdown-menu filterInstituteComboBox" id="getInstituteName" >
+                </ul>
+                
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">Disciplines <b class="caret"></b></a>
+                <ul  class="dropdown-menu filterDisciplineComboBox" >
+                </ul>
+                
+              <li class="dropdown mega-dropdown">
+                <a class="dropdown-toggle"
+                   data-toggle="dropdown">About
+                  <span class="caret"></span></a>				
+                <ul class="dropdown-menu mega-dropdown-menu">
+                  <li class="col-sm-2">
+                    <ul>
+                      <li class="dropdown-header">Community</li>
+                      <li><a href="#">Teachers</a></li>
+                      <li><a href="#">Developers</a></li>
+                      <li><a href="#">Students</a></li>
+                    </ul>
+                  </li>
+                  <li class="col-sm-3">
+                    <ul>
+                      <li class="dropdown-header">Development</li>
+                      <li><a href="#">Virtual Development</a></li>
+                    </ul>
+                  </li>
+                  <li class="col-sm-2">
+                    <ul>
+                      <li class="dropdown-header">Workshops</li>
+                      <li><a href="#">Online</a></li>
+                      <li><a href="#">College Cloud Edition</a></li>
+                    </ul>
+                  </li>
+                  <li class="col-sm-3">
+                    <ul>
+                      <li class="dropdown-header">FAQ</li>
+                      <li><a href="#">Virtual Labs</a></li>
+                      <li><a href="#">Virtuals
+                          College Cloud Edition</a>
+                      </li>
+                      <li><a href="#">Expression  of Interest for Workshops</a></li>
+                    </ul>
+                  </li>
+                  <li class="col-sm-2">
+                    <ul>
+                      <li class="dropdown-header">Information</li>
+                      <li><a href="#">Announcements</a></li>
+                      <li><a href="#">Contact us</a></li>
+                      <li><a href="#">2017-summer-intership</a></li>
+                    </ul>
+                  </li>
+              </li>
+              </ul>
+              </li>
+              </li>
+            </ul>
+            
+            <ul class="nav navbar-nav navbar-right">
+              <form class="navbar-form navbar-left">
+                <div  class="input-group stylish-input-group">
+                  <input id="keyword" type="text" class="form-control"
+                         placeholder="Lab Name">
+                  <span class="input-group-addon">
+                    <button type="button"
+                       onclick="javascript:getLabsByKeyword()"
+                       target="content_iframe" class="btn btn-default" type="submit">
+                      <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                  </span>
+                </div>
+              </form>
+              <li><a onclick="setRegisterUrlInContentIframe();"><span class="glyphicon glyphicon-user"></span>Register</a></li>
+              <li><a onclick="setLoginUrlInContentIframe('login');" id="login" class="glyphicon glyphicon-log-in"> Login</a></li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+      </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <img src="http://files.vlabs.ac.in/lds/images/slider-images/slider-img-01.jpg" class="img-responsive main-logo" style="width:100%; maring-top:2px;">
+        </div>
+      </div>
+
+      <div>
+        <div class="col-md-4"></div>
+        <div style="margin-top:-217px; color:white; padding-left:5em;" class="col-md-8"><h1 class="animation animated-item-1" style="font-color:Black"><b>Online labs and experiments </b>
+            from top technical institutes. Now available
+            in <a href="https://info.vlabs.ac.in/college-cloud-edition/">offline
+              edition</a> for your college.</h1></div>
+      </div>
+    </div>
+</div>
+</div>
+</div>
+<div class="container-fluid">
+<div class="row">
+  <div class="features">
+    <div style="visibility: visible;
+                animation-duration: 1000ms; animation-delay: 600ms;
+                animation-name: fadeInDown;"
+         class="col-md-2 col-sm-6 wow fadeInDown animated"
+         data-wow-duration="1000ms" data-wow-delay="600ms">
+      <div class="feature-wrap">
+        <h3 class="text-h3-darkblack-bold"
+            style="text-align: center;">  Labs 175<sup>+</sup> </h3>
+      </div>
+    </div>
+
+    <div class="features">
+      <div style="visibility: visible; animation-duration:
+            1000ms; animation-delay: 600ms; animation-name:
+            fadeInDown;"
+           class="col-md-3 col-sm-6 wow fadeInDown animated"
+           data-wow-duration="1000ms" data-wow-delay="600ms">
+        <div class="feature-wrap">
+          <h3 class="text-h3-darkblack-bold"
+              style="text-align: center;">Experiments 1700<sup>+</sup></h3>
+        </div>
+      </div>
+
+      <div style="visibility: visible; animation-duration:
+              1000ms;
+              animation-delay: 600ms; animation-name: fadeInDown;"
+           class="col-md-3 col-sm-6 wow fadeInDown animated"
+           data-wow-duration="1000ms" data-wow-delay="600ms">
+        <div class="feature-wrap">
+          <h3 class="text-h3-darkblack-bold"
+              style="text-align: center;">
+            <a onclick="setUsageInIframe()" href="#"
+               class="broad-labs-a" >Usage</a>
+            <span id="server_usage">6,68,971</span> <sup>+</sup></h3>
+        </div>
+      </div>                
+      <div style="visibility: visible; animation-duration:
+                  1000ms;
+                  animation-delay: 600ms; animation-name: fadeInDown;"
+           class="col-md-4 col-sm-6 wow fadeInDown animated"
+           data-wow-duration="1000ms" data-wow-delay="600ms">
+        <div class="feature-wrap">
+          <h3 class="text-h3-darkblack-bold"
+              style="text-align: center;">
+            <a onclick="setUsageInIframe()" href="#"
+               class="broad-labs-a">Workshop Usage</a>
+            <span id="usage">19,88,398</span> <sup>+</sup></h3>
+        </div>
+      </div>
+</div>
+
+
+    
+    <div id="contentDiv" class="container-fluid" style="padding-top:5em" >
+    </div>
+    <div id="footerDiv" class="container-fluid">
+    </div>
+
+</body>
 </html>
 
 #+END_SRC
@@ -74,218 +304,6 @@
 
 #+END_SRC
 
-** Header
-   This represents a container for introductory content or a
-   set of navigational links. A header typically contains:
-   one or more heading elements, logo or icon. On click of
-   institutes, disciplines and labs it invokes
-   =getAllInstitutesInCombobox()=, =getAllDisciplinessInCombobox()= and
-   =loadAllLabs()= to load data dynamically in the =content
-   iframe=
-#+NAME: header-html
-#+BEGIN_SRC html 
-<html>
-  <body>
-    <header>
-      <link rel="stylesheet"
-            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-      <link rel="stylesheet" href="http://files.vlabs.ac.in/lds/libraries/css/bootsnipp.css">
-      <link rel="stylesheet" href="../static/css/style.css">
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-      <script type="text/javascript" src="../static/js/app-config.js"></script>
-      <script type="text/javascript" src="../static/js/header.js"></script>
-      <script>
-        document.domain="localhost"
-      </script>
-      <nav class="navbar navbar-fixed-top navbar-bootsnipp animate" role="navigation"
-           style="z-index: 9999999">
-        <div class="container">
-          <nav class="navbar ">
-            <div class="navbar-header">
-              <button class="navbar-toggle" type="button"
-                      data-toggle="collapse"
-                      data-target=".js-navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand main-logo-a"
-                 href="https://vlabs.ac.in"
-                 style=" width:100px; height:40px;
-                        margin-top:-13px">
-                <img src="https://vlabs.ac.in/static/edx-bootstrap-theme/images/logo.7e034286282a.png"
-                     class="img-responsive main-logo"
-                     style="width:100%; maring-top:2px;"></a>
-            </div>
-            <div class="collapse navbar-collapse js-navbar-collapse">
-              <ul class="nav navbar-nav">
-                <li class="dropdown mega-dropdown">
-                  <a onclick="loadAllLabs()" href="#" class="dropdown-toggle"
-                     data-toggle="dropdown">All Labs </a>				
-                </li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle "
-                     data-toggle="dropdown"
-                     aria-expanded="false">Institutes <span class="caret"></span></a>
-                  <ul class="dropdown-menu filterInstituteComboBox" id="getInstituteName" >
-                  </ul>
-                </li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle "
-                     data-toggle="dropdown"
-                     id="getDisciplineName"
-                     aria-expanded="false">Disciplines
-                    <span class="caret"></span></a>
-                  <ul class="dropdown-menu filterDisciplineComboBox">
-                  </ul>
-                </li>
-
-                <li class="dropdown mega-dropdown">
-                  <a class="dropdown-toggle"
-                     data-toggle="dropdown">About
-                    <span class="caret"></span></a>				
-                  <ul class="dropdown-menu mega-dropdown-menu">
-                    <li class="col-sm-2">
-                      <ul>
-                        <li class="dropdown-header">Community</li>
-                        <li><a href="#">Teachers</a></li>
-                        <li><a href="#">Developers</a></li>
-                        <li><a href="#">Students</a></li>
-                      </ul>
-                    </li>
-                    <li class="col-sm-3">
-                      <ul>
-                        <li class="dropdown-header">Development</li>
-                        <li><a href="#">Virtual Development</a></li>
-                     </ul>
-                    </li>
-                    <li class="col-sm-2">
-                      <ul>
-                        <li class="dropdown-header">Workshops</li>
-                        <li><a href="#">Online</a></li>
-                        <li><a href="#">College Cloud Edition</a></li>
-                     </ul>
-                    </li>
-                    <li class="col-sm-3">
-                      <ul>
-                        <li class="dropdown-header">FAQ</li>
-                        <li><a href="#">Virtual Labs</a></li>
-                        <li><a href="#">Virtuals
-                            College Cloud Edition</a>
-                        </li>
-                        <li><a href="#">Expression  of Interest for Workshops</a></li>
-                      </ul>
-                    </li>
-                    <li class="col-sm-2">
-                      <ul>
-                        <li class="dropdown-header">Information</li>
-                        <li><a href="#">Announcements</a></li>
-                        <li><a href="#">Contact us</a></li>
-                       <li><a href="#">2017-summer-intership</a></li>
-                      </ul>
-                    </li>
-                </li>
-                </ul>
-                </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                <form class="navbar-form navbar-left">
-                <div  class="input-group stylish-input-group">
-                <input id="keyword" type="text" class="form-control"
-                placeholder="Lab Name">
-                 <span class="input-group-addon">
-                <button 
-                onclick="javascript:getLabsByKeyword()"
-                target="content_iframe" class="btn btn-default" type="submit">
-          <span class="glyphicon glyphicon-search"></span>
-        </button>
-      </span>
-    </div>
-  </form>
-  <li><a style="pointer-events: none;"
-         href="http://vlabs.ac.in"
-         target="content_iframe"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-  <li><a style="pointer-events: none;" href="#">
-      <span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-</ul>
-</div>
-<!-- /.nav-collapse -->
-</nav>
-</div>
-</header>
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-12">
-      <img src="http://files.vlabs.ac.in/lds/images/slider-images/slider-img-01.jpg" class="img-responsive main-logo" style="width:100%; maring-top:2px;">
-      <div>
-      <div>
-        <div class="col-md-4"></div>
-        <div style="margin-top:-217px; color:white;padding-left: 101;" class="col-md-8"><h1 class="animation animated-item-1" style="font-color:Black"><b>Online labs and experiments </b>
-            from top technical institutes Now available
-            in <a href="https://info.vlabs.ac.in/college-cloud-edition/">offline
-              edition</a> for your college</h1></div>
-              </div>
-              </div></div>
-              </div>
-              
-<div class="row">
-  <div class="features">
-    <div style="visibility: visible; 
-                animation-duration: 1000ms; animation-delay: 600ms;
-                animation-name: fadeInDown;"
-         class="col-md-2 col-sm-6 wow fadeInDown animated"
-         data-wow-duration="1000ms" data-wow-delay="600ms">
-      <div class="feature-wrap">
-        <h3 class="text-h3-darkblack-bold"
-            style="text-align: center;">  Labs 180<sup>+</sup> </h3>
-      </div>
-    </div>
-
-    <div class="features">
-      <div style="visibility: visible; animation-duration:
-            1000ms; animation-delay: 600ms; animation-name:
-            fadeInDown;"
-           class="col-md-3 col-sm-6 wow fadeInDown animated"
-           data-wow-duration="1000ms" data-wow-delay="600ms">
-        <div class="feature-wrap">
-          <h3 class="text-h3-darkblack-bold"
-              style="text-align: center;">Experiments 1700<sup>+</sup></h3>
-        </div>
-      </div>
-
-      <div style="visibility: visible; animation-duration:
-              1000ms; 
-              animation-delay: 600ms; animation-name: fadeInDown;"
-           class="col-md-3 col-sm-6 wow fadeInDown animated"
-           data-wow-duration="1000ms" data-wow-delay="600ms">
-        <div class="feature-wrap">
-          <h3 class="text-h3-darkblack-bold"
-              style="text-align: center;">
-            <a onclick="setUsageInIframe()" href="#" 
-               class="broad-labs-a" >Usage</a>
-            <span id="server_usage">6,68,971</span> <sup>+</sup></h3>
-        </div>
-      </div>                
-      <div style="visibility: visible; animation-duration:
-                  1000ms; 
-                  animation-delay: 600ms; animation-name: fadeInDown;"
-           class="col-md-4 col-sm-6 wow fadeInDown animated"
-           data-wow-duration="1000ms" data-wow-delay="600ms">
-        <div class="feature-wrap">
-          <h3 class="text-h3-darkblack-bold"
-              style="text-align: center;">
-            <a onclick="setUsageInIframe()" href="#" 
-               class="broad-labs-a">Workshop Usage</a>
-            <span id="usage">19,88,398</span> <sup>+</sup></h3>
-        </div>
-      </div> 
-    </div>
-</body>
-</html>
-
-#+END_SRC
 ** Config
    Getting data from the lab data service and feeding the
    content iframe. Also getting images of institute,
@@ -315,10 +333,11 @@ var labs_hosted_platform = "test-openedx";
 #+BEGIN_SRC javascript 
 var loadIndex = function() {
   console.log("=======loading index page=====");
-  insertHeaderIFrame();
-  setHeaderContentInIframe();
+/*  insertHeaderIFrame();
+  setHeaderContentInIframe();*/
   insertContentIFrame();
-  setContentInIframe();
+//  setContentInIframe();
+  loadAllDisciplines();
   insertFooterIFrame();
   setFooterContentInIframe();
 };
@@ -413,6 +432,55 @@ var setUsageInIframe = function() {
 };
 
 #+END_SRC
+** Set register url to content iframe
+#+NAME: set-register-url-to-content-iframe
+#+BEGIN_SRC javascript 
+var setRegisterUrlInContentIframe = function() {
+  console.log("=======setting registre url to content iframe=====");        
+  var iframe = document.getElementById("contentIframe");
+  iframe.src = "http://content.base5.vlabs.ac.in/register";
+  iframe.sandbox = 'allow-forms allow-scripts allow-same-origin';
+};
+
+#+END_SRC
+** Set Login url to content iframe
+#+NAME: set-login-url-to-content-iframe
+#+BEGIN_SRC javascript 
+var setLoginUrlInContentIframe = function(event) {
+  console.log("=======setting login url to content iframe=====");
+  var iframe = document.getElementById("contentIframe");
+  if(event == "login"){
+      iframe.src = "http://content.base5.vlabs.ac.in/login";
+      iframe.sandbox = 'allow-forms allow-scripts allow-same-origin';
+  }
+  else{
+      iframe.src = "http://content.base5.vlabs.ac.in/logout";
+      document.getElementById("login").innerHTML = "Login";
+      document.getElementById("login").setAttribute( "onClick", "setLoginUrlInContentIframe('login')" );
+      iframe.src = "./content.html";
+  }
+};
+
+#+END_SRC
+** Validate Authentication
+#+NAME: validate-authentication
+#+BEGIN_SRC javascript 
+var validateAuthentication = function(url) {
+  var lab_url = url.id;
+  var loggedinHandler = parent.window.loggedin;
+  var iframe = parent.document.getElementById("contentIframe");
+  if(loggedinHandler == false){
+      iframe.src = "http://content.base5.vlabs.ac.in/login";
+      //iframe.sandbox = 'allow-forms allow-scripts allow-same-origin';
+  }
+  else{
+      iframe.src = lab_url;
+  }
+
+};
+
+#+END_SRC
+
 ** Creating the content iframe
    Displays the content iframe based on the selection of the
    elements with respect to the header iframe.
@@ -436,7 +504,7 @@ var insertContentIFrame = function() {
 #+BEGIN_SRC javascript 
 var insertFooterIFrame = function() {
   console.log("=======creating footer iframe=====");
-  var newFrame = createNewIframe("footerIframe", "footerIframe", "100%", "310em");
+  var newFrame = createNewIframe("footerIframe", "footerIframe", "100%", "390em");
   var division = document.getElementById("footerDiv");
   insertFrameInDivision(newFrame, division.id);
 };
@@ -482,7 +550,7 @@ var insertFrame = function() {
 var loadAllDisciplines = function() {
   console.log("=======loading all disciplines=====");
   deleteFrameInDivision("contentIframe", "contentDiv");
-  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "850em");
+  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "1180em");
   insertFrameInDivision(newFrame, "contentDiv");
   getAllDisciplines();
 //  var disciplines = getAllDisciplines();
@@ -502,7 +570,7 @@ var loadAllDisciplines = function() {
 var loadAllInstitutes = function() {
   console.log("=======loading all institutes=====");
   deleteFrameInDivision("contentIframe", "contentDiv");
-  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "650em");
+  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "790em");
   insertFrameInDivision(newFrame, "contentDiv");
   getAllInstitutes();
 //  var institutes = getAllInstitutes();
@@ -594,9 +662,11 @@ var getAllInstitutes = function(){
       var institute_name = value['institute_name'];
       var image_name = value['assets'][0]['path'];
       var image_path = institute_images_url + image_name;
-      institutes += '<div class="col-lg-3 col-md-4 col-xs-6 thumb"><div  class="thumbnail"> <a href="#"><img class="img-responsive" onclick="getLabsByInstituteName(this)" src="'
-      + image_path +'" id="' + institute_name +
-      '"></a><div><p style="text-align:center; color: #888; ">'+ institute_name +'</p></div></div></div>';
+      institutes += '<div class="col-lg-3 col-md-4 col-xs-6 thumb"><div  \
+class="thumbnail" style="padding: 0px !important; padding-top:15px !important;"> <a><img class="img-responsive" \
+onclick="getLabsByInstituteName(this, 0)" src="' + image_path +'" id="' + institute_name +
+      '"></a><div class="caption" style="min-height: 110px;">\
+<h4 style="text-align:center; color:#2c99ce;">'+ institute_name +'</h4></div></div></div>';
       
     });
     var institute_list = '<div class="container-fluid"><div class="row">'
@@ -637,8 +707,13 @@ var getAllDisciplines = function(){
     var discipline_name = value['discipline_name'];
     var image_name = value['assets'][0]['path'];
     var image_path = discipline_images_url + image_name;
-    disciplines += '<div class="col-lg-3 col-md-4 col-xs-6 thumb"> <div class="thumbnail"> <a  href="#"><img class="img-responsive"onclick="getLabsByDisciplineName(this)" src="'
-    + image_path +'" id="' + discipline_name + '"></a><div ><p style="text-align:center; color: #888; ">'+ discipline_name +'</p></div></div></div>';
+    disciplines += '<div class="col-lg-3 col-md-4 col-xs-6 thumb"> <div class="thumbnail"  \
+style="padding: 0px !important; padding-top:15px !important;"> <a><img class="img-responsive"\
+onclick="getLabsByDisciplineName(this, 0)" src="'
+    + image_path +'" id="' + discipline_name + '">\
+</a><div class="caption" style="min-height: 110px;">\
+<h4 style="text-align:center; color:#2c99ce;  ">'
+        + discipline_name +'</h4></div></div></div>';
     });
     var discipline_list = '<div class="container-fluid"><div class="row">'
     + disciplines +'</div></div>';
@@ -744,8 +819,15 @@ var getAllLabs = function(){
 
 #+NAME: get-labs-by-discipline-name
 #+BEGIN_SRC javascript 
-var getLabsByDisciplineName = function(image) {
+var getLabsByDisciplineName = function(image, flag) {
   console.log("===========inside getLabsByDisciplineName==========");
+  console.log("===========flag==========");
+  console.log(flag);
+  if (flag==1){
+    deleteFrameInDivision("contentIframe", "contentDiv");
+    var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "650em");
+    insertFrameInDivision(newFrame, "contentDiv");
+  }
   var discipline_name = image.id;
   var labs_url = base_url+"/labs";
   console.log(labs_url);
@@ -784,12 +866,11 @@ var getLabsByDisciplineName = function(image) {
         }
       }
       labs += '<div class=" col-md-3 " id='+ lab_name +
-        '> <div class="thumbnail" style="padding: 0px !important;"><a href='+ hosted_url +
-        '><img class="img-responsive" src="' + path +
-        '"alt="image"/><a href='+ hosted_url +
-        '> <div class="caption" style="min-height: 110px;" ><h4 style="text-align:left; color:#2c99ce;">'+lab_name +
-        '</h4></div></a></div></div>';
-    });
+           '> <div class="thumbnail" style="padding: 0px !important;"><a id="' + hosted_url + '" onclick="javascript:validateAuthentication(this);"><img class="img-responsive" src="' + path +
+           '"alt="image"/><a href='+ hosted_url +
+           '> <div class="caption" style="min-height: 110px;" ><h4 style="text-align:left; color:#2c99ce;">'+lab_name +
+           '</h4></div></a></div></div>';
+      });
     console.log(labs);
     var labs_list = '<div class="container-fluid"><div class="row">'+ labs +'</div></div>';
     resetContentInIframe(labs);
@@ -816,8 +897,15 @@ var getLabsByDisciplineName = function(image) {
 
 #+NAME: get-labs-by-institute-name
 #+BEGIN_SRC javascript 
-var getLabsByInstituteName = function(image) {
-  console.log("===========inside getLabsByInstituteName==========");
+var getLabsByInstituteName = function(image, flag) {
+  console.log("===========inside getLabsByDisciplineName==========");
+  console.log("===========flag==========");
+  console.log(flag);
+  if (flag==1){
+    deleteFrameInDivision("contentIframe", "contentDiv");
+    var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "650em");
+    insertFrameInDivision(newFrame, "contentDiv");
+  }
   var institute_name = image.id;
   var labs_url = base_url+"/labs";
   console.log(labs_url);
@@ -896,12 +984,12 @@ var getAllInstitutesInCombobox = function(){
     var institutes = '';
     $.each(data, function(key, value){
       var institute_name = value['institute_name'];
-      institutes +=  '<li onclick="getLabsByInstituteName(this)" value="'
-        + institute_name + '" id="' + institute_name + '"><a href="#">' +
+      institutes +=  '<li onclick="getLabsByInstituteName(this, 1)" value="'
+        + institute_name + '" id="' + institute_name + '"><a >' +
         institute_name + '</a></li>';
     });
     var institute_list = '<li onclick="loadAllInstitutes()">\
-<a href="#">All Institutes</a></li>' + institutes;
+<a >All Institutes</a></li>' + institutes;
     console.log(institute_list);
     $('.filterInstituteComboBox').append(institute_list);
   })
@@ -933,12 +1021,12 @@ var getAllDisciplinesInCombobox = function(){
     var disciplines = '';
     $.each(data, function(key, value){
     var discipline_name = value['discipline_name'];
-      disciplines += '<li onclick="getLabsByDisciplineName(this)" value="'
-        + discipline_name + '" id="' + discipline_name + '"><a href="#">' +
+      disciplines += '<li onclick="getLabsByDisciplineName(this, 1)" value="'
+        + discipline_name + '" id="' + discipline_name + '"><a >' +
         discipline_name + '</a></li>';
     });
     var discipline_list = '<li onclick="loadAllDisciplines()">\
-<a href="#">All Disciplines</a></li>' + disciplines;
+<a>All Disciplines</a></li>' + disciplines;
     console.log(discipline_list);
     $('.filterDisciplineComboBox').append(discipline_list);
 
@@ -1103,21 +1191,21 @@ var resetContentInIframe = function(data) {
 ** Mouse Over
 #+NAME: mouse-over
 #+BEGIN_SRC javascript
-$(document).ready(function(){
+//$(document).ready(function(){
 //  loadAllDisciplines();
-  getAllInstitutesInCombobox(); 
-  getAllDisciplinesInCombobox(); 
-  $(".dropdown").hover(            
-    function() {
-      $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideDown("400");
-      $(this).toggleClass('open');        
-    },
-    function() {
-      $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideUp("400");
-      $(this).toggleClass('open');       
-    }
-  );
-});
+//});
+getAllInstitutesInCombobox(); 
+getAllDisciplinesInCombobox(); 
+$(".dropdown").hover(            
+  function() {
+    $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideDown("400");
+    $(this).toggleClass('open');        
+  },
+  function() {
+    $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideUp("400");
+    $(this).toggleClass('open');       
+  }
+);
 
 #+END_SRC
 
@@ -1256,6 +1344,76 @@ height:650px;
     
 }
 
+/*the following css used for nav bar*/
+    body {
+		padding: 60px 0px;
+	}
+	.navbar-collapse {
+		position: relative;
+		padding-top: 30px !important;
+		max-height: 270px;
+	}
+	.navbar-collapse form[role="search"] {
+		position: absolute;
+		top: 0px;
+		right: 0px;
+		width: 100%;
+		padding: 0px;
+		margin: 0px;
+		z-index: 0;
+	}
+	.navbar-collapse form[role="search"] button,
+	.navbar-collapse form[role="search"] input {
+		padding: 8px 12px;
+		border-radius: 0px;
+		border-width: 0px;
+		color: rgb(119, 119, 119);
+		background-color: rgb(248, 248, 248);
+		border-color: rgb(231, 231, 231);
+		box-shadow: none;
+		outline: none;
+	}
+	.navbar-collapse form[role="search"] input {
+		padding: 16px 12px;
+		font-size: 14pt;
+		font-style: italic;
+		color: rgb(160, 160, 160);
+		box-shadow: none;
+	}
+	.navbar-collapse form[role="search"] button[type="reset"] {
+		display: none;
+	}
+
+	@media (min-width: 768px) {
+		.navbar-collapse {
+			padding-top: 0px !important;
+			padding-right: 38px !important;
+		}
+		.navbar-collapse form[role="search"] {
+			width: 38px;
+		}
+		.navbar-collapse form[role="search"] button,
+		.navbar-collapse form[role="search"] input {
+			padding: 15px 12px;
+		}
+		.navbar-collapse form[role="search"] input {
+			font-size: 18pt;
+			opacity: 0;
+			display: none;            
+            height: 50px;
+		}
+		.navbar-collapse form[role="search"].active {
+			width: 100%;
+		}
+		.navbar-collapse form[role="search"].active button,
+		.navbar-collapse form[role="search"].active input {
+			display: table-cell;
+			opacity: 1;
+		}
+    	.navbar-collapse form[role="search"].active input {
+			width: 100%;
+		}
+	}
 
 
 
@@ -1282,6 +1440,7 @@ head.appendChild(favicon);
 **** Main JS
 #+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes 
 <<load-index>>
+<<get-all-institutes-in-combobox>>
 <<create-new-iframe>>
 <<delete-frame-in-division>>
 <<insert-frame-in-division>>
@@ -1296,30 +1455,20 @@ head.appendChild(favicon);
 <<get-labs-by-institute-name>>
 <<reset-content>>
 <<add-script-tags>>
-
-#+END_SRC
-**** Header JS
-#+BEGIN_SRC javascript :tangle static/js/header.js :eval no :noweb yes 
+<<set-register-url-to-content-iframe>>
+<<set-login-url-to-content-iframe>>
+<<validate-authentication>>
 <<set-usage-in-iframe>>
-<<get-all-institutes-in-combobox>>
 <<get-all-disciplines-in-combobox>>
-<<get-labs-by-discipline-name>>
 <<get-labs-by-institute-name>>
 <<load-all-disciplines>>
 <<load-all-institutes>>
 <<load-all-labs>>
-<<create-new-iframe>>
-<<delete-frame-in-division>>
-<<insert-frame-in-division>>
 <<get-all-institutes>>
 <<get-all-disciplines>>
 <<get-all-labs>>
-<<set-content>>
-<<reset-content>>
-<<add-script-tags>>
-<<mouse-over>>
 <<labs-by-keyword-search>>
-<<favicon>> 
+<<mouse-over>>
 
 #+END_SRC
 *** Config
