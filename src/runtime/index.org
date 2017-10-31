@@ -51,14 +51,17 @@
 
       function displayMessage (evt) {
            var message;
-           if (evt.origin !== "http://content.base5.vlabs.ac.in") {
+           if (evt.origin !== "http://themeless.vlabs.ac.in") {
                   message = "Unauthorized domain";
                }
            else {
-                 if (evt.data.includes("FIND COURSES")){
+
+                 if (evt.data.indexOf("MY COURSES") != -1){
+
                      document.cookie = "loginHandler='logged in'";
-                 }
-                 else if (evt.data.includes("Sign in")){
+                     loadAllDisciplines();
+                  }
+                 else if (evt.data.indexOf("Sign in")!= -1){
                      document.cookie = "loginHandler='logged out'";
                      }
                  else {
@@ -71,6 +74,10 @@
                 loginDiv.innerHTML = "Logout";
                 loginDiv.setAttribute( "onClick", "setLoginUrlInContentIframe('logout')" );
                 console.log(loginDiv);
+
+                var registerDiv = document.getElementById("register");
+                registerDiv.parentNode.removeChild(registerDiv);
+
              }
            else if(document.cookie.includes("logged out")){
                   document.getElementById("login").innerHTML = "Login";
@@ -87,6 +94,7 @@
            }
            else {
                window.attachEvent("onmessage", displayMessage);
+              
                }
     </script>    
     <title>Virtual Labs</title>    
@@ -479,7 +487,6 @@ var validateAuthentication = function(url) {
 };
 
 #+END_SRC
-
 
 ** Creating the content iframe
    Displays the content iframe based on the selection of the
