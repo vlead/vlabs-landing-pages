@@ -11,6 +11,32 @@
   - This document contains the realization plan for
     implementing the VLABS portal driven by data.
 
+* Milestones Snapshot
+  |---+----+----+-----+--------------------------------------------------------------------------------+------+--------+-----+-------+--------|
+  |   | S. | Mi | Req | Milestone                                                                      | Plan | Status | Est | Act   | Issues |
+  |   | no | no | Map |                                                                                |      |        | hrs | hrs   |        |
+  |---+----+----+-----+--------------------------------------------------------------------------------+------+--------+-----+-------+--------|
+  |   |  1 | [[https://github.com/vlead/vlabs-landing-pages/milestone/4][4]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/4][Dynamically populate all institutes and discipline wise labs using]]             |      | closed |     |       | [[https://github.com/vlead/vlabs-landing-pages/milestone/4?closed=1][ref]]    |
+  |---+----+----+-----+--------------------------------------------------------------------------------+------+--------+-----+-------+--------|
+  |   |  2 | [[https://github.com/vlead/vlabs-landing-pages/milestone/1][1]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/1][Building vlabs landing using lab data service]]                                  |      | Closed |     |       | [[https://github.com/vlead/vlabs-landing-pages/milestone/1?closed=1][ref]]    |
+  |---+----+----+-----+--------------------------------------------------------------------------------+------+--------+-----+-------+--------|
+  |   |  3 | [[https://github.com/vlead/vlabs-landing-pages/milestone/5][5]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/5][Bug fixing and Search functionality of Vlabs landing page]]                      |      | Closed | 472 | 188.5 | [[https://github.com/vlead/vlabs-landing-pages/milestone/5?closed=1][ref]]    |
+  |---+----+----+-----+--------------------------------------------------------------------------------+------+--------+-----+-------+--------|
+  |   |  4 | [[https://github.com/vlead/vlabs-landing-pages/milestone/3][3]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/3][Dynamically build vlabs portal - ssad]]                                          |      | Open   |     |       | [[https://github.com/vlead/vlabs-landing-pages/milestone/3][ref]]    |
+  |---+----+----+-----+--------------------------------------------------------------------------------+------+--------+-----+-------+--------|
+  |   |  5 | [[https://github.com/vlead/vlabs-landing-pages/milestone/6][6]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/6][Signup and Login functionality of Vlabs landing pages]]                          |      | Open   |  82 |       | [[https://github.com/vlead/vlabs-landing-pages/milestone/6][ref]]    |
+  |---+----+----+-----+--------------------------------------------------------------------------------+------+--------+-----+-------+--------|
+  |   |  6 | [[https://github.com/vlead/vlabs-landing-pages/milestone/7][7]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/7][Deployment of 'vlabs landing pages' on Testing and Stagging for version v1.2.0]] |      | Closed |     |       | [[https://github.com/vlead/vlabs-landing-pages/milestone/7][ref]]    |
+  |---+----+----+-----+--------------------------------------------------------------------------------+------+--------+-----+-------+--------|
+  |   |    |    |     | Total                                                                          |      |        | 554 | 188.5 |        |
+  | ^ |    |    |     |                                                                                |      |        |  et | at    |        |
+  |---+----+----+-----+--------------------------------------------------------------------------------+------+--------+-----+-------+--------|
+  #+TBLFM: $2=@#-2
+  #+TBLFM: @6$8=remote(tbl-rlz-pln-ml-8, $estimated)
+  #+TBLFM: @6$9=remote(tbl-rlz-pln-ml-8, $actual)
+  #+TBLFM: $et=vsum(@II+1..@-1)
+  #+TBLFM: $at=vsum(@II+1..@-1)
+
 * Plan 
 ** [[https://github.com/vlead/vlabs-landing-pages/milestone/4][Milestone two]]
   :PROPERTIES:
@@ -219,7 +245,6 @@
 #+TBLFM: $estimated=vsum(@II+1..@-1)
 #+TBLFM: $actual=vsum(@II+1..@-1)
 
-
 ** Milestone Three
 |-------+---------------------+--------+----------+--------+------------+--------+---------+-----------|
 |    S. | Tasks               | Github | Expected | Actual |  Estimated | Actual | Status  | Assignee  |
@@ -332,8 +357,8 @@
 |       | open-edx             |        |          |        |            |            |          |            |
 |       | 'hosting_info'       |        |          |        | 14-09-2017 | 14-09-2017 |          |            |
 |-------+----------------------+--------+----------+--------+------------+------------+----------+------------|
-|   11. | Add a new row to     | [[https://github.com/vlead/vlabs-landing-pages/issues/35][#35]]    |        8 |        | 14-09-2017 | 14-09-2017 | Done     | Mrudhvika  |
-|       | of 'lab' table       |        |          |        |            |            |          |            |
+|   11. | Add a new row to     | [[https://github.com/vlead/vlabs-landing-pages/issues/35][#35]]    |        8 |      8 | 14-09-2017 | 14-09-2017 | Done     | Mrudhvika  |
+|       | of 'lab' table       |        |          |        | 14-09-2017 | 14-09-2017 |          |            |
 |       | and update           |        |          |        |            |            |          |            |
 |       | 'hosted_on' to       |        |          |        |            |            |          |            |
 |       | 'test-openedx'       |        |          |        |            |            |          |            |
