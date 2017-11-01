@@ -26,7 +26,7 @@
   |---+----+----+-----+--------------------------------------------------------------------------------+------+--------+-----+-------+--------|
   |   |  5 | [[https://github.com/vlead/vlabs-landing-pages/milestone/6][6]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/6][Signup and Login functionality of Vlabs landing pages]]                          |      | Open   |  82 |       | [[https://github.com/vlead/vlabs-landing-pages/milestone/6][ref]]    |
   |---+----+----+-----+--------------------------------------------------------------------------------+------+--------+-----+-------+--------|
-  |   |  6 | [[https://github.com/vlead/vlabs-landing-pages/milestone/7][7]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/7][Deployment of 'vlabs landing pages' on Testing and Stagging for version v1.2.0]] |      | Closed |     |       | [[https://github.com/vlead/vlabs-landing-pages/milestone/7][ref]]    |
+  |   |  6 | [[https://github.com/vlead/vlabs-landing-pages/milestone/7][7]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/7][Deployment of 'vlabs landing pages' on Testing and Stagging for version v1.2.0]] |      | Closed |     |       | [[https://github.com/vlead/vlabs-landing-pages/milestone/7?closed=1][ref]]    |
   |---+----+----+-----+--------------------------------------------------------------------------------+------+--------+-----+-------+--------|
   |   |    |    |     | Total                                                                          |      |        | 554 | 188.5 |        |
   | ^ |    |    |     |                                                                                |      |        |  et | at    |        |
