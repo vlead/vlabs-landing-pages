@@ -16,7 +16,7 @@
   |   | S. | Mi | Req | Milestone                                                                      | Plan | Status | Est | Act   | Issues |
   |   | no | no | Map |                                                                                |      |        | hrs | hrs   |        |
   |---+----+----+-----+--------------------------------------------------------------------------------+------+--------+-----+-------+--------|
-  |   |  1 | [[https://github.com/vlead/vlabs-landing-pages/milestone/4][4]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/4][Dynamically populate all institutes and discipline wise labs using]]             |      | closed |     |       | [[https://github.com/vlead/vlabs-landing-pages/milestone/4?closed=1][ref]]    |
+  |   |  1 | [[https://github.com/vlead/vlabs-landing-pages/milestone/4][4]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/4][Dynamically populate all institutes and discipline wise labs using]]             |      | Closed |     |       | [[https://github.com/vlead/vlabs-landing-pages/milestone/4?closed=1][ref]]    |
   |---+----+----+-----+--------------------------------------------------------------------------------+------+--------+-----+-------+--------|
   |   |  2 | [[https://github.com/vlead/vlabs-landing-pages/milestone/1][1]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/1][Building vlabs landing using lab data service]]                                  |      | Closed |     |       | [[https://github.com/vlead/vlabs-landing-pages/milestone/1?closed=1][ref]]    |
   |---+----+----+-----+--------------------------------------------------------------------------------+------+--------+-----+-------+--------|
@@ -24,21 +24,105 @@
   |---+----+----+-----+--------------------------------------------------------------------------------+------+--------+-----+-------+--------|
   |   |  4 | [[https://github.com/vlead/vlabs-landing-pages/milestone/3][3]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/3][Dynamically build vlabs portal - ssad]]                                          |      | Open   |     |       | [[https://github.com/vlead/vlabs-landing-pages/milestone/3][ref]]    |
   |---+----+----+-----+--------------------------------------------------------------------------------+------+--------+-----+-------+--------|
-  |   |  5 | [[https://github.com/vlead/vlabs-landing-pages/milestone/6][6]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/6][Signup and Login functionality of Vlabs landing pages]]                          |      | Open   |  82 |       | [[https://github.com/vlead/vlabs-landing-pages/milestone/6][ref]]    |
+  |   |  5 | [[https://github.com/vlead/vlabs-landing-pages/milestone/6][6]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/6][Signup and Login functionality of Vlabs landing pages]]                          |      | Open   | 122 |       | [[https://github.com/vlead/vlabs-landing-pages/milestone/6][ref]]    |
   |---+----+----+-----+--------------------------------------------------------------------------------+------+--------+-----+-------+--------|
   |   |  6 | [[https://github.com/vlead/vlabs-landing-pages/milestone/7][7]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/7][Deployment of 'vlabs landing pages' on Testing and Stagging for version v1.2.0]] |      | Closed |     |       | [[https://github.com/vlead/vlabs-landing-pages/milestone/7?closed=1][ref]]    |
   |---+----+----+-----+--------------------------------------------------------------------------------+------+--------+-----+-------+--------|
-  |   |    |    |     | Total                                                                          |      |        | 554 | 188.5 |        |
+  |   |    |    |     | Total                                                                          |      |        | 594 | 188.5 |        |
   | ^ |    |    |     |                                                                                |      |        |  et | at    |        |
   |---+----+----+-----+--------------------------------------------------------------------------------+------+--------+-----+-------+--------|
-  #+TBLFM: $2=@#-2
-  #+TBLFM: @6$8=remote(tbl-rlz-pln-ml-8, $estimated)
-  #+TBLFM: @6$9=remote(tbl-rlz-pln-ml-8, $actual)
+  #+TBLFM: $2=@#-2::@5$8=remote(tbl-realization-plan-ml-5, $estimated)::@5$9=remote(tbl-realization-plan-ml-5, $actual)::@7$8=remote(tbl-realization-plan-ml-6, $estimated)
+  #+TBLFM: @6$8=remote(tbl-realization-plan-ml-5, $estimated)
+  #+TBLFM: @6$9=remote(tbl-realization-plan-ml-5, $actual)
+  #+TBLFM: @6$8=remote(tbl-realization-plan-ml-6, $estimated)
+  #+TBLFM: @6$9=remote(tbl-realization-plan-ml-6, $actual)
   #+TBLFM: $et=vsum(@II+1..@-1)
   #+TBLFM: $at=vsum(@II+1..@-1)
 
 * Plan 
-** [[https://github.com/vlead/vlabs-landing-pages/milestone/4][Milestone two]]
+** Login and Register functionality
+
+#+caption:  realization-plan-milestone-6
+#+name: tbl-realization-plan-ml-6
+
+|-------+-----------------------+--------+-----------+--------+------------+--------+---------+----------|
+|    S. | Tasks                 | Github |  Expected | Actual |  Estimated | Actual | Status  | Assignee |
+|    NO |                       | Issues |    Effort | Effort |     Start, | Start/ |         |          |
+|       |                       |        |       (in | (in    |        End | End    |         |          |
+|       |                       |        |    person | person |      Dates | Dates  |         |          |
+|       |                       |        |    hours) | hours) |            |        |         |          |
+|-------+-----------------------+--------+-----------+--------+------------+--------+---------+----------|
+|    1. | Adding login          | [[https://github.com/vlead/vlabs-landing-pages/issues/89][#89]]    |        20 |        | 13-10-2017 |        | backlog |          |
+|       | functionality for     |        |           |        | 17-10-2017 |        |         |          |
+|       | vlabs landing page    |        |           |        |            |        |         |          |
+|-------+-----------------------+--------+-----------+--------+------------+--------+---------+----------|
+|    2. | Adding signup         | [[https://github.com/vlead/vlabs-landing-pages/issues/88][#88]]    |        30 |        | 17-10-2017 |        | backlog |          |
+|       | functionality for     |        |           |        | 23-10-2017 |        |         |          |
+|       | vlabs landing page    |        |           |        |            |        |         |          |
+|-------+-----------------------+--------+-----------+--------+------------+--------+---------+----------|
+|    3. | Enable Sign up        | [[https://github.com/vlead/vlabs-landing-pages/issues/87][#87]]    |        32 |        | 25-10-2017 |        | backlog |          |
+|       | and Login buttons     |        |           |        | 26-10-2017 |        |         |          |
+|       | (includes             |        |           |        |            |        |         |          |
+|       | functionality)        |        |           |        |            |        |         |          |
+|-------+-----------------------+--------+-----------+--------+------------+--------+---------+----------|
+|    4. | Interaction between   | [[https://github.com/vlead/vlabs-landing-pages/issues/97][#97]]    |        24 |        | 02-11-2017 |        | backlog |          |
+|       | iframes using         |        |           |        | 04-11-2017 |        |         |          |
+|       | postmessage           |        |           |        |            |        |         |          |
+|-------+-----------------------+--------+-----------+--------+------------+--------+---------+----------|
+|    5. | setup machine to      | [[https://github.com/vlead/vlabs-landing-pages/issues/102][#102]]   |        16 |        | 30-10-2017 |        | backlog |          |
+|       | run openedx vagrant   |        |           |        | 31-10-2017 |        |         |          |
+|       | box for dev           |        |           |        |            |        |         |          |
+|       | environment           |        |           |        |            |        |         |          |
+|-------+-----------------------+--------+-----------+--------+------------+--------+---------+----------|
+|    6. | configure post        | [[https://github.com/vlead/vlabs-landing-pages/issues/121][#121]]   |           |        |            |        |         |          |
+|       | message javascript    |        |           |        |            |        |         |          |
+|       | snippet on            |        |           |        |            |        |         |          |
+|       | theamless.vlabs.ac.in |        |           |        |            |        |         |          |
+|-------+-----------------------+--------+-----------+--------+------------+--------+---------+----------|
+|    7. | Styles are breaking,  | [[https://github.com/vlead/vlabs-landing-pages/issues/118][#118]]   |           |        |            |        |         |          |
+|       | while traveling       |        |           |        |            |        |         |          |
+|       | through browser back  |        |           |        |            |        |         |          |
+|       | button from the       |        |           |        |            |        |         |          |
+|       | experiment page to    |        |           |        |            |        |         |          |
+|       | institutes page       |        |           |        |            |        |         |          |
+|-------+-----------------------+--------+-----------+--------+------------+--------+---------+----------|
+|    8. | Styles are breaking,  | [[https://github.com/vlead/vlabs-landing-pages/issues/119][#119]]   |           |        |            |        |         |          |
+|       | while traveling       |        |           |        |            |        |         |          |
+|       | through browser back  |        |           |        |            |        |         |          |
+|       | button from the       |        |           |        |            |        |         |          |
+|       | experiment page to    |        |           |        |            |        |         |          |
+|       | disciplines page      |        |           |        |            |        |         |          |
+|-------+-----------------------+--------+-----------+--------+------------+--------+---------+----------|
+|    9. | Bug:Loading labs and  | [[https://github.com/vlead/vlabs-landing-pages/issues/116][#116]]   |           |        |            |        |         |          |
+|       | institutes in a same  |        |           |        |            |        |         |          |
+|       | page, while traveling |        |           |        |            |        |         |          |
+|       | through browser back  |        |           |        |            |        |         |          |
+|       | button from the       |        |           |        |            |        |         |          |
+|       | experiment page       |        |           |        |            |        |         |          |
+|-------+-----------------------+--------+-----------+--------+------------+--------+---------+----------|
+|   10. | Bug: Loading labs and | [[https://github.com/vlead/vlabs-landing-pages/issues/117][#117]]   |           |        |            |        |         |          |
+|       | disciplines in a same |        |           |        |            |        |         |          |
+|       | page, while traveling |        |           |        |            |        |         |          |
+|       | through browser back  |        |           |        |            |        |         |          |
+|       | button from the       |        |           |        |            |        |         |          |
+|       | experiment page       |        |           |        |            |        |         |          |
+|-------+-----------------------+--------+-----------+--------+------------+--------+---------+----------|
+|   11. | Integration of        | [[https://github.com/vlead/vlabs-landing-pages/issues/128][#128]]   |           |        |            |        |         |          |
+|       | Openedx urls to       |        |           |        |            |        |         |          |
+|       | registration, sign    |        |           |        |            |        |         |          |
+|       | in and sign out       |        |           |        |            |        |         |          |
+|       | buttons               |        |           |        |            |        |         |          |
+|-------+-----------------------+--------+-----------+--------+------------+--------+---------+----------|
+|       |                       |        |           |        |            |        |         |          |
+|     = |                       |        |           |        |            |        |         |          |
+| Total |                       |        |       122 |        |            |        |         |          |
+|     ^ |                       |        | estimated | actual |            |        |         |          |
+|-------+-----------------------+--------+-----------+--------+------------+--------+---------+----------|
+
+#+TBLFM: $estimated=vsum(@II+1..@-1)
+#+TBLFM: $actual=vsum(@II+1..@-1)
+
+** Search Functionality
   :PROPERTIES:
   :CUSTOM_ID: plan-for-milestone-one
   :END: 
@@ -47,10 +131,10 @@
   1. Search functionality
   2. Sign n functionality 
   3. Register functionality
-
   
-#+caption:  realization-plan
-#+name: tbl-realization-plan
+#+caption:  realization-plan-milestone-5
+#+name: tbl-realization-plan-ml-5
+
 |-------+----------------------+------------+-----------+--------+------------+------------+-------------+-----------|
 |    S. | Tasks                | Github     |  Expected | Actual |  Estimated |     Actual | Status      | Assignee  |
 |    NO |                      | Issues     |    Effort | Effort |     Start, |     Start/ |             |           |
@@ -245,43 +329,8 @@
 #+TBLFM: $estimated=vsum(@II+1..@-1)
 #+TBLFM: $actual=vsum(@II+1..@-1)
 
-** Milestone Three
-|-------+---------------------+--------+----------+--------+------------+--------+---------+-----------|
-|    S. | Tasks               | Github | Expected | Actual |  Estimated | Actual | Status  | Assignee  |
-|    NO |                     | Issues | Effort   | Effort |     Start, | Start/ |         |           |
-|       |                     |        | (in      | (in    |        End | End    |         |           |
-|       |                     |        | person   | person |      Dates | Dates  |         |           |
-|       |                     |        | hours)   | hours) |            |        |         |           |
-|-------+---------------------+--------+----------+--------+------------+--------+---------+-----------|
-|    1. | Adding login        | [[https://github.com/vlead/vlabs-landing-pages/issues/89][#89]]    | 20       |        | 13-10-2017 |        | backlog | Madhavi   |
-|       | functionality for   |        |          |        | 17-10-2017 |        |         | Balamma   |
-|       | vlabs landing page  |        |          |        |            |        |         | Mrudhvika |
-|-------+---------------------+--------+----------+--------+------------+--------+---------+-----------|
-|    2. | Adding signup       | [[https://github.com/vlead/vlabs-landing-pages/issues/88][#88]]    | 30       |        | 17-10-2017 |        | backlog | Madhavi   |
-|       | functionality for   |        |          |        | 23-10-2017 |        |         | Balamma   |
-|       | vlabs landing page  |        |          |        |            |        |         | Mrudhvika |
-|-------+---------------------+--------+----------+--------+------------+--------+---------+-----------|
-|    3. | Enable Sign up      | [[https://github.com/vlead/vlabs-landing-pages/issues/87][#87]]    | 32       |        | 25-10-2017 |        | backlog | Madhavi   |
-|       | and Login buttons   |        |          |        | 26-10-2017 |        |         | Mrudhvika |
-|       | (includes           |        |          |        |            |        |         | Balamma   |
-|       | functionality)      |        |          |        |            |        |         |           |
-|-------+---------------------+--------+----------+--------+------------+--------+---------+-----------|
-|    4. | Interaction between | [[https://github.com/vlead/vlabs-landing-pages/issues/97][#97]]    |          |        |            |        |         |           |
-|       | iframes using       |        |          |        |            |        |         |           |
-|       | postmessage         |        |          |        |            |        |         |           |
-|-------+---------------------+--------+----------+--------+------------+--------+---------+-----------|
-|    5. | setup machine to    | [[https://github.com/vlead/vlabs-landing-pages/issues/102][#102]]   |          |        |            |        |         |           |
-|       | run openedx vagrant |        |          |        |            |        |         |           |
-|       | box for dev         |        |          |        |            |        |         |           |
-|       | environment         |        |          |        |            |        |         |           |
-|-------+---------------------+--------+----------+--------+------------+--------+---------+-----------|
-|     = |                     |        |          |        |            |        |         |           |
-| Total |                     |        | 82       |        |            |        |         |           |
-|     ^ |                     |        | total    |        |            |        |         |           |
-|-------+---------------------+--------+----------+--------+------------+--------+---------+-----------|
-#+TBLFM: $total=vsum(@II+1..@-1
+** Loading data dynamically from LDS
 
-** [[https://github.com/vlead/vlabs-landing-pages/milestone/4][Milestone One]]
   :PROPERTIES:
   :CUSTOM_ID: plan-for-milestone-one
   :END: 
@@ -298,8 +347,8 @@
   7. Footer service can be integrated as a service.
  
 
-#+caption:  realization-plan
-#+name: tbl-realization-plan
+#+caption:  realization-plan-milestone-4
+#+name: tbl-realization-plan-ml-4
 |-------+----------------------+--------+----------+--------+------------+------------+----------+------------|
 |    S. | Tasks                | Github | Expected | Actual |     Actual |  Estimated | Status   | Assignee   |
 |    NO |                      | Issues |   Effort | Effort |     Start, |     Start/ |          |            |
