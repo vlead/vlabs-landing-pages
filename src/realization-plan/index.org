@@ -42,6 +42,27 @@
   #+TBLFM: $act=vsum(@II+1..@-1)
 
 * Detailed Plan 
+** Deployment of Vlabs landing pages
+#+caption:  realization-plan-milestone-7
+#+name: tbl-rlz-pln-ml-7
+
+|---+-------+-----------------------+--------+----------+--------+-----------+--------+--------+----------|
+|   | S.    | Tasks                 | Github | Expected | Actual | Estimated | Actual | Status | Assignee |
+|   | NO    |                       | Issues | Effort   | Effort | Start,    | Start/ |        |          |
+|   |       |                       |        | (in      | (in    | End       | End    |        |          |
+|   |       |                       |        | person   | person | Dates     | Dates  |        |          |
+|   |       |                       |        | hours)   | hours) |           |        |        |          |
+|---+-------+-----------------------+--------+----------+--------+-----------+--------+--------+----------|
+|   | 1.    | Deployment of         | [[https://github.com/vlead/vlabs-landing-pages/issues/126][#126]]   |          |        |           |        | Done   | Madhavi  |
+|   |       | 'vlabs landing pages' |        |          |        |           |        |        |          |
+|   |       | on Testing and        |        |          |        |           |        |        |          |
+|   |       | Stagging              |        |          |        |           |        |        |          |
+|---+-------+-----------------------+--------+----------+--------+-----------+--------+--------+----------|
+|   | Total |                       |        | 0        | 0      |           |        |        |          |
+| ^ |       |                       |        | est      | act    |           |        |        |          |
+|---+-------+-----------------------+--------+----------+--------+-----------+--------+--------+----------|
+#+TBLFM: $est=vsum(@II+1..@-1)
+#+TBLFM: $act=vsum(@II+1..@-1)
 ** Login and Register functionality
      Once this [[https://github.com/vlead/vlabs-landing-pages/milestone/6][milestone]] is realized, the following are
   completed in the VLABS portal:
@@ -605,24 +626,4 @@
 |---+-------+----------------------+--------+----------+--------+------------+------------+----------+------------|
 #+TBLFM: $est=vsum(@II+1..@-1)
 #+TBLFM: $act=vsum(@II+1..@-1)
-** Deployment of Vlabs landing pages
-#+caption:  realization-plan-milestone-7
-#+name: tbl-rlz-pln-ml-7
 
-|---+-------+-----------------------+--------+----------+--------+-----------+--------+--------+----------|
-|   | S.    | Tasks                 | Github | Expected | Actual | Estimated | Actual | Status | Assignee |
-|   | NO    |                       | Issues | Effort   | Effort | Start,    | Start/ |        |          |
-|   |       |                       |        | (in      | (in    | End       | End    |        |          |
-|   |       |                       |        | person   | person | Dates     | Dates  |        |          |
-|   |       |                       |        | hours)   | hours) |           |        |        |          |
-|---+-------+-----------------------+--------+----------+--------+-----------+--------+--------+----------|
-|   | 1.    | Deployment of         | [[https://github.com/vlead/vlabs-landing-pages/issues/126][#126]]   |          |        |           |        | Done   | Madhavi  |
-|   |       | 'vlabs landing pages' |        |          |        |           |        |        |          |
-|   |       | on Testing and        |        |          |        |           |        |        |          |
-|   |       | Stagging              |        |          |        |           |        |        |          |
-|---+-------+-----------------------+--------+----------+--------+-----------+--------+--------+----------|
-|   | Total |                       |        | 0        | 0      |           |        |        |          |
-| ^ |       |                       |        | est      | act    |           |        |        |          |
-|---+-------+-----------------------+--------+----------+--------+-----------+--------+--------+----------|
-#+TBLFM: $est=vsum(@II+1..@-1)
-#+TBLFM: $act=vsum(@II+1..@-1)
