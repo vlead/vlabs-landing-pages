@@ -17,7 +17,7 @@
   |   | S. | Mi | Req | Milestone                                  | Plan | Status |   Est |   Act | Issues |
   |   | no | no | Map |                                            |      |        |   hrs |   hrs |        |
   |---+----+----+-----+--------------------------------------------+------+--------+-------+-------+--------|
-  |   | 1. | [[https://github.com/vlead/vlabs-landing-pages/milestone/7][7]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/7][Deployment of 'vlabs landing pages' v1.2.0]] |      | Closed |       |       | [[https://github.com/vlead/vlabs-landing-pages/milestone/7?closed=1][ref]]    |
+  |   | 1. | [[https://github.com/vlead/vlabs-landing-pages/milestone/7][7]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/7][Deployment of 'vlabs landing pages' v1.2.0]] | [[Deployment of Vlabs landing pages][ref]]  | Closed |     0 |     0 | [[https://github.com/vlead/vlabs-landing-pages/milestone/7?closed=1][ref]]    |
   |---+----+----+-----+--------------------------------------------+------+--------+-------+-------+--------|
   |   | 2. | [[https://github.com/vlead/vlabs-landing-pages/milestone/6][6]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/6][Signup and Login functionality]]             | [[Login and Register functionality][ref]]  | Open   |   122 |     0 | [[https://github.com/vlead/vlabs-landing-pages/milestone/6][ref]]    |
   |---+----+----+-----+--------------------------------------------+------+--------+-------+-------+--------|
@@ -30,6 +30,8 @@
   |   |    |    |     | Total                                      |      |        | 951.5 |  492. |        |
   | ^ |    |    |     |                                            |      |        |   est |   act |        |
   |---+----+----+-----+--------------------------------------------+------+--------+-------+-------+--------|
+  #+TBLFM: @3$8=remote(tbl-rlz-pln-ml-7, $est)
+  #+TBLFM: @3$9=remote(tbl-rlz-pln-ml-7, $act)
   #+TBLFM: @4$8=remote(tbl-rlz-pln-ml-6, $est)
   #+TBLFM: @4$9=remote(tbl-rlz-pln-ml-6, $act)
   #+TBLFM: @5$8=remote(tbl-rlz-pln-ml-5, $est)
@@ -601,5 +603,26 @@
 |   | Total |                      |        |    357.5 |  303.5 |            |            |          |            |
 | ^ |       |                      |        |      est |    act |            |            |          |            |
 |---+-------+----------------------+--------+----------+--------+------------+------------+----------+------------|
+#+TBLFM: $est=vsum(@II+1..@-1)
+#+TBLFM: $act=vsum(@II+1..@-1)
+** Deployment of Vlabs landing pages
+#+caption:  realization-plan-milestone-7
+#+name: tbl-rlz-pln-ml-7
+
+|---+-------+-----------------------+--------+----------+--------+-----------+--------+--------+----------|
+|   | S.    | Tasks                 | Github | Expected | Actual | Estimated | Actual | Status | Assignee |
+|   | NO    |                       | Issues | Effort   | Effort | Start,    | Start/ |        |          |
+|   |       |                       |        | (in      | (in    | End       | End    |        |          |
+|   |       |                       |        | person   | person | Dates     | Dates  |        |          |
+|   |       |                       |        | hours)   | hours) |           |        |        |          |
+|---+-------+-----------------------+--------+----------+--------+-----------+--------+--------+----------|
+|   | 1.    | Deployment of         | [[https://github.com/vlead/vlabs-landing-pages/issues/126][#126]]   |          |        |           |        | Done   | Madhavi  |
+|   |       | 'vlabs landing pages' |        |          |        |           |        |        |          |
+|   |       | on Testing and        |        |          |        |           |        |        |          |
+|   |       | Stagging              |        |          |        |           |        |        |          |
+|---+-------+-----------------------+--------+----------+--------+-----------+--------+--------+----------|
+|   | Total |                       |        | 0        | 0      |           |        |        |          |
+| ^ |       |                       |        | est      | act    |           |        |        |          |
+|---+-------+-----------------------+--------+----------+--------+-----------+--------+--------+----------|
 #+TBLFM: $est=vsum(@II+1..@-1)
 #+TBLFM: $act=vsum(@II+1..@-1)
