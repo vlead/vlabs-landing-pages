@@ -13,35 +13,33 @@
 
 * Milestones Snapshot
 
-  |---+----+----+-----+--------------------------------------------+------+--------+-----+-------+--------|
-  |   | S. | Mi | Req | Milestone                                  | Plan | Status | Est |   Act | Issues |
-  |   | no | no | Map |                                            |      |        | hrs |   hrs |        |
-  |---+----+----+-----+--------------------------------------------+------+--------+-----+-------+--------|
-  |   |  1 | [[https://github.com/vlead/vlabs-landing-pages/milestone/4][4]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/4][Populate data using lds]]                    | [[Loading data dynamically from LDS][ref]]  | Closed |     |       | [[https://github.com/vlead/vlabs-landing-pages/milestone/4?closed=1][ref]]    |
-  |---+----+----+-----+--------------------------------------------+------+--------+-----+-------+--------|
-  |   |  2 | [[https://github.com/vlead/vlabs-landing-pages/milestone/1][1]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/1][Building landing pages using LDS]]           |      | Closed |     |       | [[https://github.com/vlead/vlabs-landing-pages/milestone/1?closed=1][ref]]    |
-  |---+----+----+-----+--------------------------------------------+------+--------+-----+-------+--------|
-  |   |  3 | [[https://github.com/vlead/vlabs-landing-pages/milestone/5][5]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/5][Search functionality]]                       | [[Search Functionality][ref]]  | Closed | 472 | 188.5 | [[https://github.com/vlead/vlabs-landing-pages/milestone/5?closed=1][ref]]    |
-  |---+----+----+-----+--------------------------------------------+------+--------+-----+-------+--------|
-  |   |  4 | [[https://github.com/vlead/vlabs-landing-pages/milestone/3][3]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/3][Dynamically vlabs portal - ssad]]            |      | Open   |     |       | [[https://github.com/vlead/vlabs-landing-pages/milestone/3][ref]]    |
-  |---+----+----+-----+--------------------------------------------+------+--------+-----+-------+--------|
-  |   |  5 | [[https://github.com/vlead/vlabs-landing-pages/milestone/6][6]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/6][Signup and Login functionality]]             | [[Login and Register functionality][ref]]  | Open   | 122 |     0 | [[https://github.com/vlead/vlabs-landing-pages/milestone/6][ref]]    |
-  |   |    |    |     |                                            |      |        |     |       |        |
-  |---+----+----+-----+--------------------------------------------+------+--------+-----+-------+--------|
-  |   |  6 | [[https://github.com/vlead/vlabs-landing-pages/milestone/7][7]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/7][Deployment of 'vlabs landing pages' v1.2.0]] |      | Closed |     |       | [[https://github.com/vlead/vlabs-landing-pages/milestone/7?closed=1][ref]]    |
-  |---+----+----+-----+--------------------------------------------+------+--------+-----+-------+--------|
-  |   |    |    |     | Total                                      |      |        | 594 | 188.5 |        |
-  | ^ |    |    |     |                                            |      |        | est |   act |        |
-  |---+----+----+-----+--------------------------------------------+------+--------+-----+-------+--------|
- #+TBLFM: $2=@#-2)
-  #+TBLFM: :@5$8=remote(tbl-rlz-pln-ml-5, $est)
-  #+TBLFM: :@5$9=remote(tbl-rlz-pln-ml-5, $act
-  #+TBLFM: :@7$8=remote(tbl-rlz-pln-ml-6, $est)
-  #+TBLFM: :@7$9=remote(tbl-rlz-pln-ml-6, $act)
+  |---+----+----+-----+--------------------------------------------+------+--------+-------+-------+--------|
+  |   | S. | Mi | Req | Milestone                                  | Plan | Status |   Est |   Act | Issues |
+  |   | no | no | Map |                                            |      |        |   hrs |   hrs |        |
+  |---+----+----+-----+--------------------------------------------+------+--------+-------+-------+--------|
+  |   | 1. | [[https://github.com/vlead/vlabs-landing-pages/milestone/7][7]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/7][Deployment of 'vlabs landing pages' v1.2.0]] |      | Closed |       |       | [[https://github.com/vlead/vlabs-landing-pages/milestone/7?closed=1][ref]]    |
+  |---+----+----+-----+--------------------------------------------+------+--------+-------+-------+--------|
+  |   | 2. | [[https://github.com/vlead/vlabs-landing-pages/milestone/6][6]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/6][Signup and Login functionality]]             | [[Login and Register functionality][ref]]  | Open   |   122 |     0 | [[https://github.com/vlead/vlabs-landing-pages/milestone/6][ref]]    |
+  |---+----+----+-----+--------------------------------------------+------+--------+-------+-------+--------|
+  |   | 3. | [[https://github.com/vlead/vlabs-landing-pages/milestone/5][5]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/5][Search functionality]]                       | [[Search Functionality][ref]]  | Closed |   472 | 188.5 | [[https://github.com/vlead/vlabs-landing-pages/milestone/5?closed=1][ref]]    |
+  |---+----+----+-----+--------------------------------------------+------+--------+-------+-------+--------|
+  |   | 4. | [[https://github.com/vlead/vlabs-landing-pages/milestone/4][4]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/4][Populate data using lds]]                    | [[Loading data dynamically from LDS][ref]]  | Closed | 357.5 | 303.5 | [[https://github.com/vlead/vlabs-landing-pages/milestone/4?closed=1][ref]]    |
+  |---+----+----+-----+--------------------------------------------+------+--------+-------+-------+--------|
+  |   | 5. | [[https://github.com/vlead/vlabs-landing-pages/milestone/1][1]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/1][Building landing pages using LDS]]           |      | Closed |       |       | [[https://github.com/vlead/vlabs-landing-pages/milestone/1?closed=1][ref]]    |
+  |---+----+----+-----+--------------------------------------------+------+--------+-------+-------+--------|
+  |   |    |    |     | Total                                      |      |        | 951.5 |  492. |        |
+  | ^ |    |    |     |                                            |      |        |   est |   act |        |
+  |---+----+----+-----+--------------------------------------------+------+--------+-------+-------+--------|
+  #+TBLFM: @4$8=remote(tbl-rlz-pln-ml-6, $est)
+  #+TBLFM: @4$9=remote(tbl-rlz-pln-ml-6, $act)
+  #+TBLFM: @5$8=remote(tbl-rlz-pln-ml-5, $est)
+  #+TBLFM: @5$9=remote(tbl-rlz-pln-ml-5, $act)
+  #+TBLFM: @6$8=remote(tbl-rlz-pln-ml-4, $est)
+  #+TBLFM: @6$9=remote(tbl-rlz-pln-ml-4, $act)
   #+TBLFM: $est=vsum(@II+1..@-1)
   #+TBLFM: $act=vsum(@II+1..@-1)
 
-* Plan 
+* Detailed Plan 
 ** Login and Register functionality
      Once this [[https://github.com/vlead/vlabs-landing-pages/milestone/6][milestone]] is realized, the following are
   completed in the VLABS portal:
@@ -340,7 +338,7 @@
  
 
 #+caption:  realization-plan-milestone-4
-#+name: tbl-realization-plan-ml-4
+#+name: tbl-rlz-pln-ml-4
 |---+-------+----------------------+--------+----------+--------+------------+------------+----------+------------|
 |   |    S. | Tasks                | Github | Expected | Actual |     Actual |  Estimated | Status   | Assignee   |
 |   |    NO |                      | Issues |   Effort | Effort |     Start, |     Start/ |          |            |
@@ -600,8 +598,8 @@
 |   |    54 | design of the        | [[https://github.com/vlead/vlabs-landing-pages/issues/20][#20]]    |          |        |            |            |          |            |
 |   |       | VLABS portal         |        |          |        |            |            |          |            |
 |---+-------+----------------------+--------+----------+--------+------------+------------+----------+------------|
-|   | Total |                      |        |    357.5 |        |            |            |          |            |
-| ^ |       |                      |        |    total |        |            |            |          |            |
+|   | Total |                      |        |    357.5 |  303.5 |            |            |          |            |
+| ^ |       |                      |        |      est |    act |            |            |          |            |
 |---+-------+----------------------+--------+----------+--------+------------+------------+----------+------------|
-#+TBLFM: $total=vsum(@II+1..@-1)
-
+#+TBLFM: $est=vsum(@II+1..@-1)
+#+TBLFM: $act=vsum(@II+1..@-1)
