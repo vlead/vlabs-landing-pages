@@ -324,17 +324,20 @@
 #+TBLFM: $act=vsum(@II+1..@-1)
 
 ** Loading data dynamically from LDS
-  Once this [[https://github.com/vlead/vlabs-landing-pages/milestone/4][milestone]] is realized, the following are done to
-  the VLABS portal:
-  1. All institutes can be populated dynamically.
-  2. All Disciplines can be populated dynamically.
-  3. All labs can be populated dynamically on clicking on
-     each institute.
-  4. All labs can be populated dynamically clicking on each
-     discipline.
-  5. All labs can be populated dynamically.
-  6. Styles can be applied dynamically.
-  7. Footer service can be integrated as a service.
+   Logging time against each issue started midway during the
+   realization of the milestone.
+   
+   Once this [[https://github.com/vlead/vlabs-landing-pages/milestone/4][milestone]] is realized, the following are done
+   to the VLABS portal:
+   1. All institutes can be populated dynamically.
+   2. All Disciplines can be populated dynamically.
+   3. All labs can be populated dynamically on clicking on
+      each institute.
+   4. All labs can be populated dynamically clicking on each
+      discipline.
+   5. All labs can be populated dynamically.
+   6. Styles can be applied dynamically.
+   7. Footer service can be integrated as a service.
  
 
 #+caption:  realization-plan-milestone-4
