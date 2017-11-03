@@ -21,13 +21,13 @@
   |---+----+----+-----+--------------------------------------------+------+--------+-------+-------+--------|
   |   | 2. | [[https://github.com/vlead/vlabs-landing-pages/milestone/6][6]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/6][Signup and Login functionality]]             | [[Login and Register functionality][ref]]  | Open   |   122 |     0 | [[https://github.com/vlead/vlabs-landing-pages/milestone/6][ref]]    |
   |---+----+----+-----+--------------------------------------------+------+--------+-------+-------+--------|
-  |   | 3. | [[https://github.com/vlead/vlabs-landing-pages/milestone/5][5]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/5][Search functionality]]                       | [[Search Functionality][ref]]  | Closed |   472 | 188.5 | [[https://github.com/vlead/vlabs-landing-pages/milestone/5?closed=1][ref]]    |
+  |   | 3. | [[https://github.com/vlead/vlabs-landing-pages/milestone/5][5]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/5][Search functionality]]                       | [[Search Functionality][ref]]  | Closed |   472 | 217.5 | [[https://github.com/vlead/vlabs-landing-pages/milestone/5?closed=1][ref]]    |
   |---+----+----+-----+--------------------------------------------+------+--------+-------+-------+--------|
   |   | 4. | [[https://github.com/vlead/vlabs-landing-pages/milestone/4][4]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/4][Populate data using lds]]                    | [[Loading data dynamically from LDS][ref]]  | Closed | 357.5 | 303.5 | [[https://github.com/vlead/vlabs-landing-pages/milestone/4?closed=1][ref]]    |
   |---+----+----+-----+--------------------------------------------+------+--------+-------+-------+--------|
   |   | 5. | [[https://github.com/vlead/vlabs-landing-pages/milestone/1][1]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/1][Building landing pages using LDS]]           |      | Closed |       |       | [[https://github.com/vlead/vlabs-landing-pages/milestone/1?closed=1][ref]]    |
   |---+----+----+-----+--------------------------------------------+------+--------+-------+-------+--------|
-  |   |    |    |     | Total                                      |      |        | 951.5 |  492. |        |
+  |   |    |    |     | Total                                      |      |        | 951.5 |  521. |        |
   | ^ |    |    |     |                                            |      |        |   est |   act |        |
   |---+----+----+-----+--------------------------------------------+------+--------+-------+-------+--------|
   #+TBLFM: @3$8=remote(tbl-rlz-pln-ml-7, $est)
@@ -148,7 +148,7 @@
 ** Search Functionality
   Once this [[https://github.com/vlead/vlabs-landing-pages/milestone/5][milestone]] is realized, Search functionality is
   available in the VLABS portal:
-  
+
 #+caption:  realization-plan-milestone-5
 #+name: tbl-rlz-pln-ml-5
 
@@ -163,9 +163,9 @@
 |   |       | based search         |            |          |        | 29-10-2017 |            |             |           |
 |   |       | feature              |            |          |        |            |            |             |           |
 |---+-------+----------------------+------------+----------+--------+------------+------------+-------------+-----------|
-|   |    2. | Unable to navigate   | [[https://github.com/vlead/vlabs-landing-pages/issues/85][#85]]        |          |        | 29-10-2017 |            | bug         | Mrudhvika |
-|   |       | institute wise       |            |       32 |        | 30-10-2017 |            |             | Balamma   |
-|   |       | labs from            |            |          |        |            |            |             | Madhavi   |
+|   |    2. | Unable to navigate   | [[https://github.com/vlead/vlabs-landing-pages/issues/85][#85]]        |          |        | 29-10-2017 |            | bug         | Madhavi   |
+|   |       | institute wise       |            |       32 |        | 30-10-2017 |            |             |           |
+|   |       | labs from            |            |          |        |            |            |             |           |
 |   |       | experiment page      |            |          |        |            |            |             |           |
 |---+-------+----------------------+------------+----------+--------+------------+------------+-------------+-----------|
 |   |    3. | Header and footer    | [[https://github.com/vlead/vlabs-landing-pages/issues/84][#84]]        |       16 |     16 | 16-10-2017 | 16-10-2017 | bug         | Balamma   |
@@ -179,8 +179,8 @@
 |   |       | icon width and       |            |          |        | 09-10-2017 | 10-10-2017 |             |           |
 |   |       | height               |            |          |        |            |            |             | Mrudhvika |
 |---+-------+----------------------+------------+----------+--------+------------+------------+-------------+-----------|
-|   |    6. | Fix Grid layout      | [[https://github.com/vlead/vlabs-landing-pages/issues/81][#81]]        |       16 |        | 12-10-2017 |            | bug         | Balamma   |
-|   |       | styles               |            |          |        | 14-10-2017 |            | In progress | Mrudhvika |
+|   |    6. | Fix Grid layout      | [[https://github.com/vlead/vlabs-landing-pages/issues/81][#81]]        |       16 |     12 | 12-10-2017 | 13-10-2017 | bug         | Balamma   |
+|   |       | styles               |            |          |        | 14-10-2017 | 14-10-2017 | In progress | Mrudhvika |
 |---+-------+----------------------+------------+----------+--------+------------+------------+-------------+-----------|
 |   |    7. | Header is repeating  | [[https://github.com/vlead/vlabs-landing-pages/issues/80][#80]]        |       32 |     14 | 13-10-2017 | 24-10-2017 | Done        | Mrudhvika |
 |   |       | twice when broswer   |            |          |        | 14-10-2017 | 24-10-2017 |             | Balamma   |
@@ -217,8 +217,8 @@
 |   |       | on all disciplines   |            |          |        |            |            |             |           |
 |   |       | page.                |            |          |        |            |            |             |           |
 |---+-------+----------------------+------------+----------+--------+------------+------------+-------------+-----------|
-|   |   14. | Align lab titles     | [[https://github.com/vlead/vlabs-landing-pages/issues/96][#96]]        |       08 |     08 | 12-10-2017 |            | Done        | Balamma   |
-|   |       | along with labs      |            |          |        | 12-10-2017 |            |             | Mrudhvika |
+|   |   14. | Align lab titles     | [[https://github.com/vlead/vlabs-landing-pages/issues/96][#96]]        |       08 |     08 | 12-10-2017 | 12-10-2017 | Done        | Balamma   |
+|   |       | along with labs      |            |          |        | 12-10-2017 | 12-10-2017 |             | Mrudhvika |
 |   |       | images on all labs   |            |          |        |            |            |             |           |
 |   |       | page                 |            |          |        |            |            |             |           |
 |---+-------+----------------------+------------+----------+--------+------------+------------+-------------+-----------|
@@ -252,8 +252,8 @@
 |   |       | vlabs landing pages  |            |          |        | 12-10-2017 | 12-10-2017 |             | Sanchita  |
 |   |       |                      |            |          |        |            |            |             | Balamma   |
 |---+-------+----------------------+------------+----------+--------+------------+------------+-------------+-----------|
-|   |   20. | Fixing grid styles   | [[https://github.com/vlead/vlabs-landing-pages/issues/105][#105]]       |       16 |        |            |            |             | Balamma   |
-|   |       | while traversing     |            |          |        |            |            |             | Mrudhvika |
+|   |   20. | Fixing grid styles   | [[https://github.com/vlead/vlabs-landing-pages/issues/105][#105]]       |       16 |     16 | 23-10-2017 | 23-10-2017 | Done        | Balamma   |
+|   |       | while traversing     |            |          |        | 24-10-2017 | 24-10-2017 |             | Mrudhvika |
 |   |       | through individual   |            |          |        |            |            |             |           |
 |   |       | institutes and       |            |          |        |            |            |             |           |
 |   |       | disciplines          |            |          |        |            |            |             |           |
@@ -267,7 +267,7 @@
 |   |       | header division in   | [[https://github.com/vlead/vlabs-landing-pages/issues/113][#113]]  [[https://github.com/vlead/vlabs-landing-pages/issues/114][#114]] |          |        |            |            |             | Mrudhvika |
 |   |       | html                 |            |          |        |            |            |             |           |
 |---+-------+----------------------+------------+----------+--------+------------+------------+-------------+-----------|
-|   |   23. | Unable to navigate   | [[https://github.com/vlead/vlabs-landing-pages/issues/109][#109]]       |       16 |        | 25-10-2017 | 25-10-2017 | In Progress | Madhavi   |
+|   |   23. | Unable to navigate   | [[https://github.com/vlead/vlabs-landing-pages/issues/109][#109]]       |       16 |      1 | 25-10-2017 | 25-10-2017 | Done        | Madhavi   |
 |   |       | discipline wise      |            |          |        | 26-10-2017 | 26-10-2017 |             |           |
 |   |       | labs from            |            |          |        |            |            |             |           |
 |   |       | experiment page      |            |          |        |            |            |             |           |
@@ -340,7 +340,7 @@
 |   |       | and disciplines      |            |          |        | 26-10-2017 | 26-10-2017 |             | Mrudhvika |
 |   |       | icons height         |            |          |        |            |            |             |           |
 |---+-------+----------------------+------------+----------+--------+------------+------------+-------------+-----------|
-|   | Total |                      |            |      472 |  188.5 |            |            |             |           |
+|   | Total |                      |            |      472 |  217.5 |            |            |             |           |
 | ^ |       |                      |            |      est |    act |            |            |             |           |
 |---+-------+----------------------+------------+----------+--------+------------+------------+-------------+-----------|
 #+TBLFM: $est=vsum(@II+1..@-1)
