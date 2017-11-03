@@ -180,7 +180,7 @@
 |   |       | height               |            |          |        |            |            |             | Mrudhvika |
 |---+-------+----------------------+------------+----------+--------+------------+------------+-------------+-----------|
 |   |    6. | Fix Grid layout      | [[https://github.com/vlead/vlabs-landing-pages/issues/81][#81]]        |       16 |     12 | 12-10-2017 | 13-10-2017 | bug         | Balamma   |
-|   |       | styles               |            |          |        | 14-10-2017 | 14-10-2017 | In progress | Mrudhvika |
+|   |       | styles               |            |          |        | 14-10-2017 | 14-10-2017 | Done        | Mrudhvika |
 |---+-------+----------------------+------------+----------+--------+------------+------------+-------------+-----------|
 |   |    7. | Header is repeating  | [[https://github.com/vlead/vlabs-landing-pages/issues/80][#80]]        |       32 |     14 | 13-10-2017 | 24-10-2017 | Done        | Mrudhvika |
 |   |       | twice when broswer   |            |          |        | 14-10-2017 | 24-10-2017 |             | Balamma   |
@@ -296,32 +296,32 @@
 |   |       | functionality is     |            |          |        |            |            |             |           |
 |   |       | breaking             |            |          |        |            |            |             |           |
 |---+-------+----------------------+------------+----------+--------+------------+------------+-------------+-----------|
-|   |   30. | Bug:Loading labs     | [[https://github.com/vlead/vlabs-landing-pages/issues/116][#116]]       |       32 |        | 25-10-2016 |            | In Progress | Madhavi   |
-|   |       | and institutes in    |            |          |        | 27-10-2016 |            |             | Balamma   |
+|   |   30. | Bug:Loading labs     | [[https://github.com/vlead/vlabs-landing-pages/issues/116][#116]]       |       32 |        | 25-10-2016 |            | Bug         | Madhavi   |
+|   |       | and institutes in    |            |          |        | 27-10-2016 |            | In Progress | Balamma   |
 |   |       | a same page, while   |            |          |        |            |            |             | Mrudhvika |
 |   |       | traveling through    |            |          |        |            |            |             |           |
 |   |       | browser back         |            |          |        |            |            |             |           |
 |   |       | button from the      |            |          |        |            |            |             |           |
 |   |       | experiment page.     |            |          |        |            |            |             |           |
 |---+-------+----------------------+------------+----------+--------+------------+------------+-------------+-----------|
-|   |   31. | Bug:Loading labs     | [[https://github.com/vlead/vlabs-landing-pages/issues/117][#117]]       |       32 |        | 25-10-2016 |            | In Progress | Madhavi   |
-|   |       | AND Disciplines in   |            |          |        | 27-10-2016 |            |             | Balamma   |
+|   |   31. | Bug:Loading labs     | [[https://github.com/vlead/vlabs-landing-pages/issues/117][#117]]       |       32 |        | 25-10-2016 |            | Bug         | Madhavi   |
+|   |       | AND Disciplines in   |            |          |        | 27-10-2016 |            | In Progress | Balamma   |
 |   |       | same page, while     |            |          |        |            |            |             | Mrudhvika |
 |   |       | traveling through    |            |          |        |            |            |             |           |
 |   |       | browser back         |            |          |        |            |            |             |           |
 |   |       | button from the      |            |          |        |            |            |             |           |
 |   |       | experiment page      |            |          |        |            |            |             |           |
 |---+-------+----------------------+------------+----------+--------+------------+------------+-------------+-----------|
-|   |   32. | Styles are breaking, | [[https://github.com/vlead/vlabs-landing-pages/issues/118][#118]]       |       32 |        | 25-10-2017 |            | In Progress | Madhavi   |
-|   |       | while traveling      |            |          |        | 27-10-2017 |            |             | Balamma   |
+|   |   32. | Styles are breaking, | [[https://github.com/vlead/vlabs-landing-pages/issues/118][#118]]       |       32 |        | 25-10-2017 |            | Bug         | Madhavi   |
+|   |       | while traveling      |            |          |        | 27-10-2017 |            | In Progress | Balamma   |
 |   |       | through browser      |            |          |        |            |            |             | Mrudhvika |
 |   |       | back button from     |            |          |        |            |            |             |           |
 |   |       | the experiment       |            |          |        |            |            |             |           |
 |   |       | page to institutes   |            |          |        |            |            |             |           |
 |   |       | page.                |            |          |        |            |            |             |           |
 |---+-------+----------------------+------------+----------+--------+------------+------------+-------------+-----------|
-|   |   33. | Styles are breaking, | [[https://github.com/vlead/vlabs-landing-pages/issues/119][#119]]       |       32 |        | 25-10-2017 |            | In Progress | Madhavi   |
-|   |       | while traveling      |            |          |        | 27-10-2017 |            |             | Balamma   |
+|   |   33. | Styles are breaking, | [[https://github.com/vlead/vlabs-landing-pages/issues/119][#119]]       |       32 |        | 25-10-2017 |            | Bug         | Madhavi   |
+|   |       | while traveling      |            |          |        | 27-10-2017 |            | In Progress | Balamma   |
 |   |       | through browser      |            |          |        |            |            |             | Mrudhvika |
 |   |       | back button from     |            |          |        |            |            |             |           |
 |   |       | the experiment       |            |          |        |            |            |             |           |
