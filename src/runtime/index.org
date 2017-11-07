@@ -195,8 +195,8 @@ c#+TITLE: Runtime
                   </span>
                 </div>
               </form>
-              <li><a onclick="setRegisterUrlInContentIframe();"><span class="glyphicon glyphicon-user"></span>Register</a></li>
-              <li><a onclick="setLoginUrlInContentIframe('login');" id="login" class="glyphicon glyphicon-log-in"> Login</a></li>
+              <li><a class ="cursor-pointer" onclick="setRegisterUrlInContentIframe();"><span class="glyphicon glyphicon-user"></span>Register</a></li>
+              <li><a class ="cursor-pointer" onclick="setLoginUrlInContentIframe('login');" id="login" class="glyphicon glyphicon-log-in"> Login</a></li>
             </ul>
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
@@ -818,6 +818,18 @@ var getAllLabs = function(){
 };
 
  #+END_SRC
+** Get Lab
+#+NAME: get-lab
+#+BEGIN_SRC javascript
+var getLab = function(url){
+    hosted_url = url.id;
+    alert(hosted_url);
+    var iframe = parent.document.getElementById("contentIframe");
+    iframe.src = hosted_url;
+    addScriptTags();
+};
+
+#+END_SRC
 ** Get Labs by Discipline Name
    =getAllDisciplines()= function will invokes this
    function. This function dynamically fetches the labs
@@ -952,12 +964,20 @@ var getLabsByInstituteName = function(image, flag) {
           console.log(path);
         }
       }
-      labs += '<div class="col-md-3" id='+ lab_name +
-        '> <div class="thumbnail" style="padding: 0px !important;" ><a href='+ hosted_url +
-        '><img class="img-responsive" src="' + path +
-        '"alt="image"/><a href='+ hosted_url +
-        '><div class="caption" style="min-height: 110px;" ><h4 style="text-align:left; color:#2c99ce;">'+lab_name +
-        '</h4></div></a></div></div>';
+
+//      labs += '<div class="col-md-3" id='+ lab_name +
+//        '> <div class="thumbnail" style="padding: 0px !important;" ><a href='+ hosted_url +
+//        '><img class="img-responsive" src="' + path +
+//        '"alt="image"/><a href='+ hosted_url +
+//        '><div class="caption" style="min-height: 110px;" ><h4 style="text-align:left; color:#2c99ce;">'+lab_name +
+//        '</h4></div></a></div></div>';
+
+        labs += '<div class="col-md-3" id='+ lab_name +
+        '> <div class="thumbnail" style="padding: 0px !important;" ><a><img class="img-responsive" id='+hosted_url+' onclick="getLab(this)" src="' + path +
+        '"alt="image"/><div class="caption" style="min-height: 110px;" ><h4 style="text-align:left; color:#2c99ce;">'+lab_name +
+            '</h4></div></a></div></div>';
+
+
     });
     console.log(labs);
     var labs_list = '<div class="container-fluid"><div class="row">'+ labs +'</div></div>';
@@ -1143,6 +1163,12 @@ var addScriptTags = function(){
   jquery_script.type = "text/javascript";
   jquery_script.src = jquery_url;
   head.appendChild(jquery_script);  
+
+  var backfix_script = contentIframe.contentWindow.document.createElement("script");
+  var backfix_url = "../static/js/backfix.min.js";
+  backfix_script.type = "text/javascript";
+  backfix_script.src = backfix_url;
+  head.appendChild(backfix_script);
 
   var bootstrap_js = contentIframe.contentWindow.document.createElement("script");
   var bootstrap_js_url = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js";
@@ -1423,6 +1449,7 @@ head.appendChild(favicon);
 <<get-all-institutes>>
 <<get-all-disciplines>>
 <<get-all-labs>>
+<<get-lab>>
 <<labs-by-keyword-search>>
 <<mouse-over>>
 
