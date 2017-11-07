@@ -195,8 +195,8 @@ c#+TITLE: Runtime
                   </span>
                 </div>
               </form>
-              <li><a onclick="setRegisterUrlInContentIframe();"><span class="glyphicon glyphicon-user"></span>Register</a></li>
-              <li><a onclick="setLoginUrlInContentIframe('login');" id="login" class="glyphicon glyphicon-log-in"> Login</a></li>
+              <li><a class ="cursor-pointer" onclick="setRegisterUrlInContentIframe();"><span class="glyphicon glyphicon-user"></span>Register</a></li>
+              <li><a class ="cursor-pointer" onclick="setLoginUrlInContentIframe('login');" id="login" class="glyphicon glyphicon-log-in"> Login</a></li>
             </ul>
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
