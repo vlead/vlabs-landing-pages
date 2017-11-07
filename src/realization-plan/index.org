@@ -71,77 +71,81 @@
 #+caption:  realization-plan-milestone-6
 #+name: tbl-rlz-pln-ml-6
 
-|---+-------+-----------------------+--------+----------+--------+------------+--------+-------------+-----------|
-|   |    S. | Tasks                 | Github | Expected | Actual |  Estimated | Actual | Status      | Assignee  |
-|   |    NO |                       | Issues |   Effort | Effort |     Start, | Start/ |             |           |
-|   |       |                       |        |      (in | (in    |        End | End    |             |           |
-|   |       |                       |        |   person | person |      Dates | Dates  |             |           |
-|   |       |                       |        |   hours) | hours) |            |        |             |           |
-|---+-------+-----------------------+--------+----------+--------+------------+--------+-------------+-----------|
-|   |    1. | Adding login          | [[https://github.com/vlead/vlabs-landing-pages/issues/89][#89]]    |       20 |        | 13-10-2017 |        | backlog     |           |
-|   |       | functionality for     |        |          |        | 17-10-2017 |        |             |           |
-|   |       | vlabs landing page    |        |          |        |            |        |             |           |
-|---+-------+-----------------------+--------+----------+--------+------------+--------+-------------+-----------|
-|   |    2. | Adding signup         | [[https://github.com/vlead/vlabs-landing-pages/issues/88][#88]]    |       30 |        | 17-10-2017 |        | backlog     |           |
-|   |       | functionality for     |        |          |        | 23-10-2017 |        |             |           |
-|   |       | vlabs landing page    |        |          |        |            |        |             |           |
-|---+-------+-----------------------+--------+----------+--------+------------+--------+-------------+-----------|
-|   |    3. | Enable Sign up        | [[https://github.com/vlead/vlabs-landing-pages/issues/87][#87]]    |       32 |        | 25-10-2017 |        | backlog     |           |
-|   |       | and Login buttons     |        |          |        | 26-10-2017 |        |             |           |
-|   |       | (includes             |        |          |        |            |        |             |           |
-|   |       | functionality)        |        |          |        |            |        |             |           |
-|---+-------+-----------------------+--------+----------+--------+------------+--------+-------------+-----------|
-|   |    4. | Interaction between   | [[https://github.com/vlead/vlabs-landing-pages/issues/97][#97]]    |       24 |        | 02-11-2017 |        | backlog     |           |
-|   |       | iframes using         |        |          |        | 04-11-2017 |        |             |           |
-|   |       | postmessage           |        |          |        |            |        |             |           |
-|---+-------+-----------------------+--------+----------+--------+------------+--------+-------------+-----------|
-|   |    5. | setup machine to      | [[https://github.com/vlead/vlabs-landing-pages/issues/102][#102]]   |       16 |        | 30-10-2017 |        | backlog     |           |
-|   |       | run openedx vagrant   |        |          |        | 31-10-2017 |        |             |           |
-|   |       | box for dev           |        |          |        |            |        |             |           |
-|   |       | environment           |        |          |        |            |        |             |           |
-|---+-------+-----------------------+--------+----------+--------+------------+--------+-------------+-----------|
-|   |    6. | configure post        | [[https://github.com/vlead/vlabs-landing-pages/issues/121][#121]]   |          |        |            |        |             |           |
-|   |       | message javascript    |        |          |        |            |        |             |           |
-|   |       | snippet on            |        |          |        |            |        |             |           |
-|   |       | theamless.vlabs.ac.in |        |          |        |            |        |             |           |
-|---+-------+-----------------------+--------+----------+--------+------------+--------+-------------+-----------|
-|   |    7. | Styles are breaking,  | [[https://github.com/vlead/vlabs-landing-pages/issues/118][#118]]   |       32 |        |            |        | Bug         |           |
-|   |       | while traveling       |        |          |        |            |        | Backlog     |           |
-|   |       | through browser back  |        |          |        |            |        |             |           |
-|   |       | button from the       |        |          |        |            |        |             |           |
-|   |       | experiment page to    |        |          |        |            |        |             |           |
-|   |       | institutes page       |        |          |        |            |        |             |           |
-|---+-------+-----------------------+--------+----------+--------+------------+--------+-------------+-----------|
-|   |    8. | Styles are breaking,  | [[https://github.com/vlead/vlabs-landing-pages/issues/119][#119]]   |       32 |        | 01-11-2017 |        | Bug         | Balamma   |
-|   |       | while traveling       |        |          |        | 06-10-2017 |        | In progress | Mrudhvika |
-|   |       | through browser back  |        |          |        |            |        |             |           |
-|   |       | button from the       |        |          |        |            |        |             |           |
-|   |       | experiment page to    |        |          |        |            |        |             |           |
-|   |       | disciplines page      |        |          |        |            |        |             |           |
-|---+-------+-----------------------+--------+----------+--------+------------+--------+-------------+-----------|
-|   |    9. | Bug:Loading labs and  | [[https://github.com/vlead/vlabs-landing-pages/issues/116][#116]]   |       48 |        |            |        | Bug         |           |
-|   |       | institutes in a same  |        |          |        |            |        | Backlog     |           |
-|   |       | page, while traveling |        |          |        |            |        |             |           |
-|   |       | through browser back  |        |          |        |            |        |             |           |
-|   |       | button from the       |        |          |        |            |        |             |           |
-|   |       | experiment page       |        |          |        |            |        |             |           |
-|---+-------+-----------------------+--------+----------+--------+------------+--------+-------------+-----------|
-|   |   10. | Bug: Loading labs and | [[https://github.com/vlead/vlabs-landing-pages/issues/117][#117]]   |       48 |        | 01-11-2017 |        | Bug         | Balamma   |
-|   |       | disciplines in a same |        |          |        | 07-11-2017 |        | In progress | Mrudhvika |
-|   |       | page, while traveling |        |          |        |            |        |             |           |
-|   |       | through browser back  |        |          |        |            |        |             |           |
-|   |       | button from the       |        |          |        |            |        |             |           |
-|   |       | experiment page       |        |          |        |            |        |             |           |
-|---+-------+-----------------------+--------+----------+--------+------------+--------+-------------+-----------|
-|   |   11. | Integration of        | [[https://github.com/vlead/vlabs-landing-pages/issues/128][#128]]   |          |        |            |        |             |           |
-|   |       | Openedx urls to       |        |          |        |            |        |             |           |
-|   |       | registration, sign    |        |          |        |            |        |             |           |
-|   |       | in and sign out       |        |          |        |            |        |             |           |
-|   |       | buttons               |        |          |        |            |        |             |           |
-|---+-------+-----------------------+--------+----------+--------+------------+--------+-------------+-----------|
-|   | Total |                       |        |      122 | 0      |            |        |             |           |
-| ^ |       |                       |        |      est | act    |            |        |             |           |
-|---+-------+-----------------------+--------+----------+--------+------------+--------+-------------+-----------|
+|---+-------+-----------------------+--------+----------+--------+------------+------------+-------------+-----------|
+|   |    S. | Tasks                 | Github | Expected | Actual |  Estimated | Actual     | Status      | Assignee  |
+|   |    NO |                       | Issues |   Effort | Effort |     Start, | Start/     |             |           |
+|   |       |                       |        |      (in | (in    |        End | End        |             |           |
+|   |       |                       |        |   person | person |      Dates | Dates      |             |           |
+|   |       |                       |        |   hours) | hours) |            |            |             |           |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+-------------+-----------|
+|   |    1. | Adding login          | [[https://github.com/vlead/vlabs-landing-pages/issues/89][#89]]    |       20 |        | 13-10-2017 |            | backlog     |           |
+|   |       | functionality for     |        |          |        | 17-10-2017 |            |             |           |
+|   |       | vlabs landing page    |        |          |        |            |            |             |           |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+-------------+-----------|
+|   |    2. | Adding signup         | [[https://github.com/vlead/vlabs-landing-pages/issues/88][#88]]    |       30 |        | 17-10-2017 |            | backlog     |           |
+|   |       | functionality for     |        |          |        | 23-10-2017 |            |             |           |
+|   |       | vlabs landing page    |        |          |        |            |            |             |           |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+-------------+-----------|
+|   |    3. | Enable Sign up        | [[https://github.com/vlead/vlabs-landing-pages/issues/87][#87]]    |       32 |        | 25-10-2017 |            | backlog     |           |
+|   |       | and Login buttons     |        |          |        | 26-10-2017 |            |             |           |
+|   |       | (includes             |        |          |        |            |            |             |           |
+|   |       | functionality)        |        |          |        |            |            |             |           |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+-------------+-----------|
+|   |    4. | Interaction between   | [[https://github.com/vlead/vlabs-landing-pages/issues/97][#97]]    |       24 |        | 02-11-2017 |            | backlog     |           |
+|   |       | iframes using         |        |          |        | 04-11-2017 |            |             |           |
+|   |       | postmessage           |        |          |        |            |            |             |           |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+-------------+-----------|
+|   |    5. | setup machine to      | [[https://github.com/vlead/vlabs-landing-pages/issues/102][#102]]   |       16 |        | 30-10-2017 |            | backlog     |           |
+|   |       | run openedx vagrant   |        |          |        | 31-10-2017 |            |             |           |
+|   |       | box for dev           |        |          |        |            |            |             |           |
+|   |       | environment           |        |          |        |            |            |             |           |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+-------------+-----------|
+|   |    6. | configure post        | [[https://github.com/vlead/vlabs-landing-pages/issues/121][#121]]   |          |        |            |            |             |           |
+|   |       | message javascript    |        |          |        |            |            |             |           |
+|   |       | snippet on            |        |          |        |            |            |             |           |
+|   |       | theamless.vlabs.ac.in |        |          |        |            |            |             |           |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+-------------+-----------|
+|   |    7. | Styles are breaking,  | [[https://github.com/vlead/vlabs-landing-pages/issues/118][#118]]   |       32 |        |            |            | Bug         |           |
+|   |       | while traveling       |        |          |        |            |            | Backlog     |           |
+|   |       | through browser back  |        |          |        |            |            |             |           |
+|   |       | button from the       |        |          |        |            |            |             |           |
+|   |       | experiment page to    |        |          |        |            |            |             |           |
+|   |       | institutes page       |        |          |        |            |            |             |           |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+-------------+-----------|
+|   |    8. | Styles are breaking,  | [[https://github.com/vlead/vlabs-landing-pages/issues/119][#119]]   |       32 |        | 01-11-2017 |            | Bug         | Balamma   |
+|   |       | while traveling       |        |          |        | 06-10-2017 |            | In progress | Mrudhvika |
+|   |       | through browser back  |        |          |        |            |            |             |           |
+|   |       | button from the       |        |          |        |            |            |             |           |
+|   |       | experiment page to    |        |          |        |            |            |             |           |
+|   |       | disciplines page      |        |          |        |            |            |             |           |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+-------------+-----------|
+|   |    9. | Bug:Loading labs and  | [[https://github.com/vlead/vlabs-landing-pages/issues/116][#116]]   |       48 |        |            |            | Bug         |           |
+|   |       | institutes in a same  |        |          |        |            |            | Backlog     |           |
+|   |       | page, while traveling |        |          |        |            |            |             |           |
+|   |       | through browser back  |        |          |        |            |            |             |           |
+|   |       | button from the       |        |          |        |            |            |             |           |
+|   |       | experiment page       |        |          |        |            |            |             |           |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+-------------+-----------|
+|   |   10. | Bug: Loading labs and | [[https://github.com/vlead/vlabs-landing-pages/issues/117][#117]]   |       48 |        | 01-11-2017 |            | Bug         | Balamma   |
+|   |       | disciplines in a same |        |          |        | 07-11-2017 |            | In progress | Mrudhvika |
+|   |       | page, while traveling |        |          |        |            |            |             |           |
+|   |       | through browser back  |        |          |        |            |            |             |           |
+|   |       | button from the       |        |          |        |            |            |             |           |
+|   |       | experiment page       |        |          |        |            |            |             |           |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+-------------+-----------|
+|   |   11. | Integration of        | [[https://github.com/vlead/vlabs-landing-pages/issues/128][#128]]   |          |        |            |            |             |           |
+|   |       | Openedx urls to       |        |          |        |            |            |             |           |
+|   |       | registration, sign    |        |          |        |            |            |             |           |
+|   |       | in and sign out       |        |          |        |            |            |             |           |
+|   |       | buttons               |        |          |        |            |            |             |           |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+-------------+-----------|
+|   |   12. | Add pointers(Hand     | [[https://github.com/vlead/vlabs-landing-pages/issues/130][130]]    |        1 | 0.5    | 07-11-2017 | 07-11-2017 | Enhancement | Mrudhvika |
+|   |       | symbol) to register   |        |          |        | 07-11-2017 | 07-11-2017 | Done        |           |
+|   |       | and login buttons     |        |          |        |            |            |             |           |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+-------------+-----------|
+|   | Total |                       |        |      122 | 0      |            |            |             |           |
+| ^ |       |                       |        |      est | act    |            |            |             |           |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+-------------+-----------|
 #+TBLFM: $est=vsum(@II+1..@-1)
 #+TBLFM: $act=vsum(@II+1..@-1)
 
