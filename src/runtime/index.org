@@ -45,6 +45,43 @@ c#+TITLE: Runtime
     <link rel="stylesheet" href="../static/css/style.css"/>
     <script type="text/javascript" src="../static/js/app-config.js"></script>
     <script type="text/javascript" src="../static/js/main.js"></script>
+    <script type="text/javascript" src="../static/js/backfix.min.js"></script>
+<script>
+            window.onbeforeunload = function (e) {
+                var message = "Are you sure ?";
+                var firefox = /Firefox[\/\s](\d+)/.test(navigator.userAgent);
+                if (firefox) {
+                    //Add custom dialog
+                    //Firefox does not accept window.showModalDialog(), window.alert(), window.confirm(), and window.prompt() furthermore
+                    var dialog = document.createElement("div");
+                    document.body.appendChild(dialog);
+                    dialog.id = "dialog";
+                    dialog.style.visibility = "hidden";
+                    dialog.innerHTML = message;
+                    var left = document.body.clientWidth / 2 - dialog.clientWidth / 2;
+                    dialog.style.left = left + "px";
+                    dialog.style.visibility = "visible";
+                    var shadow = document.createElement("div");
+                    document.body.appendChild(shadow);
+                    shadow.id = "shadow";
+                    //tip with setTimeout
+                    setTimeout(function () {
+                        document.body.removeChild(document.getElementById("dialog"));
+                        document.body.removeChild(document.getElementById("shadow"));
+                    }, 0);
+                }
+                return message;
+            };
+        </script>
+
+<script>    
+window.addEventListener("beforeunload", function (e) {
+  var confirmationMessage = "\o/";
+
+  (e || window.event).returnValue = confirmationMessage; //Gecko + IE
+  return confirmationMessage;                            //Webkit, Safari, Chrome
+});
+
     <script>
       document.domain="localhost";
       window.loggedin=false;
@@ -1198,10 +1235,8 @@ var addScriptTags = function(){
 
 };
 
-
-
-
 #+END_SRC
+
 ** Resetting content in Iframe
    Resetting the content in the same frame is just element
    manipulation where =contentIframe= is accessed and new
@@ -1223,6 +1258,14 @@ var resetContentInIframe = function(data) {
 
 #+END_SRC
 
+** Back button
+#+NAME: back-button
+#+BEGIN_SRC javascript 
+bajb_backdetect.OnBack = function()
+{
+alert('You clicked it!');
+}
+#+END_SRC
 ** Mouse Over
 #+NAME: mouse-over
 #+BEGIN_SRC javascript
@@ -1452,6 +1495,7 @@ head.appendChild(favicon);
 <<get-lab>>
 <<labs-by-keyword-search>>
 <<mouse-over>>
+<<back-button>>
 
 #+END_SRC
 *** Config
