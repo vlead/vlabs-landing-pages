@@ -46,42 +46,7 @@ c#+TITLE: Runtime
     <script type="text/javascript" src="../static/js/app-config.js"></script>
     <script type="text/javascript" src="../static/js/main.js"></script>
     <script type="text/javascript" src="../static/js/backfix.min.js"></script>
-<script>
-            window.onbeforeunload = function (e) {
-                var message = "Are you sure ?";
-                var firefox = /Firefox[\/\s](\d+)/.test(navigator.userAgent);
-                if (firefox) {
-                    //Add custom dialog
-                    //Firefox does not accept window.showModalDialog(), window.alert(), window.confirm(), and window.prompt() furthermore
-                    var dialog = document.createElement("div");
-                    document.body.appendChild(dialog);
-                    dialog.id = "dialog";
-                    dialog.style.visibility = "hidden";
-                    dialog.innerHTML = message;
-                    var left = document.body.clientWidth / 2 - dialog.clientWidth / 2;
-                    dialog.style.left = left + "px";
-                    dialog.style.visibility = "visible";
-                    var shadow = document.createElement("div");
-                    document.body.appendChild(shadow);
-                    shadow.id = "shadow";
-                    //tip with setTimeout
-                    setTimeout(function () {
-                        document.body.removeChild(document.getElementById("dialog"));
-                        document.body.removeChild(document.getElementById("shadow"));
-                    }, 0);
-                }
-                return message;
-            };
-        </script>
-
-<script>    
-window.addEventListener("beforeunload", function (e) {
-  var confirmationMessage = "\o/";
-
-  (e || window.event).returnValue = confirmationMessage; //Gecko + IE
-  return confirmationMessage;                            //Webkit, Safari, Chrome
-});
-      <script>
+    <script>
       document.domain="localhost";
       window.loggedin=false;
       function displayMessage (evt) {
@@ -102,14 +67,15 @@ window.addEventListener("beforeunload", function (e) {
               }
            }
            if(document.cookie.includes("logged in")){
-               var loginDiv = document.getElementById("login")
-               window.loggedin=true;
-               loginDiv.innerHTML = "Logout";
-               loginDiv.setAttribute( "onClick", "setLoginUrlInContentIframe('logout')" );
-               console.log(loginDiv);
+	       var loginDiv = document.getElementById("login")
+	       window.loggedin=true;
+	       loginDiv.innerHTML = "Logout";
+	       loginDiv.setAttribute( "onClick", "setLoginUrlInContentIframe('logout')" );
+	       console.log(loginDiv);
 
            }
            else if(document.cookie.includes("logged out")){
+                  window.loggedin=false;
                   document.getElementById("login").innerHTML = "Login";
                   document.getElementById("login").setAttribute( "onClick", "setLoginUrlInContentIframe('login')" );
            }
@@ -125,7 +91,6 @@ window.addEventListener("beforeunload", function (e) {
           window.attachEvent("onmessage", displayMessage);
       }
     </script>
-
     <title>Virtual Labs</title>    
   </head>
   <body onload="loadIndex()">
@@ -482,14 +447,13 @@ var setRegisterUrlInContentIframe = function() {
   iframe.sandbox = 'allow-forms allow-scripts allow-same-origin';
 };
 
-
-
 #+END_SRC
 ** Set Login url to content iframe
    This function sets the login url of an openedx to
    =contentIframe=.
 #+NAME: set-login-url-to-content-iframe
 #+BEGIN_SRC javascript 
+
 var setLoginUrlInContentIframe = function(event) {
   console.log("=======setting login url to content iframe=====");
   var iframe = document.getElementById("contentIframe");
@@ -498,26 +462,28 @@ var setLoginUrlInContentIframe = function(event) {
       iframe.src = OPENEDX_URL + "/login";
       iframe.sandbox = 'allow-forms allow-scripts allow-same-origin';
   }
-  else{
+    else{
+
       iframe.src = OPENEDX_URL + "/logout";
+      parent.window.loggedin = false;
       document.getElementById("login").innerHTML = "Login";
       document.getElementById("login").setAttribute( "onClick", "setLoginUrlInContentIframe('login')" );
-      // iframe.src = "./content.html";                                                                                                                                                                                                                                         
       loadAllDisciplines();
   }
 };
+
 
 #+END_SRC
 ** Validate Authentication
 #+NAME: validate-authentication
 #+BEGIN_SRC javascript 
 
-var validateAuthentication = function(url) {                                                                                                                                                                                                                                    
-  var lab_url = url.id;                                                                                                                                                                                                                                                         
-  var loggedinHandler = parent.window.loggedin;                                                                                                                                                                                                                                 
-  var iframe = parent.document.getElementById("contentIframe");                                                                                                                                                                                                                 
-  if(loggedinHandler == false){                                                                                                                                                                                                                                                 
-      iframe.src = OPENEDX_URL + "/login";                                                                                                                                                                                                                                      
+var validateAuthentication = function(url) {
+  var lab_url = url.id;
+  var loggedinHandler = parent.window.loggedin;
+  var iframe = parent.document.getElementById("contentIframe");
+  if(loggedinHandler == false){
+      iframe.src = OPENEDX_URL + "/login";
   }
   else{
       iframe.src = lab_url;
