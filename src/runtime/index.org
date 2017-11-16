@@ -323,27 +323,36 @@ var discipline_images_url = "http://files.vlabs.ac.in/lds/images/disciplines/";
 var lab_images_url = "http://files.vlabs.ac.in/lds/images/labs/";
 //set the below variable to "test-openedx" or "openedx"
 var labs_hosted_platform = "test-openedx";
-
+var OPENEDX_URL = "http://themeless.vlabs.ac.in";
 #+END_SRC
 
 ** Index page on load 
-   An index initially loads with a header, content, footer
-   iframe and set the content in respective iframe by
-   invoking =setHeaderContentInIframe()=,
-   =setContentInIframe()=, =setFooterContentInIframe()=
-   functions .
+   Every page has a controller, content and footer.  Both
+   the content and the footer are served from iframes.  The
+   content is either:
+   1. list of disciplines
+   2. list of institutes
+   3. list of labs which can either be:
+      1. labs of a discipline
+      2. labs of an institute or
+      3. all labs
+      or
+   4. the lab itself. 
+
+   On the initial load,  the content lists all the
+   disciplines.  
 #+NAME: load-index
 #+BEGIN_SRC javascript
-var OPENEDX_URL = "http://themeless.vlabs.ac.in";
 var loadIndex = function() {
   console.log("=======loading index page=====");
-/*  insertHeaderIFrame();
-  setHeaderContentInIframe();*/
-  insertContentIFrame();
-//  setContentInIframe();
-  loadAllDisciplines();
-  insertFooterIFrame();
-  setFooterContentInIframe();
+  var disciplinesDivContent = createDisciplinesDivContent();
+  var cIframe = createIframeForContent();
+  cIframe = setDiscplineSourceToIframe(cIframe);
+  var fIframe = createIframeForFooter();
+  fIframe = setFooterSourceToIframe(fIframe);
+  setContentForIframe(disciplinesDivContent, cIframe);
+  insertContentIframe(cIframe);
+  insertFooterIframe(fIframe);
 };
 
 #+END_SRC
