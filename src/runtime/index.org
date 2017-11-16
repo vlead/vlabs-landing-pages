@@ -287,26 +287,6 @@ c#+TITLE: Runtime
 
 #+END_SRC
 
-** Content HTML
-   This is the initial content in content iframe as
-   =content.html=
-#+NAME: content-html
-#+BEGIN_SRC html 
-<html>
-  <head>
-<link rel="stylesheet"
-        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script>
-      document.domain="localhost"
-    </script>
-  </head>
-  <body>
-   <p>Welcome to Virtual Labs</p>
-  </body>
-</html>
-
-#+END_SRC
-
 ** Config
    Getting data from the lab data service and feeding the
    content iframe. Also getting images of institute,
@@ -347,7 +327,7 @@ var loadIndex = function() {
   console.log("=======loading index page=====");
   var disciplinesDivContent = createDisciplinesDivContent();
   var cIframe = createIframeForContent();
-  cIframe = setDiscplineSourceToIframe(cIframe);
+  cIframe = setDisciplineSourceToIframe(cIframe);
   var fIframe = createIframeForFooter();
   fIframe = setFooterSourceToIframe(fIframe);
   setContentForIframe(disciplinesDivContent, cIframe);
@@ -355,6 +335,74 @@ var loadIndex = function() {
   insertFooterIframe(fIframe);
 };
 
+#+END_SRC
+** setting Footer Source To Iframe
+#+NAME: set-footer-source-to-iframe
+#+BEGIN_SRC javascript 
+var setFooterSourceToIframe = function(fIframe) {
+fIframe.src = "./footer.html";
+return fIframe
+}
+#+END_SRC
+
+** setting Content For Iframe
+#+NAME: set-content-for-iframe
+#+BEGIN_SRC javascript 
+var setContentForIframe = function(disciplinesDivContent, cIframe) {
+  var content = ciframe.contentWindow.document;
+  console.log(content);
+  content.body.innerHTML="";
+  content.write(disciplinesDivContent);
+
+}
+#+END_SRC
+
+** insert content iframe
+#+NAME: insert-content-iframe
+#+BEGIN_SRC javascript 
+var insertContentIframe = function(cIframe) {
+  var division = document.getElementById("contentDiv");
+  insertFrameInDivision(cIframe, division.id);
+}
+#+END_SRC
+** insert footer iframe
+#+NAME: insert-footer-iframe
+#+BEGIN_SRC javascript 
+var insertFooterIframe = function(fIframe) {
+  var division = document.getElementById("contentDiv");
+  insertFrameInDivision(fIframe, division.id);
+}
+#+END_SRC
+
+** create Iframe For Content
+#+NAME: create-iframe-for-content
+#+BEGIN_SRC javascript 
+var createIframeForContent = function() {
+  console.log("=======create Iframe For Content=====");
+  var cIFrame = createNewIframe("contentIframe", "contentIframe", "100%", "9500em");
+  return cIFrame
+};
+
+#+END_SRC
+
+** create Iframe For Footer
+#+NAME: create-iframe-for-footer
+#+BEGIN_SRC javascript 
+var createIframeForFooter = function() {
+  console.log("=======create Iframe For Footer=====");
+  var fIFrame = createNewIframe("footerIframe", "footerIframe", "100%", "390em");
+  return fIFrame
+};
+
+#+END_SRC
+
+** setting Discipline Source To Iframe
+#+NAME: set-discipline-source-to-iframe
+#+BEGIN_SRC javascript 
+var setDisciplineSourceToIframe = function(cIframe) {
+cIframe.src = "./disciplines.html";
+return cIframe
+}
 #+END_SRC
 ** Create a frame
    Provide the attributes, and an iframe is created and
@@ -385,872 +433,6 @@ var insertFrameInDivision = function(iframe, divId) {
   var divElem = parent.document.getElementById(divId);
   divElem.appendChild(iframe);
 };
-
-#+END_SRC
-
-** Delete Frame from a Division
-   Given a frame and a division, an iframe within the
-   division is deleted.
-#+NAME: delete-frame-in-division
-#+BEGIN_SRC javascript 
-var deleteFrameInDivision = function(frameId, divId) {
-  console.log("=======inside delete frame=====");
-  if (parent.document.getElementById(divId).hasChildNodes()) {
-    var frameElem = parent.document.getElementById(frameId);
-    if (frameElem !== null) {
-      frameElem.parentNode.removeChild(frameElem);
-      console.log("======deleted====");
-    }
-  }
-};
-
-#+END_SRC
-
-** Creating the header iframe
-   This defines a header which is created as an iframe for a
-   html page represents a container for introductory content
-   or a set of navigational links to another iframe.
-#+NAME: insert-header-iframe
-#+BEGIN_SRC javascript 
-var insertHeaderIFrame = function() {
-  console.log("=======creating header iframe=====");
-  var newFrame = createNewIframe("headerIframe", "headerIframe", "100%", "450em");
-  var division = document.getElementById("headerDiv");
-  insertFrameInDivision(newFrame, division.id);
-};
-
-#+END_SRC
-
-** Set content in header iframe
-   To display a header we give =header.html= as source of
-   the iframe. The content of the =header.html= will be set
-   immediately
-#+NAME: set-header-content-in-iframe
-#+BEGIN_SRC javascript 
-var setHeaderContentInIframe=function() {
-  console.log("=======setting header in iframe=====");
-  var iframe = document.getElementById("headerIframe");
-  iframe.src = "./header.html";
-};
-
-#+END_SRC
-
-** Set usage in Iframe
-#+NAME: set-usage-in-iframe
-#+BEGIN_SRC javascript 
-var setUsageInIframe = function() {
-  console.log("=======setting usage to content iframe=====");        
-  var iframe = parent.document.getElementById("contentIframe");
-  iframe.src = "https://info.vlabs.ac.in/analytics/analytics/usage.html";
-};
-
-#+END_SRC
-** Set register url to content iframe
-   This function sets the registration url of an openedx
-   platform to =contentIframe=
-#+NAME: set-register-url-to-content-iframe
-#+BEGIN_SRC javascript 
-var setRegisterUrlInContentIframe = function() {
-  console.log("=======setting registration url to content iframe=====");        
-  var iframe = document.getElementById("contentIframe");
-  iframe.src = OPENEDX_URL + "/register";
-  iframe.sandbox = 'allow-forms allow-scripts allow-same-origin';
-};
-
-#+END_SRC
-** Set Login url to content iframe
-   This function sets the login url of an openedx to
-   =contentIframe=.
-#+NAME: set-login-url-to-content-iframe
-#+BEGIN_SRC javascript 
-var setLoginUrlInContentIframe = function(event) {
-  console.log("=======setting login url to content iframe=====");
-  var iframe = document.getElementById("contentIframe");
-  if(event == "login"){
-      iframe.src = OPENEDX_URL + "/login";
-      iframe.sandbox = 'allow-forms allow-scripts allow-same-origin';
-  }
-  else{
-      iframe.src = OPENEDX_URL + "/logout";
-      document.getElementById("login").innerHTML = "Login";
-      document.getElementById("login").setAttribute( "onClick", "setLoginUrlInContentIframe('login')" );
-      iframe.src = "./content.html";
-  }
-};
-
-#+END_SRC
-** Validate Authentication
-#+NAME: validate-authentication
-#+BEGIN_SRC javascript 
-var validateAuthentication = function(url) {
-  var lab_url = url.id;
-  var loggedinHandler = parent.window.loggedin;
-  var iframe = parent.document.getElementById("contentIframe");
-  if(loggedinHandler == false){
-      iframe.src = "http://content.base5.vlabs.ac.in/login";
-      //iframe.sandbox = 'allow-forms allow-scripts allow-same-origin';
-  }
-  else{
-      iframe.src = lab_url;
-  }
-
-};
-
-#+END_SRC
-
-** Creating the content iframe
-   Displays the content iframe based on the selection of the
-   elements with respect to the header iframe.
-#+NAME: insert-content-iframe
-#+BEGIN_SRC javascript 
-var insertContentIFrame = function() {
-  console.log("=======creating content iframe=====");
-  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "9500em");
-  var division = document.getElementById("contentDiv");
-  insertFrameInDivision(newFrame, division.id);
-};
-
-#+END_SRC
-
-** Creating the footer iframe
-   This defines a footer which is created as an iframe for a
-   html page. A footer includes information about its
-   containing element. It typically contains: authorship
-   information.
-#+NAME: insert-footer-iframe
-#+BEGIN_SRC javascript 
-var insertFooterIFrame = function() {
-  console.log("=======creating footer iframe=====");
-  var newFrame = createNewIframe("footerIframe", "footerIframe", "100%", "390em");
-  var division = document.getElementById("footerDiv");
-  insertFrameInDivision(newFrame, division.id);
-};
-
-#+END_SRC
-
-** Set content in footer iframe
-   Once the footer iframe is created to display the footer
-   we give =http://footer.vlabs.ac.in/footer= as source of
-   the iframe. The content of the footer will be dynamically
-   served from the footer service.
-#+NAME: set-footer-content-in-iframe
-#+BEGIN_SRC javascript
-var setFooterContentInIframe=function() {
-  console.log("=======setting footer in iframe=====");
-  var iframe = document.getElementById("footerIframe");
-  iframe.src = "http://footer.vlabs.ac.in/footer";
-};
-
-#+END_SRC
-
-** Insert Frame
-   Insert a frame in the =dis_iframe= division.  The name
-   and id of this frame is =iframe1=.
-#+NAME: insert-frame
-#+BEGIN_SRC javascript 
-var insertFrame = function() {
-  console.log("=======insert iframe=====");
-  var newFrame = createNewIframe("iframe1", "iframe1", "100%", "1200");
-  var division = document.getElementById('dis_iframe');
-  insertFrameInDivision(newFrame, division.id);
-};
-
-#+END_SRC
-
-** Loading all disciplines
-   This allows to manipulate the content of an iframe by
-   invoking =getAllDisciplines()= function and set the
-   obtained disciplines by invoking =setContentInIframe()=
-   in the content iframe.
-#+NAME: load-all-disciplines
-#+BEGIN_SRC javascript 
-var loadAllDisciplines = function() {
-  console.log("=======loading all disciplines=====");
-  deleteFrameInDivision("contentIframe", "contentDiv");
-  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "1180em");
-  insertFrameInDivision(newFrame, "contentDiv");
-  getAllDisciplines();
-//  var disciplines = getAllDisciplines();
-//  setContentInIframe(disciplines);
-};
-
-#+END_SRC
-
-** Loading all institutes
-   This allows to manipulate the content of an iframe by
-   invoking =getAllInstitutes()= function and set the
-   obtained institutes by invoking =setContentInIframe()= in
-   the content iframe.
-
-#+NAME:load-all-institutes
-#+BEGIN_SRC javascript 
-var loadAllInstitutes = function() {
-  console.log("=======loading all institutes=====");
-  deleteFrameInDivision("contentIframe", "contentDiv");
-  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "790em");
-  insertFrameInDivision(newFrame, "contentDiv");
-  getAllInstitutes();
-//  var institutes = getAllInstitutes();
-//  setContentInIframe(institutes);
-};
-
-#+END_SRC
-
-** Loading all labs
-   This allows to manipulate the content of an iframe by
-   invoking =getAllLabs()= function and set the obtained
-   labs by invoking =setContentInIframe()= in the content
-   iframe.
-#+NAME: load-all-labs
-#+BEGIN_SRC javascript 
-var loadAllLabs = function() {
-  console.log("=======loading all labs=====");
-  deleteFrameInDivision("contentIframe", "contentDiv");
-  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "9500em");
-  insertFrameInDivision(newFrame, "contentDiv");
-  var labs = getAllLabs();
-  setContentInIframe(labs);
-};
-
-#+END_SRC
-
-** Change the content of an iframe
-   Sometimes it might be handy to manipulate the contents of
-   an iframe by accessing the elements within the iframe.
-   We show this by loading a =welcome.html= as source of the
-   iframe. The content of the newly created iframe cannot be
-   set immediately, therefore we wait for some time and then
-   set the content of the newly created frame.
-
-#+NAME: set-content
-#+BEGIN_SRC javascript 
-var setContent = function() {
-  console.log("=======setting content=====");      
-  var iframe = parent.document.getElementById("disiframe");
-  var content = iframe.contentWindow.document;
-};
-
-var setContentInIframe = function() {
-  console.log("=======setting content to content iframe=====");        
-  var iframe = parent.document.getElementById("contentIframe");
-  iframe.src = "./content.html";
-};
-
-var setNewContentInIframe = function(data) {
-  console.log("=======setting new content to content iframe=====");        
-  //  console.log(data);
-  console.log(window.name);
-  console.log(parent.document.getElementById(window.name));
-  var iframe = parent.document.getElementById("contentIframe");
-  iframe.sandbox = 'allow-forms allow-scripts allow-same-origin';
-  console.log("element = " + iframe);
-  //  console.log("new htdfdfml = " + data);
-  try {
-    cnt = iframe.contentDocument;
-    console.log("cnt: " +  cnt);
-    cnt.write(data);
-  } catch(err) {
-    console.log(err);
-//    setNewContentInIframe(data);
-  }
-  
-};
-
-#+END_SRC
-
-** Get All Institutes
-   This function will be invoked when =All Institutes= tab
-   is clicked. It invokes a call to =LDS= database and
-   fetches all the institutes info and calls
-   =setNewContentInIframe()= function to display the data in
-   an iframe. Also calls =addScriptTags()= function to
-   append =main.js=, =jquery= and =app-config= to =<head>=
-   tag as =<script>=.
-
-#+NAME: get-all-institutes
-#+BEGIN_SRC javascript 
-var getAllInstitutes = function(){ 
-  console.log("=========inside get all institutes==========");
-  var institute_url = base_url+"/institutes";
-  console.log(institute_url);
-  $.getJSON(institute_url, function(data) {
-    var institutes = '';
-    $.each(data, function(key, value){
-      var institute_name = value['institute_name'];
-      var image_name = value['assets'][0]['path'];
-      var image_path = institute_images_url + image_name;
-      institutes += '<div class="col-lg-3 col-md-4 col-xs-6 thumb"><div  \
-class="thumbnail" style="padding: 0px !important; padding-top:15px !important;"> <a><img class="img-responsive cursor-pointer" \
-onclick="getLabsByInstituteName(this, 0)" src="' + image_path +'" id="' + institute_name +
-      '"></a><div class="caption" style="min-height: 110px;">\
-<h4 class="cursor-pointer" style="text-align:center; color:#2c99ce;" >'+ institute_name +'</h4></div></div></div>';
-      
-    });
-    var institute_list = '<div class="container-fluid"><div class="row">'
-        + institutes +'</div></div>';
-    console.log(institutes);
-    setNewContentInIframe(institute_list);
-    addScriptTags();
-  })
-    .done(function() {
-      console.log( "second success" );
-    })
-    .fail(function() {
-      console.log( "error" );
-    })
-    .always(function() {
-      console.log( "complete" );
-    });
-};
-
-#+END_SRC
-** Get All Disciplines
-   This function will be invoked when =All Disciplines= tab
-   is clicked. It invokes a call to =LDS= database and
-   fetches all the disciplines info and calls
-   =setNewContentInIframe()= function to display the data in
-   an iframe. Also calls =addScriptTags()= function to
-   append =main.js=, =jquery= and =app-config= to =<head>=
-   tag as =<script>=.
-#+NAME: get-all-disciplines
-#+BEGIN_SRC javascript 
-var getAllDisciplines = function(){ 
-  console.log("=========inside get all disciplines==========");
-  var dis_url = base_url+"/disciplines";
-  console.log(dis_url);
-  $.getJSON(dis_url, function(data) {
-    var disciplines = '';
-    $.each(data, function(key, value){
-    var discipline_name = value['discipline_name'];
-    var image_name = value['assets'][0]['path'];
-    var image_path = discipline_images_url + image_name;
-    disciplines += '<div class="col-lg-3 col-md-4 col-xs-6 thumb"> <div class="thumbnail"  \
-style="padding: 0px !important; padding-top:15px !important;"> <a><img class="img-responsive"\
-onclick="getLabsByDisciplineName(this, 0)" src="'
-    + image_path +'" id="' + discipline_name + '">\
-<div class="caption" style="min-height: 110px;">\
-<h4 style="text-align:center; color:#2c99ce;  ">'
-        + discipline_name +'</h4></div></a></div></div>';
-    });
-
-    var discipline_list = '<div class="container-fluid"><div class="row">'
-    + disciplines +'</div></div>';
-    
-    console.log(disciplines);
-    setNewContentInIframe(discipline_list);
-    addScriptTags();
-    })
-    .done(function() {
-    console.log( "second success" );
-    })
-    .fail(function() {
-    console.log( "error" );
-    })
-    .always(function() {
-    console.log( "complete" );
-    });
-    };
-    
-#+END_SRC
-** Get All Labs
-   This function will be invoked when =All Labs= tab is
-   clicked. It invokes a call to =LDS= database and fetches
-   all the labs info and calls =setNewContentInIframe()=
-   function to display the data in an iframe. Also calls
-   =addScriptTags()= function to append =main.js=, =jquery=
-   and =app-config= to =<head>= tag as =<script>=.   
-#+NAME: get-all-labs
-#+BEGIN_SRC  javascript 
-var getAllLabs = function(){ 
-  console.log("=========inside get all labs==========");
-  var lab_url = base_url+"/labs";
-  console.log(lab_url);
-  $.getJSON(lab_url, function(data) {
-    var labs = '';
-    $.each(data, function(key, value){
-      var lab_name = value['lab_name'];
-      var hosting_info = value['hosting_info'];
-      for(var i=0;i< hosting_info.length;i++){
-        var hosted_on = value['hosting_info'][i]['hosted_on'];
-        if (hosting_info.length == 1){
-          var hosted_url = value['hosting_info'][0]['hosted_url'];
-        }
-        else if(labs_hosted_platform == hosted_on)
-        {
-          var hosted_url = value['hosting_info'][i]['hosted_url'];
-        }
-        else
-        {
-          continue;
-        }
-        
-      }
-      var assets = value['assets'];
-      console.log(assets);
-      for(var i=0;i< assets.length;i++){
-        var  asset_type = value['assets'][i]['asset_type']['asset_type'];
-        var path = value['assets'][i]['path'];
-        if (asset_type == 'image'){
-          var image_name = value['assets'][i]['path'];
-          console.log(image_name);
-          var path = lab_images_url + image_name;
-          console.log(path);
-        }
-      }
-      labs += '<div class=" col-md-3 " id='+ lab_name +
-        '><div class="thumbnail" style="padding: 0px !important;"><a  href='+ hosted_url +
-        '><img class="img-responsive" src="' + path +
-        '"alt="image"/><a href='+ hosted_url +
-        '><div class="caption" style="min-height: 110px;"><h4 style="text-align:left; color:#2c99ce;  ">'+lab_name +
-        '</h4></div></a></div></div>';
-
-//      labs += '<div class="col-lg-3 col-md-4 col-xs-6 thumb" id='
-//        + lab_name + '><a class="thumbnail" href='+ hosted_url +
- //       '><img class="img-responsive" src="'+ path +
- //       '"  alt="image"/><p style="text-align:center;">'
-  //      +lab_name +'</p> </a></div>';      
-    });
-    console.log(labs);
-    var labs_list = '<div class="container-fluid"><div class="row">'+ labs +'</div></div>';
-    setNewContentInIframe(labs_list);
-    addScriptTags();
-  })
-    .done(function() {
-      console.log( "second success" );
-    })
-    .fail(function() {
-      console.log( "error" );
-    })
-    .always(function() {
-      console.log( "complete" );
-    });
-};
-
- #+END_SRC
-** Get Lab
-#+NAME: get-lab
-#+BEGIN_SRC javascript
-var getLab = function(url){
-    hosted_url = url.id;
-    alert(hosted_url);
-    var iframe = parent.document.getElementById("contentIframe");
-    iframe.src = hosted_url;
-    addScriptTags();
-};
-
-#+END_SRC
-** Get Labs by Discipline Name
-   =getAllDisciplines()= function will invokes this
-   function. This function dynamically fetches the labs
-   based on the 'click' event occurs on discipline
-   name. This function also invokes
-   =resetContentInIframe(data)= function to replace
-   currently available content with the given =data=.
-
-#+NAME: get-labs-by-discipline-name
-#+BEGIN_SRC javascript 
-var getLabsByDisciplineName = function(image, flag) {
-  console.log("===========inside getLabsByDisciplineName==========");
-  console.log("===========flag==========");
-  console.log(flag);
-  if (flag==1){
-    deleteFrameInDivision("contentIframe", "contentDiv");
-    var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "650em");
-    insertFrameInDivision(newFrame, "contentDiv");
-  }
-  var discipline_name = image.id;
-  var labs_url = base_url+"/labs";
-  console.log(labs_url);
-  var labs_by_dis_url = labs_url+"?discipline_name="+ discipline_name;
-  console.log(labs_by_dis_url);
-  $.getJSON(labs_by_dis_url, function(data) {
-    var labs = '';
-    $.each(data, function(key, value){
-      var lab_name = value['lab_name'];
-      var hosting_info = value['hosting_info'];
-      for(var i=0;i< hosting_info.length;i++){
-        var hosted_on = value['hosting_info'][i]['hosted_on'];
-        if (hosting_info.length == 1){
-          var hosted_url = value['hosting_info'][0]['hosted_url'];
-        }
-        else if(labs_hosted_platform == hosted_on)
-        {
-          var hosted_url = value['hosting_info'][i]['hosted_url'];
-        }
-        else
-        {
-          continue;
-        }
-        
-      }
-      var assets = value['assets'];
-      console.log(assets);
-      for(var i=0;i< assets.length;i++){
-        var  asset_type = value['assets'][i]['asset_type']['asset_type'];
-        var path = value['assets'][i]['path'];
-        if (asset_type == 'image'){
-          var image_name = value['assets'][i]['path'];
-          console.log(image_name);
-          var path = lab_images_url + image_name;
-          console.log(path);
-        }
-      }
-      labs += '<div class=" col-md-3 " id='+ lab_name +
-           '> <div class="thumbnail" style="padding: 0px !important;"><a id="' + hosted_url + '" onclick="javascript:validateAuthentication(this);"><img class="img-responsive" src="' + path +
-           '"alt="image"/><a href='+ hosted_url +
-           '> <div class="caption" style="min-height: 110px;" ><h4 style="text-align:left; color:#2c99ce;">'+lab_name +
-           '</h4></div></a></div></div>';
-      });
-    console.log(labs);
-    var labs_list = '<div class="container-fluid"><div class="row">'+ labs +'</div></div>';
-    resetContentInIframe(labs);
-  })
-    .done(function() {
-      console.log( "second success" );
-    })
-    .fail(function() {
-      console.log( "error" );
-      location.reload();
-    })
-    .always(function() {
-      console.log( "complete" );
-    });
-  
-};
-
-
-#+END_SRC
-** Get Labs by Institute Name
-   =getAllInstitutes()= function will invokes this
-   function.This function dynamically fetches the labs based
-   on the 'click' event occurs on institute name.
-
-#+NAME: get-labs-by-institute-name
-#+BEGIN_SRC javascript 
-var getLabsByInstituteName = function(image, flag) {
-  console.log("===========inside getLabsByDisciplineName==========");
-  console.log("===========flag==========");
-  console.log(flag);
-  if (flag==1){
-    deleteFrameInDivision("contentIframe", "contentDiv");
-    var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "650em");
-    insertFrameInDivision(newFrame, "contentDiv");
-  }
-  var institute_name = image.id;
-  var labs_url = base_url+"/labs";
-  console.log(labs_url);
-  var labs_by_institute_url = labs_url+"?institute_name="+ institute_name;
-  console.log(labs_by_institute_url);
-  $.getJSON(labs_by_institute_url, function(data) {
-    var labs = '';
-    $.each(data, function(key, value){
-      var lab_name = value['lab_name'];
-      var hosting_info = value['hosting_info'];
-      for(var i=0;i< hosting_info.length;i++){
-        var hosted_on = value['hosting_info'][i]['hosted_on'];
-        if (hosting_info.length == 1){
-          var hosted_url = value['hosting_info'][0]['hosted_url'];
-        }
-        else if(labs_hosted_platform == hosted_on)
-        {
-          var hosted_url = value['hosting_info'][i]['hosted_url'];
-        }
-        else
-        {
-          continue;
-        }
-        
-      }
-      var assets = value['assets'];
-      console.log(assets);
-      for(var i=0;i< assets.length;i++){
-        var  asset_type = value['assets'][i]['asset_type']['asset_type'];
-        var path = value['assets'][i]['path'];
-        if (asset_type == 'image'){
-          var image_name = value['assets'][i]['path'];
-          console.log(image_name);
-          var path = lab_images_url + image_name;
-          console.log(path);
-        }
-      }
-
-//      labs += '<div class="col-md-3" id='+ lab_name +
-//        '> <div class="thumbnail" style="padding: 0px !important;" ><a href='+ hosted_url +
-//        '><img class="img-responsive" src="' + path +
-//        '"alt="image"/><a href='+ hosted_url +
-//        '><div class="caption" style="min-height: 110px;" ><h4 style="text-align:left; color:#2c99ce;">'+lab_name +
-//        '</h4></div></a></div></div>';
-
-        labs += '<div class="col-md-3" id='+ lab_name +
-        '> <div class="thumbnail" style="padding: 0px !important;" ><a><img class="img-responsive" id='+hosted_url+' onclick="getLab(this)" src="' + path +
-        '"alt="image"/><div class="caption" style="min-height: 110px;" ><h4 style="text-align:left; color:#2c99ce;">'+lab_name +
-            '</h4></div></a></div></div>';
-
-
-    });
-    console.log(labs);
-    var labs_list = '<div class="container-fluid"><div class="row">'+ labs +'</div></div>';
-    resetContentInIframe(labs);
-  })
-  .done(function() {
-      console.log( "second success" );
-    })
-    .fail(function() {
-      console.log( "error" );
-      location.reload();
-    })
-    .always(function() {
-      console.log( "complete" );
-    });
-};
-
-#+END_SRC
-
-** Get All Institutes in Combo box
-   =getAllInstitutesInCombobox()= function will invokes this
-   function. This function dynamically fetches the labs
-   based on the 'hover' event occurs on institute which
-   gives a dropdown with all institutes and each institute
-   respectively.
-#+NAME: get-all-institutes-in-combobox
-#+BEGIN_SRC javascript
-var getAllInstitutesInCombobox = function(){
-  console.log("=========inside get all institutes in combobox==========");
-  var institute_url = base_url+"/institutes";
-  console.log(institute_url);
-  $.getJSON(institute_url, function(data) {
-    var institutes = '';
-    $.each(data, function(key, value){
-      var institute_name = value['institute_name'];
-      institutes +=  '<li onclick="getLabsByInstituteName(this, 1)" value="'
-        + institute_name + '" id="' + institute_name + '"><a >' +
-        institute_name + '</a></li>';
-    });
-    var institute_list = '<li onclick="loadAllInstitutes()">\
-<a >All Institutes</a></li>' + institutes;
-    console.log(institute_list);
-    $('.filterInstituteComboBox').append(institute_list);
-  })
-    .done(function() {
-      console.log( "second success" );
-    })
-    .fail(function() {
-      console.log( "error" );
-    })
-    .always(function() {
-      console.log( "complete" );
-    });
-};
-
-#+END_SRC
-** Get All Disciplines in Combo box
-   =getAllDisciplinesInCombobox()= function will invokes
-   this function. This function dynamically fetches the labs
-   based on the 'hover' event occurs on discipline which
-   gives a dropdown with all disciplines and each discipline
-   respectively.
-#+NAME: get-all-disciplines-in-combobox
-#+BEGIN_SRC javascript
-var getAllDisciplinesInCombobox = function(){
-  console.log("=========inside get all disciplines in combobox==========");
-  var discipline_url = base_url+"/disciplines";
-  console.log(discipline_url);
-  $.getJSON(discipline_url, function(data) {
-    var disciplines = '';
-    $.each(data, function(key, value){
-    var discipline_name = value['discipline_name'];
-      disciplines += '<li onclick="getLabsByDisciplineName(this, 1)" value="'
-        + discipline_name + '" id="' + discipline_name + '"><a >' +
-        discipline_name + '</a></li>';
-    });
-    var discipline_list = '<li onclick="loadAllDisciplines()">\
-<a>All Disciplines</a></li>' + disciplines;
-    console.log(discipline_list);
-    $('.filterDisciplineComboBox').append(discipline_list);
-
-    })
-    .done(function() {
-    console.log( "second success" );
-    })
-    .fail(function() {
-    console.log( "error" );
-    })
-    .always(function() {
-    console.log( "complete" );
-    });
-    };
-
-#+END_SRC
-** Get Labs by Keyword Search 
-#+NAME: labs-by-keyword-search
-#+BEGIN_SRC javascript
-var getLabsByKeyword = function(){
-  jQuery.support.cors = true;
-  var keyword = document.getElementById("keyword").value;
-  var lab_url = keyword_url+keyword;
-  $.ajax({
-    type: "GET",
-    url: base_url + "/labs?keyword_lab_name=" + keyword, 
-    async: false,
-    contentType: "application/json",
-    jsonpCallback: "jsonCallback",
-    crossDomain: true,
-    success: function(data){
-      var labs = '';
-      $.each(data, function(key, value){
-        var lab_name = value['lab_name'];
-        var hosting_info = value['hosting_info'];
-        for(var i=0;i< hosting_info.length;i++){
-          var hosted_on = value['hosting_info'][i]['hosted_on'];
-          if (hosting_info.length == 1){
-            var hosted_url = value['hosting_info'][0]['hosted_url'];
-          }
-          else if(labs_hosted_platform == hosted_on)
-          {
-            var hosted_url = value['hosting_info'][i]['hosted_url'];
-          }
-          else
-          {
-            continue;
-          }
-        }
-        var assets = value['assets'];
-        console.log(assets);
-        for(var i=0;i< assets.length;i++){
-          var  asset_type = value['assets'][i]['asset_type']['asset_type'];
-          var path = value['assets'][i]['path'];
-          if (asset_type == 'image'){
-            var image_name = value['assets'][i]['path'];
-            console.log(image_name);
-            var path = lab_images_url + image_name;
-            console.log(path);
-          }
-        }
-        labs += '<div class=" col-md-3" id='+ lab_name +
-          '> <div class="thumbnail" style="padding: 0px !important;"><a  href='+ hosted_url +
-          '><img class="img-responsive" src="' + path +
-          '"alt="image"/><a href='+ hosted_url +
-          '> <div class="caption" style="min-height: 110px;"><h4 style="text-align:left; color:#2c99ce;"">'+lab_name +
-          '</h4></div></a></div></div>';
-      });
-      console.log(labs);
-      var labs_list = '<div class="container-fluid"><div class="row">'+ labs +'</div></div>';
-      resetContentInIframe(labs);
-    },
-    error:function(errorStatus,xhr){
-      console.log("Error"+JSON.stringify(errorStatus));
-    }
-  });
-};
-
-#+END_SRC
-** Add Script Tags 
-   Script tags are created dynamically and appended to the
-   =<head>= tag.
-
-#+NAME: add-script-tags
-#+BEGIN_SRC javascript 
-var addScriptTags = function(){
-  var contentIframe = parent.document.getElementById("contentIframe");
-  
-  var js_script = contentIframe.contentWindow.document.createElement("script");
-  var js_url = "../static/js/main.js";
-  js_script.type = "text/javascript";
-  js_script.src = js_url;
-  var head = contentIframe.contentWindow.document.head;
-  console.log(head);
-  head.appendChild(js_script);
-  
-  var config_script = contentIframe.contentWindow.document.createElement("script");
-  var config_url = "../static/js/app-config.js";
-  config_script.type = "text/javascript";
-  config_script.src = config_url;
-  head.appendChild(config_script);
-  
-  var jquery_script = contentIframe.contentWindow.document.createElement("script");
-  var jquery_url = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js";
-  jquery_script.type = "text/javascript";
-  jquery_script.src = jquery_url;
-  head.appendChild(jquery_script);  
-
-  var backfix_script = contentIframe.contentWindow.document.createElement("script");
-  var backfix_url = "../static/js/backfix.min.js";
-  backfix_script.type = "text/javascript";
-  backfix_script.src = backfix_url;
-  head.appendChild(backfix_script);
-
-  var bootstrap_js = contentIframe.contentWindow.document.createElement("script");
-  var bootstrap_js_url = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js";
-  bootstrap_js.type = "text/javascript";
-  bootstrap_js.src = bootstrap_js_url;
-  head.appendChild(bootstrap_js);  
-
-  var styles = contentIframe.contentWindow.document.createElement("link");
-  var css_url = "../static/css/style.css";
-  styles.type = "text/stylesheet";
-  styles.href = css_url;
-  head.appendChild(styles);
-
-  var bootstrap_styles = contentIframe.contentWindow.document.createElement("link");
-  var bootstrap_css_url = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css";
-  bootstrap_styles.rel = "stylesheet";
-  bootstrap_styles.href = bootstrap_css_url;
-  head.appendChild(bootstrap_styles);
-
-  var favicon = contentIframe.contentWindow.document.createElement("link");
-  var favicon_url = "";
-  favicon.type = "image/x-icon";
-  favicon.href = favicon_url;
-  head.appendChild(favicon);
-
-
-
-};
-
-
-
-
-#+END_SRC
-** Resetting content in Iframe
-   Resetting the content in the same frame is just element
-   manipulation where =contentIframe= is accessed and new
-   content is set.
-#+NAME: reset-content
-#+BEGIN_SRC javascript 
-var resetContentInIframe = function(data) {
-  console.log("=======re setting content=====");        
-  console.log(data);
-  var iframe = parent.document.getElementById("contentIframe");
-  iframe.sandbox = 'allow-forms allow-scripts allow-same-origin';
-  var content = iframe.contentWindow.document;
-  console.log(content);
-  content.body.innerHTML="";
-  content.write(data);
-  addScriptTags();
-
-};
-
-#+END_SRC
-
-** Mouse Over
-#+NAME: mouse-over
-#+BEGIN_SRC javascript
-//$(document).ready(function(){
-//  loadAllDisciplines();
-//});
-getAllInstitutesInCombobox(); 
-getAllDisciplinesInCombobox(); 
-
-$(".dropdown").hover(            
-  function() {
-    $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideDown("400");
-    $(this).toggleClass('open');        
-  },
-  function() {
-    $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideUp("400");
-    $(this).toggleClass('open');       
-  }
-);
 
 #+END_SRC
 
@@ -1431,37 +613,11 @@ head.appendChild(favicon);
 **** Main JS
 #+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes 
 <<load-index>>
-<<get-all-institutes-in-combobox>>
-<<create-new-iframe>>
-<<delete-frame-in-division>>
-<<insert-frame-in-division>>
-<<set-header-content-in-iframe>>
+<<set-footer-source-to-iframe>>
+<<set-content-for-iframe>>
 <<insert-content-iframe>>
 <<insert-footer-iframe>>
-<<set-footer-content-in-iframe>>
-<<insert-header-iframe>>
-<<insert-frame>>
-<<set-content>>
-<<get-labs-by-discipline-name>>
-<<get-labs-by-institute-name>>
-<<reset-content>>
-<<add-script-tags>>
-<<set-register-url-to-content-iframe>>
-<<set-login-url-to-content-iframe>>
-<<validate-authentication>>
-<<set-usage-in-iframe>>
-<<get-all-disciplines-in-combobox>>
-<<get-labs-by-institute-name>>
-<<load-all-disciplines>>
-<<load-all-institutes>>
-<<load-all-labs>>
-<<get-all-institutes>>
-<<get-all-disciplines>>
-<<get-all-labs>>
-<<get-lab>>
-<<labs-by-keyword-search>>
-<<mouse-over>>
-
+<<create-iframe-for-content>>
 #+END_SRC
 *** Config
 #+BEGIN_SRC javascript :tangle static/js/app-config.js :eval no :noweb yes 
