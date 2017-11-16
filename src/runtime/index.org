@@ -821,7 +821,7 @@ var getAllLabs = function(){
           console.log(path);
         }
       }
-      labs += '<div class=" col-md-3 " id='+ lab_name +
+      labs += '<div class=" col-md-3 " style="cursor:pointer;" id='+ lab_name +
         '><div class="thumbnail" style="padding: 0px !important;"><a  href='+ hosted_url +
         '><img class="img-responsive" src="' + path +
         '"alt="image"/><a href='+ hosted_url +
@@ -919,7 +919,7 @@ var getLabsByDisciplineName = function(image, flag) {
           console.log(path);
         }
       }
-      labs += '<div class=" col-md-3 " id='+ lab_name +
+      labs += '<div class=" col-md-3 " style="cursor:pointer;" id='+ lab_name +
            '> <div class="thumbnail" style="padding: 0px !important;"><a id="' + hosted_url + '" onclick="javascript:validateAuthentication(this);"><img class="img-responsive" src="' + path +
            '"alt="image"/><a href='+ hosted_url +
            '> <div class="caption" style="min-height: 110px;" ><h4 style="text-align:left; color:#2c99ce;">'+lab_name +
@@ -1004,7 +1004,7 @@ var getLabsByInstituteName = function(image, flag) {
 //        '"alt="image"/><a href='+ hosted_url +
 //        '><div class="caption" style="min-height: 110px;" ><h4 style="text-align:left; color:#2c99ce;">'+lab_name +
 //        '</h4></div></a></div></div>';
-      labs += '<div class=" col-md-3 " id='+ lab_name +
+      labs += '<div class=" col-md-3 " style="cursor:pointer;" id='+ lab_name +
            '> <div class="thumbnail" style="padding: 0px !important;"><a id="' + hosted_url + '" onclick="getLab(this);"><img class="img-responsive" src="' + path +
            '"alt="image"/><a href='+ hosted_url +
            '> <div class="caption" style="min-height: 110px;" ><h4 style="text-align:left; color:#2c99ce;">'+lab_name +
