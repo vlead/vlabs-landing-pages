@@ -81,8 +81,7 @@ window.addEventListener("beforeunload", function (e) {
   (e || window.event).returnValue = confirmationMessage; //Gecko + IE
   return confirmationMessage;                            //Webkit, Safari, Chrome
 });
-
-    <script>
+      <script>
       document.domain="localhost";
       window.loggedin=false;
       function displayMessage (evt) {
@@ -103,14 +102,11 @@ window.addEventListener("beforeunload", function (e) {
               }
            }
            if(document.cookie.includes("logged in")){
-               alert("logged in");
                var loginDiv = document.getElementById("login")
                window.loggedin=true;
                loginDiv.innerHTML = "Logout";
                loginDiv.setAttribute( "onClick", "setLoginUrlInContentIframe('logout')" );
                console.log(loginDiv);
-               <!-- var registerDiv = document.getElementById("register"); -->
-               <!-- registerDiv.parentNode.removeChild(registerDiv); -->
 
            }
            else if(document.cookie.includes("logged out")){
@@ -128,7 +124,8 @@ window.addEventListener("beforeunload", function (e) {
       else {
           window.attachEvent("onmessage", displayMessage);
       }
-    </script>    
+    </script>
+
     <title>Virtual Labs</title>    
   </head>
   <body onload="loadIndex()">
@@ -479,11 +476,13 @@ var setUsageInIframe = function() {
 #+NAME: set-register-url-to-content-iframe
 #+BEGIN_SRC javascript 
 var setRegisterUrlInContentIframe = function() {
-  console.log("=======setting registration url to content iframe=====");        
+  console.log("=======setting registration url to content iframe=====");
   var iframe = document.getElementById("contentIframe");
   iframe.src = OPENEDX_URL + "/register";
   iframe.sandbox = 'allow-forms allow-scripts allow-same-origin';
 };
+
+
 
 #+END_SRC
 ** Set Login url to content iframe
@@ -494,7 +493,8 @@ var setRegisterUrlInContentIframe = function() {
 var setLoginUrlInContentIframe = function(event) {
   console.log("=======setting login url to content iframe=====");
   var iframe = document.getElementById("contentIframe");
-  if(event == "login"){
+    if(event == "login"){
+      //alert("clicked login button");                                                                                                                                                                                                                                          
       iframe.src = OPENEDX_URL + "/login";
       iframe.sandbox = 'allow-forms allow-scripts allow-same-origin';
   }
@@ -502,7 +502,8 @@ var setLoginUrlInContentIframe = function(event) {
       iframe.src = OPENEDX_URL + "/logout";
       document.getElementById("login").innerHTML = "Login";
       document.getElementById("login").setAttribute( "onClick", "setLoginUrlInContentIframe('login')" );
-      iframe.src = "./content.html";
+      // iframe.src = "./content.html";                                                                                                                                                                                                                                         
+      loadAllDisciplines();
   }
 };
 
@@ -510,13 +511,13 @@ var setLoginUrlInContentIframe = function(event) {
 ** Validate Authentication
 #+NAME: validate-authentication
 #+BEGIN_SRC javascript 
-var validateAuthentication = function(url) {
-  var lab_url = url.id;
-  var loggedinHandler = parent.window.loggedin;
-  var iframe = parent.document.getElementById("contentIframe");
-  if(loggedinHandler == false){
-      iframe.src = "http://content.base5.vlabs.ac.in/login";
-      //iframe.sandbox = 'allow-forms allow-scripts allow-same-origin';
+
+var validateAuthentication = function(url) {                                                                                                                                                                                                                                    
+  var lab_url = url.id;                                                                                                                                                                                                                                                         
+  var loggedinHandler = parent.window.loggedin;                                                                                                                                                                                                                                 
+  var iframe = parent.document.getElementById("contentIframe");                                                                                                                                                                                                                 
+  if(loggedinHandler == false){                                                                                                                                                                                                                                                 
+      iframe.src = OPENEDX_URL + "/login";                                                                                                                                                                                                                                      
   }
   else{
       iframe.src = lab_url;
