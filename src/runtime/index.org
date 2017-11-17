@@ -682,13 +682,19 @@ var getAllInstitutes = function(){
       var institute_name = value['institute_name'];
       var image_name = value['assets'][0]['path'];
       var image_path = institute_images_url + image_name;
-      institutes += '<div class="col-lg-3 col-md-4 col-xs-6 thumb"><div  \
+ /*     institutes += '<div class="col-lg-3 col-md-4 col-xs-6 thumb"><div  \
 class="thumbnail" style="padding: 0px !important; padding-top:15px !important;"> <a><img class="img-responsive cursor-pointer" \
 onclick="getLabsByInstituteName(this, 0)" src="' + image_path +'" id="' + institute_name +
       '"><div class="caption" style="min-height: 110px;">\
 <h4 class="cursor-pointer" style="text-align:center; color:#2c99ce;" >'+ institute_name +'</h4></a></div></div></div>';
-      
-    });
+*/
+
+institutes += '<div class="col-lg-3 col-md-4 col-xs-6 thumb"><div  \
+class="thumbnail" style="padding: 0px !important; padding-top:15px !important;"> <a><img class="img-responsive cursor-pointer" onclick="getLabsByInstituteName(this, 0)"  src="' + image_path +'" id="' + institute_name +
+      '"><div class="caption" style="min-height: 110px;">\
+<h4 class="cursor-pointer" onclick="getLabsByInstituteName(this, 0)"  src="' + image_path +'" id="' + institute_name +
+      '" style="text-align:center; color:#2c99ce;" >'+ institute_name +'</h4></a></div></div></div>';
+          });
     var institute_list = '<div class="container-fluid"><div class="row">'
         + institutes +'</div></div>';
     console.log(institutes);
@@ -728,11 +734,12 @@ var getAllDisciplines = function(){
     var image_name = value['assets'][0]['path'];
     var image_path = discipline_images_url + image_name;
     disciplines += '<div class="col-lg-3 col-md-4 col-xs-6 thumb"> <div class="thumbnail"  \
-style="padding: 0px !important; padding-top:15px !important;"> <a><img class="img-responsive"\
+style="padding: 0px !important; padding-top:15px !important;"> <a><img class="img-responsive" style="cursor: pointer;"\
 onclick="getLabsByDisciplineName(this, 0)" src="'
     + image_path +'" id="' + discipline_name + '">\
 <div class="caption" style="min-height: 110px;">\
-<h4 style="text-align:center; color:#2c99ce;  ">'
+<h4 onclick="getLabsByDisciplineName(this, 0)" src="'
+    + image_path +'" id="' + discipline_name + '" style="text-align:center; color:#2c99ce; cursor: pointer; ">'
         + discipline_name +'</h4></a></div></div></div>';
     });
 
