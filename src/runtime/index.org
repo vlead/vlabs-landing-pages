@@ -677,8 +677,8 @@ var getAllInstitutes = function(){
       institutes += '<div class="col-lg-3 col-md-4 col-xs-6 thumb"><div  \
 class="thumbnail" style="padding: 0px !important; padding-top:15px !important;"> <a><img class="img-responsive cursor-pointer" \
 onclick="getLabsByInstituteName(this, 0)" src="' + image_path +'" id="' + institute_name +
-      '"></a><div class="caption" style="min-height: 110px;">\
-<h4 class="cursor-pointer" style="text-align:center; color:#2c99ce;" >'+ institute_name +'</h4></div></div></div>';
+      '"><div class="caption" style="min-height: 110px;">\
+<h4 class="cursor-pointer" style="text-align:center; color:#2c99ce;" >'+ institute_name +'</h4></a></div></div></div>';
       
     });
     var institute_list = '<div class="container-fluid"><div class="row">'
@@ -725,7 +725,7 @@ onclick="getLabsByDisciplineName(this, 0)" src="'
     + image_path +'" id="' + discipline_name + '">\
 <div class="caption" style="min-height: 110px;">\
 <h4 style="text-align:center; color:#2c99ce;  ">'
-        + discipline_name +'</h4></div></a></div></div>';
+        + discipline_name +'</h4></a></div></div></div>';
     });
 
     var discipline_list = '<div class="container-fluid"><div class="row">'
@@ -976,10 +976,11 @@ var getLabsByInstituteName = function(image, flag) {
 //        '><div class="caption" style="min-height: 110px;" ><h4 style="text-align:left; color:#2c99ce;">'+lab_name +
 //        '</h4></div></a></div></div>';
 
-        labs += '<div class="col-md-3" id='+ lab_name +
-        '> <div class="thumbnail" style="padding: 0px !important;" ><a><img class="img-responsive" id='+hosted_url+' onclick="getLab(this)" src="' + path +
-        '"alt="image"/><div class="caption" style="min-height: 110px;" ><h4 style="text-align:left; color:#2c99ce;">'+lab_name +
-            '</h4></div></a></div></div>';
+      labs += '<div class=" col-md-3 " id='+ lab_name +
+           '> <div class="thumbnail" style="padding: 0px !important;"><a id="' + hosted_url + '" onclick="getLab(this);"><img class="img-responsive" src="' + path +
+           '"alt="image"/><a href='+ hosted_url +
+           '> <div class="caption" style="min-height: 110px;" ><h4 style="text-align:left; color:#2c99ce;">'+lab_name +
+           '</h4></div></a></div></div>';
 
 
     });
