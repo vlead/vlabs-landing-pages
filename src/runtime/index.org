@@ -618,6 +618,10 @@ head.appendChild(favicon);
 <<insert-content-iframe>>
 <<insert-footer-iframe>>
 <<create-iframe-for-content>>
+<<create-iframe-for-footer>>
+<<set-discipline-source-to-iframe>>
+<<create-new-iframe>>
+<<insert-frame-in-division>>
 #+END_SRC
 *** Config
 #+BEGIN_SRC javascript :tangle static/js/app-config.js :eval no :noweb yes 
