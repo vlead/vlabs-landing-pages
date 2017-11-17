@@ -304,6 +304,8 @@ var lab_images_url = "http://files.vlabs.ac.in/lds/images/labs/";
 //set the below variable to "test-openedx" or "openedx"
 var labs_hosted_platform = "test-openedx";
 var OPENEDX_URL = "http://themeless.vlabs.ac.in";
+var HTML_FILES_PATH = "../templates"
+var FOOTER_PATH = "http://footer.vlabs.ac.in/footer";
 #+END_SRC
 
 ** Index page on load 
@@ -325,84 +327,86 @@ var OPENEDX_URL = "http://themeless.vlabs.ac.in";
 #+BEGIN_SRC javascript
 var loadIndex = function() {
   console.log("=======loading index page=====");
-  var disciplinesDivContent = createDisciplinesDivContent();
-  var cIframe = createIframeForContent();
-  cIframe = setDisciplineSourceToIframe(cIframe);
+
+  createDisciplinesDivContent();
   var fIframe = createIframeForFooter();
   fIframe = setFooterSourceToIframe(fIframe);
-  setContentForIframe(disciplinesDivContent, cIframe);
-  insertContentIframe(cIframe);
   insertFooterIframe(fIframe);
 };
 
 #+END_SRC
-** setting Footer Source To Iframe
-#+NAME: set-footer-source-to-iframe
-#+BEGIN_SRC javascript 
-var setFooterSourceToIframe = function(fIframe) {
-  fIframe.src = "./footer.html";
-  return fIframe;
-}
-#+END_SRC
 
-** setting Content For Iframe
-#+NAME: set-content-for-iframe
-#+BEGIN_SRC javascript 
-var setContentForIframe = function(disciplinesDivContent, cIframe) {
-  var content = ciframe.contentWindow.document;
-  console.log(content);
-  content.body.innerHTML="";
-  content.write(disciplinesDivContent);
 
-}
-#+END_SRC
+** Create Div content for all Disciplines
+   All the disciplines from the =LDS= are collected along
+   with images, hyperlinks.  This data is formatted and
+   events are attached.  A div element is created containing
+   this data.  The events attached are =onclick= and the
+   handler loads the labs associated with the discipline.
+   This event =onclick= is attached for both the image and
+   name of the discipline.  Once the content is created,
+   there is a call to insert this content in an iframe.
 
-** insert content iframe
-#+NAME: insert-content-iframe
-#+BEGIN_SRC javascript 
-var insertContentIframe = function(cIframe) {
-  var division = document.getElementById("contentDiv");
-  insertFrameInDivision(cIframe, division.id);
-}
-#+END_SRC
-** insert footer iframe
-#+NAME: insert-footer-iframe
-#+BEGIN_SRC javascript 
-var insertFooterIframe = function(fIframe) {
-  var division = document.getElementById("contentDiv");
-  insertFrameInDivision(fIframe, division.id);
-}
-#+END_SRC
+*** TODO [1/2]
+    1. [X] Refactor the promise, when should the discipline
+       list be returned, should it be =always=.  
+       Solution :: There will no return from a promise,
+       instead, there will be a callback to insert this
+       content in an iframe.
+    2. [ ] Refactor the AJAX call so that this can be used
+       by all other AJAX calls.
 
-** create Iframe For Content
-#+NAME: create-iframe-for-content
+*** Realization
+#+NAME: create-disciplines-div-content
 #+BEGIN_SRC javascript 
-var createIframeForContent = function() {
-  console.log("=======create Iframe For Content=====");
-  var cIFrame = createNewIframe("contentIframe", "contentIframe", "100%", "9500em");
-  return cIFrame
+var createDisciplinesDivContent = function(){ 
+  console.log("=========inside createDisciplinesDivContent ==========");
+  var dis_url = base_url + "/disciplines";
+  console.log(dis_url);
+  $.getJSON(dis_url, function(data) {
+    var disciplines = '';
+    $.each(data, function(key, value){
+      var discipline_name = value['discipline_name'];
+      var image_name = value['assets'][0]['path'];
+      var image_path = discipline_images_url + image_name;
+      disciplines += '<div class="col-lg-3 col-md-4 col-xs-6 thumb"> <div class="thumbnail"  \
+style="padding: 0px !important; padding-top:15px !important;"> <a><img class="img-responsive"\
+onclick="getLabsByDisciplineName(this, 0)" src="'
+        + image_path +'" id="' + discipline_name + '">\
+<div class="caption" style="min-height: 110px;">\
+<h4 onclick="getLabsByDisciplineName(this, 0)" src="'
+        + image_path +'" id="' + discipline_name + '" style="text-align:center; color:#2c99ce;">'
+        + discipline_name +'</h4></div></a></div></div>';
+    });
+
+    var discipline_list = '<div class="container-fluid"><div class="row">' +
+        disciplines +'</div></div>';
+    
+    console.log(disciplines);
+    setDisciplineContent(discipline_list);
+  })
+    .done(function() {
+      console.log( "second success" );
+    })
+    .fail(function() {
+      console.log( "error" );
+    })
+    .always(function() {
+      console.log( "complete" );
+    });
+};
+    
+#+END_SRC
+** Set Discipline content in frame
+#+NAME: discipline-content
+#+BEGIN_SRC js
+var setDisciplineContent = function(content) {
+  var cIframe = createIframeForContent();
+  insertContentIframe(cIframe);
+  setDisciplineSourceToIframe();
+  setTimeout(setDisciplineContentForIframe, 100, content);
 };
 
-#+END_SRC
-
-** create Iframe For Footer
-#+NAME: create-iframe-for-footer
-#+BEGIN_SRC javascript 
-var createIframeForFooter = function() {
-  console.log("=======create Iframe For Footer=====");
-  var fIFrame = createNewIframe("footerIframe", "footerIframe", "100%", "390em");
-  return fIFrame
-};
-
-#+END_SRC
-
-** setting Discipline Source To Iframe
-#+NAME: set-discipline-source-to-iframe
-#+BEGIN_SRC javascript 
-var setDisciplineSourceToIframe = function(cIframe) {
-cIframe.src = "./disciplines.html";
-return cIframe
-}
 #+END_SRC
 ** Create a frame
    Provide the attributes, and an iframe is created and
@@ -423,6 +427,104 @@ var createNewIframe = function(name, id, width, height) {
 
 #+END_SRC
 
+** Create Iframe For Content
+   The content is named =contentIframe=.  Its width is
+   =100%= and height is =9500em=.
+#+NAME: create-iframe-for-content
+#+BEGIN_SRC javascript 
+var createIframeForContent = function() {
+  console.log("=======create Iframe For Content=====");
+  cIframe = document.getElementById("contentIframe");
+  if (cIframe == null)
+    var cIframe = createNewIframe("contentIframe", "contentIframe", "100%", "9500em");
+  return cIframe;
+};
+
+#+END_SRC
+
+** Create Iframe For Footer
+   The footer iframe named =footerIframe=.  Its width is
+   =100%= and height is =390em=.
+
+#+NAME: create-iframe-for-footer
+#+BEGIN_SRC javascript 
+var createIframeForFooter = function() {
+  console.log("=======create Iframe For Footer=====");
+  var fIFrame = createNewIframe("footerIframe", "footerIframe", "100%", "390em");
+  return fIFrame
+};
+
+#+END_SRC
+
+** Set Discipline Source To Iframe
+   The iframe source is set to disciplines html. 
+#+NAME: set-discipline-source-to-iframe
+#+BEGIN_SRC javascript 
+var setDisciplineSourceToIframe = function() {
+  var cIframe = document.getElementById("contentIframe");
+  cIframe.src = HTML_FILES_PATH + "/disciplines.html";
+};
+
+#+END_SRC
+
+** Set Discipline Content 
+   The content consisting of different disciplines is set to
+   the content iframe.  At this point, the source of the
+   content iframe is set to =disciplines.html=.  Therefore
+   the content is plugged into the hole marked by
+   =discipline-div=.
+#+NAME: set-discipline-content-for-iframe
+#+BEGIN_SRC javascript 
+var setDisciplineContentForIframe = function(content) {
+  setContentForIframe(content, "disciplineDiv");
+  addScriptTags();
+};
+
+#+END_SRC
+
+** Set Content For Iframe
+   This is a generic function, where content is set to given
+   div id in content iframe.
+#+NAME: set-content-for-iframe
+#+BEGIN_SRC javascript 
+var setContentForIframe = function(content, divId) {
+  console.log("divId = " + divId);
+  var cIframe = document.getElementById("contentIframe");
+  var contentDoc = cIframe.contentDocument;
+  var elem = contentDoc.getElementById(divId);
+  elem.innerHTML = content;
+};
+
+#+END_SRC
+
+** Set Footer Source To Iframe
+   Footer is served from a different service.  The source of
+   the footer iframe is set to this service.
+#+NAME: set-footer-source-to-iframe
+#+BEGIN_SRC javascript 
+var setFooterSourceToIframe = function(fIframe) {
+  fIframe.src = FOOTER_PATH;
+  return fIframe;
+};
+#+END_SRC
+
+** Insert content iframe
+#+NAME: insert-content-iframe
+#+BEGIN_SRC javascript 
+var insertContentIframe = function(cIframe) {
+  insertFrameInDivision(cIframe, "contentDiv");
+};
+
+#+END_SRC
+** Insert footer iframe
+#+NAME: insert-footer-iframe
+#+BEGIN_SRC javascript 
+var insertFooterIframe = function(fIframe) {
+  insertFrameInDivision(fIframe, "footerDiv");
+};
+
+#+END_SRC
+
 ** Insert a Frame in a Division
    Given a division, and an iframe, the iframe is inserted
    in the division.
@@ -430,7 +532,7 @@ var createNewIframe = function(name, id, width, height) {
 #+BEGIN_SRC javascript 
 var insertFrameInDivision = function(iframe, divId) {
   console.log("=======inserting iframe in division=====");
-  var divElem = parent.document.getElementById(divId);
+  var divElem = document.getElementById(divId);
   divElem.appendChild(iframe);
 };
 
@@ -606,6 +708,71 @@ favicon.href = "http://files.vlabs.ac.in/lds/images/vlabs-logo/favicon.ico";
 head.appendChild(favicon);
 
 #+END_SRC
+** Add Script Tags 
+   Script tags are created dynamically and appended to the
+   =<head>= tag.
+
+#+NAME: add-script-tags
+#+BEGIN_SRC javascript 
+var addScriptTags = function(){
+  var contentIframe = document.getElementById("contentIframe");
+  
+  var js_script = contentIframe.contentWindow.document.createElement("script");
+  var js_url = "../static/js/main.js";
+  js_script.type = "text/javascript";
+  js_script.src = js_url;
+  var head = contentIframe.contentWindow.document.head;
+  console.log(head);
+  head.appendChild(js_script);
+  
+  var config_script = contentIframe.contentWindow.document.createElement("script");
+  var config_url = "../static/js/app-config.js";
+  config_script.type = "text/javascript";
+  config_script.src = config_url;
+  head.appendChild(config_script);
+  
+  var jquery_script = contentIframe.contentWindow.document.createElement("script");
+  var jquery_url = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js";
+  jquery_script.type = "text/javascript";
+  jquery_script.src = jquery_url;
+  head.appendChild(jquery_script);  
+
+  var backfix_script = contentIframe.contentWindow.document.createElement("script");
+  var backfix_url = "../static/js/backfix.min.js";
+  backfix_script.type = "text/javascript";
+  backfix_script.src = backfix_url;
+  head.appendChild(backfix_script);
+
+  var bootstrap_js = contentIframe.contentWindow.document.createElement("script");
+  var bootstrap_js_url = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js";
+  bootstrap_js.type = "text/javascript";
+  bootstrap_js.src = bootstrap_js_url;
+  head.appendChild(bootstrap_js);  
+
+  var styles = contentIframe.contentWindow.document.createElement("link");
+  var css_url = "../static/css/style.css";
+  styles.type = "text/stylesheet";
+  styles.href = css_url;
+  head.appendChild(styles);
+
+  var bootstrap_styles = contentIframe.contentWindow.document.createElement("link");
+  var bootstrap_css_url = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css";
+  bootstrap_styles.rel = "stylesheet";
+  bootstrap_styles.href = bootstrap_css_url;
+  head.appendChild(bootstrap_styles);
+
+  var favicon = contentIframe.contentWindow.document.createElement("link");
+  var favicon_url = "";
+  favicon.type = "image/x-icon";
+  favicon.href = favicon_url;
+  head.appendChild(favicon);
+
+
+
+};
+
+#+END_SRC
+
 
 * Tangle 
 ** sources
@@ -613,15 +780,20 @@ head.appendChild(favicon);
 **** Main JS
 #+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes 
 <<load-index>>
-<<set-footer-source-to-iframe>>
-<<set-content-for-iframe>>
-<<insert-content-iframe>>
-<<insert-footer-iframe>>
+<<create-disciplines-div-content>>
+<<create-new-iframe>>
 <<create-iframe-for-content>>
 <<create-iframe-for-footer>>
+<<discipline-content>>
 <<set-discipline-source-to-iframe>>
-<<create-new-iframe>>
+<<set-discipline-content-for-iframe>>
+<<set-content-for-iframe>>
+<<set-footer-source-to-iframe>>
+<<insert-content-iframe>>
+<<insert-footer-iframe>>
 <<insert-frame-in-division>>
+<<favicon>>
+<<add-script-tags>>
 #+END_SRC
 *** Config
 #+BEGIN_SRC javascript :tangle static/js/app-config.js :eval no :noweb yes 

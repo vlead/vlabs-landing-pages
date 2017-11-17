@@ -1,0 +1,45 @@
+#+TITLE: Different HTML files
+#+AUTHOR: VLEAD
+#+DATE: [2017-04-06 Thursday]
+#+PROPERTY: results output
+#+PROPERTY: exports code
+#+SETUPFILE: ../org-templates/level-1.org
+#+options: ^:nil
+#+LATEX: Literal LaTeX code for export
+
+* Introduction 
+  :PROPERTIES:
+  :CUSTOM_ID: introduction
+  :END: 
+  This has all the html files that are used for vlabs
+  landing pages.  Most of the pages are place holders and
+  the dynamic content that is generated on different events
+  is stuck in to these place holders. 
+* Implementation
+** Disciplines HTML layout
+   This is the source of the iframe when disciplines are
+   displayed.  After the generation of disciplines content,
+   this content is attached to =disciplineDiv=.
+#+NAME:disciplines-html
+#+BEGIN_SRC html
+<html>
+  <head>
+    <!-- <link rel="stylesheet" -->
+    <!--       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+    <script>
+      document.domain="localhost"
+    </script>
+  </head>
+  <body>
+    <div id="disciplineDiv" class="container-fluid" style="padding-top:5em" >
+    </div>
+  </body>
+</html>
+
+#+END_SRC
+
+* Tangle
+#+BEGIN_SRC html :tangle templates/disciplines.html :eval no :noweb yes
+<<disciplines-html>>
+#+END_SRC
+
