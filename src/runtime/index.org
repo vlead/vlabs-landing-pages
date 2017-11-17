@@ -1,4 +1,4 @@
-c#+TITLE: Runtime
+#+TITLE: Runtime
 #+AUTHOR: VLEAD
 #+DATE: [2017-04-06 Thursday]
 #+PROPERTY: results output
@@ -49,6 +49,24 @@ c#+TITLE: Runtime
     <script>
       document.domain="localhost";
       window.loggedin=false;
+      window.url = "";
+      function validateCookie(){
+           if(document.cookie.includes("logged in")){
+               var loginDiv = document.getElementById("login")
+               window.loggedin=true;
+               loginDiv.innerHTML = "Logout";
+               loginDiv.setAttribute( "onClick", "setLoginUrlInContentIframe('logout')" );
+           }
+           else if(document.cookie.includes("logged out")){
+              window.loggedin=false;
+              document.getElementById("login").innerHTML = "Login";
+              document.getElementById("login").setAttribute( "onClick", "setLoginUrlInContentIframe('login')" );
+           }
+           else{
+                console.log("");
+           }
+      }
+
       function displayMessage (evt) {
           var message;
           if (evt.origin !== "http://themeless.vlabs.ac.in") {
@@ -57,7 +75,13 @@ c#+TITLE: Runtime
           else {
               if (evt.data.indexOf("MY COURSES") != -1){
                   document.cookie = "loginHandler='logged in'";
-                  loadAllDisciplines();
+                  if (window.url == ""){
+                      loadAllDisciplines();
+                  }
+                  else{
+                      var iframe = document.getElementById("contentIframe");
+                      iframe.src = window.url;
+                  }
               }
               else if (evt.data.indexOf("Sign in")!= -1){
                   document.cookie = "loginHandler='logged out'";
@@ -65,22 +89,7 @@ c#+TITLE: Runtime
               else {
                     console.log("");
               }
-           }
-           if(document.cookie.includes("logged in")){
-	       var loginDiv = document.getElementById("login")
-	       window.loggedin=true;
-	       loginDiv.innerHTML = "Logout";
-	       loginDiv.setAttribute( "onClick", "setLoginUrlInContentIframe('logout')" );
-	       console.log(loginDiv);
-
-           }
-           else if(document.cookie.includes("logged out")){
-                  window.loggedin=false;
-                  document.getElementById("login").innerHTML = "Login";
-                  document.getElementById("login").setAttribute( "onClick", "setLoginUrlInContentIframe('login')" );
-           }
-           else{
-                console.log("");
+              validateCookie();
            }
       }
       if (window.addEventListener) {
@@ -91,9 +100,9 @@ c#+TITLE: Runtime
           window.attachEvent("onmessage", displayMessage);
       }
     </script>
-    <title>Virtual Labs</title>    
+  <title>Virtual Labs</title>    
   </head>
-  <body onload="loadIndex()">
+  <body onload="loadIndex()" onpageshow="validateCookie()">
     <div>
       <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
@@ -456,22 +465,20 @@ var setRegisterUrlInContentIframe = function() {
 
 var setLoginUrlInContentIframe = function(event) {
   console.log("=======setting login url to content iframe=====");
-  var iframe = document.getElementById("contentIframe");
+    var iframe = document.getElementById("contentIframe");
     if(event == "login"){
-      //alert("clicked login button");                                                                                                                                                                                                                                          
-      iframe.src = OPENEDX_URL + "/login";
-      iframe.sandbox = 'allow-forms allow-scripts allow-same-origin';
-  }
+        iframe.src = OPENEDX_URL + "/login";
+        iframe.sandbox = 'allow-forms allow-scripts allow-same-origin';
+    }
     else{
-
-      iframe.src = OPENEDX_URL + "/logout";
-      parent.window.loggedin = false;
-      document.getElementById("login").innerHTML = "Login";
-      document.getElementById("login").setAttribute( "onClick", "setLoginUrlInContentIframe('login')" );
-      loadAllDisciplines();
+        iframe.src = OPENEDX_URL + "/logout";
+        parent.window.loggedin = false;
+        parent.document.cookie = "loginHandler='logged out'";
+        document.getElementById("login").innerHTML = "Login";
+        document.getElementById("login").setAttribute( "onClick", "setLoginUrlInContentIframe('login')" );
+        loadAllDisciplines();
   }
 };
-
 
 #+END_SRC
 ** Validate Authentication
@@ -479,15 +486,16 @@ var setLoginUrlInContentIframe = function(event) {
 #+BEGIN_SRC javascript 
 
 var validateAuthentication = function(url) {
-  var lab_url = url.id;
-  var loggedinHandler = parent.window.loggedin;
-  var iframe = parent.document.getElementById("contentIframe");
-  if(loggedinHandler == false){
-      iframe.src = OPENEDX_URL + "/login";
-  }
-  else{
-      iframe.src = lab_url;
-  }
+    var lab_url = url.id;
+    var loggedinHandler = parent.window.loggedin;
+    var iframe = parent.document.getElementById("contentIframe");
+    if(loggedinHandler == false){
+        parent.window.url = lab_url;
+        iframe.src = OPENEDX_URL + "/login";
+    }
+    else{
+        iframe.src = lab_url;
+    }
 
 };
 
