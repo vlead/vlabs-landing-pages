@@ -99,7 +99,7 @@
       else {
           window.attachEvent("onmessage", displayMessage);
       }
-    </script>
+  </script>
   <title>Virtual Labs</title>    
   </head>
   <body onload="loadIndex()" onpageshow="validateCookie()">
@@ -841,10 +841,9 @@ var getAllLabs = function(){
 #+NAME: get-lab
 #+BEGIN_SRC javascript
 var getLab = function(url){
-    validateAuthentication(url);
-    //hosted_url = url.id;    
-    //var iframe = parent.document.getElementById("contentIframe");
-    //iframe.src = hosted_url;
+    hosted_url = url.id;    
+    var iframe = parent.document.getElementById("contentIframe");
+    iframe.src = hosted_url;
     addScriptTags();
 };
 
