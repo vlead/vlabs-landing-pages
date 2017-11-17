@@ -340,8 +340,8 @@ var loadIndex = function() {
 #+NAME: set-footer-source-to-iframe
 #+BEGIN_SRC javascript 
 var setFooterSourceToIframe = function(fIframe) {
-fIframe.src = "./footer.html";
-return fIframe
+  fIframe.src = "./footer.html";
+  return fIframe;
 }
 #+END_SRC
 
