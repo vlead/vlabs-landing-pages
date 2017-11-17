@@ -834,10 +834,10 @@ var getAllLabs = function(){
 #+NAME: get-lab
 #+BEGIN_SRC javascript
 var getLab = function(url){
-    hosted_url = url.id;
-    alert(hosted_url);
-    var iframe = parent.document.getElementById("contentIframe");
-    iframe.src = hosted_url;
+    validateAuthentication(url);
+    //hosted_url = url.id;    
+    //var iframe = parent.document.getElementById("contentIframe");
+    //iframe.src = hosted_url;
     addScriptTags();
 };
 
@@ -983,7 +983,6 @@ var getLabsByInstituteName = function(image, flag) {
 //        '"alt="image"/><a href='+ hosted_url +
 //        '><div class="caption" style="min-height: 110px;" ><h4 style="text-align:left; color:#2c99ce;">'+lab_name +
 //        '</h4></div></a></div></div>';
-
       labs += '<div class=" col-md-3 " id='+ lab_name +
            '> <div class="thumbnail" style="padding: 0px !important;"><a id="' + hosted_url + '" onclick="getLab(this);"><img class="img-responsive" src="' + path +
            '"alt="image"/><a href='+ hosted_url +
