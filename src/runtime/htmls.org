@@ -31,7 +31,29 @@
     </script>
   </head>
   <body>
-    <div id="disciplineDiv" class="container-fluid" style="padding-top:5em" >
+    <div id="commonDiv" class="container-fluid" style="padding-top:5em" >
+    </div>
+  </body>
+</html>
+
+#+END_SRC
+
+** Institutes HTML layout
+   This is the source of the iframe when institutes are
+   displayed.  After the generation of institutes content,
+   this content is attached to =disciplineDiv=.
+#+NAME:institutes-html
+#+BEGIN_SRC html
+<html>
+  <head>
+    <!-- <link rel="stylesheet" -->
+    <!--       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+    <script>
+      document.domain="localhost"
+    </script>
+  </head>
+  <body>
+    <div id="commonDiv" class="container-fluid" style="padding-top:5em" >
     </div>
   </body>
 </html>
@@ -39,7 +61,12 @@
 #+END_SRC
 
 * Tangle
+** Disciplines
 #+BEGIN_SRC html :tangle templates/disciplines.html :eval no :noweb yes
 <<disciplines-html>>
+#+END_SRC
+** Institutes
+#+BEGIN_SRC html :tangle templates/institutes.html :eval no :noweb yes
+<<institutes-html>>
 #+END_SRC
 

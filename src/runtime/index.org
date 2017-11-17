@@ -327,17 +327,12 @@ var FOOTER_PATH = "http://footer.vlabs.ac.in/footer";
 #+BEGIN_SRC javascript
 var loadIndex = function() {
   console.log("=======loading index page=====");
-
   createDisciplinesDivContent();
-  var fIframe = createIframeForFooter();
-  fIframe = setFooterSourceToIframe(fIframe);
-  insertFooterIframe(fIframe);
+  createFooterFrame();
 };
 
 #+END_SRC
-
-
-** Create Div content for all Disciplines
+** Create Div Content for all Disciplines
    All the disciplines from the =LDS= are collected along
    with images, hyperlinks.  This data is formatted and
    events are attached.  A div element is created containing
@@ -383,7 +378,7 @@ onclick="getLabsByDisciplineName(this, 0)" src="'
         disciplines +'</div></div>';
     
     console.log(disciplines);
-    setDisciplineContent(discipline_list);
+    setContent(discipline_list, "disciplines.html");
   })
     .done(function() {
       console.log( "second success" );
@@ -397,17 +392,71 @@ onclick="getLabsByDisciplineName(this, 0)" src="'
 };
     
 #+END_SRC
-** Set Discipline content in frame
-#+NAME: discipline-content
+
+** Create Div content for all Institutes
+   All the institutes from the =LDS= are collected along
+   with images, hyperlinks.  This data is formatted and
+   events are attached.  A div element is created containing
+   this data.  The events attached are =onclick= and the
+   handler loads the labs associated with the institute.
+   This event =onclick= is attached for both the image and
+   name of the institute.  Once the content is created,
+   there is a call to insert this content in an iframe.
+
+*** TODO [0/1]
+    1. [ ] Pass a key to identify the html file for the
+       institutes.
+*** Realization
+#+NAME: create-institutes-div-content
+#+BEGIN_SRC javascript 
+var createInstitutesDivContent = function(){ 
+  console.log("=========inside get all institutes==========");
+  var institute_url = base_url+"/institutes";
+  console.log(institute_url);
+  $.getJSON(institute_url, function(data) {
+    var institutes = '';
+    $.each(data, function(key, value){
+      var institute_name = value['institute_name'];
+      var image_name = value['assets'][0]['path'];
+      var image_path = institute_images_url + image_name;
+      institutes += '<div class="col-lg-3 col-md-4 col-xs-6 thumb"><div  \
+class="thumbnail" style="padding: 0px !important; padding-top:15px !important;"> <a><img class="img-responsive cursor-pointer" \
+onclick="getLabsByInstituteName(this, 0)" src="' + image_path +'" id="' + institute_name +
+        '"></a><div class="caption" style="min-height: 110px;">\
+<h4 class="cursor-pointer" style="text-align:center; color:#2c99ce;" >'+ institute_name +'</h4></div></div></div>';
+      
+    });
+    var institute_list = '<div class="container-fluid"><div class="row">'
+        + institutes +'</div></div>';
+    console.log(institutes);
+    setContent(institute_list, "institutes.html");
+  })
+    .done(function() {
+      console.log( "second success" );
+    })
+    .fail(function() {
+      console.log( "error" );
+    })
+    .always(function() {
+      console.log( "complete" );
+    });
+};
+#+END_SRC
+
+** Set the source and content to an frame
+#+NAME: set-src-content-iframe
 #+BEGIN_SRC js
-var setDisciplineContent = function(content) {
-  var cIframe = createIframeForContent();
-  insertContentIframe(cIframe);
-  setDisciplineSourceToIframe();
-  setTimeout(setDisciplineContentForIframe, 100, content);
+var setContent = function(content, htmlFile) {
+  if (!contentIframeExists()) {
+    var cIframe = createIframeForContent();
+    insertContentIframe(cIframe);
+  }
+  setSourceToIframe(htmlFile);
+  setTimeout(setContentToIframe, 100, content);
 };
 
 #+END_SRC
+
 ** Create a frame
    Provide the attributes, and an iframe is created and
    returned.  The attributes are name, id, width and height
@@ -434,14 +483,25 @@ var createNewIframe = function(name, id, width, height) {
 #+BEGIN_SRC javascript 
 var createIframeForContent = function() {
   console.log("=======create Iframe For Content=====");
-  cIframe = document.getElementById("contentIframe");
-  if (cIframe == null)
-    var cIframe = createNewIframe("contentIframe", "contentIframe", "100%", "9500em");
+  var cIframe = createNewIframe("contentIframe", "contentIframe", "100%", "1310em");
   return cIframe;
 };
 
 #+END_SRC
 
+** Does Content Iframe exists
+   Check if the content iframe exists
+#+NAME: check-ciframe-exists
+#+BEGIN_SRC js
+var contentIframeExists = function() {
+  cIframe = document.getElementById("contentIframe");
+  if (cIframe == null)
+    return false;
+  else
+    return true;
+};
+
+#+END_SRC
 ** Create Iframe For Footer
    The footer iframe named =footerIframe=.  Its width is
    =100%= and height is =390em=.
@@ -456,43 +516,32 @@ var createIframeForFooter = function() {
 
 #+END_SRC
 
-** Set Discipline Source To Iframe
-   The iframe source is set to disciplines html. 
-#+NAME: set-discipline-source-to-iframe
-#+BEGIN_SRC javascript 
-var setDisciplineSourceToIframe = function() {
+
+** Set Source To Iframe
+   The frame source is set to the corresponding html that is
+   passed as an argument.
+#+NAME: set-source-to-iframe
+#+BEGIN_SRC js
+var setSourceToIframe = function(htmlFile) {
   var cIframe = document.getElementById("contentIframe");
-  cIframe.src = HTML_FILES_PATH + "/disciplines.html";
+  cIframe.src = HTML_FILES_PATH + "/" + htmlFile;
 };
 
 #+END_SRC
 
-** Set Discipline Content 
-   The content consisting of different disciplines is set to
-   the content iframe.  At this point, the source of the
-   content iframe is set to =disciplines.html=.  Therefore
-   the content is plugged into the hole marked by
-   =discipline-div=.
-#+NAME: set-discipline-content-for-iframe
-#+BEGIN_SRC javascript 
-var setDisciplineContentForIframe = function(content) {
-  setContentForIframe(content, "disciplineDiv");
-  addScriptTags();
-};
-
-#+END_SRC
 
 ** Set Content For Iframe
-   This is a generic function, where content is set to given
-   div id in content iframe.
-#+NAME: set-content-for-iframe
+   This is a generic function, where content is set to the
+   =commonDiv= that is common in all the different html
+   files.
+#+NAME: set-content-to-iframe
 #+BEGIN_SRC javascript 
-var setContentForIframe = function(content, divId) {
-  console.log("divId = " + divId);
+var setContentToIframe = function(content) {
   var cIframe = document.getElementById("contentIframe");
   var contentDoc = cIframe.contentDocument;
-  var elem = contentDoc.getElementById(divId);
+  var elem = contentDoc.getElementById("commonDiv");
   elem.innerHTML = content;
+  addScriptTags();
 };
 
 #+END_SRC
@@ -773,7 +822,16 @@ var addScriptTags = function(){
 
 #+END_SRC
 
+** Create Footer Frame
+#+NAME: create-footer
+#+BEGIN_SRC js
+var createFooterFrame = function() {
+  var fIframe = createIframeForFooter();
+  fIframe = setFooterSourceToIframe(fIframe);
+  insertFooterIframe(fIframe);
+};
 
+#+END_SRC
 * Tangle 
 ** sources
 *** Javascript
@@ -781,19 +839,21 @@ var addScriptTags = function(){
 #+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes 
 <<load-index>>
 <<create-disciplines-div-content>>
+<<create-institutes-div-content>>
+<<set-src-content-iframe>>
 <<create-new-iframe>>
 <<create-iframe-for-content>>
+<<check-ciframe-exists>>
 <<create-iframe-for-footer>>
-<<discipline-content>>
-<<set-discipline-source-to-iframe>>
-<<set-discipline-content-for-iframe>>
-<<set-content-for-iframe>>
+<<set-source-to-iframe>>
+<<set-content-to-iframe>>
 <<set-footer-source-to-iframe>>
 <<insert-content-iframe>>
 <<insert-footer-iframe>>
 <<insert-frame-in-division>>
 <<favicon>>
 <<add-script-tags>>
+<<create-footer>>
 #+END_SRC
 *** Config
 #+BEGIN_SRC javascript :tangle static/js/app-config.js :eval no :noweb yes 
