@@ -453,7 +453,7 @@ var setRegisterUrlInContentIframe = function() {
   console.log("=======setting registration url to content iframe=====");
   var iframe = document.getElementById("contentIframe");
   iframe.src = OPENEDX_URL + "/register";
-  iframe.sandbox = 'allow-forms allow-scripts allow-same-origin';
+  iframe.sandbox = 'allow-forms allow-scripts allow-same-origin allow-popups allow-forms allow-top-navigation';
 };
 
 #+END_SRC
@@ -468,7 +468,7 @@ var setLoginUrlInContentIframe = function(event) {
     var iframe = document.getElementById("contentIframe");
     if(event == "login"){
         iframe.src = OPENEDX_URL + "/login";
-        iframe.sandbox = 'allow-forms allow-scripts allow-same-origin';
+        iframe.sandbox = 'allow-forms allow-scripts allow-same-origin allow-popups allow-forms allow-top-navigation';
     }
     else{
         iframe.src = OPENEDX_URL + "/logout";
@@ -645,7 +645,7 @@ var setNewContentInIframe = function(data) {
   console.log(window.name);
   console.log(parent.document.getElementById(window.name));
   var iframe = parent.document.getElementById("contentIframe");
-  iframe.sandbox = 'allow-forms allow-scripts allow-same-origin';
+  iframe.sandbox = 'allow-forms allow-scripts allow-same-origin allow-popups allow-forms allow-top-navigation';
   console.log("element = " + iframe);
   //  console.log("new htdfdfml = " + data);
   try {
@@ -1243,7 +1243,7 @@ var resetContentInIframe = function(data) {
   console.log("=======re setting content=====");        
   console.log(data);
   var iframe = parent.document.getElementById("contentIframe");
-  iframe.sandbox = 'allow-forms allow-scripts allow-same-origin';
+  iframe.sandbox = 'allow-forms allow-scripts allow-same-origin allow-popups allow-forms allow-top-navigation';
   var content = iframe.contentWindow.document;
   console.log(content);
   content.body.innerHTML="";
