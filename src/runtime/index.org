@@ -843,12 +843,21 @@ var getAllLabs = function(){
           console.log(path);
         }
       }
-      labs += '<div class=" col-md-3 " style="cursor:pointer;" id='+ lab_name +
+
+     /* labs += '<div class=" col-md-3 " style="cursor:pointer;" id='+ lab_name +
         '><div class="thumbnail" style="padding: 0px !important;"><a  href='+ hosted_url +
         '><img class="img-responsive" src="' + path +
         '"alt="image"/><a href='+ hosted_url +
         '><div class="caption" style="min-height: 110px;"><h4 style="text-align:left; color:#2c99ce;  ">'+lab_name +
-        '</h4></div></a></div></div>';
+        '</h4></div></a></div></div>'; */
+
+        labs += '<div class=" col-md-3 " style="cursor:pointer;" id='+ lab_name +
+           '> <div class="thumbnail" style="padding: 0px !important;"><a><img class="img-responsive " \
+onclick="javascript:validateAuthentication(this)" src="' + path +'" id="' + hosted_url +
+      '"><div class="caption" style="min-height: 110px;">\
+<h4 onclick="javascript:validateAuthentication(this)"  src="' + path +'" id="' + hosted_url +
+      '" style="text-align:center; color:#2c99ce;" >'+ lab_name +'</h4></a></div></div></div>';
+
 
 //      labs += '<div class="col-lg-3 col-md-4 col-xs-6 thumb" id='
 //        + lab_name + '><a class="thumbnail" href='+ hosted_url +
@@ -947,12 +956,14 @@ var getLabsByDisciplineName = function(image, flag) {
           console.log(path);
         }
       }
+
       labs += '<div class=" col-md-3 " style="cursor:pointer;" id='+ lab_name +
-           '> <div class="thumbnail" style="padding: 0px !important;"><a id="' + hosted_url + '" onclick="javascript:validateAuthentication(this);"><img class="img-responsive" src="' + path +
-           '"alt="image"/><a href='+ hosted_url +
-           '> <div class="caption" style="min-height: 110px;" ><h4 style="text-align:left; color:#2c99ce;">'+lab_name +
-           '</h4></div></a></div></div>';
-      });
+           '> <div class="thumbnail" style="padding: 0px !important;"><a><img class="img-responsive " \
+onclick="javascript:validateAuthentication(this)" src="' + path +'" id="' + hosted_url +
+      '"><div class="caption" style="min-height: 110px;">\
+<h4 onclick="javascript:validateAuthentication(this)"  src="' + path +'" id="' + hosted_url +
+      '" style="text-align:center; color:#2c99ce;" >'+ lab_name +'</h4></a></div></div></div>';
+   });
     console.log(labs);
     var labs_list = '<div class="container-fluid"><div class="row">'+ labs +'</div></div>';
     resetContentInIframe(labs);
@@ -1033,11 +1044,11 @@ var getLabsByInstituteName = function(image, flag) {
 //        '><div class="caption" style="min-height: 110px;" ><h4 style="text-align:left; color:#2c99ce;">'+lab_name +
 //        '</h4></div></a></div></div>';
       labs += '<div class=" col-md-3 " style="cursor:pointer;" id='+ lab_name +
-           '> <div class="thumbnail" style="padding: 0px !important;"><a id="' + hosted_url + '" onclick="getLab(this);"><img class="img-responsive" src="' + path +
-           '"alt="image"/><a href='+ hosted_url +
-           '> <div class="caption" style="min-height: 110px;" ><h4 style="text-align:left; color:#2c99ce;">'+lab_name +
-           '</h4></div></a></div></div>';
-
+           '> <div class="thumbnail" style="padding: 0px !important;"><a><img class="img-responsive " \
+onclick="javascript:validateAuthentication(this)" src="' + path +'" id="' + hosted_url +
+      '"><div class="caption" style="min-height: 110px;">\
+<h4 onclick="javascript:validateAuthentication(this)"  src="' + path +'" id="' + hosted_url +
+      '" style="text-align:center; color:#2c99ce;" >'+ lab_name +'</h4></a></div></div></div>';
 
     });
     console.log(labs);
