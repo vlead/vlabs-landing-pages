@@ -126,8 +126,8 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-              <li >
-                <a onclick="loadAllLabs()" "#" class="dropdown-toggle cursor-pointer" data-toggle="dropdown">All Labs <b ></b></a>
+              <li id="allLabs" class="disabled">
+                <a onclick="setLabDataInIframe()" "#" class="dropdown-toggle cursor-pointer" data-toggle="dropdown">All Labs <b ></b></a>
               </li>
               <li class="dropdown">
                 <a class="dropdown-toggle cursor-pointer" data-toggle="dropdown"  >Institutes <b class="caret"></b></a>
@@ -335,20 +335,27 @@ var labs_hosted_platform = "test-openedx";
 #+END_SRC
 
 ** Index page on load 
-   An index initially loads with a header, content, footer
-   iframe and set the content in respective iframe by
-   invoking =setHeaderContentInIframe()=,
-   =setContentInIframe()=, =setFooterContentInIframe()=
-   functions .
+   An index initially loads with a header, discipline
+   content and footer set the content in respective iframe
+   by invoking, =setContentInIframe()=,
+   =setFooterContentInIframe()= functions. This function
+   also makes a parallel request to get the labs and updates
+   the global variable =labs_data=.
+
 #+NAME: load-index
-#+BEGIN_SRC javascript
+#+BEGIN_SRC js
 var OPENEDX_URL = "http://themeless.vlabs.ac.in";
+var labs_data = null;
 var loadIndex = function() {
   console.log("=======loading index page=====");
 /*  insertHeaderIFrame();
   setHeaderContentInIframe();*/
   insertContentIFrame();
 //  setContentInIframe();
+  if (labs_data == null)
+  {
+    getAllLabs();
+  }
   loadAllDisciplines();
   insertFooterIFrame();
   setFooterContentInIframe();
@@ -478,6 +485,22 @@ var setLoginUrlInContentIframe = function(event) {
         document.getElementById("login").setAttribute( "onClick", "setLoginUrlInContentIframe('login')" );
         loadAllDisciplines();
   }
+};
+
+#+END_SRC
+** Set Lab Data
+   This function sets the lab data from a global variable
+   =labs_data= to an iframe. 
+#+NAME: set-lab-data-in-iframe
+#+BEGIN_SRC js
+var setLabDataInIframe = function() {
+  var iframe = parent.document.getElementById("contentIframe");
+  iframe.sandbox = 'allow-forms allow-scripts allow-same-origin';
+  var content = iframe.contentWindow.document;
+  console.log(content);
+  content.body.innerHTML = "";
+  content.write(labs_data);
+  addScriptTags();  
 };
 
 #+END_SRC
@@ -836,7 +859,11 @@ var getAllLabs = function(){
     });
     console.log(labs);
     var labs_list = '<div class="container-fluid"><div class="row">'+ labs +'</div></div>';
-    setNewContentInIframe(labs_list);
+    labs_data = labs_list;
+    console.log(labs_data);
+    document.getElementById("allLabs").disabled=false;
+    var all_labs_element = document.getElementById("allLabs");
+    all_labs_element.classList.remove("disabled");
     addScriptTags();
   })
     .done(function() {
@@ -1462,6 +1489,7 @@ head.appendChild(favicon);
 #+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes 
 <<load-index>>
 <<get-all-institutes-in-combobox>>
+<<set-lab-data-in-iframe>>
 <<create-new-iframe>>
 <<delete-frame-in-division>>
 <<insert-frame-in-division>>
