@@ -349,10 +349,9 @@ var labs_data = null;
 var labs_data_db = null;
 var loadIndex = function() {
   console.log("=======loading index page=====");
-/*  insertHeaderIFrame();
-  setHeaderContentInIframe();*/
+  getAllInstitutesInCombobox(); 
+  getAllDisciplinesInCombobox(); 
   insertContentIFrame();
-//  setContentInIframe();
   if (labs_data == null)
   {
     getAllLabs();
@@ -1301,8 +1300,6 @@ alert('You clicked it!');
 //$(document).ready(function(){
 //  loadAllDisciplines();
 //});
-getAllInstitutesInCombobox(); 
-getAllDisciplinesInCombobox(); 
 
 $(".dropdown").hover(            
   function() {
