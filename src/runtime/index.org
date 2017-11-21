@@ -433,7 +433,7 @@ var insertHeaderIFrame = function() {
 ** Set content in header iframe
    To display a header we give =header.html= as source of
    the iframe. The content of the =header.html= will be set
-   immediately
+   immediately.
 #+NAME: set-header-content-in-iframe
 #+BEGIN_SRC javascript 
 var setHeaderContentInIframe=function() {
@@ -445,6 +445,8 @@ var setHeaderContentInIframe=function() {
 #+END_SRC
 
 ** Set usage in Iframe
+    This allows to manipulate usage data in the content iframe. The
+  usage data will be  set in the content iframe immediately.
 #+NAME: set-usage-in-iframe
 #+BEGIN_SRC javascript 
 var setUsageInIframe = function() {
@@ -1145,6 +1147,8 @@ var getAllDisciplinesInCombobox = function(){
 
 #+END_SRC
 ** Get Labs by Keyword Search 
+   This function dynamically fetches the labs based
+   on the 'onkeyup' event occurs on lab name.
 #+NAME: labs-by-keyword-search
 #+BEGIN_SRC javascript
 var getLabsByKeyword = function(){
@@ -1296,6 +1300,8 @@ alert('You clicked it!');
 }*/
 #+END_SRC
 ** Mouse Over
+   This function allows the dropdown menu on the mousehover
+   event.
 #+NAME: mouse-over
 #+BEGIN_SRC javascript
 var on_mouse_hover = function(){
@@ -1313,6 +1319,8 @@ $(".dropdown").hover(
 #+END_SRC
 
 ** style sheets
+   Styling for the =Vlabs landing pages= includes in
+   maintaining the uniform look across the website.
 #+NAME: style-sheets
 #+BEGIN_SRC css
 @import url(https://fonts.googleapis.com/css?family=Raleway:400,300,700,500,600);
