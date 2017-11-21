@@ -351,6 +351,7 @@ var loadIndex = function() {
   console.log("=======loading index page=====");
   getAllInstitutesInCombobox(); 
   getAllDisciplinesInCombobox(); 
+  on_mouse_hover();
   insertContentIFrame();
   if (labs_data == null)
   {
@@ -1297,10 +1298,7 @@ alert('You clicked it!');
 ** Mouse Over
 #+NAME: mouse-over
 #+BEGIN_SRC javascript
-//$(document).ready(function(){
-//  loadAllDisciplines();
-//});
-
+var on_mouse_hover = function(){
 $(".dropdown").hover(            
   function() {
     $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideDown("400");
@@ -1311,7 +1309,7 @@ $(".dropdown").hover(
     $(this).toggleClass('open');       
   }
 );
-
+};
 #+END_SRC
 
 ** style sheets
