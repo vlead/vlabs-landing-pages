@@ -195,9 +195,9 @@
                   <input id="keyword" type="text" class="form-control"
                          placeholder="Lab Name">
                   <span class="input-group-addon">
-                    <button type="button"
+                    <button type="button" id="search"
                        onclick="javascript:getLabsByKeyword()"
-                       target="content_iframe" class="btn btn-default" type="submit">
+                       target="content_iframe" class="btn btn-default disabled" type="submit">
                       <span class="glyphicon glyphicon-search"></span>
                     </button>
                   </span>
@@ -346,6 +346,7 @@ var labs_hosted_platform = "test-openedx";
 #+BEGIN_SRC js
 var OPENEDX_URL = "http://themeless.vlabs.ac.in";
 var labs_data = null;
+var labs_data_db = null;
 var loadIndex = function() {
   console.log("=======loading index page=====");
 /*  insertHeaderIFrame();
@@ -860,10 +861,12 @@ var getAllLabs = function(){
     console.log(labs);
     var labs_list = '<div class="container-fluid"><div class="row">'+ labs +'</div></div>';
     labs_data = labs_list;
-    console.log(labs_data);
-    document.getElementById("allLabs").disabled=false;
+//    console.log(labs_data);
+    labs_data_db = data;
     var all_labs_element = document.getElementById("allLabs");
     all_labs_element.classList.remove("disabled");
+    var search_element = document.getElementById("search");
+    search_element.classList.remove("disabled");
     addScriptTags();
   })
     .done(function() {
@@ -1136,62 +1139,65 @@ var getAllDisciplinesInCombobox = function(){
 #+NAME: labs-by-keyword-search
 #+BEGIN_SRC javascript
 var getLabsByKeyword = function(){
+  console.log("=================search labs===========");  
   jQuery.support.cors = true;
   var keyword = document.getElementById("keyword").value;
-  var lab_url = keyword_url+keyword;
-  $.ajax({
-    type: "GET",
-    url: base_url + "/labs?keyword_lab_name=" + keyword, 
-    async: false,
-    contentType: "application/json",
-    jsonpCallback: "jsonCallback",
-    crossDomain: true,
-    success: function(data){
-      var labs = '';
-      $.each(data, function(key, value){
-        var lab_name = value['lab_name'];
-        var hosting_info = value['hosting_info'];
-        for(var i=0;i< hosting_info.length;i++){
-          var hosted_on = value['hosting_info'][i]['hosted_on'];
-          if (hosting_info.length == 1){
-            var hosted_url = value['hosting_info'][0]['hosted_url'];
-          }
-          else if(labs_hosted_platform == hosted_on)
-          {
-            var hosted_url = value['hosting_info'][i]['hosted_url'];
-          }
-          else
-          {
-            continue;
-          }
-        }
-        var assets = value['assets'];
-        console.log(assets);
-        for(var i=0;i< assets.length;i++){
-          var  asset_type = value['assets'][i]['asset_type']['asset_type'];
-          var path = value['assets'][i]['path'];
-          if (asset_type == 'image'){
-            var image_name = value['assets'][i]['path'];
-            console.log(image_name);
-            var path = lab_images_url + image_name;
-            console.log(path);
-          }
-        }
-        labs += '<div class=" col-md-3" id='+ lab_name +
-          '> <div class="thumbnail" style="padding: 0px !important;"><a  href='+ hosted_url +
-          '><img class="img-responsive" src="' + path +
-          '"alt="image"/><a href='+ hosted_url +
-          '> <div class="caption" style="min-height: 110px;"><h4 style="text-align:left; color:#2c99ce;"">'+lab_name +
-          '</h4></div></a></div></div>';
-      });
-      console.log(labs);
-      var labs_list = '<div class="container-fluid"><div class="row">'+ labs +'</div></div>';
-      resetContentInIframe(labs);
-    },
-    error:function(errorStatus,xhr){
-      console.log("Error"+JSON.stringify(errorStatus));
+  console.log(keyword);
+  var data = [];
+  console.log(labs_data_db);  
+  for (var i=0;i<labs_data_db.length;i++) {
+    var lab = labs_data_db[i];
+    console.log(lab);
+    for (var lab_name in lab) {
+      var lab_match = lab[lab_name].toString().toLowerCase();
+      if (lab_match.indexOf(keyword)>-1) {
+        data.push(lab);
+        break;               
+      }
     }
+  }
+  var labs='';
+  console.log(data);
+  $.each(data, function(key, value){
+    var lab_name = value['lab_name'];
+    var hosting_info = value['hosting_info'];
+    for(var i=0;i< hosting_info.length;i++){
+      var hosted_on = value['hosting_info'][i]['hosted_on'];
+      if (hosting_info.length == 1){
+        var hosted_url = value['hosting_info'][0]['hosted_url'];
+      }
+      else if(labs_hosted_platform == hosted_on)
+      {
+        var hosted_url = value['hosting_info'][i]['hosted_url'];
+      }
+      else
+      {
+        continue;
+      }
+        
+    }
+    var assets = value['assets'];
+    console.log(assets);
+    for(var i=0;i< assets.length;i++){
+      var  asset_type = value['assets'][i]['asset_type']['asset_type'];
+      var path = value['assets'][i]['path'];
+      if (asset_type == 'image'){
+        var image_name = value['assets'][i]['path'];
+        console.log(image_name);
+        var path = lab_images_url + image_name;
+        console.log(path);
+      }
+    }
+    labs += '<div class=" col-md-3 " style="cursor:pointer;" id='+ lab_name +
+      '><div class="thumbnail" style="padding: 0px !important;"><a  href='+ hosted_url +
+      '><img class="img-responsive" src="' + path +
+      '"alt="image"/><a href='+ hosted_url +
+      '><div class="caption" style="min-height: 110px;"><h4 style="text-align:left; color:#2c99ce;  ">'+lab_name +
+      '</h4></div></a></div></div>';
   });
+  console.log(labs);
+  var labs_list = '<div class="container-fluid"><div class="row">'+ labs +'</div></div>';
+  resetContentInIframe(labs);
 };
 
 #+END_SRC
