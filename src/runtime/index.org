@@ -40,64 +40,19 @@
     <link rel="stylesheet" href="http://files.vlabs.ac.in/lds/libraries/css/bootsnipp.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
     <link rel="icon" type="image/x-icon" href="http://files.vlabs.ac.in/lds/images/vlabs-logo/favicon.ico">
     <link rel="stylesheet" href="./css/style.css"/>
     <script type="text/javascript" src="./js/app-config.js"></script>
     <script type="text/javascript" src="./js/main.js"></script>
-    <!--<script type="text/javascript" src="../static/js/backfix.min.js"></script>-->
     <script>
-      document.domain="localhost";
-      window.loggedin=false;
-      window.url = "";
-      function validateCookie(){
-           if(document.cookie.includes("logged in")){
-               var loginDiv = document.getElementById("login")
-               window.loggedin=true;
-               loginDiv.innerHTML = "Logout";
-               loginDiv.setAttribute( "onClick", "setLoginUrlInContentIframe('logout')" );
-           }
-           else if(document.cookie.includes("logged out")){
-              window.loggedin=false;
-              document.getElementById("login").innerHTML = "Login";
-              document.getElementById("login").setAttribute( "onClick", "setLoginUrlInContentIframe('login')" );
-           }
-           else{
-                console.log("");
-           }
-      }
-
-      function displayMessage (evt) {
-          var message;
-          if (evt.origin !== "http://themeless.vlabs.ac.in") {
-              message = "Unauthorized domain";
-          }
-          else {
-              if (evt.data.indexOf("MY COURSES") != -1){
-                  document.cookie = "loginHandler='logged in'";
-                  if (window.url == ""){
-                      loadAllDisciplines();
-                  }
-                  else{
-                      var iframe = document.getElementById("contentIframe");
-                      iframe.src = window.url;
-                  }
-              }
-              else if (evt.data.indexOf("Sign in")!= -1){
-                  document.cookie = "loginHandler='logged out'";
-              }
-              else {
-                    console.log("");
-              }
-              validateCookie();
-           }
-      }
+      window.loggedin_handler=false;
+      window.lab_url = "";
       if (window.addEventListener) {
           // For standards-compliant web browsers
-          window.addEventListener("message", displayMessage, false);
+          window.addEventListener("message", validatePostMessage, false);
       }
       else {
-          window.attachEvent("onmessage", displayMessage);
+          window.attachEvent("onmessage", validatePostMessage);
       }
   </script>
   <title>Virtual Labs</title>    
@@ -205,7 +160,7 @@
                   </span>
                 </div>
               </form>
-              <li><a class ="cursor-pointer" onclick="setRegisterUrlInContentIframe();"><span class="glyphicon glyphicon-user"></span>Register</a></li>
+              <li><a class ="cursor-pointer" id="register" onclick="setRegisterUrlInContentIframe();"><span class="glyphicon glyphicon-user"></span>Register</a></li>
               <li><a class ="cursor-pointer" onclick="setLoginUrlInContentIframe('login');" id="login" class="glyphicon glyphicon-log-in"> Login</a></li>
             </ul>
           </div><!-- /.navbar-collapse -->
@@ -267,7 +222,7 @@
               style="text-align: center;">
             <a onclick="setUsageInIframe()" href="#"
                class="broad-labs-a" >Usage</a>
-            <span id="server_usage">6,68,971</span> <sup>+</sup></h3>
+            <span id="totalusage"></span> <sup>+</sup></h3>
         </div>
       </div>                
       <div style="visibility: visible; animation-duration:
@@ -280,10 +235,11 @@
               style="text-align: center;">
             <a onclick="setUsageInIframe()" href="#"
                class="broad-labs-a">Workshop Usage</a>
-            <span id="usage">19,88,398</span> <sup>+</sup></h3>
+            <span id="usage" ></span> <sup>+</sup></h3>
         </div>
       </div>
 </div>
+
 
 
     
@@ -331,6 +287,8 @@ var keyword_url = base_url+"/labs?keyword_lab_name=";
 var institute_images_url ="http://files.vlabs.ac.in/lds/images/institutes/";
 var discipline_images_url = "http://files.vlabs.ac.in/lds/images/disciplines/";
 var lab_images_url = "http://files.vlabs.ac.in/lds/images/labs/";
+var workshop_usage_url = "http://outreach.vlabs.ac.in/get_outreach_analytics";
+var total_usage_url = "http://stats.vlabs.ac.in/analytics";
 //set the below variable to "test-openedx" or "openedx"
 var labs_hosted_platform = "test-openedx";
 
@@ -354,6 +312,8 @@ var loadIndex = function() {
   getAllInstitutesInCombobox(); 
   getAllDisciplinesInCombobox(); 
   on_mouse_hover();
+  getWorkshopUsage();
+  getTotalUsage();
   insertContentIFrame();
   if (labs_data == null)
   {
@@ -456,6 +416,80 @@ var setUsageInIframe = function() {
 };
 
 #+END_SRC
+** Validate cookie
+#+NAME: validate-cookie
+#+BEGIN_SRC javascript 
+
+function validateCookie(){
+  if(document.cookie.includes("logged in")){
+    window.loggedin_handler=true;
+    var loginDiv = document.getElementById("login");
+    loginDiv.innerHTML = "Logout";
+    loginDiv.setAttribute( "onClick", "setLoginUrlInContentIframe('logout')" );
+    var register_elem = document.getElementById("register");
+    register_elem.style.display = "none";
+
+  }
+  else if(document.cookie.includes("logged out")){
+    window.loggedin_handler=false;
+    document.getElementById("login").innerHTML = "Login";
+    document.getElementById("login").setAttribute( "onClick", "setLoginUrlInContentIframe('login')" );
+  }
+  else{
+    console.log("");
+  }
+}
+
+#+END_SRC
+** Validate post message
+
+#+NAME: validate-post-message
+#+BEGIN_SRC javascript 
+
+function validatePostMessage(evt) {
+  if (evt.origin !== "http://themeless.vlabs.ac.in") {
+    console.log("Unauthorized domain");
+  }
+  else {
+    if (evt.data.indexOf("MY COURSES") != -1){
+      document.cookie = "session_status='logged in'";
+      if (window.lab_url == ""){
+        loadAllDisciplines();
+      }
+      else{
+        var iframe = document.getElementById("contentIframe");
+        iframe.src = window.lab_url;
+      }
+    }
+    else if (evt.data.indexOf("Sign in")!= -1){
+      document.cookie = "session_status='logged out'";
+    }
+    else {
+      console.log("");
+    }
+    validateCookie();
+  }
+}
+
+#+END_SRC
+** Validate Authentication
+#+NAME: validate-authentication
+#+BEGIN_SRC javascript 
+
+var validateAuthentication = function(url) {
+  var lab_url = url.id;
+  var loggedinHandler = parent.window.loggedin_handler;
+  var iframe = parent.document.getElementById("contentIframe");
+  if(loggedinHandler == false){
+    parent.window.lab_url = lab_url;
+    iframe.src = OPENEDX_URL + "/login";
+  }
+  else{
+    iframe.src = lab_url;
+  }
+};
+
+#+END_SRC
 ** Set register url to content iframe
    This function sets the registration url of an openedx
    platform to =contentIframe=
@@ -477,18 +511,21 @@ var setRegisterUrlInContentIframe = function() {
 
 var setLoginUrlInContentIframe = function(event) {
   console.log("=======setting login url to content iframe=====");
-    var iframe = document.getElementById("contentIframe");
-    if(event == "login"){
-        iframe.src = OPENEDX_URL + "/login";
-        iframe.sandbox = 'allow-scripts allow-same-origin allow-popups allow-forms';
-    }
-    else{
-        iframe.src = OPENEDX_URL + "/logout";
-        parent.window.loggedin = false;
-        parent.document.cookie = "loginHandler='logged out'";
-        document.getElementById("login").innerHTML = "Login";
-        document.getElementById("login").setAttribute( "onClick", "setLoginUrlInContentIframe('login')" );
-        loadAllDisciplines();
+  var iframe = document.getElementById("contentIframe");
+  if(event == "login"){
+    iframe.src = OPENEDX_URL + "/login";
+    iframe.sandbox = 'allow-scripts allow-same-origin allow-popups allow-forms';
+  }
+  else{
+    iframe.src = OPENEDX_URL + "/logout";
+    parent.window.loggedin_handler = false;
+    parent.document.cookie = "session_status='logged out'";
+    var loginDiv = document.getElementById("login");
+    loginDiv.innerHTML = "Login";
+    loginDiv.setAttribute( "onClick", "setLoginUrlInContentIframe('login')" );
+    var register_elem = document.getElementById("register");
+    register_elem.style.display = "block"
+    loadAllDisciplines();
   }
 };
 
@@ -506,25 +543,6 @@ var setLabDataInIframe = function() {
   content.body.innerHTML = "";
   content.write(labs_data);
   addScriptTags();  
-};
-
-#+END_SRC
-** Validate Authentication
-#+NAME: validate-authentication
-#+BEGIN_SRC javascript 
-
-var validateAuthentication = function(url) {
-    var lab_url = url.id;
-    var loggedinHandler = parent.window.loggedin;
-    var iframe = parent.document.getElementById("contentIframe");
-    if(loggedinHandler == false){
-        parent.window.url = lab_url;
-        iframe.src = OPENEDX_URL + "/login";
-    }
-    else{
-        iframe.src = lab_url;
-    }
-
 };
 
 #+END_SRC
@@ -1299,6 +1317,46 @@ var resetContentInIframe = function(data) {
 alert('You clicked it!');
 }*/
 #+END_SRC
+** Get Workshop Usage Data 
+   This function dynamically fetches the usage data.
+#+NAME: workshop-usage-data
+#+BEGIN_SRC javascript
+var getWorkshopUsage = function(){ 
+$.getJSON(workshop_usage_url, function(data) {
+  var usage = data["usage"];
+  $("#usage").html(usage);
+})
+    .done(function() {
+//      console.log( "second success" );
+    })
+    .fail(function() {
+//      console.log( "error" );
+    })
+    .always(function() {
+//      console.log( "complete" );
+    });
+};
+#+END_SRC
+** Total usage data 
+   This function dynamically fetches the total usage data.
+#+NAME: total-usage-data
+#+BEGIN_SRC javascript
+var getTotalUsage = function() {
+$.getJSON(total_usage_url, function(data) {
+  var usage = data["usage"];
+  $("#totalusage").html(usage);
+})
+    .done(function() {
+//      console.log( "second success" );
+    })
+    .fail(function() {
+//      console.log( "error" );
+    })
+    .always(function() {
+//      console.log( "complete" );
+    });
+};
+#+END_SRC
 ** Mouse Over
    This function allows the dropdown menu on the mousehover
    event.
@@ -1529,7 +1587,10 @@ head.appendChild(favicon);
 <<labs-by-keyword-search>>
 <<mouse-over>>
 <<back-button>>
-
+<<workshop-usage-data>>
+<<total-usage-data>>
+<<validate-cookie>>
+<<validate-post-message>>
 #+END_SRC
 *** Config
 #+BEGIN_SRC javascript :tangle js/app-config.js :eval no :noweb yes 
