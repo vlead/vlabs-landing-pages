@@ -147,40 +147,41 @@
                   <li class="col-sm-2">
                     <ul>
                       <li class="dropdown-header">Community</li>
-                      <li><a href="#">Teachers</a></li>
-                      <li><a href="#">Developers</a></li>
-                      <li><a href="#">Students</a></li>
+                      <li><a target="_blank" href="https://plus.google.com/communities/104131148292250423165">Teachers</a></li>
+                      <li><a target="_blank" href="https://groups.google.com/a/vlabs.ac.in/forum/#!forum/engineers">Developers</a></li>
+                      <li><a target="_blank" href="https://groups.google.com/a/vlabs.ac.in/forum/#!forum/users">Students</a></li>
                     </ul>
                   </li>
                   <li class="col-sm-3">
                     <ul>
                       <li class="dropdown-header">Development</li>
-                      <li><a href="#">Virtual Development</a></li>
+                      <li><a target="_blank" href="http://dev.vlabs.ac.in/">Virtual Development</a></li>
+                      <li><a target="_blank" href="https://info.vlabs.ac.in/runtime-broswer-for-virtual-labs/">Runtime Browser for Virutal Labs</a></li>
                     </ul>
                   </li>
                   <li class="col-sm-2">
                     <ul>
                       <li class="dropdown-header">Workshops</li>
-                      <li><a href="#">Online</a></li>
-                      <li><a href="#">College Cloud Edition</a></li>
+                      <li><a target="_blank" href="https://info.vlabs.ac.in/workshops/">Online</a></li>
+                      <li><a target="_blank" href="https://info.vlabs.ac.in/college-cloud-edition/">College Cloud Edition</a></li>
                     </ul>
                   </li>
                   <li class="col-sm-3">
                     <ul>
                       <li class="dropdown-header">FAQ</li>
-                      <li><a href="#">Virtual Labs</a></li>
-                      <li><a href="#">Virtuals
+                      <li><a target="_blank" href="https://info.vlabs.ac.in/faq/index.html">Virtual Labs</a></li>
+                      <li><a target="_blank" href="https://info.vlabs.ac.in/faq/index.html">Virtuals
                           College Cloud Edition</a>
                       </li>
-                      <li><a href="#">Expression  of Interest for Workshops</a></li>
+                      <li><a target="_blank" href="https://info.vlabs.ac.in/faq/index.html">Expression  of Interest for Workshops</a></li>
                     </ul>
                   </li>
                   <li class="col-sm-2">
                     <ul>
                       <li class="dropdown-header">Information</li>
-                      <li><a href="#">Announcements</a></li>
-                      <li><a href="#">Contact us</a></li>
-                      <li><a href="#">2017-summer-intership</a></li>
+                      <li><a target="_blank" href="https://info.vlabs.ac.in/announcements/index.html">Announcements</a></li>
+                      <li><a target="_blank" href="https://info.vlabs.ac.in/contactus/">Contact us</a></li>
+                      <li><a target="_blank" href="https://info.vlabs.ac.in/2017-summer-internship/">2017-summer-intership</a></li>
                     </ul>
                   </li>
               </li>
