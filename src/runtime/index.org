@@ -40,7 +40,7 @@
     <link rel="stylesheet" href="http://files.vlabs.ac.in/lds/libraries/css/bootsnipp.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
     <link rel="icon" type="image/x-icon" href="http://files.vlabs.ac.in/lds/images/vlabs-logo/favicon.ico">
     <link rel="stylesheet" href="../static/css/style.css"/>
     <script type="text/javascript" src="../static/js/app-config.js"></script>
@@ -665,13 +665,9 @@ var setContentInIframe = function() {
 
 var setNewContentInIframe = function(data) {
   console.log("=======setting new content to content iframe=====");        
-  //  console.log(data);
-  console.log(window.name);
-  console.log(parent.document.getElementById(window.name));
   var iframe = parent.document.getElementById("contentIframe");
   iframe.sandbox = 'allow-forms allow-scripts allow-same-origin allow-popups allow-top-navigation';
   console.log("element = " + iframe);
-  //  console.log("new htdfdfml = " + data);
   try {
     cnt = iframe.contentDocument;
     console.log("cnt: " +  cnt);
@@ -1230,18 +1226,6 @@ var addScriptTags = function(){
   jquery_script.src = jquery_url;
   head.appendChild(jquery_script);  
 
-  /*var backfix_script = contentIframe.contentWindow.document.createElement("script");
-  var backfix_url = "../static/js/backfix.min.js";
-  backfix_script.type = "text/javascript";
-  backfix_script.src = backfix_url;
-  head.appendChild(backfix_script);*/
-
-  var bootstrap_js = contentIframe.contentWindow.document.createElement("script");
-  var bootstrap_js_url = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js";
-  bootstrap_js.type = "text/javascript";
-  bootstrap_js.src = bootstrap_js_url;
-  head.appendChild(bootstrap_js);  
-
   var styles = contentIframe.contentWindow.document.createElement("link");
   var css_url = "../static/css/style.css";
   styles.type = "text/stylesheet";
@@ -1407,7 +1391,7 @@ height:650px;
 }
 .stylish-input-group button{
     border:0;
-    background:transparent;
+    background:#transperent;
 }
 /*overwrting the search icon properties from less bootstrap library*/
 .input-group-addon {
