@@ -192,7 +192,8 @@
             <ul class="nav navbar-nav navbar-right">
               <form class="navbar-form navbar-left">
                 <div  class="input-group stylish-input-group">
-                  <input id="keyword" type="text" class="form-control"
+                  <input id="keyword" onkeyup="javascript:getLabsByKeyword()"
+                         type="text" class="form-control"
                          placeholder="Lab Name">
                   <span class="input-group-addon">
                     <button type="button" id="search"
