@@ -1,0 +1,33 @@
+#+TITLE: Demonstration Script
+#+AUTHOR: VLEAD
+#+DATE: [2017-11-22 Wed]
+#+PROPERTY: results output
+#+PROPERTY: exports code
+#+SETUPFILE: ../org-templates/level-1.org
+#+options: ^:nil
+#+LATEX: Literal LaTeX code for export
+
+* Introduction 
+  This "Literate Document" demonstrate about =Vlabs landing
+  Pages=.
+* Steps to follow
+  1. Access Vlabs landing pages
+     - Open the browser
+     - Type the following url in browser
+       #+begin_example
+       http://landingpage.vlabs.ac.in
+       #+end_example
+  2. Login
+     - click on login.
+     - Type the following details in email id field
+       #+begin_example
+       example@mail.com
+       #+end_example
+     - Type the following details in password field
+       #+begin_example
+       vlead123
+       #+end_example
+  3. Accessing lab
+     - Click on =Computer Science and Engineering= 
+     - Click on
+
