@@ -28,7 +28,7 @@
    place of =headerDiv=, =contentDiv= and =footerDiv=
    divisions.
 
-#+NAME: main-html
+#+NAME: index-html
 #+BEGIN_SRC html
 <!DOCTYPE html>
 <html lang="en">
@@ -42,9 +42,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
     <link rel="icon" type="image/x-icon" href="http://files.vlabs.ac.in/lds/images/vlabs-logo/favicon.ico">
-    <link rel="stylesheet" href="../static/css/style.css"/>
-    <script type="text/javascript" src="../static/js/app-config.js"></script>
-    <script type="text/javascript" src="../static/js/main.js"></script>
+    <link rel="stylesheet" href="./css/style.css"/>
+    <script type="text/javascript" src="./js/app-config.js"></script>
+    <script type="text/javascript" src="./js/main.js"></script>
     <!--<script type="text/javascript" src="../static/js/backfix.min.js"></script>-->
     <script>
       document.domain="localhost";
@@ -500,7 +500,7 @@ var setLabDataInIframe = function() {
   var iframe = parent.document.getElementById("contentIframe");
   iframe.sandbox = 'allow-forms allow-scripts allow-same-origin';
   var content = iframe.contentWindow.document;
-  console.log(content);
+//  console.log(content);
   content.body.innerHTML = "";
   content.write(labs_data);
   addScriptTags();  
@@ -669,10 +669,10 @@ var setNewContentInIframe = function(data) {
   console.log("=======setting new content to content iframe=====");        
   var iframe = parent.document.getElementById("contentIframe");
   iframe.sandbox = 'allow-forms allow-scripts allow-same-origin allow-popups';
-  console.log("element = " + iframe);
+//  console.log("element = " + iframe);
   try {
     cnt = iframe.contentDocument;
-    console.log("cnt: " +  cnt);
+ //   console.log("cnt: " +  cnt);
     cnt.write(data);
   } catch(err) {
     console.log(err);
@@ -697,7 +697,7 @@ var setNewContentInIframe = function(data) {
 var getAllInstitutes = function(){ 
   console.log("=========inside get all institutes==========");
   var institute_url = base_url+"/institutes";
-  console.log(institute_url);
+//  console.log(institute_url);
   $.getJSON(institute_url, function(data) {
     var institutes = '';
     $.each(data, function(key, value){
@@ -724,18 +724,18 @@ onclick="getLabsByInstituteName(this, 0)" src="' + image_path +'" id="' + instit
 
     var institute_list = '<div class="container-fluid"><div class="row">'
         + institutes +'</div></div>';
-    console.log(institutes);
+//    console.log(institutes);
     setNewContentInIframe(institute_list);
     addScriptTags();
   })
     .done(function() {
-      console.log( "second success" );
+//      console.log( "second success" );
     })
     .fail(function() {
-      console.log( "error" );
+//      console.log( "error" );
     })
     .always(function() {
-      console.log( "complete" );
+//      console.log( "complete" );
     });
 };
 
@@ -753,7 +753,7 @@ onclick="getLabsByInstituteName(this, 0)" src="' + image_path +'" id="' + instit
 var getAllDisciplines = function(){ 
   console.log("=========inside get all disciplines==========");
   var dis_url = base_url+"/disciplines";
-  console.log(dis_url);
+//  console.log(dis_url);
   $.getJSON(dis_url, function(data) {
     var disciplines = '';
     $.each(data, function(key, value){
@@ -782,18 +782,18 @@ style="padding: 0px !important; padding-top:15px !important;"> <a><img class="im
     var discipline_list = '<div class="container-fluid"><div class="row">'
     + disciplines +'</div></div>';
     
-    console.log(disciplines);
+//    console.log(disciplines);
     setNewContentInIframe(discipline_list);
     addScriptTags();
     })
     .done(function() {
-    console.log( "second success" );
+//    console.log( "second success" );
     })
     .fail(function() {
-    console.log( "error" );
+//    console.log( "error" );
     })
     .always(function() {
-    console.log( "complete" );
+//    console.log( "complete" );
     });
     };
     
@@ -810,7 +810,7 @@ style="padding: 0px !important; padding-top:15px !important;"> <a><img class="im
 var getAllLabs = function(){ 
   console.log("=========inside get all labs==========");
   var lab_url = base_url+"/labs";
-  console.log(lab_url);
+//  console.log(lab_url);
   $.getJSON(lab_url, function(data) {
     var labs = '';
     $.each(data, function(key, value){
@@ -832,15 +832,15 @@ var getAllLabs = function(){
         
       }
       var assets = value['assets'];
-      console.log(assets);
+//      console.log(assets);
       for(var i=0;i< assets.length;i++){
         var  asset_type = value['assets'][i]['asset_type']['asset_type'];
         var path = value['assets'][i]['path'];
         if (asset_type == 'image'){
           var image_name = value['assets'][i]['path'];
-          console.log(image_name);
+//          console.log(image_name);
           var path = lab_images_url + image_name;
-          console.log(path);
+//          console.log(path);
         }
       }
 
@@ -865,7 +865,7 @@ onclick="javascript:validateAuthentication(this)" src="' + path +'" id="' + host
  //       '"  alt="image"/><p style="text-align:center;">'
   //      +lab_name +'</p> </a></div>';      
     });
-    console.log(labs);
+//    console.log(labs);
     var labs_list = '<div class="container-fluid"><div class="row">'+ labs +'</div></div>';
     labs_data = labs_list;
 //    console.log(labs_data);
@@ -877,13 +877,13 @@ onclick="javascript:validateAuthentication(this)" src="' + path +'" id="' + host
     addScriptTags();
   })
     .done(function() {
-      console.log( "second success" );
+//      console.log( "second success" );
     })
     .fail(function() {
-      console.log( "error" );
+//      console.log( "error" );
     })
     .always(function() {
-      console.log( "complete" );
+//      console.log( "complete" );
     });
 };
 
@@ -912,8 +912,8 @@ var getLab = function(url){
 #+BEGIN_SRC javascript 
 var getLabsByDisciplineName = function(image, flag) {
   console.log("===========inside getLabsByDisciplineName==========");
-  console.log("===========flag==========");
-  console.log(flag);
+ // console.log("===========flag==========");
+//  console.log(flag);
   if (flag==1){
     deleteFrameInDivision("contentIframe", "contentDiv");
     var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "650em");
@@ -921,9 +921,9 @@ var getLabsByDisciplineName = function(image, flag) {
   }
   var discipline_name = image.id;
   var labs_url = base_url+"/labs";
-  console.log(labs_url);
+//  console.log(labs_url);
   var labs_by_dis_url = labs_url+"?discipline_name="+ discipline_name;
-  console.log(labs_by_dis_url);
+//  console.log(labs_by_dis_url);
   $.getJSON(labs_by_dis_url, function(data) {
     var labs = '';
     $.each(data, function(key, value){
@@ -945,15 +945,15 @@ var getLabsByDisciplineName = function(image, flag) {
         
       }
       var assets = value['assets'];
-      console.log(assets);
+//      console.log(assets);
       for(var i=0;i< assets.length;i++){
         var  asset_type = value['assets'][i]['asset_type']['asset_type'];
         var path = value['assets'][i]['path'];
         if (asset_type == 'image'){
           var image_name = value['assets'][i]['path'];
-          console.log(image_name);
+//          console.log(image_name);
           var path = lab_images_url + image_name;
-          console.log(path);
+//          console.log(path);
         }
       }
 
@@ -964,19 +964,19 @@ onclick="javascript:validateAuthentication(this)" src="' + path +'" id="' + host
 <h4 onclick="javascript:validateAuthentication(this)"  src="' + path +'" id="' + hosted_url +
       '" style="text-align:center; color:#2c99ce;" >'+ lab_name +'</h4></a></div></div></div>';
    });
-    console.log(labs);
+//    console.log(labs);
     var labs_list = '<div class="container-fluid"><div class="row">'+ labs +'</div></div>';
     resetContentInIframe(labs);
   })
     .done(function() {
-      console.log( "second success" );
+//      console.log( "second success" );
     })
     .fail(function() {
-      console.log( "error" );
+//      console.log( "error" );
       location.reload();
     })
     .always(function() {
-      console.log( "complete" );
+//      console.log( "complete" );
     });
   
 };
@@ -992,8 +992,8 @@ onclick="javascript:validateAuthentication(this)" src="' + path +'" id="' + host
 #+BEGIN_SRC javascript 
 var getLabsByInstituteName = function(image, flag) {
   console.log("===========inside getLabsByDisciplineName==========");
-  console.log("===========flag==========");
-  console.log(flag);
+//  console.log("===========flag==========");
+//  console.log(flag);
   if (flag==1){
     deleteFrameInDivision("contentIframe", "contentDiv");
     var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "650em");
@@ -1001,7 +1001,7 @@ var getLabsByInstituteName = function(image, flag) {
   }
   var institute_name = image.id;
   var labs_url = base_url+"/labs";
-  console.log(labs_url);
+//  console.log(labs_url);
   var labs_by_institute_url = labs_url+"?institute_name="+ institute_name;
   console.log(labs_by_institute_url);
   $.getJSON(labs_by_institute_url, function(data) {
@@ -1025,15 +1025,15 @@ var getLabsByInstituteName = function(image, flag) {
         
       }
       var assets = value['assets'];
-      console.log(assets);
+//      console.log(assets);
       for(var i=0;i< assets.length;i++){
         var  asset_type = value['assets'][i]['asset_type']['asset_type'];
         var path = value['assets'][i]['path'];
         if (asset_type == 'image'){
           var image_name = value['assets'][i]['path'];
-          console.log(image_name);
+  //        console.log(image_name);
           var path = lab_images_url + image_name;
-          console.log(path);
+ //         console.log(path);
         }
       }
 
@@ -1051,19 +1051,19 @@ onclick="javascript:validateAuthentication(this)" src="' + path +'" id="' + host
       '" style="text-align:center; color:#2c99ce;" >'+ lab_name +'</h4></a></div></div></div>';
 
     });
-    console.log(labs);
+//    console.log(labs);
     var labs_list = '<div class="container-fluid"><div class="row">'+ labs +'</div></div>';
     resetContentInIframe(labs);
   })
   .done(function() {
-      console.log( "second success" );
+//      console.log( "second success" );
     })
     .fail(function() {
-      console.log( "error" );
-      location.reload();
+//      console.log( "error" );
+//      location.reload();
     })
     .always(function() {
-      console.log( "complete" );
+//      console.log( "complete" );
     });
 };
 
@@ -1080,7 +1080,7 @@ onclick="javascript:validateAuthentication(this)" src="' + path +'" id="' + host
 var getAllInstitutesInCombobox = function(){
   console.log("=========inside get all institutes in combobox==========");
   var institute_url = base_url+"/institutes";
-  console.log(institute_url);
+//  console.log(institute_url);
   $.getJSON(institute_url, function(data) {
     var institutes = '';
     $.each(data, function(key, value){
@@ -1091,17 +1091,17 @@ var getAllInstitutesInCombobox = function(){
     });
     var institute_list = '<li onclick="loadAllInstitutes()">\
 <a >All Institutes</a></li>' + institutes;
-    console.log(institute_list);
+//    console.log(institute_list);
     $('.filterInstituteComboBox').append(institute_list);
   })
     .done(function() {
-      console.log( "second success" );
+//      console.log( "second success" );
     })
     .fail(function() {
-      console.log( "error" );
+//      console.log( "error" );
     })
     .always(function() {
-      console.log( "complete" );
+//      console.log( "complete" );
     });
 };
 
@@ -1117,7 +1117,7 @@ var getAllInstitutesInCombobox = function(){
 var getAllDisciplinesInCombobox = function(){
   console.log("=========inside get all disciplines in combobox==========");
   var discipline_url = base_url+"/disciplines";
-  console.log(discipline_url);
+//  console.log(discipline_url);
   $.getJSON(discipline_url, function(data) {
     var disciplines = '';
     $.each(data, function(key, value){
@@ -1128,18 +1128,18 @@ var getAllDisciplinesInCombobox = function(){
     });
     var discipline_list = '<li onclick="loadAllDisciplines()">\
 <a>All Disciplines</a></li>' + disciplines;
-    console.log(discipline_list);
+//    console.log(discipline_list);
     $('.filterDisciplineComboBox').append(discipline_list);
 
     })
     .done(function() {
-    console.log( "second success" );
+//    console.log( "second success" );
     })
     .fail(function() {
-    console.log( "error" );
+//    console.log( "error" );
     })
     .always(function() {
-    console.log( "complete" );
+//    console.log( "complete" );
     });
     };
 
@@ -1150,13 +1150,17 @@ var getAllDisciplinesInCombobox = function(){
 var getLabsByKeyword = function(){
   console.log("=================search labs===========");  
   jQuery.support.cors = true;
+  $('#keyword').keypress(function (e) {                                       
+    if (e.which == 13) {
+      e.preventDefault();
+    }
+  });
   var keyword = document.getElementById("keyword").value;
-  console.log(keyword);
+//  console.log(keyword);
   var data = [];
-  console.log(labs_data_db);  
+//  console.log(labs_data_db);  
   for (var i=0;i<labs_data_db.length;i++) {
     var lab = labs_data_db[i];
-    console.log(lab);
     for (var lab_name in lab) {
       var lab_match = lab[lab_name].toString().toLowerCase();
       if (lab_match.indexOf(keyword)>-1) {
@@ -1166,7 +1170,6 @@ var getLabsByKeyword = function(){
     }
   }
   var labs='';
-  console.log(data);
   $.each(data, function(key, value){
     var lab_name = value['lab_name'];
     var hosting_info = value['hosting_info'];
@@ -1186,15 +1189,15 @@ var getLabsByKeyword = function(){
         
     }
     var assets = value['assets'];
-    console.log(assets);
+//    console.log(assets);
     for(var i=0;i< assets.length;i++){
       var  asset_type = value['assets'][i]['asset_type']['asset_type'];
       var path = value['assets'][i]['path'];
       if (asset_type == 'image'){
         var image_name = value['assets'][i]['path'];
-        console.log(image_name);
+//        console.log(image_name);
         var path = lab_images_url + image_name;
-        console.log(path);
+//        console.log(path);
       }
     }
     labs += '<div class=" col-md-3 " style="cursor:pointer;" id='+ lab_name +
@@ -1204,7 +1207,7 @@ onclick="javascript:validateAuthentication(this)" src="' + path +'" id="' + host
 <h4 onclick="javascript:validateAuthentication(this)"  src="' + path +'" id="' + hosted_url +
       '" style="text-align:center; color:#2c99ce;" >'+ lab_name +'</h4></a></div></div></div>';
   });
-  console.log(labs);
+//  console.log(labs);
   var labs_list = '<div class="container-fluid"><div class="row">'+ labs +'</div></div>';
   resetContentInIframe(labs);
 };
@@ -1220,15 +1223,15 @@ var addScriptTags = function(){
   var contentIframe = parent.document.getElementById("contentIframe");
   
   var js_script = contentIframe.contentWindow.document.createElement("script");
-  var js_url = "../static/js/main.js";
+  var js_url = "./js/main.js";
   js_script.type = "text/javascript";
   js_script.src = js_url;
   var head = contentIframe.contentWindow.document.head;
-  console.log(head);
+//  console.log(head);
   head.appendChild(js_script);
   
   var config_script = contentIframe.contentWindow.document.createElement("script");
-  var config_url = "../static/js/app-config.js";
+  var config_url = "./js/app-config.js";
   config_script.type = "text/javascript";
   config_script.src = config_url;
   head.appendChild(config_script);
@@ -1240,7 +1243,7 @@ var addScriptTags = function(){
   head.appendChild(jquery_script);  
 
   var styles = contentIframe.contentWindow.document.createElement("link");
-  var css_url = "../static/css/style.css";
+  var css_url = "./css/style.css";
   styles.type = "text/stylesheet";
   styles.href = css_url;
   head.appendChild(styles);
@@ -1271,11 +1274,11 @@ var addScriptTags = function(){
 #+BEGIN_SRC javascript 
 var resetContentInIframe = function(data) {
   console.log("=======re setting content=====");        
-  console.log(data);
+//  console.log(data);
   var iframe = parent.document.getElementById("contentIframe");
   iframe.sandbox = 'allow-scripts allow-same-origin allow-popups allow-forms';
   var content = iframe.contentWindow.document;
-  console.log(content);
+//  console.log(content);
   content.body.innerHTML="";
   content.write(data);
   addScriptTags();
@@ -1484,7 +1487,7 @@ head.appendChild(favicon);
 ** sources
 *** Javascript
 **** Main JS
-#+BEGIN_SRC javascript :tangle static/js/main.js :eval no :noweb yes 
+#+BEGIN_SRC javascript :tangle js/main.js :eval no :noweb yes 
 <<load-index>>
 <<get-all-institutes-in-combobox>>
 <<set-lab-data-in-iframe>>
@@ -1521,21 +1524,14 @@ head.appendChild(favicon);
 
 #+END_SRC
 *** Config
-#+BEGIN_SRC javascript :tangle static/js/app-config.js :eval no :noweb yes 
+#+BEGIN_SRC javascript :tangle js/app-config.js :eval no :noweb yes 
 <<app-config>>
 #+END_SRC
 *** HTML
-#+BEGIN_SRC html :tangle templates/header.html :eval no :noweb yes
-<<header-html>>
+#+BEGIN_SRC html :tangle index.html :eval no :noweb yes
+<<index-html>>
 #+END_SRC
-#+BEGIN_SRC html :tangle templates/main.html :eval no :noweb yes
-<<main-html>>
-#+END_SRC
-#+BEGIN_SRC html :tangle templates/content.html :eval no :noweb yes
-<<content-html>>
-#+END_SRC
-
 *** CSS
-#+BEGIN_SRC css :tangle static/css/style.css :eval no :noweb yes 
+#+BEGIN_SRC css :tangle css/style.css :eval no :noweb yes 
 <<style-sheets>>
 #+END_SRC
