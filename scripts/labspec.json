@@ -71,6 +71,7 @@
             "cd ../;make build"
           ],
           "post_build": [
+            "sed -i 's_DocumentRoot /var/www_DocumentRoot /var/www/runtime_' /etc/apache2/sites-available/default",
             "cp -R ../build/code/* /var/www/",
             "chmod -R 755 /var/www"
           ],
