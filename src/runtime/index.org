@@ -267,7 +267,7 @@
               style="text-align: center;">
             <a onclick="setUsageInIframe()" href="#"
                class="broad-labs-a" >Usage</a>
-            <span id="server_usage">6,68,971</span> <sup>+</sup></h3>
+            <span id="usage"></span> <sup>+</sup></h3>
         </div>
       </div>                
       <div style="visibility: visible; animation-duration:
@@ -284,6 +284,7 @@
         </div>
       </div>
 </div>
+
 
 
     
@@ -1299,6 +1300,20 @@ var resetContentInIframe = function(data) {
 alert('You clicked it!');
 }*/
 #+END_SRC
+** Usage data 
+   This function dynamically fetches the usage data.
+#+NAME: usage-data
+#+BEGIN_SRC javascript
+var jqxhr = $.getJSON('http://outreach.vlabs.ac.in/get_outreach_analytics', function(data) {
+  var usage = data["usage"];
+  $("#usage").html(usage);
+  })
+  .error(function(jqxhr, textStatus, errorThrown) {
+        console.log("error " + textStatus);
+        console.log("incoming Text " + jqxhr.responseText);
+  });
+
+#+END_SRC
 ** Mouse Over
    This function allows the dropdown menu on the mousehover
    event.
@@ -1529,7 +1544,7 @@ head.appendChild(favicon);
 <<labs-by-keyword-search>>
 <<mouse-over>>
 <<back-button>>
-
+<<usage-data>>
 #+END_SRC
 *** Config
 #+BEGIN_SRC javascript :tangle js/app-config.js :eval no :noweb yes 
