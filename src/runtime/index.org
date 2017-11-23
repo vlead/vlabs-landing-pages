@@ -56,6 +56,7 @@
                window.loggedin=true;
                loginDiv.innerHTML = "Logout";
                loginDiv.setAttribute( "onClick", "setLoginUrlInContentIframe('logout')" );
+               
            }
            else if(document.cookie.includes("logged out")){
               window.loggedin=false;
@@ -267,7 +268,7 @@
               style="text-align: center;">
             <a onclick="setUsageInIframe()" href="#"
                class="broad-labs-a" >Usage</a>
-            <span id="usage"></span> <sup>+</sup></h3>
+            <span id="totalusage"></span> <sup>+</sup></h3>
         </div>
       </div>                
       <div style="visibility: visible; animation-duration:
@@ -280,7 +281,7 @@
               style="text-align: center;">
             <a onclick="setUsageInIframe()" href="#"
                class="broad-labs-a">Workshop Usage</a>
-            <span id="usage">19,88,398</span> <sup>+</sup></h3>
+            <span id="usage" ></span> <sup>+</sup></h3>
         </div>
       </div>
 </div>
@@ -332,6 +333,8 @@ var keyword_url = base_url+"/labs?keyword_lab_name=";
 var institute_images_url ="http://files.vlabs.ac.in/lds/images/institutes/";
 var discipline_images_url = "http://files.vlabs.ac.in/lds/images/disciplines/";
 var lab_images_url = "http://files.vlabs.ac.in/lds/images/labs/";
+var workshop_usage_url = "http://outreach.vlabs.ac.in/get_outreach_analytics";
+var total_usage_url = "http://stats.vlabs.ac.in/analytics";
 //set the below variable to "test-openedx" or "openedx"
 var labs_hosted_platform = "test-openedx";
 
@@ -355,6 +358,8 @@ var loadIndex = function() {
   getAllInstitutesInCombobox(); 
   getAllDisciplinesInCombobox(); 
   on_mouse_hover();
+  getWorkshopUsage();
+  getTotalUsage();
   insertContentIFrame();
   if (labs_data == null)
   {
@@ -1300,19 +1305,45 @@ var resetContentInIframe = function(data) {
 alert('You clicked it!');
 }*/
 #+END_SRC
-** Usage data 
+** Get Workshop Usage Data 
    This function dynamically fetches the usage data.
-#+NAME: usage-data
+#+NAME: workshop-usage-data
 #+BEGIN_SRC javascript
-var jqxhr = $.getJSON('http://outreach.vlabs.ac.in/get_outreach_analytics', function(data) {
+var getWorkshopUsage = function(){ 
+$.getJSON(workshop_usage_url, function(data) {
   var usage = data["usage"];
   $("#usage").html(usage);
-  })
-  .error(function(jqxhr, textStatus, errorThrown) {
-        console.log("error " + textStatus);
-        console.log("incoming Text " + jqxhr.responseText);
-  });
-
+})
+    .done(function() {
+//      console.log( "second success" );
+    })
+    .fail(function() {
+//      console.log( "error" );
+    })
+    .always(function() {
+//      console.log( "complete" );
+    });
+};
+#+END_SRC
+** Total usage data 
+   This function dynamically fetches the total usage data.
+#+NAME: total-usage-data
+#+BEGIN_SRC javascript
+var getTotalUsage = function() {
+$.getJSON(total_usage_url, function(data) {
+  var usage = data["usage"];
+  $("#totalusage").html(usage);
+})
+    .done(function() {
+//      console.log( "second success" );
+    })
+    .fail(function() {
+//      console.log( "error" );
+    })
+    .always(function() {
+//      console.log( "complete" );
+    });
+};
 #+END_SRC
 ** Mouse Over
    This function allows the dropdown menu on the mousehover
@@ -1544,7 +1575,8 @@ head.appendChild(favicon);
 <<labs-by-keyword-search>>
 <<mouse-over>>
 <<back-button>>
-<<usage-data>>
+<<workshop-usage-data>>
+<<total-usage-data>>
 #+END_SRC
 *** Config
 #+BEGIN_SRC javascript :tangle js/app-config.js :eval no :noweb yes 
