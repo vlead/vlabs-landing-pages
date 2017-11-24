@@ -73,7 +73,7 @@
               <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand main-logo-a"
-               href="https://vlabs.ac.in"
+               href="https://beta.vlabs.ac.in"
                style=" width:100px; height:40px;
                       margin-top:-13px">
               <img src="https://vlabs.ac.in/static/edx-bootstrap-theme/images/logo.7e034286282a.png"
@@ -282,10 +282,6 @@
         </div>
       </div>
 </div>
-
-
-
-    
     <div id="contentDiv" class="container-fluid" style="padding-top:5em" >
     </div>
     <div id="footerDiv" class="container-fluid">
