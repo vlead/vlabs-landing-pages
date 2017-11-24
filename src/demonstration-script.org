@@ -8,26 +8,50 @@
 #+LATEX: Literal LaTeX code for export
 
 * Introduction 
-  This "Literate Document" demonstrate about =Vlabs landing
-  Pages=.
-* Steps to follow
-  1. Access Vlabs landing pages
-     - Open the browser
-     - Type the following url in browser
-       #+begin_example
-       http://landingpage.vlabs.ac.in
-       #+end_example
-  2. Login
-     - click on login.
-     - Type the following details in email id field
-       #+begin_example
-       example@mail.com
-       #+end_example
-     - Type the following details in password field
-       #+begin_example
-       vlead123
-       #+end_example
-  3. Accessing lab
-     - Click on =Computer Science and Engineering= 
-     - Click on
+  This document demonstrate about =Vlabs landing Pages=
+** Scenarios :
+*** Login & Logout
+    - Steps
+      1. Visit the [[http://landingpage.vlabs.ac.in][url]]
+      2. Click on =login= link and use below credentials
+         + User name : example@vlabs.ac.in
+         + Password : vlead123
+      3. On successful login all disciplines will be
+         displayed
+          
+*** Show discipline wise labs
+    - Steps
+      1. Visit the [[http://landingpage.vlabs.ac.in][url]]
+      2. Click on =disciplines= menu item
+      3. All disciplines will be displayed.
+      4. Click on =Computer Science and Engineering= 
+      5. All labs related to the discipline will be
+         displayed.
+      6. Click on =Computer Programming=
+      7. Course related to lab will be displayed.
 
+*** Show institute wise labs
+    - Steps
+      1. Visit the [[http://landingpage.vlabs.ac.in][url]]
+      2. Click on =institutes= menu item
+      3. All institutes will be displayed.
+      4. Click on =IIIT-Hyderabad= 
+      5. All labs related to the institute will be
+         displayed.
+      6. Click on =Computer Programming=
+      7. Course related to lab will be displayed.
+
+*** Show all labs
+    - Steps
+      1. Visit the [[http://landingpage.vlabs.ac.in][url]]
+      2. Click on =alllabs= menu item
+      3. All labs will be displayed.
+      4. Click on =computer programming= 
+      5. click on view course 
+
+*** Search labs by lab names
+    - Steps
+      1. Visit the [[http://landingpage.vlabs.ac.in][url]]
+      2. search the lab by name (search for computer programming) 
+      3. It will display computer programming lab
+      4. Click on view course     
