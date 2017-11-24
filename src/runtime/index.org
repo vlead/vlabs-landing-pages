@@ -36,6 +36,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <link rel="stylesheet" href="http://files.vlabs.ac.in/lds/libraries/css/bootsnipp.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -731,7 +734,7 @@ onclick="getLabsByInstituteName(this, 0)" src="' + image_path +'" id="' + instit
 <h4 class="cursor-pointer" style="text-align:center; color:#2c99ce;" >'+ institute_name +'</h4></a></div></div></div>';
 ,*/
 
-institutes += '<div class="col-lg-3 col-md-4 col-xs-6 thumb" style="cursor: \
+institutes += '<div class="col-lg-3 col-md-4 col-xs-12 thumb" style="cursor: \
  pointer;" onclick="getLabsByInstituteName(this, 0)" src="' + image_path +'" id="' + institute_name +
       '"><div class="thumbnail" \
 style="padding: 0px !important; padding-top:15px \
@@ -780,7 +783,7 @@ var getAllDisciplines = function(){
     var discipline_name = value['discipline_name'];
     var image_name = value['assets'][0]['path'];
     var image_path = discipline_images_url + image_name;
-     disciplines += '<div class="col-lg-3 col-md-4 col-xs-6 thumb" style="cursor: \
+     disciplines += '<div class="col-lg-3 col-md-4 col-xs-12 thumb" style="cursor: \
 pointer;" onclick="getLabsByDisciplineName(this, 0)" src="'
     + image_path +'" id="' + discipline_name + '"> <div class="thumbnail"  \
 style="padding: 0px !important; padding-top:15px !important;"> <a><img class="img-responsive" onclick="getLabsByDisciplineName(this, 0)" src="'
