@@ -47,17 +47,6 @@
     <link rel="stylesheet" href="./css/style.css"/>
     <script type="text/javascript" src="./js/app-config.js"></script>
     <script type="text/javascript" src="./js/main.js"></script>
-    <script>
-      window.loggedin_handler=false;
-      window.lab_url = "";
-      if (window.addEventListener) {
-          // For standards-compliant web browsers
-          window.addEventListener("message", validatePostMessage, false);
-      }
-      else {
-          window.attachEvent("onmessage", validatePostMessage);
-      }
-  </script>
   <title>Virtual Labs</title>    
   </head>
   <body onload="loadIndex()" onpageshow="validateCookie()">
@@ -344,7 +333,7 @@ var labs_hosted_platform = "test-openedx";
 
 #+NAME: load-index
 #+BEGIN_SRC js
-var OPENEDX_URL = "http://themeless.vlabs.ac.in";
+
 var labs_data = null;
 var labs_data_db = null;
 var loadIndex = function() {
@@ -501,8 +490,15 @@ function validatePostMessage(evt) {
         iframe.src = window.lab_url;
       }
     }
-    else if (evt.data.indexOf("Sign in")!= -1){
-      document.cookie = "session_status='logged out'";
+    else if (evt.data.indexOf("Welcome to the Open")!= -1){
+        document.cookie = "session_status='logged out'";
+        loadAllDisciplines();
+        var loginDiv = document.getElementById("login");
+        loginDiv.innerHTML = "Login";
+        loginDiv.setAttribute( "onClick", "setLoginUrlInContentIframe('login')" );
+        var register_elem = document.getElementById("register");
+        register_elem.style.display = "block"
+
     }
     else {
       console.log("");
