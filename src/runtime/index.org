@@ -320,6 +320,7 @@
 #+BEGIN_SRC javascript
 document.domain="localhost";
 // update this to base url to lds url where your lds service was running
+var OPENEDX_URL = "http://themeless.vlabs.ac.in";
 var base_url = "http://ld.base4.vlabs.ac.in"; 
 //  var base_url = "http://localhost:5000"; 
 var keyword_url = base_url+"/labs?keyword_lab_name=";
@@ -542,6 +543,23 @@ var setRegisterUrlInContentIframe = function() {
 };
 
 #+END_SRC
+** Post message event listner
+   This function sets the registration url of an openedx
+   platform to =contentIframe=
+#+NAME: post-message-event-listner
+#+BEGIN_SRC javascript 
+window.loggedin_handler=false;
+window.lab_url = "";
+if (window.addEventListener) {
+    // For standards-compliant web browsers                                                                                                                                  
+    window.addEventListener("message", validatePostMessage, false);
+}
+else {
+    window.attachEvent("onmessage", validatePostMessage);
+}
+
+#+END_SRC
+
 ** Set Login url to content iframe
    This function sets the login url of an openedx to
    =contentIframe=.
@@ -557,14 +575,14 @@ var setLoginUrlInContentIframe = function(event) {
   }
   else{
     iframe.src = OPENEDX_URL + "/logout";
-    parent.window.loggedin_handler = false;
-    parent.document.cookie = "session_status='logged out'";
-    var loginDiv = document.getElementById("login");
-    loginDiv.innerHTML = "Login";
-    loginDiv.setAttribute( "onClick", "setLoginUrlInContentIframe('login')" );
-    var register_elem = document.getElementById("register");
-    register_elem.style.display = "block"
-    loadAllDisciplines();
+    // parent.window.loggedin_handler = false;
+    // parent.document.cookie = "session_status='logged out'";
+    // var loginDiv = document.getElementById("login");
+    // loginDiv.innerHTML = "Login";
+    // loginDiv.setAttribute( "onClick", "setLoginUrlInContentIframe('login')" );
+    // var register_elem = document.getElementById("register");
+    // register_elem.style.display = "block"
+    // loadAllDisciplines();
   }
 };
 
@@ -1728,6 +1746,7 @@ head.appendChild(favicon);
 *** Javascript
 **** Main JS
 #+BEGIN_SRC javascript :tangle js/main.js :eval no :noweb yes 
+<<post-message-event-listner>>
 <<load-index>>
 <<get-all-institutes-in-combobox>>
 <<set-lab-data-in-iframe>>
