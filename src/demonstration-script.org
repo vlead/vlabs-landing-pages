@@ -19,9 +19,9 @@
       execution of this scenario) we are working on this
 **** Login & Logout
     - Steps
-      1. Visit the [[http://headr.vlabs.ac.in][url]]
+      1. Visit the [[http://header.vlabs.ac.in][url]]
       2. Click on =login= link and use below credentials
-         + User name : example@vlabs.ac.in
+         + User name : vlabs-demo@vlabs.ac.in
          + Password : vlead123
       3. On successful login all disciplines will be
          displayed
