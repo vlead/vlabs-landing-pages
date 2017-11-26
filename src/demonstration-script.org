@@ -1,0 +1,95 @@
+#+TITLE: Demonstration Script
+#+AUTHOR: VLEAD
+#+DATE: [2017-11-22 Wed]
+#+PROPERTY: results output
+#+PROPERTY: exports code
+#+SETUPFILE: ../org-templates/level-1.org
+#+options: ^:nil
+#+LATEX: Literal LaTeX code for export
+
+* Introduction 
+  This document demonstrate about =Vlabs landing Pages=
+** Scenarios :
+   Following are the various scenarios which demonstrates
+   the =beta= version of =vlabs-landing-pages=
+*** Scenario 1
+    - This scenario demonstrates login & logout functionality
+      on vlabs landing pages
+    - (Note : Do not use browser back button during the
+      execution of this scenario) we are working on this
+**** Login & Logout
+    - Steps
+      1. Visit the [[http://header.vlabs.ac.in][url]]
+      2. Click on =login= link and use below credentials
+         + User name : vlabs-demo@vlabs.ac.in
+         + Password : vlead123
+      3. On successful login all disciplines will be
+         displayed
+      4. Click on =logout= link to exit from the current
+         session
+*** Scenario 2
+    - This scenario demonstrates listing out all the labs of
+      respective discipline
+    - (Note : Do not use browser back button during the
+      execution of this scenario) we are working on this
+
+**** Show discipline wise labs
+    - Steps
+      1. Visit the [[http://header.vlabs.ac.in][url]]
+      2. Click on =disciplines= menu item on top navigation
+         bar and choose the discipline name among listed
+      3. Click on =Computer Science and Engineering=
+         discipline
+      4. All labs related to the discipline will be
+         displayed.
+      5. Click on =Computer Programming= lab. This will take
+         you to login page if you are not logged in already
+      6. Course related to lab will be displayed.
+
+*** Scenario 3
+    - This scenario demonstrates listing out all the labs of
+      respective institute
+    - (Note : Do not use browser back button during the
+      execution of this scenario) we are working on this
+
+**** Show institute wise labs
+    - Steps
+      1. Visit the [[http://header.vlabs.ac.in][url]]
+      2. Click on =institutes= menu item on navigation bar
+         and choose the institute name among listed
+      3. Choose =IIIT-Hyderabad= institute
+      4. All labs related to the institute will be
+         displayed.
+      5. Click on =Computer Programming= lab. This will take
+         you to the login page if you are not logged in already.
+      6. Course related to lab will be displayed.
+
+*** Scenario 4
+    - This scenario demonstrates listing out all the labs
+    - (Note : Do not use browser back button during the
+      execution of this scenario) we are working on this
+
+**** Show all labs
+    - Steps
+      1. Visit the [[http://header.vlabs.ac.in][url]]
+      2. Click on =All Labs= menu item on top navigation bar
+      3. All labs will be displayed.
+      4. Click on =Computer Programming= lab. This will take
+         you to the login page if you are not logged in already
+      5. click on view course 
+
+*** Scenario 5
+    - This scenario demonstrates about searching for labs on
+      basis of lab name as keyword
+    - (Note : Do not use browser back button during the
+      execution of this scenario) we are working on this
+
+**** Search labs by lab names
+    - Steps
+      1. Visit the [[http://header.vlabs.ac.in][url]]
+      2. Enter the keyword of lab name in search input box
+         (e.g computer programming)
+      3. It will display all the labs related to computer
+         programming keyword
+      4. Click on labs to view the course content
+         

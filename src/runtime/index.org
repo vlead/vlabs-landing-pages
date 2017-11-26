@@ -36,70 +36,17 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <link rel="stylesheet" href="http://files.vlabs.ac.in/lds/libraries/css/bootsnipp.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
     <link rel="icon" type="image/x-icon" href="http://files.vlabs.ac.in/lds/images/vlabs-logo/favicon.ico">
     <link rel="stylesheet" href="./css/style.css"/>
     <script type="text/javascript" src="./js/app-config.js"></script>
     <script type="text/javascript" src="./js/main.js"></script>
-    <!--<script type="text/javascript" src="../static/js/backfix.min.js"></script>-->
-    <script>
-      document.domain="localhost";
-      window.loggedin=false;
-      window.url = "";
-      function validateCookie(){
-           if(document.cookie.includes("logged in")){
-               var loginDiv = document.getElementById("login")
-               window.loggedin=true;
-               loginDiv.innerHTML = "Logout";
-               loginDiv.setAttribute( "onClick", "setLoginUrlInContentIframe('logout')" );
-           }
-           else if(document.cookie.includes("logged out")){
-              window.loggedin=false;
-              document.getElementById("login").innerHTML = "Login";
-              document.getElementById("login").setAttribute( "onClick", "setLoginUrlInContentIframe('login')" );
-           }
-           else{
-                console.log("");
-           }
-      }
-
-      function displayMessage (evt) {
-          var message;
-          if (evt.origin !== "http://themeless.vlabs.ac.in") {
-              message = "Unauthorized domain";
-          }
-          else {
-              if (evt.data.indexOf("MY COURSES") != -1){
-                  document.cookie = "loginHandler='logged in'";
-                  if (window.url == ""){
-                      loadAllDisciplines();
-                  }
-                  else{
-                      var iframe = document.getElementById("contentIframe");
-                      iframe.src = window.url;
-                  }
-              }
-              else if (evt.data.indexOf("Sign in")!= -1){
-                  document.cookie = "loginHandler='logged out'";
-              }
-              else {
-                    console.log("");
-              }
-              validateCookie();
-           }
-      }
-      if (window.addEventListener) {
-          // For standards-compliant web browsers
-          window.addEventListener("message", displayMessage, false);
-      }
-      else {
-          window.attachEvent("onmessage", displayMessage);
-      }
-  </script>
   <title>Virtual Labs</title>    
   </head>
   <body onload="loadIndex()" onpageshow="validateCookie()">
@@ -115,7 +62,7 @@
               <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand main-logo-a"
-               href="https://vlabs.ac.in"
+               href="https://beta.vlabs.ac.in"
                style=" width:100px; height:40px;
                       margin-top:-13px">
               <img src="https://vlabs.ac.in/static/edx-bootstrap-theme/images/logo.7e034286282a.png"
@@ -205,7 +152,7 @@
                   </span>
                 </div>
               </form>
-              <li><a class ="cursor-pointer" onclick="setRegisterUrlInContentIframe();"><span class="glyphicon glyphicon-user"></span>Register</a></li>
+              <li><a class ="cursor-pointer" id="register" onclick="setRegisterUrlInContentIframe();"><span class="glyphicon glyphicon-user"></span>Register</a></li>
               <li><a class ="cursor-pointer" onclick="setLoginUrlInContentIframe('login');" id="login" class="glyphicon glyphicon-log-in"> Login</a></li>
             </ul>
           </div><!-- /.navbar-collapse -->
@@ -213,24 +160,64 @@
       </nav>
       </div>
 
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-12">
-          <img src="http://files.vlabs.ac.in/lds/images/slider-images/slider-img-01.jpg" class="img-responsive main-logo" style="width:100%; maring-top:2px;">
-        </div>
-      </div>
-
-      <div>
-        <div class="col-md-4"></div>
-        <div style="margin-top:-217px; color:white; padding-left:5em;" class="col-md-8"><h1 class="animation animated-item-1" style="font-color:Black"><b>Online labs and experiments </b>
-            from top technical institutes. Now available
-            in <a href="https://info.vlabs.ac.in/college-cloud-edition/">offline
-              edition</a> for your college.</h1></div>
+<!-- Carousel
+================================================== -->
+<div id="myCarousel" class="carousel slide">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+   <!-- <li data-target="#myCarousel" data-slide-to="0" class="active"></li>-->
+   <!-- <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>-->
+  </ol>
+  <div class="carousel-inner">
+    <div class="item active">
+      <img src="http://files.vlabs.ac.in/lds/images/slider-images/slider-img-01.jpg" class="img-responsive">
+      <div class="container">
+        <div class="carousel-caption" style="top:100px;">
+        <h3>Online labs and experiments from top technical institutes.</h3>
+        <h3>Now available :</h1>
+<p><a href="https://info.vlabs.ac.in/college-cloud-edition/">offline
+              edition</a> for your college.</p>
+<p><a href="https://info.vlabs.ac.in/runtime-broswer-for-virtual-labs/">
+            Runtime browswer</a>for Virtual Labs</p>
+          </div>
       </div>
     </div>
+   <!-- <div class="item">
+      <img src="" class="img-responsive">
+      <div class="container">
+        <div class="carousel-caption">
+          <h1></h1>
+          
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <img src="e">
+      <div class="container">
+        <div class="carousel-caption">
+          <h1></h1>
+         
+        </div>
+      </div>
+    </div>-->
+  </div>
+  <!-- Controls -->
+  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+    <span class="icon-prev"></span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" data-slide="next">
+    <span class="icon-next"></span>
+  </a>  
 </div>
-</div>
-</div>
+<!-- /.carousel -->
+
+
+</div><!-- /.container -->
+
+  
+
+
 <div class="container-fluid">
 <div class="row">
   <div class="features">
@@ -267,7 +254,7 @@
               style="text-align: center;">
             <a onclick="setUsageInIframe()" href="#"
                class="broad-labs-a" >Usage</a>
-            <span id="server_usage">6,68,971</span> <sup>+</sup></h3>
+            <span id="totalusage"></span> <sup>+</sup></h3>
         </div>
       </div>                
       <div style="visibility: visible; animation-duration:
@@ -280,13 +267,10 @@
               style="text-align: center;">
             <a onclick="setUsageInIframe()" href="#"
                class="broad-labs-a">Workshop Usage</a>
-            <span id="usage">19,88,398</span> <sup>+</sup></h3>
+            <span id="usage" ></span> <sup>+</sup></h3>
         </div>
       </div>
 </div>
-
-
-    
     <div id="contentDiv" class="container-fluid" style="padding-top:5em" >
     </div>
     <div id="footerDiv" class="container-fluid">
@@ -325,12 +309,15 @@
 #+BEGIN_SRC javascript
 document.domain="localhost";
 // update this to base url to lds url where your lds service was running
+var openedx_url = "http://themeless.vlabs.ac.in";
 var base_url = "http://ld.base4.vlabs.ac.in"; 
 //  var base_url = "http://localhost:5000"; 
 var keyword_url = base_url+"/labs?keyword_lab_name=";
 var institute_images_url ="http://files.vlabs.ac.in/lds/images/institutes/";
 var discipline_images_url = "http://files.vlabs.ac.in/lds/images/disciplines/";
 var lab_images_url = "http://files.vlabs.ac.in/lds/images/labs/";
+var workshop_usage_url = "http://outreach.vlabs.ac.in/get_outreach_analytics";
+var total_usage_url = "http://stats.vlabs.ac.in/analytics";
 //set the below variable to "test-openedx" or "openedx"
 var labs_hosted_platform = "test-openedx";
 
@@ -346,7 +333,7 @@ var labs_hosted_platform = "test-openedx";
 
 #+NAME: load-index
 #+BEGIN_SRC js
-var OPENEDX_URL = "http://themeless.vlabs.ac.in";
+
 var labs_data = null;
 var labs_data_db = null;
 var loadIndex = function() {
@@ -354,6 +341,8 @@ var loadIndex = function() {
   getAllInstitutesInCombobox(); 
   getAllDisciplinesInCombobox(); 
   on_mouse_hover();
+  getWorkshopUsage();
+  getTotalUsage();
   insertContentIFrame();
   if (labs_data == null)
   {
@@ -456,6 +445,128 @@ var setUsageInIframe = function() {
 };
 
 #+END_SRC
+** Validate cookie
+   Following function validates the cookie and changes the
+   login/logout buttons accordingly
+#+NAME: validate-cookie
+#+BEGIN_SRC javascript 
+
+function validateCookie(){
+  if(document.cookie.includes("logged in")){
+    window.loggedin_handler=true;
+    var loginDiv = document.getElementById("login");
+    loginDiv.innerHTML = "Logout";
+    loginDiv.setAttribute( "onClick", "setLoginUrlInContentIframe('logout')" );
+    var register_elem = document.getElementById("register");
+    register_elem.style.display = "none";
+
+  }
+  else if(document.cookie.includes("logged out")){
+    window.loggedin_handler=false;
+    document.getElementById("login").innerHTML = "Login";
+    document.getElementById("login").setAttribute( "onClick", "setLoginUrlInContentIframe('login')" );
+  }
+  else{
+    console.log("");
+  }
+}
+
+#+END_SRC
+** Configure post message script inside openedx server
+   - Following code snippet is to be configured in =openedx=
+     server. This is required to send the post messages to
+     destination server.
+   - Place the following snippet inside
+     =/edx/var/nginx/server-static/message.html=
+    #+BEGIN_SRC html
+    <html>
+      <head>
+        <script>
+          var postM = function() {
+          textOfContentIframe = document.body.innerText;
+          console.log("Sender message: " + textOfContentIframe);
+          console.log("Referrer: " + document.referrer);
+          msg = window.parent.postMessage(textOfContentIframe, "http://header.vlabs.ac.in");
+          };
+
+        </script>
+      </head>
+      <body onload="postM();">
+      </body>
+    </html>
+    #+END_SRC
+   - In above code snippet =http://header.vlabs.ac.in= is
+     the server name where all post messages will be sent
+   - Configure the =nginx= server file in
+     =/etc/nginx/sites-enabled/lms= to sent post messages script
+     #+BEGIN_EXAMPLE
+     location @proxy_to_lms_app {
+        add_after_body /server/message.html;
+        --------------
+        -------------
+     #+END_EXAMPLE
+** Validate post message
+   Following function evaluates the post message which is
+   being sent from =openedx= website and sets the session
+   cookie based on login/logout actions
+#+NAME: validate-post-message
+#+BEGIN_SRC javascript 
+
+function validatePostMessage(evt) {
+  if (evt.origin !== "http://themeless.vlabs.ac.in") {
+    console.log("Unauthorized domain");
+  }
+  else {
+    if (evt.data.indexOf("MY COURSES") != -1){
+      document.cookie = "session_status='logged in'";
+      if (window.lab_url == ""){
+        loadAllDisciplines();
+      }
+      else{
+        var iframe = document.getElementById("contentIframe");
+        iframe.src = window.lab_url;
+      }
+    }
+    else if (evt.data.indexOf("Welcome to the Open")!= -1){
+        document.cookie = "session_status='logged out'";
+        loadAllDisciplines();
+        var loginDiv = document.getElementById("login");
+        loginDiv.innerHTML = "Login";
+        loginDiv.setAttribute( "onClick", "setLoginUrlInContentIframe('login')" );
+        var register_elem = document.getElementById("register");
+        register_elem.style.display = "block"
+
+    }
+    else {
+      console.log("");
+    }
+    validateCookie();
+  }
+}
+
+#+END_SRC
+** Validate Authentication
+   Following function validates the authentication on every
+   click on lab url. If user is authenticated it redirects
+   to lab url directly otherwise it prompts for login page
+   then redirects to lab url
+#+NAME: validate-authentication
+#+BEGIN_SRC javascript 
+
+var validateAuthentication = function(url) {
+  var lab_url = url.id;
+  var loggedinHandler = parent.window.loggedin_handler;
+  var iframe = parent.document.getElementById("contentIframe");
+  if(loggedinHandler == false){
+    parent.window.lab_url = lab_url;
+    iframe.src = openedx_url + "/login";
+  }
+  else{
+    iframe.src = lab_url;
+  }
+};
+
+#+END_SRC
 ** Set register url to content iframe
    This function sets the registration url of an openedx
    platform to =contentIframe=
@@ -464,11 +575,28 @@ var setUsageInIframe = function() {
 var setRegisterUrlInContentIframe = function() {
   console.log("=======setting registration url to content iframe=====");
   var iframe = document.getElementById("contentIframe");
-  iframe.src = OPENEDX_URL + "/register";
+  iframe.src = openedx_url + "/register";
   iframe.sandbox = 'allow-scripts allow-same-origin allow-popups allow-forms';
 };
 
 #+END_SRC
+** Post message event listener
+   Following snippet executes when there is a post message
+   event from =openedx= web-site
+#+NAME: post-message-event-listner
+#+BEGIN_SRC javascript 
+window.loggedin_handler=false;
+window.lab_url = "";
+if (window.addEventListener) {
+    // For standards-compliant web browsers                                                                                                                                  
+    window.addEventListener("message", validatePostMessage, false);
+}
+else {
+    window.attachEvent("onmessage", validatePostMessage);
+}
+
+#+END_SRC
+
 ** Set Login url to content iframe
    This function sets the login url of an openedx to
    =contentIframe=.
@@ -477,18 +605,21 @@ var setRegisterUrlInContentIframe = function() {
 
 var setLoginUrlInContentIframe = function(event) {
   console.log("=======setting login url to content iframe=====");
-    var iframe = document.getElementById("contentIframe");
-    if(event == "login"){
-        iframe.src = OPENEDX_URL + "/login";
-        iframe.sandbox = 'allow-scripts allow-same-origin allow-popups allow-forms';
-    }
-    else{
-        iframe.src = OPENEDX_URL + "/logout";
-        parent.window.loggedin = false;
-        parent.document.cookie = "loginHandler='logged out'";
-        document.getElementById("login").innerHTML = "Login";
-        document.getElementById("login").setAttribute( "onClick", "setLoginUrlInContentIframe('login')" );
-        loadAllDisciplines();
+  var iframe = document.getElementById("contentIframe");
+  if(event == "login"){
+    iframe.src = openedx_url + "/login";
+    iframe.sandbox = 'allow-scripts allow-same-origin allow-popups allow-forms';
+  }
+  else{
+    iframe.src = openedx_url + "/logout";
+    // parent.window.loggedin_handler = false;
+    // parent.document.cookie = "session_status='logged out'";
+    // var loginDiv = document.getElementById("login");
+    // loginDiv.innerHTML = "Login";
+    // loginDiv.setAttribute( "onClick", "setLoginUrlInContentIframe('login')" );
+    // var register_elem = document.getElementById("register");
+    // register_elem.style.display = "block"
+    // loadAllDisciplines();
   }
 };
 
@@ -506,25 +637,6 @@ var setLabDataInIframe = function() {
   content.body.innerHTML = "";
   content.write(labs_data);
   addScriptTags();  
-};
-
-#+END_SRC
-** Validate Authentication
-#+NAME: validate-authentication
-#+BEGIN_SRC javascript 
-
-var validateAuthentication = function(url) {
-    var lab_url = url.id;
-    var loggedinHandler = parent.window.loggedin;
-    var iframe = parent.document.getElementById("contentIframe");
-    if(loggedinHandler == false){
-        parent.window.url = lab_url;
-        iframe.src = OPENEDX_URL + "/login";
-    }
-    else{
-        iframe.src = lab_url;
-    }
-
 };
 
 #+END_SRC
@@ -713,7 +825,7 @@ onclick="getLabsByInstituteName(this, 0)" src="' + image_path +'" id="' + instit
 <h4 class="cursor-pointer" style="text-align:center; color:#2c99ce;" >'+ institute_name +'</h4></a></div></div></div>';
 ,*/
 
-institutes += '<div class="col-lg-3 col-md-4 col-xs-6 thumb" style="cursor: \
+institutes += '<div class="col-lg-3 col-md-4 col-xs-12 thumb" style="cursor: \
  pointer;" onclick="getLabsByInstituteName(this, 0)" src="' + image_path +'" id="' + institute_name +
       '"><div class="thumbnail" \
 style="padding: 0px !important; padding-top:15px \
@@ -762,7 +874,7 @@ var getAllDisciplines = function(){
     var discipline_name = value['discipline_name'];
     var image_name = value['assets'][0]['path'];
     var image_path = discipline_images_url + image_name;
-     disciplines += '<div class="col-lg-3 col-md-4 col-xs-6 thumb" style="cursor: \
+     disciplines += '<div class="col-lg-3 col-md-4 col-xs-12 thumb" style="cursor: \
 pointer;" onclick="getLabsByDisciplineName(this, 0)" src="'
     + image_path +'" id="' + discipline_name + '"> <div class="thumbnail"  \
 style="padding: 0px !important; padding-top:15px !important;"> <a><img class="img-responsive" onclick="getLabsByDisciplineName(this, 0)" src="'
@@ -1299,6 +1411,46 @@ var resetContentInIframe = function(data) {
 alert('You clicked it!');
 }*/
 #+END_SRC
+** Get Workshop Usage Data 
+   This function dynamically fetches the usage data.
+#+NAME: workshop-usage-data
+#+BEGIN_SRC javascript
+var getWorkshopUsage = function(){ 
+$.getJSON(workshop_usage_url, function(data) {
+  var usage = data["usage"];
+  $("#usage").html(usage);
+})
+    .done(function() {
+//      console.log( "second success" );
+    })
+    .fail(function() {
+//      console.log( "error" );
+    })
+    .always(function() {
+//      console.log( "complete" );
+    });
+};
+#+END_SRC
+** Total usage data 
+   This function dynamically fetches the total usage data.
+#+NAME: total-usage-data
+#+BEGIN_SRC javascript
+var getTotalUsage = function() {
+$.getJSON(total_usage_url, function(data) {
+  var usage = data["usage"];
+  $("#totalusage").html(usage);
+})
+    .done(function() {
+//      console.log( "second success" );
+    })
+    .fail(function() {
+//      console.log( "error" );
+    })
+    .always(function() {
+//      console.log( "complete" );
+    });
+};
+#+END_SRC
 ** Mouse Over
    This function allows the dropdown menu on the mousehover
    event.
@@ -1474,6 +1626,141 @@ border-left: 0 solid #5FB0E4 !important;
 font-size:16px;
 }
 
+/*banner slider*/
+
+/* BOOTSTRAP 3.x GLOBAL STYLES
+-------------------------------------------------- */
+body {
+  padding-bottom: 40px;
+  color: #5a5a5a;
+}
+
+
+
+/* CUSTOMIZE THE NAVBAR
+-------------------------------------------------- */
+
+/* Special class on .container surrounding .navbar, used for positioning it into place. */
+.navbar-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+
+
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+/* Carousel base class */
+.carousel {
+ /* margin-bottom: 60px;*/
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+  z-index: 1;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel .item {
+  height: 400px;
+  background-color:#555;
+}
+.carousel img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-height: 400px;
+}
+
+
+
+/* MARKETING CONTENT
+-------------------------------------------------- */
+
+/* Pad the edges of the mobile views a bit */
+.marketing {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Center align the text within the three columns below the carousel */
+.marketing .col-lg-4 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.marketing h2 {
+  font-weight: normal;
+}
+.marketing .col-lg-4 p {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+
+/* Featurettes
+------------------------- */
+
+.featurette-divider {
+  margin: 80px 0; /* Space out the Bootstrap <hr> more */
+}
+.featurette {
+  padding-top: 120px; /* Vertically center images part 1: add padding above and below text. */
+  overflow: hidden; /* Vertically center images part 2: clear their floats. */
+}
+.featurette-image {
+  margin-top: -120px; /* Vertically center images part 3: negative margin up the image the same amount of the padding to center it. */
+}
+
+/* Give some space on the sides of the floated elements so text doesn't run right into it. */
+.featurette-image.pull-left {
+  margin-right: 40px;
+}
+.featurette-image.pull-right {
+  margin-left: 40px;
+}
+
+/* Thin out the marketing headings */
+.featurette-heading {
+  font-size: 50px;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+@media (min-width: 768px) {
+
+  /* Remve the edge padding needed for mobile */
+  .marketing {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  /* Navbar positioning foo */
+  .navbar-wrapper {
+    margin-top: 20px;
+    margin-bottom: -90px; /* Negative margin to pull up carousel. 90px is roughly margins and height of navbar. */
+  }
+  /* The navbar becomes detached from the top, so we round the corners */
+  .navbar-wrapper .navbar {
+    border-radius: 4px;
+  }
+
+  /* Bump up size of carousel content */
+  .carousel-caption p {
+    margin-bottom: 20px;
+    font-size: 21px;
+    line-height: 1.4;
+  }
+
+}
 
 
 #+END_SRC
@@ -1496,6 +1783,7 @@ head.appendChild(favicon);
 *** Javascript
 **** Main JS
 #+BEGIN_SRC javascript :tangle js/main.js :eval no :noweb yes 
+<<post-message-event-listner>>
 <<load-index>>
 <<get-all-institutes-in-combobox>>
 <<set-lab-data-in-iframe>>
@@ -1529,7 +1817,10 @@ head.appendChild(favicon);
 <<labs-by-keyword-search>>
 <<mouse-over>>
 <<back-button>>
-
+<<workshop-usage-data>>
+<<total-usage-data>>
+<<validate-cookie>>
+<<validate-post-message>>
 #+END_SRC
 *** Config
 #+BEGIN_SRC javascript :tangle js/app-config.js :eval no :noweb yes 
