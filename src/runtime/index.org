@@ -309,7 +309,7 @@
 #+BEGIN_SRC javascript
 document.domain="localhost";
 // update this to base url to lds url where your lds service was running
-var OPENEDX_URL = "http://themeless.vlabs.ac.in";
+var openedx_url = "http://themeless.vlabs.ac.in";
 var base_url = "http://ld.base4.vlabs.ac.in"; 
 //  var base_url = "http://localhost:5000"; 
 var keyword_url = base_url+"/labs?keyword_lab_name=";
@@ -446,6 +446,8 @@ var setUsageInIframe = function() {
 
 #+END_SRC
 ** Validate cookie
+   Following function validates the cookie and changes the
+   login/logout buttons accordingly
 #+NAME: validate-cookie
 #+BEGIN_SRC javascript 
 
@@ -471,7 +473,9 @@ function validateCookie(){
 
 #+END_SRC
 ** Validate post message
-
+   Following function evaluates the post message which is
+   being sent from =openedx= website and sets the session
+   cookie based on login/logout actions
 #+NAME: validate-post-message
 #+BEGIN_SRC javascript 
 
@@ -509,6 +513,10 @@ function validatePostMessage(evt) {
 
 #+END_SRC
 ** Validate Authentication
+   Following function validates the authentication on every
+   click on lab url. If user is authenticated it redirects
+   to lab url directly otherwise it prompts for login page
+   then redirects to lab url
 #+NAME: validate-authentication
 #+BEGIN_SRC javascript 
 
@@ -518,7 +526,7 @@ var validateAuthentication = function(url) {
   var iframe = parent.document.getElementById("contentIframe");
   if(loggedinHandler == false){
     parent.window.lab_url = lab_url;
-    iframe.src = OPENEDX_URL + "/login";
+    iframe.src = openedx_url + "/login";
   }
   else{
     iframe.src = lab_url;
@@ -534,14 +542,14 @@ var validateAuthentication = function(url) {
 var setRegisterUrlInContentIframe = function() {
   console.log("=======setting registration url to content iframe=====");
   var iframe = document.getElementById("contentIframe");
-  iframe.src = OPENEDX_URL + "/register";
+  iframe.src = openedx_url + "/register";
   iframe.sandbox = 'allow-scripts allow-same-origin allow-popups allow-forms';
 };
 
 #+END_SRC
-** Post message event listner
-   This function sets the registration url of an openedx
-   platform to =contentIframe=
+** Post message event listener
+   Following snippet executes when there is a post message
+   event from =openedx= web-site
 #+NAME: post-message-event-listner
 #+BEGIN_SRC javascript 
 window.loggedin_handler=false;
@@ -566,11 +574,11 @@ var setLoginUrlInContentIframe = function(event) {
   console.log("=======setting login url to content iframe=====");
   var iframe = document.getElementById("contentIframe");
   if(event == "login"){
-    iframe.src = OPENEDX_URL + "/login";
+    iframe.src = openedx_url + "/login";
     iframe.sandbox = 'allow-scripts allow-same-origin allow-popups allow-forms';
   }
   else{
-    iframe.src = OPENEDX_URL + "/logout";
+    iframe.src = openedx_url + "/logout";
     // parent.window.loggedin_handler = false;
     // parent.document.cookie = "session_status='logged out'";
     // var loginDiv = document.getElementById("login");
