@@ -1,0 +1,25 @@
+* Introduction
+  This repository contains the sources of
+  =vlabs-landing-pages= which is generated using data from
+  =lab-data-service=
+** Post installation steps
+   After successful installation of the web pages. Change
+   the following configuration variables accordingly in
+   =build/code/runtime/static/js/app-config.js= file
+
+   1) configure =base_url= variable to =lab-data-service= url
+      #+BEGIN_EXAMPLE
+      var base_url = "http://ld.base4.vlabs.ac.in"; 
+      #+END_EXAMPLE
+   2) change =document.domain= value to =vlabs.ac.in=
+      #+BEGIN_EXAMPLE
+      document.domain="vlabs.ac.in";
+      #+END_EXAMPLE
+   3) configure the =openedx= url
+      #+BEGIN_EXAMPLE
+      var openedx_url = "http://themeless.vlabs.ac.in"
+      #+END_EXAMPLE
+
+
+
+   
