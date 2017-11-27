@@ -74,7 +74,7 @@
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
               <li id="allLabs" class="disabled">
-                <a onclick="setLabDataInIframe()" "#" class="dropdown-toggle cursor-pointer" data-toggle="dropdown">All Labs <b ></b></a>
+                <a onclick="loadAllLabs()" "#" class="dropdown-toggle cursor-pointer" data-toggle="dropdown">All Labs <b ></b></a>
               </li>
               <li class="dropdown">
                 <a class="dropdown-toggle cursor-pointer" data-toggle="dropdown"  >Institutes <b class="caret"></b></a>
@@ -752,7 +752,7 @@ var loadAllLabs = function() {
   var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "9500em");
   insertFrameInDivision(newFrame, "contentDiv");
   var labs = getAllLabs();
-  setContentInIframe(labs);
+  setLabDataInIframe();
 };
 
 #+END_SRC
