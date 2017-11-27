@@ -169,18 +169,21 @@
    <!-- <li data-target="#myCarousel" data-slide-to="1"></li>
     <li data-target="#myCarousel" data-slide-to="2"></li>-->
   </ol>
+
   <div class="carousel-inner">
     <div class="item active">
       <img src="http://files.vlabs.ac.in/lds/images/slider-images/slider-img-01.jpg" class="img-responsive">
       <div class="container">
-        <div class="carousel-caption" style="top:100px;">
+        <div class="carousel-caption col-md-8 col-sm-12" style="top:60px;">
         <h3>Online labs and experiments from top technical institutes.</h3>
         <h3>Now available :</h1>
-<p><a href="https://info.vlabs.ac.in/college-cloud-edition/">offline
-              edition</a> for your college.</p>
-<p><a href="https://info.vlabs.ac.in/runtime-broswer-for-virtual-labs/">
-            Runtime browser </a> for Virtual Labs</p>
+        <p><a href="https://info.vlabs.ac.in/runtime-broswer-for-virtual-labs/">
+        Runtime Browser </a> for Virtual Labs</p>
+        <p><a href="https://info.vlabs.ac.in/college-cloud-edition/">Offline
+        Edition</a> for your college.</p>
+        
           </div>
+          
       </div>
     </div>
    <!-- <div class="item">
@@ -1425,6 +1428,11 @@ body {
  font-family:'Raleway' !important;
 }
 
+a{
+color:#0d3f6a !important;
+text-decoration: none;
+}
+
 p{
 font-family:'Raleway' !important;
 }
@@ -1606,6 +1614,11 @@ body {
 .carousel-caption {
   z-index: 1;
 }
+
+.carousel-caption{
+text-shadow: 0 0px 0px !important ;
+}
+
 
 /* Declare heights because of positioning of img element */
 .carousel .item {
