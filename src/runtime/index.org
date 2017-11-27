@@ -1250,13 +1250,13 @@ var getLabsByKeyword = function(){
     }
     var assets = value['assets'];
 //    console.log(assets);
-    for(var i=0;i< assets.length;i++){
+    for(i=0;i< assets.length;i++){
       var  asset_type = value['assets'][i]['asset_type']['asset_type'];
       var path = value['assets'][i]['path'];
       if (asset_type == 'image'){
         var image_name = value['assets'][i]['path'];
 //        console.log(image_name);
-        var path = lab_images_url + image_name;
+        path = lab_images_url + image_name;
 //        console.log(path);
       }
     }
