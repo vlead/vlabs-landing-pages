@@ -179,7 +179,7 @@
 <p><a href="https://info.vlabs.ac.in/college-cloud-edition/">offline
               edition</a> for your college.</p>
 <p><a href="https://info.vlabs.ac.in/runtime-broswer-for-virtual-labs/">
-            Runtime browswer</a>for Virtual Labs</p>
+            Runtime browser </a> for Virtual Labs</p>
           </div>
       </div>
     </div>
@@ -903,7 +903,7 @@ var getAllLabs = function(){
         }
         else if(labs_hosted_platform == hosted_on)
         {
-          var hosted_url = value['hosting_info'][i]['hosted_url'];
+           hosted_url = value['hosting_info'][i]['hosted_url'];
         }
         else
         {
@@ -913,13 +913,13 @@ var getAllLabs = function(){
       }
       var assets = value['assets'];
 //      console.log(assets);
-      for(var i=0;i< assets.length;i++){
+      for(i=0;i< assets.length;i++){
         var  asset_type = value['assets'][i]['asset_type']['asset_type'];
         var path = value['assets'][i]['path'];
         if (asset_type == 'image'){
           var image_name = value['assets'][i]['path'];
 //          console.log(image_name);
-          var path = lab_images_url + image_name;
+           path = lab_images_url + image_name;
 //          console.log(path);
         }
       }
