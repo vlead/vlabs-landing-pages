@@ -174,7 +174,7 @@
     <div class="item active">
       <img src="http://files.vlabs.ac.in/lds/images/slider-images/slider-img-01.jpg" class="img-responsive">
       <div class="container">
-        <div class="carousel-caption col-md-8 col-sm-12" style="top:100px;">
+        <div class="carousel-caption col-md-8 col-sm-12" style="top:60px;">
         <h3>Online labs and experiments from top technical institutes.</h3>
         <h3>Now available :</h1>
         <p><a href="https://info.vlabs.ac.in/runtime-broswer-for-virtual-labs/">
