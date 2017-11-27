@@ -139,6 +139,82 @@
 |   |       | in and sign out       |        |          |        |            |        |         |          |
 |   |       | buttons               |        |          |        |            |        |         |          |
 |---+-------+-----------------------+--------+----------+--------+------------+--------+---------+----------|
+|   |   12. | provision container   | [[https://github.com/vlead/vlabs-landing-pages/issues/129][#129]]   |          |        |            |        |         |          |
+|   |       | on stagging server    |        |          |        |            |        |         |          |
+|   |       | to host the           |        |          |        |            |        |         |          |
+|   |       | vlabs-landing pages   |        |          |        |            |        |         |          |
+|---+-------+-----------------------+--------+----------+--------+------------+--------+---------+----------|
+|   |   13. | Add pointers(Hand     | [[https://github.com/vlead/vlabs-landing-pages/issues/130][#130]]   |          |        |            |        |         |          |
+|   |       | symbol) to register   |        |          |        |            |        |         |          |
+|   |       | and login buttons     |        |          |        |            |        |         |          |
+|---+-------+-----------------------+--------+----------+--------+------------+--------+---------+----------|
+|   |   14. | Click here for        | [[https://github.com/vlead/vlabs-landing-pages/issues/131][#131]]   |          |        |            |        |         |          |
+|   |       | feedback link is not  |        |          |        |            |        |         |          |
+|   |       | redirecting to        |        |          |        |            |        |         |          |
+|   |       | feedback page         |        |          |        |            |        |         |          |
+|---+-------+-----------------------+--------+----------+--------+------------+--------+---------+----------|
+|   |   15. | Add urls to about     | [[https://github.com/vlead/vlabs-landing-pages/issues/132][#132]]   |          |        |            |        |         |          |
+|   |       | in the header         |        |          |        |            |        |         |          |
+|---+-------+-----------------------+--------+----------+--------+------------+--------+---------+----------|
+|   |   16. | remove header and     | [[https://github.com/vlead/vlabs-landing-pages/issues/133][#133]]   |          |        |            |        |         |          |
+|   |       | footer sections in    |        |          |        |            |        |         |          |
+|   |       | themeless.vlabs.ac.in |        |          |        |            |        |         |          |
+|---+-------+-----------------------+--------+----------+--------+------------+--------+---------+----------|
+|   |   17. | Searching of labs     | [[https://github.com/vlead/vlabs-landing-pages/issues/134][#134]]   |          |        |            |        |         |          |
+|   |       | on enter button       |        |          |        |            |        |         |          |
+|---+-------+-----------------------+--------+----------+--------+------------+--------+---------+----------|
+|   |   18. | Creating a "No labs   | [[https://github.com/vlead/vlabs-landing-pages/issues/135][#135]]   |          |        |            |        |         |          |
+|   |       | found" page           |        |          |        |            |        |         |          |
+|---+-------+-----------------------+--------+----------+--------+------------+--------+---------+----------|
+|   |   19. | Script for            | [[https://github.com/vlead/vlabs-landing-pages/issues/136][#136]]   |          |        |            |        |         |          |
+|   |       | demonstration of      |        |          |        |            |        |         |          |
+|   |       | vlabs landing pages   |        |          |        |            |        |         |          |
+|---+-------+-----------------------+--------+----------+--------+------------+--------+---------+----------|
+|   |   20. | Testing of            | [[https://github.com/vlead/vlabs-landing-pages/issues/137][#137]]   |          |        |            |        |         |          |
+|   |       | vlabs landing pages   |        |          |        |            |        |         |          |
+|---+-------+-----------------------+--------+----------+--------+------------+--------+---------+----------|
+|   |   21. | Deployment of         | [[https://github.com/vlead/vlabs-landing-pages/issues/138][#138]]   |          |        |            |        |         |          |
+|   |       | vlabs landing pages   |        |          |        |            |        |         |          |
+|---+-------+-----------------------+--------+----------+--------+------------+--------+---------+----------|
+|   |   22. | Release the beta      | [[https://github.com/vlead/vlabs-landing-pages/issues/139][#139]]   |          |        |            |        |         |          |
+|   |       | version of            |        |          |        |            |        |         |          |
+|   |       | vlabs landing pages   |        |          |        |            |        |         |          |
+|---+-------+-----------------------+--------+----------+--------+------------+--------+---------+----------|
+|   |   23. | Searching of labs     | [[https://github.com/vlead/vlabs-landing-pages/issues/140][#140]]   |          |        |            |        |         |          |
+|   |       | by entering lab       |        |          |        |            |        |         |          |
+|   |       | name as keyword Done  |        |          |        |            |        |         |          |
+|---+-------+-----------------------+--------+----------+--------+------------+--------+---------+----------|
+|   |   24. | Loading dynamic       | [[https://github.com/vlead/vlabs-landing-pages/issues/141][#141]]   |          |        |            |        |         |          |
+|   |       | usage data on         |        |          |        |            |        |         |          |
+|   |       | vlabs landing pages   |        |          |        |            |        |         |          |
+|---+-------+-----------------------+--------+----------+--------+------------+--------+---------+----------|
+|   |   25. | Displaying email id   | [[https://github.com/vlead/vlabs-landing-pages/issues/142][#142]]   |          |        |            |        |         |          |
+|   |       | in the place of       |        |          |        |            |        |         |          |
+|   |       | register when user    |        |          |        |            |        |         |          |
+|   |       | logged in to          |        |          |        |            |        |         |          |
+|   |       | vlabs landing pages   |        |          |        |            |        |         |          |
+|---+-------+-----------------------+--------+----------+--------+------------+--------+---------+----------|
+|   |   26. | Mobile responsive     | [[https://github.com/vlead/vlabs-landing-pages/issues/143][#143]]   |          |        |            |        |         |          |
+|   |       | header                |        |          |        |            |        |         |          |
+|---+-------+-----------------------+--------+----------+--------+------------+--------+---------+----------|
+|   |   27. | Mobile responsive     | [[https://github.com/vlead/vlabs-landing-pages/issues/144][#144]]   |          |        |            |        |         |          |
+|   |       | banner                |        |          |        |            |        |         |          |
+|---+-------+-----------------------+--------+----------+--------+------------+--------+---------+----------|
+|   |   28. | Update logo url       | [[https://github.com/vlead/vlabs-landing-pages/issues/145][#145]]   |          |        |            |        |         |          |
+|---+-------+-----------------------+--------+----------+--------+------------+--------+---------+----------|
+|   |   29. | load search results   | [[https://github.com/vlead/vlabs-landing-pages/issues/146][#146]]   |          |        |            |        |         |          |
+|   |       | and all labs list in  |        |          |        |            |        |         |          |
+|   |       | place of openedx sign |        |          |        |            |        |         |          |
+|   |       | in/sign out pages     |        |          |        |            |        |         |          |
+|---+-------+-----------------------+--------+----------+--------+------------+--------+---------+----------|
+|   |   30. | Review of             | [[https://github.com/vlead/vlabs-landing-pages/issues/147][#147]]   |          |        |            |        |         |          |
+|   |       | vlabs landing pages   |        |          |        |            |        |         |          |
+|   |       | demonstration script  |        |          |        |            |        |         |          |
+|---+-------+-----------------------+--------+----------+--------+------------+--------+---------+----------|
+|   |   31. | deploy application    | [[https://github.com/vlead/vlabs-landing-pages/issues/148][#148]]   |          |        |            |        |         |          |
+|   |       | on nginx server       |        |          |        |            |        |         |          |
+|   |       | using ADS             |        |          |        |            |        |         |          |
+|---+-------+-----------------------+--------+----------+--------+------------+--------+---------+----------|
 |   | Total |                       |        |      122 | 0      |            |        |         |          |
 | ^ |       |                       |        |      est | act    |            |        |         |          |
 |---+-------+-----------------------+--------+----------+--------+------------+--------+---------+----------|
