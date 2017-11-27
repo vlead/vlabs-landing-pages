@@ -419,20 +419,6 @@ var insertHeaderIFrame = function() {
 
 #+END_SRC
 
-** Set content in header iframe
-   To display a header we give =header.html= as source of
-   the iframe. The content of the =header.html= will be set
-   immediately.
-#+NAME: set-header-content-in-iframe
-#+BEGIN_SRC javascript 
-var setHeaderContentInIframe=function() {
-  console.log("=======setting header in iframe=====");
-  var iframe = document.getElementById("headerIframe");
-  iframe.src = "./header.html";
-};
-
-#+END_SRC
-
 ** Set usage in Iframe
     This allows to manipulate usage data in the content iframe. The
   usage data will be  set in the content iframe immediately.
@@ -528,13 +514,13 @@ function validatePostMessage(evt) {
       }
     }
     else if (evt.data.indexOf("Welcome to the Open")!= -1){
-        document.cookie = "session_status='logged out'";
-        loadAllDisciplines();
-        var loginDiv = document.getElementById("login");
-        loginDiv.innerHTML = "Login";
-        loginDiv.setAttribute( "onClick", "setLoginUrlInContentIframe('login')" );
-        var register_elem = document.getElementById("register");
-        register_elem.style.display = "block"
+      document.cookie = "session_status='logged out'";
+      loadAllDisciplines();
+      var loginDiv = document.getElementById("login");
+      loginDiv.innerHTML = "Login";
+      loginDiv.setAttribute( "onClick", "setLoginUrlInContentIframe('login')" );
+      var register_elem = document.getElementById("register");
+      register_elem.style.display = "block";
 
     }
     else {
@@ -713,8 +699,6 @@ var loadAllDisciplines = function() {
   var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "1180em");
   insertFrameInDivision(newFrame, "contentDiv");
   getAllDisciplines();
-//  var disciplines = getAllDisciplines();
-//  setContentInIframe(disciplines);
 };
 
 #+END_SRC
@@ -733,8 +717,6 @@ var loadAllInstitutes = function() {
   var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "790em");
   insertFrameInDivision(newFrame, "contentDiv");
   getAllInstitutes();
-//  var institutes = getAllInstitutes();
-//  setContentInIframe(institutes);
 };
 
 #+END_SRC
@@ -818,12 +800,6 @@ var getAllInstitutes = function(){
       var institute_name = value['institute_name'];
       var image_name = value['assets'][0]['path'];
       var image_path = institute_images_url + image_name;
- /*     institutes += '<div class="col-lg-3 col-md-4 col-xs-6 thumb"><div  \
-class="thumbnail" style="padding: 0px !important; padding-top:15px !important;"> <a><img class="img-responsive cursor-pointer" \
-onclick="getLabsByInstituteName(this, 0)" src="' + image_path +'" id="' + institute_name +
-      '"><div class="caption" style="min-height: 110px;">\
-<h4 class="cursor-pointer" style="text-align:center; color:#2c99ce;" >'+ institute_name +'</h4></a></div></div></div>';
-,*/
 
 institutes += '<div class="col-lg-3 col-md-4 col-xs-12 thumb" style="cursor: \
  pointer;" onclick="getLabsByInstituteName(this, 0)" src="' + image_path +'" id="' + institute_name +
@@ -883,16 +859,6 @@ style="padding: 0px !important; padding-top:15px !important;"> <a><img class="im
 <h4 onclick="getLabsByDisciplineName(this, 0)"  src="' + image_path +'" id="' + discipline_name +
       '" style="text-align:center; color:#2c99ce;" >'+ discipline_name +'</h4></a></div></div></div>';
     });
-/*
-
-disciplines += '<div class="col-lg-3 col-md-4 col-xs-6 thumb" style="cursor: pointer;" onclick="getLabsByDisciplineName(this, 0)" src="'
-    + image_path +'" id="' + discipline_name + '"> <div class="thumbnail"  \
-style="padding: 0px !important; padding-top:15px !important;"> <a><img class="img-responsive" style="cursor: pointer;">
-<div class="caption" style="min-height: 110px;">\
-<h4style="text-align:center; color:#2c99ce; cursor: pointer; ">'
-        + discipline_name +'</h4></a></div></div></div>';
-    });
-*/
     var discipline_list = '<div class="container-fluid"><div class="row">'
     + disciplines +'</div></div>';
     
@@ -957,27 +923,12 @@ var getAllLabs = function(){
 //          console.log(path);
         }
       }
-
-     /* labs += '<div class=" col-md-3 " style="cursor:pointer;" id='+ lab_name +
-        '><div class="thumbnail" style="padding: 0px !important;"><a  href='+ hosted_url +
-        '><img class="img-responsive" src="' + path +
-        '"alt="image"/><a href='+ hosted_url +
-        '><div class="caption" style="min-height: 110px;"><h4 style="text-align:left; color:#2c99ce;  ">'+lab_name +
-        '</h4></div></a></div></div>'; */
-
-        labs += '<div class=" col-md-3 " style="cursor:pointer;" id='+ lab_name +
-           '> <div class="thumbnail" style="padding: 0px !important;"><a><img class="img-responsive " \
+      labs += '<div class=" col-md-3 " style="cursor:pointer;" id='+ lab_name +
+        '> <div class="thumbnail" style="padding: 0px !important;"><a><img class="img-responsive " \
 onclick="javascript:validateAuthentication(this)" src="' + path +'" id="' + hosted_url +
       '"><div class="caption" style="min-height: 110px;">\
 <h4 onclick="javascript:validateAuthentication(this)"  src="' + path +'" id="' + hosted_url +
-      '" style="text-align:center; color:#2c99ce;" >'+ lab_name +'</h4></a></div></div></div>';
-
-
-//      labs += '<div class="col-lg-3 col-md-4 col-xs-6 thumb" id='
-//        + lab_name + '><a class="thumbnail" href='+ hosted_url +
- //       '><img class="img-responsive" src="'+ path +
- //       '"  alt="image"/><p style="text-align:center;">'
-  //      +lab_name +'</p> </a></div>';      
+        '" style="text-align:center; color:#2c99ce;" >'+ lab_name +'</h4></a></div></div></div>';
     });
 //    console.log(labs);
     var labs_list = '<div class="container-fluid"><div class="row">'+ labs +'</div></div>';
@@ -1050,7 +1001,7 @@ var getLabsByDisciplineName = function(image, flag) {
         }
         else if(labs_hosted_platform == hosted_on)
         {
-          var hosted_url = value['hosting_info'][i]['hosted_url'];
+          hosted_url = value['hosting_info'][i]['hosted_url'];
         }
         else
         {
@@ -1066,7 +1017,7 @@ var getLabsByDisciplineName = function(image, flag) {
         if (asset_type == 'image'){
           var image_name = value['assets'][i]['path'];
 //          console.log(image_name);
-          var path = lab_images_url + image_name;
+          path = lab_images_url + image_name;
 //          console.log(path);
         }
       }
@@ -1130,7 +1081,7 @@ var getLabsByInstituteName = function(image, flag) {
         }
         else if(labs_hosted_platform == hosted_on)
         {
-          var hosted_url = value['hosting_info'][i]['hosted_url'];
+          hosted_url = value['hosting_info'][i]['hosted_url'];
         }
         else
         {
@@ -1146,17 +1097,10 @@ var getLabsByInstituteName = function(image, flag) {
         if (asset_type == 'image'){
           var image_name = value['assets'][i]['path'];
   //        console.log(image_name);
-          var path = lab_images_url + image_name;
+          path = lab_images_url + image_name;
  //         console.log(path);
         }
       }
-
-//      labs += '<div class="col-md-3" id='+ lab_name +
-//        '> <div class="thumbnail" style="padding: 0px !important;" ><a href='+ hosted_url +
-//        '><img class="img-responsive" src="' + path +
-//        '"alt="image"/><a href='+ hosted_url +
-//        '><div class="caption" style="min-height: 110px;" ><h4 style="text-align:left; color:#2c99ce;">'+lab_name +
-//        '</h4></div></a></div></div>';
       labs += '<div class=" col-md-3 " style="cursor:pointer;" id='+ lab_name +
            '> <div class="thumbnail" style="padding: 0px !important;"><a><img class="img-responsive " \
 onclick="javascript:validateAuthentication(this)" src="' + path +'" id="' + hosted_url +
@@ -1790,7 +1734,6 @@ head.appendChild(favicon);
 <<create-new-iframe>>
 <<delete-frame-in-division>>
 <<insert-frame-in-division>>
-<<set-header-content-in-iframe>>
 <<insert-content-iframe>>
 <<insert-footer-iframe>>
 <<set-footer-content-in-iframe>>
@@ -1806,14 +1749,12 @@ head.appendChild(favicon);
 <<validate-authentication>>
 <<set-usage-in-iframe>>
 <<get-all-disciplines-in-combobox>>
-<<get-labs-by-institute-name>>
 <<load-all-disciplines>>
 <<load-all-institutes>>
 <<load-all-labs>>
 <<get-all-institutes>>
 <<get-all-disciplines>>
 <<get-all-labs>>
-<<get-lab>>
 <<labs-by-keyword-search>>
 <<mouse-over>>
 <<back-button>>
