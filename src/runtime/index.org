@@ -1325,6 +1325,9 @@ onclick="javascript:validateAuthentication(this)" src="' + path +'" id="' + host
   });
 //  console.log(labs);
   var labs_list = '<div class="container-fluid"><div class="row">'+ labs +'</div></div>';
+  deleteFrameInDivision("contentIframe", "contentDiv");
+  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "9500em");
+  insertFrameInDivision(newFrame, "contentDiv");
   resetContentInIframe(labs);
 };
 
