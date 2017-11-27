@@ -62,7 +62,7 @@
               <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand main-logo-a"
-               href="https://beta.vlabs.ac.in"
+               href="http://header.vlabs.ac.in"
                style=" width:100px; height:40px;
                       margin-top:-13px">
               <img src="https://vlabs.ac.in/static/edx-bootstrap-theme/images/logo.7e034286282a.png"
