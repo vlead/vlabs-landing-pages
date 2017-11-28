@@ -1,0 +1,18 @@
+#+TITLE: Index to demonstrations of Virtual Labs landing pages
+#+AUTHOR: VLEAD
+#+DATE: [2017-11-27 Mon]
+#+SETUPFILE: ./org-templates/level-0.org
+#+TAGS: boilerplate(b)
+#+EXCLUDE_TAGS: boilerplate
+#+OPTIONS: ^:nil
+
+* Introduction
+  This is an index to all the demonstration scripts of
+  Virtual Labs landing pages.
+
+* [2017-11-29 Wed]
+  This [[./2017-11-29-demonstration-script.org][script]] is prepared for the demonstration of landing
+  pages of virtual labs by Prof. Venkatesh Choppella at IIT,
+  Delhi on [2017-11-29 Wed].
+
+  
