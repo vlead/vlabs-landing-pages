@@ -17,20 +17,23 @@
   |   | S. | Mi | Req | Milestone                                  | Plan | Status |   Est |   Act | Issues |
   |   | no | no | Map |                                            |      |        |   hrs |   hrs |        |
   |---+----+----+-----+--------------------------------------------+------+--------+-------+-------+--------|
-  |   | 1. | [[https://github.com/vlead/vlabs-landing-pages/milestone/7][7]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/7][Deployment of 'vlabs landing pages' v1.2.0]] | [[Deployment of Vlabs landing pages][ref]]  | Closed |     0 |     0 | [[https://github.com/vlead/vlabs-landing-pages/milestone/7?closed=1][ref]]    |
+  |   | 1. | [[https://github.com/vlead/vlabs-landing-pages/milestone/8][8]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/8][Fix back button functionality]]              | [[Fix back button functionality][ref]]  | Open   |   160 |     0 | [[https://github.com/vlead/vlabs-landing-pages/milestone/8][ref]]    |
   |---+----+----+-----+--------------------------------------------+------+--------+-------+-------+--------|
-  |   | 2. | [[https://github.com/vlead/vlabs-landing-pages/milestone/6][6]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/6][Signup and Login functionality]]             | [[Login and Register functionality][ref]]  | Open   |   122 |     0 | [[https://github.com/vlead/vlabs-landing-pages/milestone/6][ref]]    |
+  |   | 2. | [[https://github.com/vlead/vlabs-landing-pages/milestone/7][7]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/7][Deployment of 'vlabs landing pages' v1.2.0]] | [[Deployment of Vlabs landing pages][ref]]  | Closed |     0 |     0 | [[https://github.com/vlead/vlabs-landing-pages/milestone/7?closed=1][ref]]    |
   |---+----+----+-----+--------------------------------------------+------+--------+-------+-------+--------|
-  |   | 3. | [[https://github.com/vlead/vlabs-landing-pages/milestone/5][5]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/5][Search functionality]]                       | [[Search Functionality][ref]]  | Closed |   472 | 217.5 | [[https://github.com/vlead/vlabs-landing-pages/milestone/5?closed=1][ref]]    |
+  |   | 3. | [[https://github.com/vlead/vlabs-landing-pages/milestone/6][6]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/6][Signup and Login functionality]]             | [[Login and Register functionality][ref]]  | Open   |   122 |     0 | [[https://github.com/vlead/vlabs-landing-pages/milestone/6][ref]]    |
   |---+----+----+-----+--------------------------------------------+------+--------+-------+-------+--------|
-  |   | 4. | [[https://github.com/vlead/vlabs-landing-pages/milestone/4][4]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/4][Populate data using lds]]                    | [[Loading data dynamically from LDS][ref]]  | Closed | 357.5 | 303.5 | [[https://github.com/vlead/vlabs-landing-pages/milestone/4?closed=1][ref]]    |
+  |   | 4. | [[https://github.com/vlead/vlabs-landing-pages/milestone/5][5]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/5][Search functionality]]                       | [[Search Functionality][ref]]  | Closed |   472 | 217.5 | [[https://github.com/vlead/vlabs-landing-pages/milestone/5?closed=1][ref]]    |
   |---+----+----+-----+--------------------------------------------+------+--------+-------+-------+--------|
-  |   | 5. | [[https://github.com/vlead/vlabs-landing-pages/milestone/1][1]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/1][Building landing pages using LDS]]           |      | Closed |       |       | [[https://github.com/vlead/vlabs-landing-pages/milestone/1?closed=1][ref]]    |
+  |   | 5. | [[https://github.com/vlead/vlabs-landing-pages/milestone/4][4]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/4][Populate data using lds]]                    | [[Loading data dynamically from LDS][ref]]  | Closed | 357.5 | 303.5 | [[https://github.com/vlead/vlabs-landing-pages/milestone/4?closed=1][ref]]    |
+  |---+----+----+-----+--------------------------------------------+------+--------+-------+-------+--------|
+  |   | 6. | [[https://github.com/vlead/vlabs-landing-pages/milestone/1][1]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/1][Building landing pages using LDS]]           |      | Closed |       |       | [[https://github.com/vlead/vlabs-landing-pages/milestone/1?closed=1][ref]]    |
   |---+----+----+-----+--------------------------------------------+------+--------+-------+-------+--------|
   |   |    |    |     | Total                                      |      |        | 951.5 |  521. |        |
   | ^ |    |    |     |                                            |      |        |   est |   act |        |
   |---+----+----+-----+--------------------------------------------+------+--------+-------+-------+--------|
-  #+TBLFM: @3$8=remote(tbl-rlz-pln-ml-7, $est)
+  #+TBLFM: @3$8=remote(tbl-rlz-pln-ml-8, $est)
+  #+TBLFM: @3$9=remote(tbl-rlz-pln-ml-8, $act)
   #+TBLFM: @3$9=remote(tbl-rlz-pln-ml-7, $act)
   #+TBLFM: @4$8=remote(tbl-rlz-pln-ml-6, $est)
   #+TBLFM: @4$9=remote(tbl-rlz-pln-ml-6, $act)
@@ -42,6 +45,51 @@
   #+TBLFM: $act=vsum(@II+1..@-1)
 
 * Detailed Plan 
+** Fix back button functionality
+#+caption:  realization-plan-milestone-8
+#+name: tbl-rlz-pln-ml-8
+
+|---+-------+-----------------------+--------+----------+--------+------------+--------+-------------+-----------|
+|   |    S. | Tasks                 | Github | Expected | Actual |  Estimated | Actual | Status      | Assignee  |
+|   |    NO |                       | Issues | Effort   | Effort |     Start, | Start/ |             |           |
+|   |       |                       |        | (in      | (in    |        End | End    |             |           |
+|   |       |                       |        | person   | person |      Dates | Dates  |             |           |
+|   |       |                       |        | hours)   | hours) |            |        |             |           |
+|---+-------+-----------------------+--------+----------+--------+------------+--------+-------------+-----------|
+|   |    1. | Styles are breaking,  | [[https://github.com/vlead/vlabs-landing-pages/issues/118][#118]]   | 32       | 0      |            |        | Bug         |           |
+|   |       | while traveling       |        |          |        |            |        | Backlog     |           |
+|   |       | through browser back  |        |          |        |            |        |             |           |
+|   |       | button from the       |        |          |        |            |        |             |           |
+|   |       | experiment page to    |        |          |        |            |        |             |           |
+|   |       | institutes page       |        |          |        |            |        |             |           |
+|---+-------+-----------------------+--------+----------+--------+------------+--------+-------------+-----------|
+|   |    2. | Styles are breaking,  | [[https://github.com/vlead/vlabs-landing-pages/issues/119][#119]]   | 32       |        | 01-11-2017 |        | Bug         | Balamma   |
+|   |       | while traveling       |        |          |        | 06-10-2017 |        | In progress | Mrudhvika |
+|   |       | through browser back  |        |          |        |            |        |             |           |
+|   |       | button from the       |        |          |        |            |        |             |           |
+|   |       | experiment page to    |        |          |        |            |        |             |           |
+|   |       | disciplines page      |        |          |        |            |        |             |           |
+|---+-------+-----------------------+--------+----------+--------+------------+--------+-------------+-----------|
+|   |    3. | Bug:Loading labs and  | [[https://github.com/vlead/vlabs-landing-pages/issues/116][#116]]   | 48       |        |            |        | Bug         |           |
+|   |       | institutes in a same  |        |          |        |            |        | Backlog     |           |
+|   |       | page, while traveling |        |          |        |            |        |             |           |
+|   |       | through browser back  |        |          |        |            |        |             |           |
+|   |       | button from the       |        |          |        |            |        |             |           |
+|   |       | experiment page       |        |          |        |            |        |             |           |
+|---+-------+-----------------------+--------+----------+--------+------------+--------+-------------+-----------|
+|   |    4. | Bug: Loading labs and | [[https://github.com/vlead/vlabs-landing-pages/issues/117][#117]]   | 48       |        | 01-11-2017 |        | Bug         | Balamma   |
+|   |       | disciplines in a same |        |          |        | 07-11-2017 |        | Backlog     | Mrudhvika |
+|   |       | page, while traveling |        |          |        |            |        |             |           |
+|   |       | through browser back  |        |          |        |            |        |             |           |
+|   |       | button from the       |        |          |        |            |        |             |           |
+|   |       | experiment page       |        |          |        |            |        |             |           |
+|---+-------+-----------------------+--------+----------+--------+------------+--------+-------------+-----------|
+|   | Total |                       |        | 160      | 0      |            |        |             |           |
+| ^ |       |                       |        | est      | act    |            |        |             |           |
+|---+-------+-----------------------+--------+----------+--------+------------+--------+-------------+-----------|
+#+TBLFM: $est=vsum(@II+1..@-1)
+#+TBLFM: $act=vsum(@II+1..@-1)
+
 ** Deployment of Vlabs landing pages
 #+caption:  realization-plan-milestone-7
 #+name: tbl-rlz-pln-ml-7
@@ -70,7 +118,6 @@
   2. Register functionality
 #+caption:  realization-plan-milestone-6
 #+name: tbl-rlz-pln-ml-6
-
 |---+-------+-----------------------+--------+----------+--------+------------+------------+--------+-----------|
 |   |    S. | Tasks                 | Github | Expected | Actual |  Estimated |     Actual | Status | Assignee  |
 |   |    NO |                       | Issues |   Effort | Effort |     Start, |     Start/ |        |           |
@@ -184,7 +231,6 @@
 |   | Total |                       |        |      266 |  178.5 |            |            |        |           |
 | ^ |       |                       |        |      est |    act |            |            |        |           |
 |---+-------+-----------------------+--------+----------+--------+------------+------------+--------+-----------|
-#+tblfm: $2=@#-1
 #+TBLFM: $est=vsum(@II+1..@-1)
 #+TBLFM: $act=vsum(@II+1..@-1)
 

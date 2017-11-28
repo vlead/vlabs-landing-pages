@@ -40,7 +40,7 @@
 ** Requirement 4
    Currently, the styling of the VLABS portal is tied to the
    Open edX platform.  This is constraint in terms of
-   maintenence and the ease of applying new styles.  To move
+   maintenance and the ease of applying new styles.  To move
    away from this dependence, the styling of VLABS portal is
    done while the pages are rendered from the new portal.
 
