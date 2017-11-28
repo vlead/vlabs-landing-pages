@@ -71,154 +71,120 @@
 #+caption:  realization-plan-milestone-6
 #+name: tbl-rlz-pln-ml-6
 
-|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+----------|
-|   |    S. | Tasks                 | Github | Expected | Actual |  Estimated |     Actual | Status | Assignee |
-|   |    NO |                       | Issues |   Effort | Effort |     Start, |     Start/ |        |          |
-|   |       |                       |        |      (in | (in    |        End |        End |        |          |
-|   |       |                       |        |   person | person |      Dates |      Dates |        |          |
-|   |       |                       |        |   hours) | hours) |            |            |        |          |
-|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+----------|
-|   |    1. | Adding login          | [[https://github.com/vlead/vlabs-landing-pages/issues/89][#89]]    |       20 |        | 09-10-2017 | 09-10-2017 | Done   | Sripathi |
-|   |       | functionality for     |        |          |        | 12-10-2017 | 13-10-2017 |        |          |
-|   |       | vlabs landing page    |        |          |        |            |            |        |          |
-|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+----------|
-|   |    2. | Adding signup         | [[https://github.com/vlead/vlabs-landing-pages/issues/88][#88]]    |       30 |        | 17-10-2017 | 13-10-2017 | Done   | Sripathi |
-|   |       | functionality for     |        |          |        | 23-10-2017 | 13-10-2017 |        |          |
-|   |       | vlabs landing page    |        |          |        |            |            |        |          |
-|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+----------|
-|   |    3. | Enable Sign up        | [[https://github.com/vlead/vlabs-landing-pages/issues/87][#87]]    |        1 | 0.5    | 24-10-2017 | 24-10-2017 | Done   | Madhavi  |
-|   |       | and Login buttons     |        |          |        | 24-10-2017 | 24-10-2017 |        |          |
-|   |       | (includes             |        |          |        |            |            |        |          |
-|   |       | functionality)        |        |          |        |            |            |        |          |
-|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+----------|
-|   |    4. | Interaction between   | [[https://github.com/vlead/vlabs-landing-pages/issues/97][#97]]    |       24 |        | 13-10-2017 | 13-10-2017 | Done   | Sripathi |
-|   |       | iframes using         |        |          |        | 16-10-2017 | 13-10-2017 |        |          |
-|   |       | post message          |        |          |        |            |            |        |          |
-|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+----------|
-|   |    5. | setup machine to      | [[https://github.com/vlead/vlabs-landing-pages/issues/102][#102]]   |       16 |        | 13-10-2017 | 13-10-2017 | Done   | Sripathi |
-|   |       | run openedx vagrant   |        |          |        | 15-10-2017 | 13-10-2017 |        |          |
-|   |       | box for development   |        |          |        |            |            |        |          |
-|   |       | environment           |        |          |        |            |            |        |          |
-|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+----------|
-|   |    6. | configure post        | [[https://github.com/vlead/vlabs-landing-pages/issues/121][#121]]   |       12 |        | 26-10-2017 | 13-10-2017 | Done   | Sripathi |
-|   |       | message Javascript    |        |          |        | --2017     | 13-10-2017 |        |          |
-|   |       | snippet on            |        |          |        |            |            |        |          |
-|   |       | theamless.vlabs.ac.in |        |          |        |            |            |        |          |
-|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+----------|
-|   |    7. | Styles are breaking,  | [[https://github.com/vlead/vlabs-landing-pages/issues/118][#118]]   |          |        | 02-11-2017 | 13-10-2017 | Done   | Sripathi |
-|   |       | while traveling       |        |          |        | 02-11-2017 | 13-10-2017 |        |          |
-|   |       | through browser back  |        |          |        |            |            |        |          |
-|   |       | button from the       |        |          |        |            |            |        |          |
-|   |       | experiment page to    |        |          |        |            |            |        |          |
-|   |       | institutes page       |        |          |        |            |            |        |          |
-|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+----------|
-|   |    8. | Styles are breaking,  | [[https://github.com/vlead/vlabs-landing-pages/issues/119][#119]]   |          |        | 02-11-2017 | 13-10-2017 |        | Sripathi |
-|   |       | while traveling       |        |          |        | 02-11-2017 | 13-10-2017 |        |          |
-|   |       | through browser back  |        |          |        |            |            | Done   |          |
-|   |       | button from the       |        |          |        |            |            |        |          |
-|   |       | experiment page to    |        |          |        |            |            |        |          |
-|   |       | disciplines page      |        |          |        |            |            |        |          |
-|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+----------|
-|   |    9. | Bug:Loading labs and  | [[https://github.com/vlead/vlabs-landing-pages/issues/116][#116]]   |          |        | 02-11-2017 | 02-11-2017 |        |          |
-|   |       | institutes in a same  |        |          |        | 02-11-2017 | 02-11-2017 |        | Sripathi |
-|   |       | page, while traveling |        |          |        |            |            | Done   |          |
-|   |       | through browser back  |        |          |        |            |            |        |          |
-|   |       | button from the       |        |          |        |            |            |        |          |
-|   |       | experiment page       |        |          |        |            |            |        |          |
-|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+----------|
-|   |   10. | Bug: Loading labs and | [[https://github.com/vlead/vlabs-landing-pages/issues/117][#117]]   |          |        | 13-10-2017 | 13-10-2017 |        | Sripathi |
-|   |       | disciplines in a same |        |          |        | 13-10-2017 | 13-10-2017 | Done   |          |
-|   |       | page, while traveling |        |          |        |            |            |        |          |
-|   |       | through browser back  |        |          |        |            |            |        |          |
-|   |       | button from the       |        |          |        |            |            |        |          |
-|   |       | experiment page       |        |          |        |            |            |        |          |
-|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+----------|
-|   |   11. | Integration of        | [[https://github.com/vlead/vlabs-landing-pages/issues/128][#128]]   |          |        | 13-10-2017 | 13-10-2017 |        |          |
-|   |       | Openedx urls to       |        |          |        | 13-10-2017 | 13-10-2017 | Done   | Sripathi |
-|   |       | registration, sign    |        |          |        |            |            |        |          |
-|   |       | in and sign out       |        |          |        |            |            |        |          |
-|   |       | buttons               |        |          |        |            |            |        |          |
-|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+----------|
-|   |   12. | provision container   | [[https://github.com/vlead/vlabs-landing-pages/issues/129][#129]]   |          |        | 13-10-2017 | 13-10-2017 | Done   |          |
-|   |       | on stagging server    |        |          |        | 13-10-2017 | 13-10-2017 |        | Sripathi |
-|   |       | to host the           |        |          |        |            |            |        |          |
-|   |       | vlabs-landing pages   |        |          |        |            |            |        |          |
-|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+----------|
-|   |   13. | Add pointers(Hand     | [[https://github.com/vlead/vlabs-landing-pages/issues/130][#130]]   |          |        | 13-10-2017 | 13-10-2017 | Done   | Sripathi |
-|   |       | symbol) to register   |        |          |        | 13-10-2017 | 13-10-2017 |        |          |
-|   |       | and login buttons     |        |          |        |            |            |        |          |
-|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+----------|
-|   |   14. | Click here for        | [[https://github.com/vlead/vlabs-landing-pages/issues/131][#131]]   |          |        | 13-10-2017 | 13-10-2017 |        | Sripathi |
-|   |       | feedback link is not  |        |          |        | 13-10-2017 | 13-10-2017 | Done   |          |
-|   |       | redirecting to        |        |          |        |            |            |        |          |
-|   |       | feedback page         |        |          |        |            |            |        |          |
-|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+----------|
-|   |   15. | Add urls to about     | [[https://github.com/vlead/vlabs-landing-pages/issues/132][#132]]   |          |        | 13-10-2017 | 13-10-2017 | Done   | Sripathi |
-|   |       | in the header         |        |          |        | 13-10-2017 | 13-10-2017 |        |          |
-|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+----------|
-|   |   16. | remove header and     | [[https://github.com/vlead/vlabs-landing-pages/issues/133][#133]]   |          |        | 13-10-2017 | 13-10-2017 | Done   |          |
-|   |       | footer sections in    |        |          |        | 13-10-2017 | 13-10-2017 |        | Sripathi |
-|   |       | themeless.vlabs.ac.in |        |          |        |            |            |        |          |
-|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+----------|
-|   |   17. | Searching of labs     | [[https://github.com/vlead/vlabs-landing-pages/issues/134][#134]]   |          |        | 13-10-2017 | 13-10-2017 | Done   |          |
-|   |       | on enter button       |        |          |        | 13-10-2017 | 13-10-2017 |        | Sripathi |
-|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+----------|
-|   |   18. | Creating a "No labs   | [[https://github.com/vlead/vlabs-landing-pages/issues/135][#135]]   |          |        | 13-10-2017 | 13-10-2017 | Done   |          |
-|   |       | found" page           |        |          |        | 13-10-2017 | 13-10-2017 |        | Sripathi |
-|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+----------|
-|   |   19. | Script for            | [[https://github.com/vlead/vlabs-landing-pages/issues/136][#136]]   |          |        | 13-10-2017 | 13-10-2017 | Done   | Sripathi |
-|   |       | demonstration of      |        |          |        | 13-10-2017 | 13-10-2017 |        |          |
-|   |       | vlabs landing pages   |        |          |        |            |            |        |          |
-|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+----------|
-|   |   20. | Testing of            | [[https://github.com/vlead/vlabs-landing-pages/issues/137][#137]]   |          |        | 13-10-2017 | 13-10-2017 | Done   | Sripathi |
-|   |       | vlabs landing pages   |        |          |        | 13-10-2017 | 13-10-2017 |        |          |
-|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+----------|
-|   |   21. | Deployment of         | [[https://github.com/vlead/vlabs-landing-pages/issues/138][#138]]   |          |        | 13-10-2017 | 13-10-2017 |        |          |
-|   |       | vlabs landing pages   |        |          |        | 13-10-2017 | 13-10-2017 | Done   | Sripathi |
-|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+----------|
-|   |   22. | Release the beta      | [[https://github.com/vlead/vlabs-landing-pages/issues/139][#139]]   |          |        | 13-10-2017 | 13-10-2017 |        |          |
-|   |       | version of            |        |          |        | 13-10-2017 | 13-10-2017 |        |          |
-|   |       | vlabs landing pages   |        |          |        |            |            | Done   | Sripathi |
-|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+----------|
-|   |   23. | Searching of labs     | [[https://github.com/vlead/vlabs-landing-pages/issues/140][#140]]   |          |        | 13-10-2017 | 13-10-2017 |        |          |
-|   |       | by entering lab       |        |          |        | 13-10-2017 | 13-10-2017 |        |          |
-|   |       | name as keyword Done  |        |          |        |            |            | Done   | Sripathi |
-|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+----------|
-|   |   24. | Loading dynamic       | [[https://github.com/vlead/vlabs-landing-pages/issues/141][#141]]   |          |        | 13-10-2017 | 13-10-2017 |        |          |
-|   |       | usage data on         |        |          |        | 13-10-2017 | 13-10-2017 |        |          |
-|   |       | vlabs landing pages   |        |          |        |            |            | Done   | Sripathi |
-|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+----------|
-|   |   25. | Displaying email id   | [[https://github.com/vlead/vlabs-landing-pages/issues/142][#142]]   |          |        | 13-10-2017 | 13-10-2017 |        |          |
-|   |       | in the place of       |        |          |        | 13-10-2017 | 13-10-2017 |        |          |
-|   |       | register when user    |        |          |        |            |            | Done   | Sripathi |
-|   |       | logged in to          |        |          |        |            |            |        |          |
-|   |       | vlabs landing pages   |        |          |        |            |            |        |          |
-|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+----------|
-|   |   26. | Mobile responsive     | [[https://github.com/vlead/vlabs-landing-pages/issues/143][#143]]   |          |        | 13-10-2017 | 13-10-2017 | Done   | Sripathi |
-|   |       | header                |        |          |        | 13-10-2017 | 13-10-2017 |        |          |
-|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+----------|
-|   |   27. | Mobile responsive     | [[https://github.com/vlead/vlabs-landing-pages/issues/144][#144]]   |          |        | 13-10-2017 | 13-10-2017 |        |          |
-|   |       | banner                |        |          |        | 13-10-2017 | 13-10-2017 | Done   | Sripathi |
-|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+----------|
-|   |   28. | Update logo url       | [[https://github.com/vlead/vlabs-landing-pages/issues/145][#145]]   |          |        | 13-10-2017 | 13-10-2017 | Done   | Sripathi |
-|   |       |                       |        |          |        | 13-10-2017 | 13-10-2017 |        |          |
-|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+----------|
-|   |   29. | load search results   | [[https://github.com/vlead/vlabs-landing-pages/issues/146][#146]]   |          |        | 13-10-2017 | 13-10-2017 |        |          |
-|   |       | and all labs list in  |        |          |        | 13-10-2017 | 13-10-2017 |        | Sripathi |
-|   |       | place of openedx sign |        |          |        |            |            | Done   |          |
-|   |       | in/sign out pages     |        |          |        |            |            |        |          |
-|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+----------|
-|   |   30. | Review of             | [[https://github.com/vlead/vlabs-landing-pages/issues/147][#147]]   |          |        | 13-10-2017 | 13-10-2017 |        | Sripathi |
-|   |       | vlabs landing pages   |        |          |        | 13-10-2017 | 13-10-2017 | Done   |          |
-|   |       | demonstration script  |        |          |        |            |            |        |          |
-|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+----------|
-|   |   31. | deploy application    | [[https://github.com/vlead/vlabs-landing-pages/issues/148][#148]]   |          |        | 13-10-2017 | 13-10-2017 |        | Sripathi |
-|   |       | on nginx server       |        |          |        | 13-10-2017 | 13-10-2017 | Done   |          |
-|   |       | using ADS             |        |          |        |            |            |        |          |
-|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+----------|
-|   | Total |                       |        |      122 | 0      |            |            |        |          |
-| ^ |       |                       |        |      est | act    |            |            |        |          |
-|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+----------|
+|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+-----------|
+|   |    S. | Tasks                 | Github | Expected | Actual |  Estimated |     Actual | Status | Assignee  |
+|   |    NO |                       | Issues |   Effort | Effort |     Start, |     Start/ |        |           |
+|   |       |                       |        |      (in |    (in |        End |        End |        |           |
+|   |       |                       |        |   person | person |      Dates |      Dates |        |           |
+|   |       |                       |        |   hours) | hours) |            |            |        |           |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+-----------|
+|   |    1. | Adding login          | [[https://github.com/vlead/vlabs-landing-pages/issues/89][#89]]    |       20 |     12 | 09-10-2017 | 09-10-2017 | Done   | Sripathi  |
+|   |       | functionality for     |        |          |        | 12-10-2017 | 11-10-2017 |        |           |
+|   |       | vlabs landing page    |        |          |        |            |            |        |           |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+-----------|
+|   |    2. | Adding signup         | [[https://github.com/vlead/vlabs-landing-pages/issues/88][#88]]    |       30 |     12 | 17-10-2017 | 17-10-2017 | Done   | Sripathi  |
+|   |       | functionality for     |        |          |        | 23-10-2017 | 19-10-2017 |        |           |
+|   |       | vlabs landing page    |        |          |        |            |            |        |           |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+-----------|
+|   |    3. | Enable Sign up        | [[https://github.com/vlead/vlabs-landing-pages/issues/87][#87]]    |        1 |    0.5 | 24-10-2017 | 24-10-2017 | Done   | Madhavi   |
+|   |       | and Login buttons     |        |          |        | 24-10-2017 | 24-10-2017 |        |           |
+|   |       | (includes             |        |          |        |            |            |        |           |
+|   |       | functionality)        |        |          |        |            |            |        |           |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+-----------|
+|   |    4. | Interaction between   | [[https://github.com/vlead/vlabs-landing-pages/issues/97][#97]]    |       24 |     18 | 13-10-2017 | 13-10-2017 | Done   | Sripathi  |
+|   |       | iframes using         |        |          |        | 16-10-2017 | 16-10-2017 |        |           |
+|   |       | post message          |        |          |        |            |            |        |           |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+-----------|
+|   |    5. | setup machine to      | [[https://github.com/vlead/vlabs-landing-pages/issues/102][#102]]   |       16 |     20 | 13-10-2017 | 13-10-2017 | Done   | Sripathi  |
+|   |       | run openedx vagrant   |        |          |        | 16-10-2017 | 16-10-2017 |        |           |
+|   |       | box for development   |        |          |        |            |            |        |           |
+|   |       | environment           |        |          |        |            |            |        |           |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+-----------|
+|   |    6. | configure post        | [[https://github.com/vlead/vlabs-landing-pages/issues/121][#121]]   |       12 |        | 26-10-2017 | 26-10-2017 | Done   | Sripathi  |
+|   |       | message Javascript    |        |          |        |     --2017 | 13-10-2017 |        |           |
+|   |       | snippet on            |        |          |        |            |            |        |           |
+|   |       | themeless.vlabs.ac.in |        |          |        |            |            |        |           |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+-----------|
+|   |    7. | Integration of        | [[https://github.com/vlead/vlabs-landing-pages/issues/128][#128]]   |          |        | 01-11-2017 | 01-11-2017 |        |           |
+|   |       | Openedx urls to       |        |          |        | 13-10-2017 | 13-10-2017 | Done   | Sripathi  |
+|   |       | registration, sign    |        |          |        |            |            |        |           |
+|   |       | in and sign out       |        |          |        |            |            |        |           |
+|   |       | buttons               |        |          |        |            |            |        |           |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+-----------|
+|   |    8. | provision container   | [[https://github.com/vlead/vlabs-landing-pages/issues/129][#129]]   |          |        | 02-11-2017 | 02-11-2017 | Done   |           |
+|   |       | on stagging server    |        |          |        | 13-10-2017 | 13-10-2017 |        | Sripathi  |
+|   |       | to host the           |        |          |        |            |            |        |           |
+|   |       | vlabs-landing pages   |        |          |        |            |            |        |           |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+-----------|
+|   |    9. | Add pointers(Hand     | [[https://github.com/vlead/vlabs-landing-pages/issues/130][#130]]   |        4 |      2 | 07-11-2017 | 07-11-2017 | Done   | Mrudhvika |
+|   |       | symbol) to register   |        |          |        | 13-10-2017 | 13-10-2017 |        |           |
+|   |       | and login buttons     |        |          |        |            |            |        |           |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+-----------|
+|   |   10. | Click here for        | [[https://github.com/vlead/vlabs-landing-pages/issues/131][#131]]   |        0 |      0 | 20-11-2017 | 20-11-2017 |        | Mrudhvika |
+|   |       | feedback link is not  |        |          |        | 20-11-2017 | 20-11-2017 | Done   |           |
+|   |       | redirecting to        |        |          |        |            |            |        |           |
+|   |       | feedback page         |        |          |        |            |            |        |           |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+-----------|
+|   |   11. | Add urls to about     | [[https://github.com/vlead/vlabs-landing-pages/issues/132][#132]]   |          |        | 22-11-2017 | 22-11-2017 | Done   | Balamma   |
+|   |       | in the header         |        |          |        |   -10-2017 | 13-10-2017 |        |           |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+-----------|
+|   |   12. | remove header and     | [[https://github.com/vlead/vlabs-landing-pages/issues/133][#133]]   |       24 |     12 | 22-11-2017 | 22-11-2017 | Done   |           |
+|   |       | footer sections in    |        |          |        | 23-10-2017 | 23-10-2017 |        | Balamma   |
+|   |       | themeless.vlabs.ac.in |        |          |        |            |            |        |           |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+-----------|
+|   |   13. | Searching of labs     | [[https://github.com/vlead/vlabs-landing-pages/issues/134][#134]]   |        6 |      4 | 23-11-2017 | 23-11-2017 | Done   | Madhavi   |
+|   |       | on enter button       |        |          |        | 23-11-2017 | 23-11-2017 |        |           |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+-----------|
+|   |   14. | Script for            | [[https://github.com/vlead/vlabs-landing-pages/issues/136][#136]]   |       12 |     10 | 23-11-2017 | 23-11-2017 | Done   | Sripathi  |
+|   |       | demonstration of      |        |          |        | 24-11-2017 | 28-11-2017 |        | Thirumal  |
+|   |       | vlabs landing pages   |        |          |        |            |            |        | Mrudhvika |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+-----------|
+|   |   15. | Testing of            | [[https://github.com/vlead/vlabs-landing-pages/issues/137][#137]]   |       30 |     25 | 23-11-2017 | 23-11-2017 | Done   | Sripathi  |
+|   |       | vlabs landing pages   |        |          |        | 28-11-2017 | 28-11-2017 |        | Mrudhvika |
+|   |       |                       |        |          |        |            |            |        | Madhavi   |
+|   |       |                       |        |          |        |            |            |        | Balamma   |
+|   |       |                       |        |          |        |            |            |        | Thirumal  |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+-----------|
+|   |   16. | Deployment of         | [[https://github.com/vlead/vlabs-landing-pages/issues/138][#138]]   |          |        | 13-10-2017 | 13-10-2017 |        |           |
+|   |       | vlabs landing pages   |        |          |        | 13-10-2017 | 13-10-2017 | Done   | Sripathi  |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+-----------|
+|   |   17. | Release the beta      | [[https://github.com/vlead/vlabs-landing-pages/issues/139][#139]]   |          |        | 13-10-2017 | 13-10-2017 |        |           |
+|   |       | version of            |        |          |        | 13-10-2017 | 13-10-2017 |        |           |
+|   |       | vlabs landing pages   |        |          |        |            |            | Done   | Sripathi  |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+-----------|
+|   |   18. | Searching of labs     | [[https://github.com/vlead/vlabs-landing-pages/issues/140][#140]]   |        6 |      4 | 27-10-2017 | 27-10-2017 | Done   | Madhavi   |
+|   |       | by entering lab       |        |          |        | 27-10-2017 | 27-10-2017 |        |           |
+|   |       | name as keyword Done  |        |          |        |            |            |        |           |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+-----------|
+|   |   19. | Loading dynamic       | [[https://github.com/vlead/vlabs-landing-pages/issues/141][#141]]   |        6 |      4 | 23-10-2017 | 23-10-2017 | Done   | Madhavi   |
+|   |       | usage data on         |        |          |        | 23-10-2017 | 23-10-2017 |        |           |
+|   |       | vlabs landing pages   |        |          |        |            |            |        |           |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+-----------|
+|   |   20. | Mobile responsive     | [[https://github.com/vlead/vlabs-landing-pages/issues/143][#143]]   |          |        | 24-11-2017 | 24-10-2017 | Done   | Balamma   |
+|   |       | header                |        |          |        | 24-11-2017 | 24-10-2017 |        |           |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+-----------|
+|   |   21. | Mobile responsive     | [[https://github.com/vlead/vlabs-landing-pages/issues/144][#144]]   |          |        | 24-10-2017 | 24-10-2017 |        |           |
+|   |       | banner                |        |          |        | 24-10-2017 | 24-10-2017 | Done   | Balamma   |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+-----------|
+|   |   22. | Update logo url       | [[https://github.com/vlead/vlabs-landing-pages/issues/145][#145]]   |          |        | 24-11-2017 | 24-11-2017 | Done   | Balamma   |
+|   |       |                       |        |          |        | 24-11-2017 | 24-11-2017 |        |           |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+-----------|
+|   |   23. | load search results   | [[https://github.com/vlead/vlabs-landing-pages/issues/146][#146]]   |        6 |      4 | 27-10-2017 | 27-10-2017 | Done   |           |
+|   |       | and all labs list in  |        |          |        | 27-10-2017 | 27-10-2017 |        | Madhavi   |
+|   |       | place of openedx sign |        |          |        |            |            |        |           |
+|   |       | in/sign out pages     |        |          |        |            |            |        |           |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+-----------|
+|   |   24. | Review of             | [[https://github.com/vlead/vlabs-landing-pages/issues/147][#147]]   |        1 |      6 | 28-10-2017 | 28-10-2017 |        | Sripathi  |
+|   |       | vlabs landing pages   |        |          |        | 28-10-2017 | 28-10-2017 | Done   | Priya     |
+|   |       | demonstration script  |        |          |        |            |            |        | Thirumal  |
+|   |       |                       |        |          |        |            |            |        | Balamma   |
+|   |       |                       |        |          |        |            |            |        | Mrudhvika |
+|   |       |                       |        |          |        |            |            |        | Madhavi   |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+-----------|
+|   | Total |                       |        |      198 |  133.5 |            |            |        |           |
+| ^ |       |                       |        |      est |    act |            |            |        |           |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+-----------|
+#+tblfm: $2=@#-1
 #+TBLFM: $est=vsum(@II+1..@-1)
 #+TBLFM: $act=vsum(@II+1..@-1)
 
@@ -707,3 +673,59 @@
 #+TBLFM: $est=vsum(@II+1..@-1)
 #+TBLFM: $act=vsum(@II+1..@-1)
 
+** Fix Back Button Functionality
+#+caption:  realization-plan-milestone-8
+#+name: tbl-rlz-pln-ml-8
+|---+-------+-----------------------+--------+----------+--------+------------+------------+---------+----------|
+|   |    S. | Tasks                 | Github | Expected | Actual |     Actual |  Estimated | Status  | Assignee |
+|   |    NO |                       | Issues | Effort   | Effort |     Start, |     Start/ |         |          |
+|   |       |                       |        | (in      | (in    |        End |        End |         |          |
+|   |       |                       |        | person   | person |      Dates |      Dates |         |          |
+|   |       |                       |        | hours)   | hours) |            |            |         |          |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+---------+----------|
+|   |    1. | Styles are breaking,  | [[https://github.com/vlead/vlabs-landing-pages/issues/118][#118]]   |          |        | 02-11-2017 | 13-10-2017 | Backlog | Sripathi |
+|   |       | while traveling       |        |          |        | 02-11-2017 | 13-10-2017 |         |          |
+|   |       | through browser back  |        |          |        |            |            |         |          |
+|   |       | button from the       |        |          |        |            |            |         |          |
+|   |       | experiment page to    |        |          |        |            |            |         |          |
+|   |       | institutes page       |        |          |        |            |            |         |          |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+---------+----------|
+|   |    2. | Styles are breaking,  | [[https://github.com/vlead/vlabs-landing-pages/issues/119][#119]]   |          |        | 02-11-2017 | 13-10-2017 |         | Sripathi |
+|   |       | while traveling       |        |          |        | 02-11-2017 | 13-10-2017 |         |          |
+|   |       | through browser back  |        |          |        |            |            | Done    |          |
+|   |       | button from the       |        |          |        |            |            |         |          |
+|   |       | experiment page to    |        |          |        |            |            |         |          |
+|   |       | disciplines page      |        |          |        |            |            |         |          |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+---------+----------|
+|   |    3. | Bug:Loading labs and  | [[https://github.com/vlead/vlabs-landing-pages/issues/116][#116]]   |          |        | 02-11-2017 | 02-11-2017 |         |          |
+|   |       | institutes in a same  |        |          |        | 02-11-2017 | 02-11-2017 |         | Sripathi |
+|   |       | page, while traveling |        |          |        |            |            | Done    |          |
+|   |       | through browser back  |        |          |        |            |            |         |          |
+|   |       | button from the       |        |          |        |            |            |         |          |
+|   |       | experiment page       |        |          |        |            |            |         |          |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+---------+----------|
+|   |    4. | Bug: Loading labs and | [[https://github.com/vlead/vlabs-landing-pages/issues/117][#117]]   |          |        | 13-10-2017 | 13-10-2017 |         | Sripathi |
+|   |       | disciplines in a same |        |          |        | 13-10-2017 | 13-10-2017 | Done    |          |
+|   |       | page, while traveling |        |          |        |            |            |         |          |
+|   |       | through browser back  |        |          |        |            |            |         |          |
+|   |       | button from the       |        |          |        |            |            |         |          |
+|   |       | experiment page       |        |          |        |            |            |         |          |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+---------+----------|
+|   |    5. | Creating a "No labs   | [[https://github.com/vlead/vlabs-landing-pages/issues/135][#135]]   |          |        | 13-10-2017 | 13-10-2017 | Backlog |          |
+|   |       | found" page           |        |          |        | 13-10-2017 | 13-10-2017 |         |          |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+---------+----------|
+|   |    6. | Displaying email id   | [[https://github.com/vlead/vlabs-landing-pages/issues/142][#142]]   |          |        | 13-10-2017 | 13-10-2017 |         |          |
+|   |       | in the place of       |        |          |        | 13-10-2017 | 13-10-2017 |         |          |
+|   |       | register when user    |        |          |        |            |            | Done    | Sripathi |
+|   |       | logged in to          |        |          |        |            |            |         |          |
+|   |       | vlabs landing pages   |        |          |        |            |            |         |          |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+---------+----------|
+|   |   7.  | deploy application    | [[https://github.com/vlead/vlabs-landing-pages/issues/148][#148]]   |          |        | 13-10-2017 | 13-10-2017 |         | Sripathi |
+|   |       | on nginx server       |        |          |        | 13-10-2017 | 13-10-2017 | Done    |          |
+|   |       | using ADS             |        |          |        |            |            |         |          |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+---------+----------|
+|   | Total |                       |        | 0        | 0      |            |            |         |          |
+| ^ |       |                       |        | est      | act    |            |            |         |          |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+---------+----------|
+#+TBLFM: $est=vsum(@II+1..@-1)
+#+TBLFM: $act=vsum(@II+1..@-1)
