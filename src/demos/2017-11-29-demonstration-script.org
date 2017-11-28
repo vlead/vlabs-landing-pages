@@ -1,4 +1,4 @@
-#+TITLE: Demonstration Script for Vlabs Landing pages
+#+TITLE: Demonstration Script for Virtual Labs Portal
 #+AUTHOR: VLEAD
 #+DATE: [2017-11-22 Wed]
 #+PROPERTY: results output
@@ -9,99 +9,89 @@
 
 * Introduction 
   This document lists steps to demonstrate various features
-  of =Vlabs landing Pages=.
-** Scenarios :
-   Following are the various scenarios which demonstrates
-   the =beta= version of =vlabs-landing-pages= project
-*** Scenario 1
-    - This scenario demonstrates login & logout
-      functionality of vlabs landing pages
-    - Note :: Do not use browser's back button during the
-              execution of this scenario we were working on
-              this feature
-**** Login & Logout
-    - Steps
-      1. Visit the [[http://header.vlabs.ac.in][url]]
-      2. Click on =login= link and use below credentials
-         + User name : vlabs-demo@vlabs.ac.in
-         + Password : vlead123
-      3. On successful login all disciplines will be
-         displayed
-      4. Click on =logout= link to exit from the current
-         session
-      5. On successful =logout= all disciplines will be
-         listed
-*** Scenario 2
-    - This scenario demonstrates listing out all available
-      disciplines and their respective labs
-    - Note :: Do not use browser back button during the
-              execution of this scenario. We were working on
-              this feature
+  of Virtual Labs portal using a beta version.
 
-**** Show discipline wise labs
-    - Steps
-      1. Visit the [[http://header.vlabs.ac.in][url]]
-      2. Click on =Disciplines= menu item on top navigation
-         bar and choose the discipline name among listed in
-         drop down list
-      3. Choose =Computer Science and Engineering=
-         discipline
-      4. All labs related to the =Computer Science and
-         Engineering= discipline will be displayed.
-      5. Click on =Computer Programming= lab. This will take
-         you to login page if you are not logged in already
-         otherwise course related to lab will be displayed.
+* Key Points
+  1. Virtual Labs Portal is built dynamically by pulling
+     data from multiple services - lab data service,
+     analytics service, feedback service, outreach service,
+     etc.
+  2. Each lab is integrated seamlessly into the portal. 
+  3. Search functionality provides a mechanism to search by
+     words contained in the lab name.
+  4. Single sign in for both Open edX and non Open edX labs
+     is provided.  This allows provision to display total
+     number of registered users and total number of active
+     sessions.
 
-*** Scenario 3
-    - This scenario demonstrates listing out all available
-      institutes and their respective labs
-    - Note :: Do not use browser's back button during the
-              execution of this scenario. We were working on
-              this feature
+* Note
+  Please note that during the entire demonstration, back
+  button should not be used.  The team is working on fixing
+  this issue.
 
-**** Show institute wise labs
-    - Steps
-      1. Visit the [[http://header.vlabs.ac.in][url]]
-      2. Click on =Institutes= menu item on top navigation
-         bar and choose the institute name among listed from
-         drop down menux
-      3. Choose =IIIT-Hyderabad= institute
-      4. All labs related to the =IIIT-Hyderabad= institute
-         will be displayed
-      5. Click on =Computer Programming= lab. This will take
-         you to the login page if you are not logged in
-         already otherwise course related to lab will be
-         displayed.
+* Demonstration
+  The demonstration is broken down into various scenarios.
+  The focus of this demonstration will be on listing
+  disciplines, listing institutes, listing all labs, listing
+  labs of a discipline, listing labs of an institute and
+  finally visiting a particular lab that will require sign
+  in.
 
-*** Scenario 4
-    - This scenario demonstrates listing out the labs from
-      all the institutes and disciplines
-    - Note :: Do not use browser's back button during the
-              execution of this scenario. We were working on
-              this feature
+** Disciplines
+   1. Click [[http://header.vlabs.ac.in][here]] (http://header.vlabs.ac.in) to load the beta version of Virtual Labs
+      portal.
+   2. The first page lists all the disciplines.
+   3. Click on =Aerospace Engineering= to list the labs in
+      that discipline.
+   4. From the top Menu, choose =Disciplines= which will
+      drop a menu down.  Choose =All Disciplines= to list
+      all the disciplines.
+   5. Click on =Computer Science and Engineering= to list the labs in
+      that discipline.
+   6. From the top Menu, choose =Disciplines= which will
+      drop a menu down.  Choose =Electricial Engineering= to
+      list all the labs of that discipline.
 
-**** Show all labs
-    - Steps
-      1. Visit the [[http://header.vlabs.ac.in][url]]
-      2. Click on =All Labs= menu item on top navigation bar
-      3. List of all the labs will be displayed
-      4. Click on =Computer Programming= lab. This will take
-         you to the login page if you are not logged in
-         already otherwise course page will be viewed
+** Institutes
+   1. From the top Menu, choose =Institutes= which will
+      drop a menu down.  Choose =All Institutes= to list
+      all the institutes.
+   2. Click on =Amrita University= to list the labs in
+      that institute.
+   3. From the top Menu, choose =Institutes= which will
+      drop a menu down.  Choose =IIT Delhi= to list
+      all the labs of that institute.
+   4. From the top Menu, choose =Institutes= which will
+      drop a menu down.  Choose =IIIT Hyderabad= to list
+      all the labs of that institute.
 
-*** Scenario 5
-    - This scenario demonstrates searching of labs on basis
-      of lab name as keyword
-    - Note :: Do not use browser's back button during the
-              execution of this scenario. We were working on
-              this feature
+** All Labs
+   1. From the top Menu, click on =All Labs= which
+      will list all the labs.
 
-**** Search labs by lab name keyword
-    - Steps
-      1. Visit the [[http://header.vlabs.ac.in][url]]
-      2. Enter the keyword of lab names in search input box
-         (e.g computer programming)
-      3. All the labs related to computer programming
-         keyword will be displayed
-      4. Click on labs to view the course content
-         
+** Search and Sign In
+   1. Type the word =computer= in the search box situated at
+      top right half of the page. As the word is being
+      typed, the labs whose name matches the keyword are
+      listed.
+   2. Click on =Computer Programming= lab to open the lab.
+   3. This will require sign in.  Enter the below
+      credentials to login.
+      + Email: vlabs-demo@vlabs.ac.in
+      + Password: vlead123
+   4. Click on =ENROLL IN CSE02= to enroll. 
+   5. Click on =VIEW COURSE= to view the course.
+   6. Click on the tab =Course= to view various experiments.
+   7. Click on =Numerical Approximation= to view the experiment.
+   8. Click on =Simulation= to perform the experiment.
+   9. Click on =Full Screen= to conduct the experiment.
+   10. Enter =5= for value of a, and =10= for value of b and
+       click =ok=.
+   11. Click =start= and later =next= to complete the experiment.
+   12. Close the tab.
+** Go back to Landing Page
+   1. From the top Menu, choose =Disciplines= which will
+      drop a menu down.  Choose =All Disciplines= to list
+      all the disciplines.  This will end the
+      demonstration. 
+
