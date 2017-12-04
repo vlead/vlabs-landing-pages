@@ -541,80 +541,6 @@ var getAllDisciplinesInCombobox = function(){
     };
 
 #+END_SRC
-** Get Labs by Keyword Search 
-   This function dynamically fetches the labs based
-   on the 'onkeyup' event occurs on lab name.
-#+NAME: labs-by-keyword-search
-#+BEGIN_SRC javascript
-var getLabsByKeyword = function(){
-  console.log("=================search labs===========");  
-  jQuery.support.cors = true;
-  $('#keyword').keypress(function (e) {                                       
-    if (e.which == 13) {
-      e.preventDefault();
-    }
-  });
-  var keyword = document.getElementById("keyword").value;
-//  console.log(keyword);
-  var data = [];
-//  console.log(labs_data_db);  
-  for (var i=0;i<labs_data_db.length;i++) {
-    var lab = labs_data_db[i];
-    for (var lab_name in lab) {
-      var lab_match = lab[lab_name].toString().toLowerCase();
-      if (lab_match.indexOf(keyword)>-1) {
-        data.push(lab);
-        break;               
-      }
-    }
-  }
-  var labs='';
-  $.each(data, function(key, value){
-    var lab_name = value['lab_name'];
-    var hosting_info = value['hosting_info'];
-    for(var i=0;i< hosting_info.length;i++){
-      var hosted_on = value['hosting_info'][i]['hosted_on'];
-      if (hosting_info.length == 1){
-        var hosted_url = value['hosting_info'][0]['hosted_url'];
-      }
-      else if(labs_hosted_platform == hosted_on)
-      {
-        var hosted_url = value['hosting_info'][i]['hosted_url'];
-      }
-      else
-      {
-        continue;
-      }
-        
-    }
-    var assets = value['assets'];
-//    console.log(assets);
-    for(i=0;i< assets.length;i++){
-      var  asset_type = value['assets'][i]['asset_type']['asset_type'];
-      var path = value['assets'][i]['path'];
-      if (asset_type == 'image'){
-        var image_name = value['assets'][i]['path'];
-//        console.log(image_name);
-        path = lab_images_url + image_name;
-//        console.log(path);
-      }
-    }
-    labs += '<div class=" col-md-3 " style="cursor:pointer;" id='+ lab_name +
-           '> <div class="thumbnail" style="padding: 0px !important;"><a><img class="img-responsive " \
-onclick="javascript:validateAuthentication(this)" src="' + path +'" id="' + hosted_url +
-      '"><div class="caption" style="min-height: 110px;">\
-<h4 onclick="javascript:validateAuthentication(this)"  src="' + path +'" id="' + hosted_url +
-      '" style="text-align:center; color:#2c99ce;" >'+ lab_name +'</h4></a></div></div></div>';
-  });
-//  console.log(labs);
-  var labs_list = '<div class="container-fluid"><div class="row">'+ labs +'</div></div>';
-  deleteFrameInDivision("contentIframe", "contentDiv");
-  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "9500em");
-  insertFrameInDivision(newFrame, "contentDiv");
-  resetContentInIframe(labs);
-};
-
-#+END_SRC
 ** Add Script Tags 
    Script tags are created dynamically and appended to the
    =<head>= tag.
@@ -795,7 +721,6 @@ head.appendChild(favicon);
 <<get-all-institutes>>
 <<get-all-disciplines>>
 <<get-all-labs>>
-<<labs-by-keyword-search>>
 <<mouse-over>>
 <<back-button>>
 <<workshop-usage-data>>
