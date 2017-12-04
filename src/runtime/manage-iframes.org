@@ -1,0 +1,169 @@
+#+TITLE: Manage Iframes
+#+AUTHOR: VLEAD
+#+DATE: <2017-04-06 Thu>
+#+PROPERTY: results output
+#+PROPERTY: exports code
+#+SETUPFILE: ../org-templates/level-1.org
+#+options: ^:nil
+#+LATEX: Literal LaTeX code for export
+
+* Introduction
+  This has the functionality to manage iframes which
+  includes creation, insertion, deletion, setting content to
+  an iframe,..etc
+
+* Manage Iframes
+** Create a frame
+   Provide the attributes, and an iframe is created and
+   returned.  The attributes are name, id, width and height
+   of the frame.
+#+NAME: create-new-iframe
+#+BEGIN_SRC javascript 
+var createNewIframe = function(name, id, width, height) {
+  console.log("=======creating new frame=====");
+  var newIframe = document.createElement("iframe");
+  newIframe.setAttribute("width", width);
+  newIframe.setAttribute("height", height);
+  newIframe.setAttribute("frameBorder", "0");
+  newIframe.name = name;
+  newIframe.id = id;
+  return newIframe;
+};
+
+#+END_SRC
+
+** Insert a Frame in a Division
+   Given a division, and an iframe, the iframe is inserted
+   in the division.
+#+NAME: insert-frame-in-division
+#+BEGIN_SRC javascript 
+var insertFrameInDivision = function(iframe, divId) {
+  console.log("=======inserting iframe in division=====");
+  var divElem = parent.document.getElementById(divId);
+  divElem.appendChild(iframe);
+};
+
+#+END_SRC
+
+** Delete Frame from a Division
+   Given a frame and a division, an iframe within the
+   division is deleted.
+#+NAME: delete-frame-in-division
+#+BEGIN_SRC javascript 
+var deleteFrameInDivision = function(frameId, divId) {
+  console.log("=======inside delete frame=====");
+  if (parent.document.getElementById(divId).hasChildNodes()) {
+    var frameElem = parent.document.getElementById(frameId);
+    if (frameElem !== null) {
+      frameElem.parentNode.removeChild(frameElem);
+      console.log("======deleted====");
+    }
+  }
+};
+
+#+END_SRC
+
+** Change the content of an iframe
+   Sometimes it might be handy to manipulate the contents of
+   an iframe by accessing the elements within the iframe.
+   We show this by loading a =welcome.html= as source of the
+   iframe. The content of the newly created iframe cannot be
+   set immediately, therefore we wait for some time and then
+   set the content of the newly created frame.
+
+#+NAME: set-new-content-in-iframe
+#+BEGIN_SRC javascript 
+var setNewContentInIframe = function(data) {
+  console.log("=======setting new content to content iframe=====");        
+  var iframe = parent.document.getElementById("contentIframe");
+  iframe.sandbox = 'allow-forms allow-scripts allow-same-origin allow-popups';
+//  console.log("element = " + iframe);
+  try {
+    cnt = iframe.contentDocument;
+ //   console.log("cnt: " +  cnt);
+    cnt.write(data);
+  } catch(err) {
+    console.log(err);
+//    setNewContentInIframe(data);
+  }
+  
+};
+
+#+END_SRC
+
+** Set All Lab Data
+   This function sets the lab data from a global variable
+   =labs_data= to an iframe. 
+#+NAME: set-lab-data-in-iframe
+#+BEGIN_SRC js
+var setLabDataInIframe = function() {
+  var iframe = parent.document.getElementById("contentIframe");
+  iframe.sandbox = 'allow-forms allow-scripts allow-same-origin';
+  var content = iframe.contentWindow.document;
+//  console.log(content);
+  content.body.innerHTML = "";
+  content.write(labs_data);
+  addScriptTags();  
+};
+
+#+END_SRC
+
+** Creating the content iframe
+   Displays the content iframe based on the selection of the
+   elements with respect to the header iframe.
+#+NAME: insert-content-iframe
+#+BEGIN_SRC javascript 
+var insertContentIFrame = function() {
+  console.log("=======creating content iframe=====");
+  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "9500em");
+  var division = document.getElementById("contentDiv");
+  insertFrameInDivision(newFrame, division.id);
+};
+
+#+END_SRC
+
+** Creating the footer iframe
+   This defines a footer which is created as an iframe for a
+   html page. A footer includes information about its
+   containing element. It typically contains: authorship
+   information.
+#+NAME: insert-footer-iframe
+#+BEGIN_SRC javascript 
+var insertFooterIFrame = function() {
+  console.log("=======creating footer iframe=====");
+  var newFrame = createNewIframe("footerIframe", "footerIframe", "100%", "390em");
+  var division = document.getElementById("footerDiv");
+  insertFrameInDivision(newFrame, division.id);
+};
+
+#+END_SRC
+
+** Set content in footer iframe
+   Once the footer iframe is created to display the footer
+   we give =http://footer.vlabs.ac.in/footer= as source of
+   the iframe. The content of the footer will be dynamically
+   served from the footer service.
+#+NAME: set-footer-content-in-iframe
+#+BEGIN_SRC javascript
+var setFooterContentInIframe=function() {
+  console.log("=======setting footer in iframe=====");
+  var iframe = document.getElementById("footerIframe");
+  iframe.src = "http://footer.vlabs.ac.in/footer";
+};
+
+#+END_SRC
+
+* Tangle 
+** sources
+*** Javascript
+**** Main JS
+#+BEGIN_SRC javascript :tangle js/manage_iframes.js :eval no :noweb yes 
+<<create-new-iframe>>
+<<set-lab-data-in-iframe>>
+<<insert-frame-in-division>>
+<<delete-frame-in-division>>
+<<insert-content-iframe>>
+<<insert-footer-iframe>>
+<<set-new-content-in-iframe>>
+<<set-footer-content-in-iframe>>
+#+END_SRC
