@@ -1,0 +1,235 @@
+#+TITLE: HTML Files
+#+AUTHOR: VLEAD
+#+DATE: <2017-04-06 Thu>
+#+PROPERTY: results output
+#+PROPERTY: exports code
+#+SETUPFILE: ../org-templates/level-1.org
+#+options: ^:nil
+#+LATEX: Literal LaTeX code for export
+
+* Introduction
+  This has all the html files that are used for vlabs
+  landing pages.  Most of the pages are place holders and
+  the dynamic content that is generated on different events
+  is stuck in to these place holders.
+* Implementation
+** Structure of html
+   On Load, this page invokes =loadIndex()= function which
+   loads the default header, content, and footer pages in
+   place of =headerDiv=, =contentDiv= and =footerDiv=
+   divisions.
+#+NAME: index-html
+#+BEGIN_SRC html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="http://files.vlabs.ac.in/lds/libraries/css/bootsnipp.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="icon" type="image/x-icon" href="http://files.vlabs.ac.in/lds/images/vlabs-logo/favicon.ico">
+    <link rel="stylesheet" href="./css/style.css"/>
+    <script type="text/javascript" src="./js/app-config.js"></script>
+    <script type="text/javascript" src="./js/main.js"></script>
+    <title>Virtual Labs</title>    
+  </head>
+  <body onload="loadIndex()" onpageshow="validateCookie()">
+    <div>
+      <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand main-logo-a"
+               href="http://header.vlabs.ac.in"
+               style=" width:100px; height:40px;
+                      margin-top:-13px">
+              <img src="https://vlabs.ac.in/static/edx-bootstrap-theme/images/logo.7e034286282a.png"
+                   class="img-responsive main-logo"
+                   style="width:100%; maring-top:2px;"></a>
+          </div>
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li id="allLabs" class="disabled">
+                <a onclick="loadAllLabs()" "#" class="dropdown-toggle cursor-pointer" data-toggle="dropdown">All Labs <b ></b></a>
+              </li>
+              <li class="dropdown">
+                <a class="dropdown-toggle cursor-pointer" data-toggle="dropdown"  >Institutes <b class="caret"></b></a>
+                <ul class="dropdown-menu filterInstituteComboBox" id="getInstituteName" >
+                </ul>
+              <li class="dropdown">
+                <a class="dropdown-toggle cursor-pointer" data-toggle="dropdown">Disciplines <b class="caret"></b></a>
+                <ul  class="dropdown-menu filterDisciplineComboBox" >
+                </ul>
+              <li class="dropdown mega-dropdown">
+                <a class="dropdown-toggle cursor-pointer "
+                   data-toggle="dropdown">About
+                  <span class="caret"></span></a>				
+                <ul class="dropdown-menu mega-dropdown-menu">
+                  <li class="col-sm-2">
+                    <ul>
+                      <li class="dropdown-header">Community</li>
+                      <li><a target="_blank" href="https://plus.google.com/communities/104131148292250423165">Teachers</a></li>
+                      <li><a target="_blank" href="https://groups.google.com/a/vlabs.ac.in/forum/#!forum/engineers">Developers</a></li>
+                      <li><a target="_blank" href="https://groups.google.com/a/vlabs.ac.in/forum/#!forum/users">Students</a></li>
+                    </ul>
+                  </li>
+                  <li class="col-sm-3">
+                    <ul>
+                      <li class="dropdown-header">Development</li>
+                      <li><a target="_blank" href="http://dev.vlabs.ac.in/">Virtual Development</a></li>
+                      <li><a target="_blank" href="https://info.vlabs.ac.in/runtime-browser-for-virtual-labs/">Runtime Browser for Virutal Labs</a></li>
+                    </ul>
+                  </li>
+                  <li class="col-sm-2">
+                    <ul>
+                      <li class="dropdown-header">Workshops</li>
+                      <li><a target="_blank" href="https://info.vlabs.ac.in/workshops/">Online</a></li>
+                      <li><a target="_blank" href="https://info.vlabs.ac.in/college-cloud-edition/">College Cloud Edition</a></li>
+                    </ul>
+                  </li>
+                  <li class="col-sm-3">
+                    <ul>
+                      <li class="dropdown-header">FAQ</li>
+                      <li><a target="_blank" href="https://info.vlabs.ac.in/faq/index.html">Virtual Labs</a></li>
+                      <li><a target="_blank" href="https://info.vlabs.ac.in/faq/index.html">Virtuals
+                          College Cloud Edition</a>
+                      </li>
+                      <li><a target="_blank" href="https://info.vlabs.ac.in/faq/index.html">Expression  of Interest for Workshops</a></li>
+                    </ul>
+                  </li>
+                  <li class="col-sm-2">
+                    <ul>
+                      <li class="dropdown-header">Information</li>
+                      <li><a target="_blank" href="https://info.vlabs.ac.in/announcements/index.html">Announcements</a></li>
+                      <li><a target="_blank" href="https://info.vlabs.ac.in/contactus/">Contact us</a></li>
+                      <li><a target="_blank" href="https://info.vlabs.ac.in/2017-summer-internship/">2017-summer-intership</a></li>
+                    </ul>
+                  </li>
+              </li>
+              </ul>
+              </li>
+              </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <form class="navbar-form navbar-left">
+                <div  class="input-group stylish-input-group">
+                  <input id="keyword" onkeyup="javascript:getLabsByKeyword()"
+                         type="text" class="form-control"
+                         placeholder="Lab Name">
+                  <span class="input-group-addon">
+                    <button type="button" id="search"
+                       onclick="javascript:getLabsByKeyword()"
+                       target="content_iframe" class="btn btn-default disabled" type="submit">
+                      <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                  </span>
+                </div>
+              </form>
+              <li><a class ="cursor-pointer" id="register" onclick="setRegisterUrlInContentIframe();"><span class="glyphicon glyphicon-user"></span>Register</a></li>
+              <li><a class ="cursor-pointer" onclick="setLoginUrlInContentIframe('login');" id="login" class="glyphicon glyphicon-log-in"> Login</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      </div>
+<div id="myCarousel" class="carousel slide">
+  <ol class="carousel-indicators">
+  </ol>
+  <div class="carousel-inner">
+    <div class="item active">
+      <img src="http://files.vlabs.ac.in/lds/images/slider-images/slider-img-01.jpg" class="img-responsive">
+      <div class="container">
+        <div class="carousel-caption col-md-8 col-sm-12" style="top:60px;">
+        <h3>Online labs and experiments from top technical institutes.</h3>
+        <h3>Now available in</h1>
+        <p><a href="https://info.vlabs.ac.in/college-cloud-edition/">Offline
+        Edition</a> for your college.</p>
+        <p><a href="https://info.vlabs.ac.in/runtime-browser-for-virtual-labs/">
+        Runtime Browser </a> for Virtual Labs</p>
+          </div>
+      </div>
+    </div>
+  </div>
+  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+    <span class="icon-prev"></span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" data-slide="next">
+    <span class="icon-next"></span>
+  </a>  
+</div>
+</div>
+<div class="container-fluid">
+<div class="row">
+  <div class="features">
+    <div style="visibility: visible;
+                animation-duration: 1000ms; animation-delay: 600ms;
+                animation-name: fadeInDown;"
+         class="col-md-2 col-sm-6 wow fadeInDown animated"
+         data-wow-duration="1000ms" data-wow-delay="600ms">
+      <div class="feature-wrap">
+        <h3 class="text-h3-darkblack-bold"
+            style="text-align: center;">  Labs 175<sup>+</sup> </h3>
+      </div>
+    </div>
+    <div class="features">
+      <div style="visibility: visible; animation-duration:
+            1000ms; animation-delay: 600ms; animation-name:
+            fadeInDown;"
+           class="col-md-3 col-sm-6 wow fadeInDown animated"
+           data-wow-duration="1000ms" data-wow-delay="600ms">
+        <div class="feature-wrap">
+          <h3 class="text-h3-darkblack-bold"
+              style="text-align: center;">Experiments 1700<sup>+</sup></h3>
+        </div>
+      </div>
+      <div style="visibility: visible; animation-duration:
+              1000ms;
+              animation-delay: 600ms; animation-name: fadeInDown;"
+           class="col-md-3 col-sm-6 wow fadeInDown animated"
+           data-wow-duration="1000ms" data-wow-delay="600ms">
+        <div class="feature-wrap">
+          <h3 class="text-h3-darkblack-bold"
+              style="text-align: center;">
+            <a onclick="setUsageInIframe()" href="#"
+               class="broad-labs-a" >Usage</a>
+            <span id="totalusage"></span> <sup>+</sup></h3>
+        </div>
+      </div>                
+      <div style="visibility: visible; animation-duration:
+                  1000ms;
+                  animation-delay: 600ms; animation-name: fadeInDown;"
+           class="col-md-4 col-sm-6 wow fadeInDown animated"
+           data-wow-duration="1000ms" data-wow-delay="600ms">
+        <div class="feature-wrap">
+          <h3 class="text-h3-darkblack-bold"
+              style="text-align: center;">
+            <a onclick="setUsageInIframe()" href="#"
+               class="broad-labs-a">Workshop Usage</a>
+            <span id="usage" ></span> <sup>+</sup></h3>
+        </div>
+      </div>
+    </div>
+    <div id="contentDiv" class="container-fluid" style="padding-top:5em" >
+    </div>
+    <div id="footerDiv" class="container-fluid">
+    </div>
+</body>
+</html>
+
+#+END_SRC
+
+* Tangle 
+** HTML
+#+BEGIN_SRC html :tangle index.html :eval no :noweb yes
+<<index-html>>
+#+END_SRC
