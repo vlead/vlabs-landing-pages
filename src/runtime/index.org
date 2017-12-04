@@ -810,8 +810,13 @@ var addScriptTags = function(){
   js_script.type = "text/javascript";
   js_script.src = js_url;
   var head = contentIframe.contentWindow.document.head;
-//  console.log(head);
   head.appendChild(js_script);
+
+  var auth_js_script = contentIframe.contentWindow.document.createElement("script");
+  var auth_js_url = "./js/auth.js";
+  auth_js_script.type = "text/javascript";
+  auth_js_script.src = auth_js_url;
+  head.appendChild(auth_js_script);
   
   var config_script = contentIframe.contentWindow.document.createElement("script");
   var config_url = "./js/app-config.js";
@@ -842,8 +847,6 @@ var addScriptTags = function(){
   favicon.type = "image/x-icon";
   favicon.href = favicon_url;
   head.appendChild(favicon);
-
-
 
 };
 
