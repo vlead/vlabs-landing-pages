@@ -83,7 +83,7 @@ onclick="getLabsByInstituteName(this, 0)" src="' + image_path +'" id="' + instit
 #+END_SRC
 ** Get Labs by Institute Name
    This function gets the labs of respective institute based
-   on the value of =click= event occurs on discipline name.
+   on the value of =click= event occurs on institute name.
 
 #+NAME: get-labs-by-institute-name
 #+BEGIN_SRC javascript 

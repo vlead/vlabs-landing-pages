@@ -12,10 +12,9 @@
   =vlabs-landing-pages=
 * Labs
 ** Loading all labs
-   This allows to manipulate the content of an iframe by
-   invoking =getAllLabs()= function and set the obtained
-   labs by invoking =setContentInIframe()= in the content
-   iframe.
+   This function loads all the labs into =contentIframe=
+   before does this it deletes the existing =contentIframe=
+   and creates the new one.
 #+NAME: load-all-labs
 #+BEGIN_SRC javascript 
 var loadAllLabs = function() {
@@ -30,12 +29,14 @@ var loadAllLabs = function() {
 #+END_SRC
 
 ** Get All Labs
-   This function will be invoked when =All Labs= tab is
-   clicked. It invokes a call to =LDS= database and fetches
-   all the labs info and calls =setNewContentInIframe()=
-   function to display the data in an iframe. Also calls
-   =addScriptTags()= function to append =main.js=, =jquery=
-   and =app-config= to =<head>= tag as =<script>=.   
+   All the labs from the =LDS= are collected along with
+   images, hyperlinks.  This data is formatted and events
+   are attached.  A div element is created containing this
+   data.  The events attached are =onclick=.  This event
+   =onclick= is attached for both the image and name of the
+   lab.  Once the content is created, there is a call to
+   insert this content in an iframe.
+   
 #+NAME: get-all-labs
 #+BEGIN_SRC  javascript 
 var getAllLabs = function(){ 
@@ -98,19 +99,6 @@ onclick="javascript:validateAuthentication(this)" src="' + path +'" id="' + host
 };
 
  #+END_SRC
-** Get Lab
-#+NAME: get-lab
-#+BEGIN_SRC javascript
-var getLab = function(url){
-    validateAuthentication(url);
-    //hosted_url = url.id;    
-    //var iframe = parent.document.getElementById("contentIframe");
-    //iframe.src = hosted_url;
-    addScriptTags();
-};
-
-#+END_SRC
-
 * Tangle 
 ** sources
 *** Javascript
@@ -118,5 +106,4 @@ var getLab = function(url){
 #+BEGIN_SRC javascript :tangle js/labs.js :eval no :noweb yes 
 <<load-all-labs>>
 <<get-all-labs>>
-<<get-lab>>
 #+END_SRC

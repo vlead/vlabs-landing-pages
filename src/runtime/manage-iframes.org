@@ -14,8 +14,8 @@
 
 * Manage Iframes
 ** Create a frame
-   Provide the attributes, and an iframe is created and
-   returned.  The attributes are name, id, width and height
+   This function creates and returns an iframe with given
+   attributes. The attributes are name, id, width and height
    of the frame.
 #+NAME: create-new-iframe
 #+BEGIN_SRC javascript 
@@ -64,12 +64,10 @@ var deleteFrameInDivision = function(frameId, divId) {
 #+END_SRC
 
 ** Change the content of an iframe
-   Sometimes it might be handy to manipulate the contents of
-   an iframe by accessing the elements within the iframe.
-   We show this by loading a =welcome.html= as source of the
-   iframe. The content of the newly created iframe cannot be
-   set immediately, therefore we wait for some time and then
-   set the content of the newly created frame.
+   Iframe content is updated with the given data. Also make
+   an iframe sand boxed and set the source to it.  Sometimes
+   this is necessary since certain web pages expand out of
+   iframe and these need to be sand boxed.
 
 #+NAME: set-new-content-in-iframe
 #+BEGIN_SRC javascript 
@@ -77,23 +75,19 @@ var setNewContentInIframe = function(data) {
   console.log("=======setting new content to content iframe=====");        
   var iframe = parent.document.getElementById("contentIframe");
   iframe.sandbox = 'allow-forms allow-scripts allow-same-origin allow-popups';
-//  console.log("element = " + iframe);
   try {
     cnt = iframe.contentDocument;
- //   console.log("cnt: " +  cnt);
     cnt.write(data);
   } catch(err) {
     console.log(err);
-//    setNewContentInIframe(data);
   }
-  
 };
 
 #+END_SRC
 
-** Create the content iframe
-   Displays the content iframe based on the selection of the
-   elements with respect to the header iframe.
+** Create the content iframe 
+   This function creates a =contentIframe= and inserts it
+   into =contentDiv=
 #+NAME: insert-content-iframe
 #+BEGIN_SRC javascript 
 var insertContentIFrame = function() {
@@ -106,8 +100,9 @@ var insertContentIFrame = function() {
 #+END_SRC
 
 ** Create the footer iframe
-   The footer iframe named =footerIframe=.  Its width is
-   =100%= and height is =390em=.
+   This function creates a =footerIframe= and inserts it
+   into =footerDiv=
+
 #+NAME: insert-footer-iframe
 #+BEGIN_SRC javascript 
 var insertFooterIFrame = function() {
@@ -135,9 +130,8 @@ var setFooterContentInIframe=function() {
 #+END_SRC
 
 ** Set usage in Iframe
-   This allows to manipulate usage data in the content
-   iframe. The usage data will be set in the content iframe
-   immediately.
+   This function displays the usage data in the
+   =contentIframe=.
 #+NAME: set-usage-in-iframe
 #+BEGIN_SRC javascript 
 var setUsageInIframe = function() {
@@ -148,15 +142,14 @@ var setUsageInIframe = function() {
 
 #+END_SRC
 ** Set All Lab Data
-   This function sets the lab data from a global variable
-   =labs_data= to an iframe. 
+   Iframe content is set with labs data. Labs data is
+   available in a global variable =labs_data=.
 #+NAME: set-lab-data-in-iframe
 #+BEGIN_SRC js
 var setLabDataInIframe = function() {
   var iframe = parent.document.getElementById("contentIframe");
   iframe.sandbox = 'allow-forms allow-scripts allow-same-origin';
   var content = iframe.contentWindow.document;
-//  console.log(content);
   content.body.innerHTML = "";
   content.write(labs_data);
   addScriptTags();  
@@ -172,15 +165,12 @@ var setLabDataInIframe = function() {
 #+BEGIN_SRC javascript 
 var resetContentInIframe = function(data) {
   console.log("=======re setting content=====");        
-//  console.log(data);
   var iframe = parent.document.getElementById("contentIframe");
   iframe.sandbox = 'allow-scripts allow-same-origin allow-popups allow-forms';
   var content = iframe.contentWindow.document;
-//  console.log(content);
   content.body.innerHTML="";
   content.write(data);
   addScriptTags();
-
 };
 
 #+END_SRC
