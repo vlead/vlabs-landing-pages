@@ -562,6 +562,18 @@ var addScriptTags = function(){
   auth_js_script.type = "text/javascript";
   auth_js_script.src = auth_js_url;
   head.appendChild(auth_js_script);
+
+  var manage_iframes_js_script = contentIframe.contentWindow.document.createElement("script");
+  var manage_iframes_js_url = "./js/manage_iframes.js";
+  manage_iframes_js_script.type = "text/javascript";
+  manage_iframes_js_script.src = manage_iframes_js_url;
+  head.appendChild(manage_iframes_js_script);
+
+  var search_js_script = contentIframe.contentWindow.document.createElement("script");
+  var search_js_url = "./js/search.js";
+  search_js_script.type = "text/javascript";
+  search_js_script.src = search_js_url;
+  head.appendChild(search_js_script);
   
   var config_script = contentIframe.contentWindow.document.createElement("script");
   var config_url = "./js/app-config.js";
