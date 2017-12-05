@@ -8,14 +8,13 @@
 #+LATEX: Literal LaTeX code for export
 
 * Introduction
-  This has functionality all the operations related to
-  =Discipline= entity =vlabs-landing-pages=
+  This has functionality for all the operations related to
+  =Discipline= 
 * Disciplines
-** Loading all disciplines
-   This allows to manipulate the content of an iframe by
-   invoking =getAllDisciplines()= function and set the
-   obtained disciplines by invoking =setContentInIframe()=
-   in the content iframe.
+** Load all disciplines
+   This function loads all the disciplines into an iframe.
+   Before loading it removes existing iframe and creates new
+   one.
 #+NAME: load-all-disciplines
 #+BEGIN_SRC javascript 
 var loadAllDisciplines = function() {
@@ -77,19 +76,14 @@ style="cursor: pointer; padding: 0px !important; padding-top:15px !important;"> 
     
 #+END_SRC
 ** Get Labs by Discipline Name
-   =getAllDisciplines()= function will invokes this
-   function. This function dynamically fetches the labs
-   based on the 'click' event occurs on discipline
-   name. This function also invokes
-   =resetContentInIframe(data)= function to replace
-   currently available content with the given =data=.
+   This function gets the labs of respective discipline
+   based on the =click= event occurs on discipline name.
 
 #+NAME: get-labs-by-discipline-name
 #+BEGIN_SRC javascript 
 var getLabsByDisciplineName = function(image, flag) {
   console.log("===========inside getLabsByDisciplineName==========");
- // console.log("===========flag==========");
-//  console.log(flag);
+
   if (flag==1){
     deleteFrameInDivision("contentIframe", "contentDiv");
     var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "650em");
@@ -97,9 +91,7 @@ var getLabsByDisciplineName = function(image, flag) {
   }
   var discipline_name = image.id;
   var labs_url = lds_url+"/labs";
-//  console.log(labs_url);
   var labs_by_dis_url = labs_url+"?discipline_name="+ discipline_name;
-//  console.log(labs_by_dis_url);
   $.getJSON(labs_by_dis_url, function(data) {
     var labs = '';
     $.each(data, function(key, value){
@@ -121,15 +113,12 @@ var getLabsByDisciplineName = function(image, flag) {
         
       }
       var assets = value['assets'];
-//      console.log(assets);
       for(var i=0;i< assets.length;i++){
         var  asset_type = value['assets'][i]['asset_type']['asset_type'];
         var path = value['assets'][i]['path'];
         if (asset_type == 'image'){
           var image_name = value['assets'][i]['path'];
-//          console.log(image_name);
           path = lab_images_url + image_name;
-//          console.log(path);
         }
       }
 
@@ -140,37 +129,32 @@ onclick="javascript:validateAuthentication(this)" src="' + path +'" id="' + host
 <h4 onclick="javascript:validateAuthentication(this)"  src="' + path +'" id="' + hosted_url +
       '" style="text-align:center; color:#2c99ce;" >'+ lab_name +'</h4></a></div></div></div>';
    });
-//    console.log(labs);
     var labs_list = '<div class="container-fluid"><div class="row">'+ labs +'</div></div>';
     resetContentInIframe(labs);
   })
     .done(function() {
-//      console.log( "second success" );
+     console.log( "second success" );
     })
     .fail(function() {
-//      console.log( "error" );
+     console.log( "error" );
       location.reload();
     })
     .always(function() {
-//      console.log( "complete" );
+     console.log( "complete" );
     });
-  
 };
 
-
 #+END_SRC
-** Get All Disciplines in Combo box
-   =getAllDisciplinesInCombobox()= function will invokes
-   this function. This function dynamically fetches the labs
-   based on the 'hover' event occurs on discipline which
-   gives a dropdown with all disciplines and each discipline
-   respectively.
+** Get All Disciplines in drop down menu
+   This function does the following
+   1. Gets all the disciplines in drop down menu
+   2. Display all the labs into =contentIframe= of chosen
+      discipline from drop down menu
 #+NAME: get-all-disciplines-in-combobox
 #+BEGIN_SRC javascript
 var getAllDisciplinesInCombobox = function(){
   console.log("=========inside get all disciplines in combobox==========");
   var discipline_url = lds_url + "/disciplines";
-//  console.log(discipline_url);
   $.getJSON(discipline_url, function(data) {
     var disciplines = '';
     $.each(data, function(key, value){
