@@ -77,7 +77,8 @@ style="cursor: pointer; padding: 0px !important; padding-top:15px !important;"> 
 #+END_SRC
 ** Get Labs by Discipline Name
    This function gets the labs of respective discipline
-   based on the =click= event occurs on discipline name.
+   based on the value of =click= event occurs on discipline
+   name.
 
 #+NAME: get-labs-by-discipline-name
 #+BEGIN_SRC javascript 
