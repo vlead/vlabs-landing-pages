@@ -117,12 +117,15 @@ function validateCookie(){
    This function evaluates the post message which is being
    sent from =openedx= website and sets the browser cookie
    to either =session_status=logged in= or
-   =session_status=logged out= based on login/logout events.
-   - If user is logged in successfully 
+   =session_status=logged out= based on post message data.
+   - If post message contains sub string =MY COURSES= then
+     cookie sets to =session_status=logged in=
+   - If post message contains sub string =Welcome to the
+     Open= then cookie sets to =session_status=logged out=
 #+NAME: validate-post-message
 #+BEGIN_SRC javascript 
 function validatePostMessage(evt) {
-  if (evt.origin !== "http://themeless.vlabs.ac.in") {
+  if (evt.origin != "http://themeless.vlabs.ac.in") {
     console.log("Unauthorized domain");
   }
   else {
@@ -156,7 +159,7 @@ function validatePostMessage(evt) {
 ** Configure post message script inside openedx server
    Following code snippet is to be configured in =openedx=
    server. This is required to send the post messages to
-   destination server.  Place the following snippet inside
+   destination server. Place the following snippet inside
    =/edx/var/nginx/server-static/message.html=
 #+BEGIN_SRC html
 <html>
@@ -165,7 +168,7 @@ function validatePostMessage(evt) {
       var postM = function() {
       textOfContentIframe = document.body.innerText;
       console.log("Sender message: " + textOfContentIframe);
-      console.log("Referrer: " + document.referrer);
+      //console.log("Referrer: " + document.referrer);
       msg = window.parent.postMessage(textOfContentIframe, "http://header.vlabs.ac.in");
       };
     </script>
