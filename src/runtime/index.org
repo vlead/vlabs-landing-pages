@@ -52,23 +52,6 @@ var loadIndex = function() {
 };
 
 #+END_SRC
-** Loading all disciplines
-   This allows to manipulate the content of an iframe by
-   invoking =getAllDisciplines()= function and set the
-   obtained disciplines by invoking =setContentInIframe()=
-   in the content iframe.
-#+NAME: load-all-disciplines
-#+BEGIN_SRC javascript 
-var loadAllDisciplines = function() {
-  console.log("=======loading all disciplines=====");
-  deleteFrameInDivision("contentIframe", "contentDiv");
-  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "1180em");
-  insertFrameInDivision(newFrame, "contentDiv");
-  getAllDisciplines();
-};
-
-#+END_SRC
-
 ** Loading all institutes
    This allows to manipulate the content of an iframe by
    invoking =getAllInstitutes()= function and set the
@@ -169,54 +152,6 @@ onclick="getLabsByInstituteName(this, 0)" src="' + image_path +'" id="' + instit
 };
 
 #+END_SRC
-** Get All Disciplines
-   This function will be invoked when =All Disciplines= tab
-   is clicked. It invokes a call to =LDS= database and
-   fetches all the disciplines info and calls
-   =setNewContentInIframe()= function to display the data in
-   an iframe. Also calls =addScriptTags()= function to
-   append =main.js=, =jquery= and =app-config= to =<head>=
-   tag as =<script>=.
-#+NAME: get-all-disciplines
-#+BEGIN_SRC javascript 
-var getAllDisciplines = function(){ 
-  console.log("=========inside get all disciplines==========");
-  var dis_url = lds_url+"/disciplines";
-//  console.log(dis_url);
-  $.getJSON(dis_url, function(data) {
-    var disciplines = '';
-    $.each(data, function(key, value){
-    var discipline_name = value['discipline_name'];
-    var image_name = value['assets'][0]['path'];
-    var image_path = discipline_images_url + image_name;
-     disciplines += '<div class="col-lg-3 col-md-4 col-xs-12 thumb"  \
- onclick="getLabsByDisciplineName(this, 0)" src="'
-    + image_path +'" id="' + discipline_name + '"> <div class="thumbnail"  \
-style="cursor: pointer; padding: 0px !important; padding-top:15px !important;"> <a><img class="img-responsive" onclick="getLabsByDisciplineName(this, 0)" src="'
-    + image_path +'" id="' + discipline_name + '"style="cursor: pointer;"> \
-<div class="caption" style="min-height: 110px;">\
-<h4 onclick="getLabsByDisciplineName(this, 0)"  src="' + image_path +'" id="' + discipline_name +
-      '" style="text-align:center; color:#2c99ce;" >'+ discipline_name +'</h4></a></div></div></div>';
-    });
-    var discipline_list = '<div class="container-fluid"><div class="row">'
-    + disciplines +'</div></div>';
-    
-//    console.log(disciplines);
-    setNewContentInIframe(discipline_list);
-    addScriptTags();
-    })
-    .done(function() {
-//    console.log( "second success" );
-    })
-    .fail(function() {
-//    console.log( "error" );
-    })
-    .always(function() {
-//    console.log( "complete" );
-    });
-    };
-    
-#+END_SRC
 ** Get All Labs
    This function will be invoked when =All Labs= tab is
    clicked. It invokes a call to =LDS= database and fetches
@@ -302,89 +237,6 @@ var getLab = function(url){
     //iframe.src = hosted_url;
     addScriptTags();
 };
-
-#+END_SRC
-** Get Labs by Discipline Name
-   =getAllDisciplines()= function will invokes this
-   function. This function dynamically fetches the labs
-   based on the 'click' event occurs on discipline
-   name. This function also invokes
-   =resetContentInIframe(data)= function to replace
-   currently available content with the given =data=.
-
-#+NAME: get-labs-by-discipline-name
-#+BEGIN_SRC javascript 
-var getLabsByDisciplineName = function(image, flag) {
-  console.log("===========inside getLabsByDisciplineName==========");
- // console.log("===========flag==========");
-//  console.log(flag);
-  if (flag==1){
-    deleteFrameInDivision("contentIframe", "contentDiv");
-    var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "650em");
-    insertFrameInDivision(newFrame, "contentDiv");
-  }
-  var discipline_name = image.id;
-  var labs_url = lds_url+"/labs";
-//  console.log(labs_url);
-  var labs_by_dis_url = labs_url+"?discipline_name="+ discipline_name;
-//  console.log(labs_by_dis_url);
-  $.getJSON(labs_by_dis_url, function(data) {
-    var labs = '';
-    $.each(data, function(key, value){
-      var lab_name = value['lab_name'];
-      var hosting_info = value['hosting_info'];
-      for(var i=0;i< hosting_info.length;i++){
-        var hosted_on = value['hosting_info'][i]['hosted_on'];
-        if (hosting_info.length == 1){
-          var hosted_url = value['hosting_info'][0]['hosted_url'];
-        }
-        else if(labs_hosted_platform == hosted_on)
-        {
-          hosted_url = value['hosting_info'][i]['hosted_url'];
-        }
-        else
-        {
-          continue;
-        }
-        
-      }
-      var assets = value['assets'];
-//      console.log(assets);
-      for(var i=0;i< assets.length;i++){
-        var  asset_type = value['assets'][i]['asset_type']['asset_type'];
-        var path = value['assets'][i]['path'];
-        if (asset_type == 'image'){
-          var image_name = value['assets'][i]['path'];
-//          console.log(image_name);
-          path = lab_images_url + image_name;
-//          console.log(path);
-        }
-      }
-
-      labs += '<div class=" col-md-3 " id='+ lab_name +
-           '> <div class="thumbnail" style="cursor:pointer; padding: 0px !important;"><a><img class="img-responsive " \
-onclick="javascript:validateAuthentication(this)" src="' + path +'" id="' + hosted_url +
-      '"><div class="caption" style="min-height: 110px;">\
-<h4 onclick="javascript:validateAuthentication(this)"  src="' + path +'" id="' + hosted_url +
-      '" style="text-align:center; color:#2c99ce;" >'+ lab_name +'</h4></a></div></div></div>';
-   });
-//    console.log(labs);
-    var labs_list = '<div class="container-fluid"><div class="row">'+ labs +'</div></div>';
-    resetContentInIframe(labs);
-  })
-    .done(function() {
-//      console.log( "second success" );
-    })
-    .fail(function() {
-//      console.log( "error" );
-      location.reload();
-    })
-    .always(function() {
-//      console.log( "complete" );
-    });
-  
-};
-
 
 #+END_SRC
 ** Get Labs by Institute Name
@@ -503,44 +355,6 @@ var getAllInstitutesInCombobox = function(){
 };
 
 #+END_SRC
-** Get All Disciplines in Combo box
-   =getAllDisciplinesInCombobox()= function will invokes
-   this function. This function dynamically fetches the labs
-   based on the 'hover' event occurs on discipline which
-   gives a dropdown with all disciplines and each discipline
-   respectively.
-#+NAME: get-all-disciplines-in-combobox
-#+BEGIN_SRC javascript
-var getAllDisciplinesInCombobox = function(){
-  console.log("=========inside get all disciplines in combobox==========");
-  var discipline_url = lds_url + "/disciplines";
-//  console.log(discipline_url);
-  $.getJSON(discipline_url, function(data) {
-    var disciplines = '';
-    $.each(data, function(key, value){
-    var discipline_name = value['discipline_name'];
-      disciplines += '<li onclick="getLabsByDisciplineName(this, 1)" value="'
-        + discipline_name + '" id="' + discipline_name + '"><a >' +
-        discipline_name + '</a></li>';
-    });
-    var discipline_list = '<li onclick="loadAllDisciplines()">\
-<a>All Disciplines</a></li>' + disciplines;
-//    console.log(discipline_list);
-    $('.filterDisciplineComboBox').append(discipline_list);
-
-    })
-    .done(function() {
-//    console.log( "second success" );
-    })
-    .fail(function() {
-//    console.log( "error" );
-    })
-    .always(function() {
-//    console.log( "complete" );
-    });
-    };
-
-#+END_SRC
 ** Add Script Tags 
    Script tags are created dynamically and appended to the
    =<head>= tag.
@@ -574,6 +388,12 @@ var addScriptTags = function(){
   search_js_script.type = "text/javascript";
   search_js_script.src = search_js_url;
   head.appendChild(search_js_script);
+  
+  var disciplines_js_script = contentIframe.contentWindow.document.createElement("script");
+  var disciplines_js_url = "./js/disciplines.js";
+  disciplines_js_script.type = "text/javascript";
+  disciplines_js_script.src = disciplines_js_url;
+  head.appendChild(disciplines_js_script);
   
   var config_script = contentIframe.contentWindow.document.createElement("script");
   var config_url = "./js/app-config.js";
@@ -718,7 +538,6 @@ head.appendChild(favicon);
 <<post-message-event-listner>>
 <<load-index>>
 <<get-all-institutes-in-combobox>>
-<<get-labs-by-discipline-name>>
 <<get-labs-by-institute-name>>
 <<reset-content>>
 <<add-script-tags>>
@@ -726,12 +545,9 @@ head.appendChild(favicon);
 <<set-login-url-to-content-iframe>>
 <<validate-authentication>>
 <<set-usage-in-iframe>>
-<<get-all-disciplines-in-combobox>>
-<<load-all-disciplines>>
 <<load-all-institutes>>
 <<load-all-labs>>
 <<get-all-institutes>>
-<<get-all-disciplines>>
 <<get-all-labs>>
 <<mouse-over>>
 <<back-button>>

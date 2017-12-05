@@ -1,3 +1,5 @@
+#+TITLE: Configuration
+#+AUTHOR: VLEAD
 #+DATE: <2017-04-06 Thu>
 #+PROPERTY: results output
 #+PROPERTY: exports code
