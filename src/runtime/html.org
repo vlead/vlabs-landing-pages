@@ -40,6 +40,7 @@
     <script type="text/javascript" src="./js/manage_iframes.js"></script>
     <script type="text/javascript" src="./js/search.js"></script>
     <script type="text/javascript" src="./js/disciplines.js"></script>
+    <script type="text/javascript" src="./js/institutes.js"></script>
     <title>Virtual Labs</title>    
   </head>
   <body onload="loadIndex()" onpageshow="validateCookie()">

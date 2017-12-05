@@ -52,24 +52,6 @@ var loadIndex = function() {
 };
 
 #+END_SRC
-** Loading all institutes
-   This allows to manipulate the content of an iframe by
-   invoking =getAllInstitutes()= function and set the
-   obtained institutes by invoking =setContentInIframe()= in
-   the content iframe.
-
-#+NAME:load-all-institutes
-#+BEGIN_SRC javascript 
-var loadAllInstitutes = function() {
-  console.log("=======loading all institutes=====");
-  deleteFrameInDivision("contentIframe", "contentDiv");
-  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "790em");
-  insertFrameInDivision(newFrame, "contentDiv");
-  getAllInstitutes();
-};
-
-#+END_SRC
-
 ** Loading all labs
    This allows to manipulate the content of an iframe by
    invoking =getAllLabs()= function and set the obtained
@@ -98,57 +80,6 @@ var setUsageInIframe = function() {
   console.log("=======setting usage to content iframe=====");        
   var iframe = parent.document.getElementById("contentIframe");
   iframe.src = "https://info.vlabs.ac.in/analytics/analytics/usage.html";
-};
-
-#+END_SRC
-** Get All Institutes
-   This function will be invoked when =All Institutes= tab
-   is clicked. It invokes a call to =LDS= database and
-   fetches all the institutes info and calls
-   =setNewContentInIframe()= function to display the data in
-   an iframe. Also calls =addScriptTags()= function to
-   append =main.js=, =jquery= and =app-config= to =<head>=
-   tag as =<script>=.
-
-#+NAME: get-all-institutes
-#+BEGIN_SRC javascript 
-var getAllInstitutes = function(){ 
-  console.log("=========inside get all institutes==========");
-  var institute_url = lds_url+"/institutes";
-//  console.log(institute_url);
-  $.getJSON(institute_url, function(data) {
-    var institutes = '';
-    $.each(data, function(key, value){
-      var institute_name = value['institute_name'];
-      var image_name = value['assets'][0]['path'];
-      var image_path = institute_images_url + image_name;
-
-institutes += '<div class="col-lg-3 col-md-4 col-xs-12 thumb" \
- onclick="getLabsByInstituteName(this, 0)" src="' + image_path +'" id="' + institute_name +
-      '"><div class="thumbnail" \
-style="cursor:pointer; padding: 0px !important; padding-top:15px \
-!important;"> <a><img class="img-responsive " \
-onclick="getLabsByInstituteName(this, 0)" src="' + image_path +'" id="' + institute_name +
-      '"><div class="caption" style="min-height: 110px;">\
-<h4 onclick="getLabsByInstituteName(this, 0)"  src="' + image_path +'" id="' + institute_name +
-      '" style="text-align:center; color:#2c99ce;" >'+ institute_name +'</h4></a></div></div></div>';
-          });
-
-    var institute_list = '<div class="container-fluid"><div class="row">'
-        + institutes +'</div></div>';
-//    console.log(institutes);
-    setNewContentInIframe(institute_list);
-    addScriptTags();
-  })
-    .done(function() {
-//      console.log( "second success" );
-    })
-    .fail(function() {
-//      console.log( "error" );
-    })
-    .always(function() {
-//      console.log( "complete" );
-    });
 };
 
 #+END_SRC
@@ -239,122 +170,6 @@ var getLab = function(url){
 };
 
 #+END_SRC
-** Get Labs by Institute Name
-   =getAllInstitutes()= function will invokes this
-   function.This function dynamically fetches the labs based
-   on the 'click' event occurs on institute name.
-
-#+NAME: get-labs-by-institute-name
-#+BEGIN_SRC javascript 
-var getLabsByInstituteName = function(image, flag) {
-  console.log("===========inside getLabsByDisciplineName==========");
-//  console.log("===========flag==========");
-//  console.log(flag);
-  if (flag==1){
-    deleteFrameInDivision("contentIframe", "contentDiv");
-    var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "650em");
-    insertFrameInDivision(newFrame, "contentDiv");
-  }
-  var institute_name = image.id;
-  var labs_url = lds_url+"/labs";
-//  console.log(labs_url);
-  var labs_by_institute_url = labs_url+"?institute_name="+ institute_name;
-  console.log(labs_by_institute_url);
-  $.getJSON(labs_by_institute_url, function(data) {
-    var labs = '';
-    $.each(data, function(key, value){
-      var lab_name = value['lab_name'];
-      var hosting_info = value['hosting_info'];
-      for(var i=0;i< hosting_info.length;i++){
-        var hosted_on = value['hosting_info'][i]['hosted_on'];
-        if (hosting_info.length == 1){
-          var hosted_url = value['hosting_info'][0]['hosted_url'];
-        }
-        else if(labs_hosted_platform == hosted_on)
-        {
-          hosted_url = value['hosting_info'][i]['hosted_url'];
-        }
-        else
-        {
-          continue;
-        }
-        
-      }
-      var assets = value['assets'];
-//      console.log(assets);
-      for(var i=0;i< assets.length;i++){
-        var  asset_type = value['assets'][i]['asset_type']['asset_type'];
-        var path = value['assets'][i]['path'];
-        if (asset_type == 'image'){
-          var image_name = value['assets'][i]['path'];
-  //        console.log(image_name);
-          path = lab_images_url + image_name;
- //         console.log(path);
-        }
-      }
-      labs += '<div class=" col-md-3 " id='+ lab_name +
-           '> <div class="thumbnail" style="cursor:pointer; padding: 0px !important;"><a><img class="img-responsive " \
-onclick="javascript:validateAuthentication(this)" src="' + path +'" id="' + hosted_url +
-      '"><div class="caption" style="min-height: 110px;">\
-<h4 onclick="javascript:validateAuthentication(this)"  src="' + path +'" id="' + hosted_url +
-      '" style="text-align:center; color:#2c99ce;" >'+ lab_name +'</h4></a></div></div></div>';
-
-    });
-//    console.log(labs);
-    var labs_list = '<div class="container-fluid"><div class="row">'+ labs +'</div></div>';
-    resetContentInIframe(labs);
-  })
-  .done(function() {
-//      console.log( "second success" );
-    })
-    .fail(function() {
-//      console.log( "error" );
-//      location.reload();
-    })
-    .always(function() {
-//      console.log( "complete" );
-    });
-};
-
-#+END_SRC
-
-** Get All Institutes in Combo box
-   =getAllInstitutesInCombobox()= function will invokes this
-   function. This function dynamically fetches the labs
-   based on the 'hover' event occurs on institute which
-   gives a dropdown with all institutes and each institute
-   respectively.
-#+NAME: get-all-institutes-in-combobox
-#+BEGIN_SRC javascript
-var getAllInstitutesInCombobox = function(){
-  console.log("=========inside get all institutes in combobox==========");
-  var institute_url = lds_url+"/institutes";
-//  console.log(institute_url);
-  $.getJSON(institute_url, function(data) {
-    var institutes = '';
-    $.each(data, function(key, value){
-      var institute_name = value['institute_name'];
-      institutes +=  '<li onclick="getLabsByInstituteName(this, 1)" value="'
-        + institute_name + '" id="' + institute_name + '"><a >' +
-        institute_name + '</a></li>';
-    });
-    var institute_list = '<li onclick="loadAllInstitutes()">\
-<a >All Institutes</a></li>' + institutes;
-//    console.log(institute_list);
-    $('.filterInstituteComboBox').append(institute_list);
-  })
-    .done(function() {
-//      console.log( "second success" );
-    })
-    .fail(function() {
-//      console.log( "error" );
-    })
-    .always(function() {
-//      console.log( "complete" );
-    });
-};
-
-#+END_SRC
 ** Add Script Tags 
    Script tags are created dynamically and appended to the
    =<head>= tag.
@@ -394,6 +209,12 @@ var addScriptTags = function(){
   disciplines_js_script.type = "text/javascript";
   disciplines_js_script.src = disciplines_js_url;
   head.appendChild(disciplines_js_script);
+
+  var institutes_js_script = contentIframe.contentWindow.document.createElement("script");
+  var institutes_js_url = "./js/institutes.js";
+  institutes_js_script.type = "text/javascript";
+  institutes_js_script.src = institutes_js_url;
+  head.appendChild(institutes_js_script);
   
   var config_script = contentIframe.contentWindow.document.createElement("script");
   var config_url = "./js/app-config.js";
@@ -537,17 +358,13 @@ head.appendChild(favicon);
 #+BEGIN_SRC javascript :tangle js/main.js :eval no :noweb yes 
 <<post-message-event-listner>>
 <<load-index>>
-<<get-all-institutes-in-combobox>>
-<<get-labs-by-institute-name>>
 <<reset-content>>
 <<add-script-tags>>
 <<set-register-url-to-content-iframe>>
 <<set-login-url-to-content-iframe>>
 <<validate-authentication>>
 <<set-usage-in-iframe>>
-<<load-all-institutes>>
 <<load-all-labs>>
-<<get-all-institutes>>
 <<get-all-labs>>
 <<mouse-over>>
 <<back-button>>
