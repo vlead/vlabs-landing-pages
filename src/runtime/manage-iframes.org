@@ -91,7 +91,7 @@ var setNewContentInIframe = function(data) {
 
 #+END_SRC
 
-** Creating the content iframe
+** Create the content iframe
    Displays the content iframe based on the selection of the
    elements with respect to the header iframe.
 #+NAME: insert-content-iframe
@@ -105,11 +105,9 @@ var insertContentIFrame = function() {
 
 #+END_SRC
 
-** Creating the footer iframe
-   This defines a footer which is created as an iframe for a
-   html page. A footer includes information about its
-   containing element. It typically contains: authorship
-   information.
+** Create the footer iframe
+   The footer iframe named =footerIframe=.  Its width is
+   =100%= and height is =390em=.
 #+NAME: insert-footer-iframe
 #+BEGIN_SRC javascript 
 var insertFooterIFrame = function() {

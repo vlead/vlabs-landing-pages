@@ -29,13 +29,14 @@ var loadAllDisciplines = function() {
 #+END_SRC
 
 ** Get All Disciplines
-   This function will be invoked when =All Disciplines= tab
-   is clicked. It invokes a call to =LDS= database and
-   fetches all the disciplines info and calls
-   =setNewContentInIframe()= function to display the data in
-   an iframe. Also calls =addScriptTags()= function to
-   append =main.js=, =jquery= and =app-config= to =<head>=
-   tag as =<script>=.
+   All the disciplines from the =LDS= are collected along
+   with images, hyperlinks.  This data is formatted and
+   events are attached.  A div element is created containing
+   this data.  The events attached are =onclick= and the
+   handler loads the labs associated with the discipline.
+   This event =onclick= is attached for both the image and
+   name of the discipline.  Once the content is created,
+   there is a call to insert this content in an iframe.
 #+NAME: get-all-disciplines
 #+BEGIN_SRC javascript 
 var getAllDisciplines = function(){ 
@@ -59,19 +60,18 @@ style="cursor: pointer; padding: 0px !important; padding-top:15px !important;"> 
     });
     var discipline_list = '<div class="container-fluid"><div class="row">'
     + disciplines +'</div></div>';
-    
-//    console.log(disciplines);
+
     setNewContentInIframe(discipline_list);
     addScriptTags();
     })
     .done(function() {
-//    console.log( "second success" );
+      console.log( "second success" );
     })
     .fail(function() {
-//    console.log( "error" );
+      console.log( "error" );
     })
     .always(function() {
-//    console.log( "complete" );
+      console.log( "complete" );
     });
     };
     

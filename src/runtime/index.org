@@ -23,12 +23,20 @@
 
 * Implementation
 ** Index page on load 
-   An index initially loads with a header, discipline
-   content and footer set the content in respective iframe
-   by invoking, =setContentInIframe()=,
-   =setFooterContentInIframe()= functions. This function
-   also makes a parallel request to get the labs and updates
-   the global variable =labs_data=.
+   Every page has a controller, content and footer.  Both
+   the content and the footer are served from iframes.  The
+   content is either:
+   1. list of disciplines
+   2. list of institutes
+   3. list of labs which can either be:
+      1. labs of a discipline
+      2. labs of an institute or
+      3. all labs
+      or
+   4. the lab itself. 
+
+   On the initial load,  the content lists all the
+   disciplines.  
 
 #+NAME: load-index
 #+BEGIN_SRC js
@@ -49,111 +57,6 @@ var loadIndex = function() {
   loadAllDisciplines();
   insertFooterIFrame();
   setFooterContentInIframe();
-};
-
-#+END_SRC
-** Loading all labs
-   This allows to manipulate the content of an iframe by
-   invoking =getAllLabs()= function and set the obtained
-   labs by invoking =setContentInIframe()= in the content
-   iframe.
-#+NAME: load-all-labs
-#+BEGIN_SRC javascript 
-var loadAllLabs = function() {
-  console.log("=======loading all labs=====");
-  deleteFrameInDivision("contentIframe", "contentDiv");
-  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "9500em");
-  insertFrameInDivision(newFrame, "contentDiv");
-  var labs = getAllLabs();
-  setLabDataInIframe();
-};
-
-#+END_SRC
-
-** Get All Labs
-   This function will be invoked when =All Labs= tab is
-   clicked. It invokes a call to =LDS= database and fetches
-   all the labs info and calls =setNewContentInIframe()=
-   function to display the data in an iframe. Also calls
-   =addScriptTags()= function to append =main.js=, =jquery=
-   and =app-config= to =<head>= tag as =<script>=.   
-#+NAME: get-all-labs
-#+BEGIN_SRC  javascript 
-var getAllLabs = function(){ 
-  console.log("=========inside get all labs==========");
-  var lab_url = lds_url+"/labs";
-//  console.log(lab_url);
-  $.getJSON(lab_url, function(data) {
-    var labs = '';
-    $.each(data, function(key, value){
-      var lab_name = value['lab_name'];
-      var hosting_info = value['hosting_info'];
-      for(var i=0;i< hosting_info.length;i++){
-        var hosted_on = value['hosting_info'][i]['hosted_on'];
-        if (hosting_info.length == 1){
-          var hosted_url = value['hosting_info'][0]['hosted_url'];
-        }
-        else if(labs_hosted_platform == hosted_on)
-        {
-           hosted_url = value['hosting_info'][i]['hosted_url'];
-        }
-        else
-        {
-          continue;
-        }
-        
-      }
-      var assets = value['assets'];
-//      console.log(assets);
-      for(i=0;i< assets.length;i++){
-        var  asset_type = value['assets'][i]['asset_type']['asset_type'];
-        var path = value['assets'][i]['path'];
-        if (asset_type == 'image'){
-          var image_name = value['assets'][i]['path'];
-//          console.log(image_name);
-           path = lab_images_url + image_name;
-//          console.log(path);
-        }
-      }
-      labs += '<div class=" col-md-3 " id='+ lab_name +
-        '> <div class="thumbnail" style="cursor:pointer; padding: 0px !important;"><a><img class="img-responsive " \
-onclick="javascript:validateAuthentication(this)" src="' + path +'" id="' + hosted_url +
-      '"><div class="caption" style="min-height: 110px;">\
-<h4 onclick="javascript:validateAuthentication(this)"  src="' + path +'" id="' + hosted_url +
-        '" style="text-align:center; color:#2c99ce;" >'+ lab_name +'</h4></a></div></div></div>';
-    });
-//    console.log(labs);
-    var labs_list = '<div class="container-fluid"><div class="row">'+ labs +'</div></div>';
-    labs_data = labs_list;
-//    console.log(labs_data);
-    labs_data_db = data;
-    var all_labs_element = document.getElementById("allLabs");
-    all_labs_element.classList.remove("disabled");
-    var search_element = document.getElementById("search");
-    search_element.classList.remove("disabled");
-    addScriptTags();
-  })
-    .done(function() {
-//      console.log( "second success" );
-    })
-    .fail(function() {
-//      console.log( "error" );
-    })
-    .always(function() {
-//      console.log( "complete" );
-    });
-};
-
- #+END_SRC
-** Get Lab
-#+NAME: get-lab
-#+BEGIN_SRC javascript
-var getLab = function(url){
-    validateAuthentication(url);
-    //hosted_url = url.id;    
-    //var iframe = parent.document.getElementById("contentIframe");
-    //iframe.src = hosted_url;
-    addScriptTags();
 };
 
 #+END_SRC
@@ -243,14 +146,6 @@ var addScriptTags = function(){
 
 #+END_SRC
 
-** Back button
-#+NAME: back-button
-#+BEGIN_SRC javascript 
-/*bajb_backdetect.OnBack = function()
-{
-alert('You clicked it!');
-}*/
-#+END_SRC
 ** Mouse Over
    This function allows the dropdown menu on the mousehover
    event.
@@ -271,6 +166,8 @@ $(".dropdown").hover(
 #+END_SRC
 
 ** Favicon
+   =Favicon= image is dynamically created and appended to
+   the =<head>= tag.
 #+NAME: favicon
 #+BEGIN_SRC javascript 
 master = window.parent.document;
@@ -288,19 +185,8 @@ head.appendChild(favicon);
 *** Javascript
 **** Main JS
 #+BEGIN_SRC javascript :tangle js/main.js :eval no :noweb yes 
-<<post-message-event-listner>>
 <<load-index>>
 <<add-script-tags>>
-<<set-register-url-to-content-iframe>>
-<<set-login-url-to-content-iframe>>
-<<validate-authentication>>
-<<load-all-labs>>
-<<get-all-labs>>
 <<mouse-over>>
-<<back-button>>
-<<workshop-usage-data>>
-<<total-usage-data>>
-<<validate-cookie>>
-<<validate-post-message>>
 #+END_SRC
 
