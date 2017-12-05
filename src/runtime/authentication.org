@@ -12,8 +12,10 @@
   =vlabs-landing-pages=
 * Authentication
 ** Set Login url to content iframe
-   This function sets the login url of an openedx to
-   =contentIframe=.
+   By default on page loads =contentIframe= is sets to load
+   all the disciplines. This is to be replaced with login
+   url of the OpenEdx when user clicks on =Login= button
+   from the header division
 #+NAME: set-login-url-to-content-iframe
 #+BEGIN_SRC javascript 
 var setLoginUrlInContentIframe = function(event) {
@@ -29,9 +31,10 @@ var setLoginUrlInContentIframe = function(event) {
 };
 
 #+END_SRC
-** Set register url to content iframe
-   This function sets the registration url of an openedx
-   platform to =contentIframe=
+** Set user registration url to content iframe
+   This function sets =contentIframe= to the registration
+   url of an openedx platform when a user clicks on
+   =Register= button from header
 #+NAME: set-register-url-to-content-iframe
 #+BEGIN_SRC javascript 
 var setRegisterUrlInContentIframe = function() {
@@ -58,10 +61,10 @@ else {
 
 #+END_SRC
 ** Validate Authentication
-   Following function validates the authentication on every
-   click on lab url. If user is authenticated it redirects
-   to lab url directly otherwise it prompts for login page
-   then redirects to lab url
+   This function validates the user authentication before
+   lab gets loaded. If user is already authenticated it
+   loads the lab url directly otherwise it prompts for user
+   login page then redirects to lab url
 #+NAME: validate-authentication
 #+BEGIN_SRC javascript 
 var validateAuthentication = function(url) {
@@ -79,8 +82,14 @@ var validateAuthentication = function(url) {
 
 #+END_SRC
 ** Validate cookie
-   Following function validates the cookie and changes the
-   login/logout buttons accordingly
+   This function validates the browser cookie and toggles
+   the login/logout buttons accordingly based on cookie
+   value. 
+   - If the cookie is set to =session_status=loggedin= then
+     =Logout= button will appear and it hides the
+     =Registration= button.
+   - If the cookie is set to =session_status=loggedout= then
+     =Login= and =Registration= button will be appeared
 #+NAME: validate-cookie
 #+BEGIN_SRC javascript 
 function validateCookie(){
@@ -104,10 +113,12 @@ function validateCookie(){
 }
 
 #+END_SRC
-** Validate post message
-   Following function evaluates the post message which is
-   being sent from =openedx= website and sets the session
-   cookie based on login/logout actions
+** validate post message
+   This function evaluates the post message which is being
+   sent from =openedx= website and sets the browser cookie
+   to either =session_status=logged in= or
+   =session_status=logged out= based on login/logout events.
+   - If user is logged in successfully 
 #+NAME: validate-post-message
 #+BEGIN_SRC javascript 
 function validatePostMessage(evt) {
