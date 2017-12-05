@@ -70,19 +70,6 @@ var loadAllLabs = function() {
 
 #+END_SRC
 
-** Set usage in Iframe
-   This allows to manipulate usage data in the content
-   iframe. The usage data will be set in the content iframe
-   immediately.
-#+NAME: set-usage-in-iframe
-#+BEGIN_SRC javascript 
-var setUsageInIframe = function() {
-  console.log("=======setting usage to content iframe=====");        
-  var iframe = parent.document.getElementById("contentIframe");
-  iframe.src = "https://info.vlabs.ac.in/analytics/analytics/usage.html";
-};
-
-#+END_SRC
 ** Get All Labs
    This function will be invoked when =All Labs= tab is
    clicked. It invokes a call to =LDS= database and fetches
@@ -216,6 +203,12 @@ var addScriptTags = function(){
   institutes_js_script.src = institutes_js_url;
   head.appendChild(institutes_js_script);
   
+  var usage_script = contentIframe.contentWindow.document.createElement("script");
+  var usage_url = "./js/usage.js";
+  usage_script.type = "text/javascript";
+  usage_script.src = usage_url;
+  head.appendChild(usage_script);
+
   var config_script = contentIframe.contentWindow.document.createElement("script");
   var config_url = "./js/app-config.js";
   config_script.type = "text/javascript";
@@ -250,27 +243,6 @@ var addScriptTags = function(){
 
 #+END_SRC
 
-** Resetting content in Iframe
-   Resetting the content in the same frame is just element
-   manipulation where =contentIframe= is accessed and new
-   content is set.
-#+NAME: reset-content
-#+BEGIN_SRC javascript 
-var resetContentInIframe = function(data) {
-  console.log("=======re setting content=====");        
-//  console.log(data);
-  var iframe = parent.document.getElementById("contentIframe");
-  iframe.sandbox = 'allow-scripts allow-same-origin allow-popups allow-forms';
-  var content = iframe.contentWindow.document;
-//  console.log(content);
-  content.body.innerHTML="";
-  content.write(data);
-  addScriptTags();
-
-};
-
-#+END_SRC
-
 ** Back button
 #+NAME: back-button
 #+BEGIN_SRC javascript 
@@ -278,46 +250,6 @@ var resetContentInIframe = function(data) {
 {
 alert('You clicked it!');
 }*/
-#+END_SRC
-** Get Workshop Usage Data 
-   This function dynamically fetches the usage data.
-#+NAME: workshop-usage-data
-#+BEGIN_SRC javascript
-var getWorkshopUsage = function(){ 
-$.getJSON(workshop_usage_url, function(data) {
-  var usage = data["usage"];
-  $("#usage").html(usage);
-})
-    .done(function() {
-//      console.log( "second success" );
-    })
-    .fail(function() {
-//      console.log( "error" );
-    })
-    .always(function() {
-//      console.log( "complete" );
-    });
-};
-#+END_SRC
-** Total usage data 
-   This function dynamically fetches the total usage data.
-#+NAME: total-usage-data
-#+BEGIN_SRC javascript
-var getTotalUsage = function() {
-$.getJSON(total_usage_url, function(data) {
-  var usage = data["usage"];
-  $("#totalusage").html(usage);
-})
-    .done(function() {
-//      console.log( "second success" );
-    })
-    .fail(function() {
-//      console.log( "error" );
-    })
-    .always(function() {
-//      console.log( "complete" );
-    });
-};
 #+END_SRC
 ** Mouse Over
    This function allows the dropdown menu on the mousehover
@@ -358,12 +290,10 @@ head.appendChild(favicon);
 #+BEGIN_SRC javascript :tangle js/main.js :eval no :noweb yes 
 <<post-message-event-listner>>
 <<load-index>>
-<<reset-content>>
 <<add-script-tags>>
 <<set-register-url-to-content-iframe>>
 <<set-login-url-to-content-iframe>>
 <<validate-authentication>>
-<<set-usage-in-iframe>>
 <<load-all-labs>>
 <<get-all-labs>>
 <<mouse-over>>

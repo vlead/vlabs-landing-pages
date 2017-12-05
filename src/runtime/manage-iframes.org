@@ -91,23 +91,6 @@ var setNewContentInIframe = function(data) {
 
 #+END_SRC
 
-** Set All Lab Data
-   This function sets the lab data from a global variable
-   =labs_data= to an iframe. 
-#+NAME: set-lab-data-in-iframe
-#+BEGIN_SRC js
-var setLabDataInIframe = function() {
-  var iframe = parent.document.getElementById("contentIframe");
-  iframe.sandbox = 'allow-forms allow-scripts allow-same-origin';
-  var content = iframe.contentWindow.document;
-//  console.log(content);
-  content.body.innerHTML = "";
-  content.write(labs_data);
-  addScriptTags();  
-};
-
-#+END_SRC
-
 ** Creating the content iframe
    Displays the content iframe based on the selection of the
    elements with respect to the header iframe.
@@ -153,6 +136,57 @@ var setFooterContentInIframe=function() {
 
 #+END_SRC
 
+** Set usage in Iframe
+   This allows to manipulate usage data in the content
+   iframe. The usage data will be set in the content iframe
+   immediately.
+#+NAME: set-usage-in-iframe
+#+BEGIN_SRC javascript 
+var setUsageInIframe = function() {
+  console.log("=======setting usage to content iframe=====");        
+  var iframe = parent.document.getElementById("contentIframe");
+  iframe.src = "https://info.vlabs.ac.in/analytics/analytics/usage.html";
+};
+
+#+END_SRC
+** Set All Lab Data
+   This function sets the lab data from a global variable
+   =labs_data= to an iframe. 
+#+NAME: set-lab-data-in-iframe
+#+BEGIN_SRC js
+var setLabDataInIframe = function() {
+  var iframe = parent.document.getElementById("contentIframe");
+  iframe.sandbox = 'allow-forms allow-scripts allow-same-origin';
+  var content = iframe.contentWindow.document;
+//  console.log(content);
+  content.body.innerHTML = "";
+  content.write(labs_data);
+  addScriptTags();  
+};
+
+#+END_SRC
+
+** Resetting content in Iframe
+   Resetting the content in the same frame is just element
+   manipulation where =contentIframe= is accessed and new
+   content is set.
+#+NAME: reset-content
+#+BEGIN_SRC javascript 
+var resetContentInIframe = function(data) {
+  console.log("=======re setting content=====");        
+//  console.log(data);
+  var iframe = parent.document.getElementById("contentIframe");
+  iframe.sandbox = 'allow-scripts allow-same-origin allow-popups allow-forms';
+  var content = iframe.contentWindow.document;
+//  console.log(content);
+  content.body.innerHTML="";
+  content.write(data);
+  addScriptTags();
+
+};
+
+#+END_SRC
+
 * Tangle 
 ** sources
 *** Javascript
@@ -166,4 +200,6 @@ var setFooterContentInIframe=function() {
 <<insert-footer-iframe>>
 <<set-new-content-in-iframe>>
 <<set-footer-content-in-iframe>>
+<<reset-content>>
+<<set-usage-in-iframe>>
 #+END_SRC
