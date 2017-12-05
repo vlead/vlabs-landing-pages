@@ -11,11 +11,10 @@
   This has functionality all the operations related to
   =Institute= entity =vlabs-landing-pages=
 * Institutes
-** Loading all institutes
-   This allows to manipulate the content of an iframe by
-   invoking =getAllInstitutes()= function and set the
-   obtained institutes by invoking =setContentInIframe()= in
-   the content iframe.
+** Load all institutes
+   This function loads all the institutes into
+   =contentIframe= and before does this it removes existing
+   =contentIframe= and creates new one
 
 #+NAME:load-all-institutes
 #+BEGIN_SRC javascript 
@@ -30,6 +29,7 @@ var loadAllInstitutes = function() {
 #+END_SRC
 
 ** Get All Institutes
+   
    All the institutes from the =LDS= are collected along
    with images, hyperlinks.  This data is formatted and
    events are attached.  A div element is created containing
@@ -82,16 +82,13 @@ onclick="getLabsByInstituteName(this, 0)" src="' + image_path +'" id="' + instit
 
 #+END_SRC
 ** Get Labs by Institute Name
-   =getAllInstitutes()= function will invokes this
-   function.This function dynamically fetches the labs based
-   on the 'click' event occurs on institute name.
+   This function gets the labs of respective institute based
+   on the value of =click= event occurs on discipline name.
 
 #+NAME: get-labs-by-institute-name
 #+BEGIN_SRC javascript 
 var getLabsByInstituteName = function(image, flag) {
   console.log("===========inside getLabsByDisciplineName==========");
-//  console.log("===========flag==========");
-//  console.log(flag);
   if (flag==1){
     deleteFrameInDivision("contentIframe", "contentDiv");
     var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "650em");
@@ -99,7 +96,6 @@ var getLabsByInstituteName = function(image, flag) {
   }
   var institute_name = image.id;
   var labs_url = lds_url+"/labs";
-//  console.log(labs_url);
   var labs_by_institute_url = labs_url+"?institute_name="+ institute_name;
   console.log(labs_by_institute_url);
   $.getJSON(labs_by_institute_url, function(data) {
@@ -123,15 +119,12 @@ var getLabsByInstituteName = function(image, flag) {
         
       }
       var assets = value['assets'];
-//      console.log(assets);
       for(var i=0;i< assets.length;i++){
         var  asset_type = value['assets'][i]['asset_type']['asset_type'];
         var path = value['assets'][i]['path'];
         if (asset_type == 'image'){
           var image_name = value['assets'][i]['path'];
-  //        console.log(image_name);
           path = lab_images_url + image_name;
- //         console.log(path);
         }
       }
       labs += '<div class=" col-md-3 " id='+ lab_name +
@@ -147,7 +140,7 @@ onclick="javascript:validateAuthentication(this)" src="' + path +'" id="' + host
     resetContentInIframe(labs);
   })
   .done(function() {
-//      console.log( "second success" );
+     console.log( "second success" );
     })
     .fail(function() {
 //      console.log( "error" );
@@ -160,12 +153,12 @@ onclick="javascript:validateAuthentication(this)" src="' + path +'" id="' + host
 
 #+END_SRC
 
-** Get All Institutes in Combo box
-   =getAllInstitutesInCombobox()= function will invokes this
-   function. This function dynamically fetches the labs
-   based on the 'hover' event occurs on institute which
-   gives a dropdown with all institutes and each institute
-   respectively.
+** Get All Institutes in drop down menu
+   This function does the following
+   1. Gets all the institutes in drop down menu
+   2. Display all the labs into =contentIframe= of chosen
+      institute from drop down menu
+
 #+NAME: get-all-institutes-in-combobox
 #+BEGIN_SRC javascript
 var getAllInstitutesInCombobox = function(){
