@@ -113,7 +113,7 @@ function validateCookie(){
 }
 
 #+END_SRC
-** validate post message
+** Validate post message
    This function evaluates the post message which is being
    sent from =openedx= website and sets the browser cookie
    to either =session_status=logged in= or
