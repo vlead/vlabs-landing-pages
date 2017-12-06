@@ -59,9 +59,9 @@ style="cursor: pointer; padding: 0px !important; padding-top:15px !important;"> 
     });
     var discipline_list = '<div class="container-fluid"><div class="row">'
     + disciplines +'</div></div>';
-
-    setNewContentInIframe(discipline_list);
-    addScriptTags();
+    setContent(discipline_list, "disciplines.html");
+//    setNewContentInIframe(discipline_list);
+//    addScriptTags();
     })
     .done(function() {
       console.log( "second success" );

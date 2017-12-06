@@ -175,6 +175,83 @@ var resetContentInIframe = function(data) {
 
 #+END_SRC
 
+** Set the source and content to an frame
+#+NAME: set-src-content-iframe
+#+BEGIN_SRC js
+var setContent = function(content, htmlFile) {
+  if (!contentIframeExists()) {
+    var cIframe = createIframeForContent();
+    insertContentIframe(cIframe);
+  }
+  setSourceToIframe(htmlFile);
+  setTimeout(setContentToIframe, 100, content);
+};
+
+#+END_SRC
+
+** Does Content Iframe exists
+   Check if the content iframe exists
+#+NAME: check-ciframe-exists
+#+BEGIN_SRC js
+var contentIframeExists = function() {
+  cIframe = document.getElementById("contentIframe");
+  if (cIframe == null)
+    return false;
+  else
+    return true;
+};
+
+#+END_SRC
+
+** Create Iframe For Content
+   The content is named =contentIframe=.  Its width is
+   =100%= and height is =9500em=.
+#+NAME: create-iframe-for-content
+#+BEGIN_SRC javascript 
+var createIframeForContent = function() {
+  console.log("=======create Iframe For Content=====");
+  var cIframe = createNewIframe("contentIframe", "contentIframe", "100%", "1310em");
+  return cIframe;
+};
+
+#+END_SRC
+
+** Insert content iframe
+#+NAME: insert-content-iframe
+#+BEGIN_SRC javascript 
+var insertContentIframe = function(cIframe) {
+  insertFrameInDivision(cIframe, "contentDiv");
+};
+
+#+END_SRC
+** Set Source To Iframe
+   The frame source is set to the corresponding html that is
+   passed as an argument.
+#+NAME: set-source-to-iframe
+#+BEGIN_SRC js
+var setSourceToIframe = function(htmlFile) {
+  var cIframe = document.getElementById("contentIframe");
+  cIframe.src = htmlFile;
+};
+
+#+END_SRC
+
+** Set Content For Iframe
+   This is a generic function, where content is set to the
+   =contentDiv= that is common in all the different html
+   files.
+#+NAME: set-content-to-iframe
+#+BEGIN_SRC javascript 
+var setContentToIframe = function(content) {
+  var cIframe = document.getElementById("contentIframe");
+  var contentDoc = cIframe.contentDocument;
+  var elem = contentDoc.getElementById("contentDiv");
+  elem.innerHTML = content;
+  addScriptTags();
+};
+
+#+END_SRC
+
 * Tangle 
 ** sources
 *** Javascript
@@ -190,4 +267,10 @@ var resetContentInIframe = function(data) {
 <<set-footer-content-in-iframe>>
 <<reset-content>>
 <<set-usage-in-iframe>>
+<<set-src-content-iframe>>
+<<check-ciframe-exists>>
+<<create-iframe-for-content>>
+<<insert-content-iframe>>
+<<set-source-to-iframe>>
+<<set-content-to-iframe>>
 #+END_SRC

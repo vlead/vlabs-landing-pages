@@ -50,7 +50,8 @@ var setRegisterUrlInContentIframe = function() {
    event from =openedx= web-site
 #+NAME: post-message-event-listner
 #+BEGIN_SRC javascript 
-window.loggedin_handler=false;
+window.loggedin_handler = false;
+window.all_disc_flag = false;
 window.lab_url = "";
 if (window.addEventListener) {
     window.addEventListener("message", validatePostMessage, false);
@@ -125,7 +126,8 @@ function validateCookie(){
 #+NAME: validate-post-message
 #+BEGIN_SRC javascript 
 function validatePostMessage(evt) {
-  if (evt.origin != "http://themeless.vlabs.ac.in") {
+//  alert(evt.origin);
+  if (evt.origin != "http://localhost:8000") {
     console.log("Unauthorized domain");
   }
   else {
@@ -148,8 +150,19 @@ function validatePostMessage(evt) {
       var register_elem = document.getElementById("register");
       register_elem.style.display = "block";
     }
-    else {
-      console.log("");
+    else if(evt.data.indexOf("alldisciplines")!=-1){
+    if(window.all_disc_flag == false){
+      window.all_disc_flag = true;
+      console.log("==========true case=======");
+      console.log(window.all_disc_flag)
+      }
+    else
+    {
+      window.all_disc_flag = false;
+      console.log("==========false case=======");
+      console.log(window.all_disc_flag)
+      loadAllDisciplines();
+    }
     }
     validateCookie();
   }

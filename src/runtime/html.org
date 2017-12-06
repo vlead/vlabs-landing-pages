@@ -235,8 +235,67 @@
 
 #+END_SRC
 
+** Disciplines HTML layout
+   This is the source of the iframe when disciplines are
+   displayed.  After the generation of disciplines content,
+   this content is attached to =disciplineDiv=.
+#+NAME:disciplines-html
+#+BEGIN_SRC html
+<html>
+  <head>
+    <script>
+      document.domain="localhost"
+      function testFunc(){
+      console.log("disciplines on page show called");
+      msg = window.parent.postMessage("alldisciplines", "http://localhost:8000");
+      }
+    </script>
+  </head>
+  <body onpageshow="testFunc()">
+    <div id="contentDiv" class="container-fluid" style="padding-top:5em" >
+    </div>
+  </body>
+</html>
+
+#+END_SRC
+
+** Institutes HTML layout
+   This is the source of the iframe when institutes are
+   displayed.  After the generation of institutes content,
+   this content is attached to =disciplineDiv=.
+#+NAME:institutes-html
+#+BEGIN_SRC html
+<html>
+  <head>
+    <!-- <link rel="stylesheet" -->
+    <!--       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+    <script>
+      document.domain="localhost"
+      function testFunc(){
+      console.log("sfdsfd");
+       }
+    </script>
+
+  </head>
+  <body onpageshow="testFunc()">
+    <div id="commonDiv" class="container-fluid" style="padding-top:5em" >
+    </div>
+  </body>
+</html>
+
+#+END_SRC
+
 * Tangle 
-** HTML
+** Index HTML
 #+BEGIN_SRC html :tangle index.html :eval no :noweb yes
 <<index-html>>
+#+END_SRC
+** Discipline HTML
+#+BEGIN_SRC html :tangle disciplines.html :eval no :noweb yes
+<<disciplines-html>>
+#+END_SRC
+
+** Institute HTML
+#+BEGIN_SRC html :tangle institutes.html :eval no :noweb yes
+<<institutes-html>>
 #+END_SRC
