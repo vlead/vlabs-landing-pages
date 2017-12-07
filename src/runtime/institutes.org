@@ -66,8 +66,9 @@ onclick="getLabsByInstituteName(this, 0)" src="' + image_path +'" id="' + instit
     var institute_list = '<div class="container-fluid"><div class="row">'
         + institutes +'</div></div>';
 //    console.log(institutes);
-    setNewContentInIframe(institute_list);
-    addScriptTags();
+    setContent(institute_list, "institutes.html");
+//    setNewContentInIframe(institute_list);
+//    addScriptTags();
   })
     .done(function() {
 //      console.log( "second success" );

@@ -245,13 +245,13 @@
   <head>
     <script>
       document.domain="localhost"
-      function testFunc(){
+      function testDiscFunc(){
       console.log("disciplines on page show called");
-      msg = window.parent.postMessage("alldisciplines", "http://localhost:8000");
+      msg = window.parent.postMessage("all-disciplines", "http://localhost:8000");
       }
     </script>
   </head>
-  <body onpageshow="testFunc()">
+  <body onpageshow="testDiscFunc()">
     <div id="contentDiv" class="container-fluid" style="padding-top:5em" >
     </div>
   </body>
@@ -271,14 +271,15 @@
     <!--       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
     <script>
       document.domain="localhost"
-      function testFunc(){
-      console.log("sfdsfd");
+      function testInstFunc(){
+      console.log("institutes on page show called");
+      msg = window.parent.postMessage("all-institutes", "http://localhost:8000");
        }
     </script>
 
   </head>
-  <body onpageshow="testFunc()">
-    <div id="commonDiv" class="container-fluid" style="padding-top:5em" >
+  <body onpageshow="testInstFunc()">
+  <div id="contentDiv" class="container-fluid" style="padding-top:5em" >
     </div>
   </body>
 </html>
