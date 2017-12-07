@@ -111,7 +111,7 @@
   pages and made REST calls to the login/registration API of
   Open edX.  Since this was not the case, the portal has to
   depend on the login/registration web pages served from
-  Open edX platform.
+  Open edX platform for user authentication.
 
   The event handler attached to the click event on the
   login/register buttons loads these pages in the iframe

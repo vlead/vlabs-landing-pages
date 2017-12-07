@@ -1,0 +1,69 @@
+#+TITLE: Modifyting Reverse Proxy on Open edX platform for altering content.
+#+AUTHOR: VLEAD
+#+DATE: [2017-11-27 Mon]
+#+SETUPFILE: ./org-templates/level-0.org
+#+TAGS: boilerplate(b)
+#+EXCLUDE_TAGS: boilerplate
+#+OPTIONS: ^:nil
+
+* Introduction
+  This document lists steps to alter the content before it
+  is served by Open edX.
+
+* Create HTML and JS
+  Insert JS code in an html file to remove the header and
+  footer of a default Open edX page.  The file
+  =alter-content.html= is created at location
+  =/edx/var/nginx/server-static/=
+  
+  The contents of this file are below.
+
+  #+BEGIN_EXAMPLE
+   <html>
+     <head>
+       <script>
+         var delHeader = function() {
+         headerElem = document.getElementById('global-navigation')
+         headerElem.parentNode.removeChild(headerElem)
+         };
+
+         var delFooter = function() {
+         var elements = document.getElementsByClassName('wrapper-footer');
+         while(elements.length > 0) {
+           elements[0].parentNode.removeChild(elements[0]);
+         }
+         };
+
+         var delHeaderAndFooter = function() {
+         delHeader();
+         delFooter();
+         };
+
+
+       </script>
+     </head>
+     <body onload="delHeaderAndFooter();">
+     </body>
+   </html>
+  #+END_EXAMPLE
+
+* Configure nginx reverse proxy
+  Reverse proxy on Open edX platform is configured to add
+  the file =alter-content.html= to every response.  Add the
+  below line to the directive =location @proxy_to_lms_app=
+  in the file =/etc/nginx/sites-enabled/lms=
+  #+BEGIN_EXAMPLE
+   location @proxy_to_lms_app {
+    add_after_body /server/alter-content.html;
+    ------
+    ------
+
+   }
+  #+END_EXAMPLE
+
+* Restart the services
+  Restart services on Open edX to pick the new configuration
+  changes.
+  #+BEGIN_EXAMPLE
+  /edx/bin/supervisorctl restart edxapp:
+  #+END_EXAMPLE

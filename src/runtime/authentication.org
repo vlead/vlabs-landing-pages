@@ -12,7 +12,7 @@
   =vlabs-landing-pages=
 * Authentication
 ** Set Login url to content iframe
-   By default on page loads =contentIframe= is sets to load
+   By default on page loads =contentIframe= is set to load
    all the disciplines. This is to be replaced with login
    url of the OpenEdx when user clicks on =Login= button
    from the header division
@@ -83,13 +83,13 @@ var validateAuthentication = function(url) {
 };
 
 #+END_SRC
-** Validate cookie
+** Validate the cookie
    This function validates the browser cookie and toggles
    the login/logout buttons accordingly based on cookie
    value. 
-   - If the cookie is set to =session_status=loggedin= then
-     =Logout= button will appear and it hides the
-     =Registration= button.
+   - If the =session_status= of the cookie is set to
+     =loggedin= then =Logout= button will appear and it
+     hides the =Registration= button.
    - If the cookie is set to =session_status=loggedout= then
      =Login= and =Registration= button will be appeared
 #+NAME: validate-cookie
@@ -105,7 +105,7 @@ function validateCookie(){
 
   }
   else if(document.cookie.includes("logged out")){
-    window.loggedin_handler=false;
+    window.loggedin_handler = false;
     document.getElementById("login").innerHTML = "Login";
     document.getElementById("login").setAttribute( "onClick", "setLoginUrlInContentIframe('login')" );
   }
