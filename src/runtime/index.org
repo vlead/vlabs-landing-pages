@@ -342,16 +342,15 @@ var loadIndex = function() {
    name of the discipline.  Once the content is created,
    there is a call to insert this content in an iframe.
 
-*** TODO [1/2]
-    1. [X] Refactor the promise, when should the discipline
+   - =TODO= , This is todo list
+     1. [X] Refactor the promise, when should the discipline
        list be returned, should it be =always=.  
        Solution :: There will no return from a promise,
        instead, there will be a callback to insert this
        content in an iframe.
-    2. [ ] Refactor the AJAX call so that this can be used
+     2. [ ] Refactor the AJAX call so that this can be used
        by all other AJAX calls.
 
-*** Realization
 #+NAME: create-disciplines-div-content
 #+BEGIN_SRC javascript 
 var createDisciplinesDivContent = function(){ 
