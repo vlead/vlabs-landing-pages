@@ -13,34 +13,40 @@
 
 * Milestones Snapshot
 
-  |---+----+----+-----+--------------------------------------------+------+--------+-------+-------+--------|
-  |   | S. | Mi | Req | Milestone                                  | Plan | Status |   Est |   Act | Issues |
-  |   | no | no | Map |                                            |      |        |   hrs |   hrs |        |
-  |---+----+----+-----+--------------------------------------------+------+--------+-------+-------+--------|
-  |   | 1. | [[https://github.com/vlead/vlabs-landing-pages/milestone/8][8]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/8][Fix back button functionality]]              | [[Fix back button functionality][ref]]  | Open   |   160 |     0 | [[https://github.com/vlead/vlabs-landing-pages/milestone/8][ref]]    |
-  |---+----+----+-----+--------------------------------------------+------+--------+-------+-------+--------|
-  |   | 2. | [[https://github.com/vlead/vlabs-landing-pages/milestone/7][7]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/7][Deployment of 'vlabs landing pages' v1.2.0]] | [[Deployment of Vlabs landing pages][ref]]  | Closed |     0 |     0 | [[https://github.com/vlead/vlabs-landing-pages/milestone/7?closed=1][ref]]    |
-  |---+----+----+-----+--------------------------------------------+------+--------+-------+-------+--------|
-  |   | 3. | [[https://github.com/vlead/vlabs-landing-pages/milestone/6][6]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/6][Signup and Login functionality]]             | [[Login and Register functionality][ref]]  | Open   |   122 |     0 | [[https://github.com/vlead/vlabs-landing-pages/milestone/6][ref]]    |
-  |---+----+----+-----+--------------------------------------------+------+--------+-------+-------+--------|
-  |   | 4. | [[https://github.com/vlead/vlabs-landing-pages/milestone/5][5]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/5][Search functionality]]                       | [[Search Functionality][ref]]  | Closed |   472 | 217.5 | [[https://github.com/vlead/vlabs-landing-pages/milestone/5?closed=1][ref]]    |
-  |---+----+----+-----+--------------------------------------------+------+--------+-------+-------+--------|
-  |   | 5. | [[https://github.com/vlead/vlabs-landing-pages/milestone/4][4]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/4][Populate data using lds]]                    | [[Loading data dynamically from LDS][ref]]  | Closed | 357.5 | 303.5 | [[https://github.com/vlead/vlabs-landing-pages/milestone/4?closed=1][ref]]    |
-  |---+----+----+-----+--------------------------------------------+------+--------+-------+-------+--------|
-  |   | 6. | [[https://github.com/vlead/vlabs-landing-pages/milestone/1][1]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/1][Building landing pages using LDS]]           |      | Closed |       |       | [[https://github.com/vlead/vlabs-landing-pages/milestone/1?closed=1][ref]]    |
-  |---+----+----+-----+--------------------------------------------+------+--------+-------+-------+--------|
-  |   |    |    |     | Total                                      |      |        | 951.5 |  521. |        |
-  | ^ |    |    |     |                                            |      |        |   est |   act |        |
-  |---+----+----+-----+--------------------------------------------+------+--------+-------+-------+--------|
-  #+TBLFM: @3$8=remote(tbl-rlz-pln-ml-8, $est)
-  #+TBLFM: @3$9=remote(tbl-rlz-pln-ml-8, $act)
-  #+TBLFM: @3$9=remote(tbl-rlz-pln-ml-7, $act)
-  #+TBLFM: @4$8=remote(tbl-rlz-pln-ml-6, $est)
-  #+TBLFM: @4$9=remote(tbl-rlz-pln-ml-6, $act)
-  #+TBLFM: @5$8=remote(tbl-rlz-pln-ml-5, $est)
-  #+TBLFM: @5$9=remote(tbl-rlz-pln-ml-5, $act)
-  #+TBLFM: @6$8=remote(tbl-rlz-pln-ml-4, $est)
-  #+TBLFM: @6$9=remote(tbl-rlz-pln-ml-4, $act)
+  |---+----+----+-----+------------------------------------------------+------+--------+-------+-------+--------|
+  |   | S. | Mi | Req | Milestone                                      | Plan | Status |   Est |   Act | Issues |
+  |   | no | no | Map |                                                |      |        |   hrs |   hrs |        |
+  |---+----+----+-----+------------------------------------------------+------+--------+-------+-------+--------|
+  |   | 1. | [[https://github.com/vlead/vlabs-landing-pages/milestone/9][9]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/9][upgrade openedx version from dogwood to ginkgo]] | [[Fix back button functionality][ref]]  | Open   |    18 |     0 | [[https://github.com/vlead/vlabs-landing-pages/milestone/9][ref]]    |
+  |---+----+----+-----+------------------------------------------------+------+--------+-------+-------+--------|
+  |   | 2. | [[https://github.com/vlead/vlabs-landing-pages/milestone/8][8]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/8][Fix back button functionality]]                  | [[Fix back button functionality][ref]]  | Open   |   160 |     0 | [[https://github.com/vlead/vlabs-landing-pages/milestone/8][ref]]    |
+  |---+----+----+-----+------------------------------------------------+------+--------+-------+-------+--------|
+  |   | 3. | [[https://github.com/vlead/vlabs-landing-pages/milestone/7][7]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/7][Deployment of 'vlabs landing pages' v1.2.0]]     | [[Deployment of Vlabs landing pages][ref]]  | Closed |   472 |     6 | [[https://github.com/vlead/vlabs-landing-pages/milestone/7?closed=1][ref]]    |
+  |---+----+----+-----+------------------------------------------------+------+--------+-------+-------+--------|
+  |   | 4. | [[https://github.com/vlead/vlabs-landing-pages/milestone/6][6]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/6][Signup and Login functionality]]                 | [[Login and Register functionality][ref]]  | Open   |   266 | 178.5 | [[https://github.com/vlead/vlabs-landing-pages/milestone/6][ref]]    |
+  |---+----+----+-----+------------------------------------------------+------+--------+-------+-------+--------|
+  |   | 5. | [[https://github.com/vlead/vlabs-landing-pages/milestone/5][5]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/5][Search functionality]]                           | [[Search Functionality][ref]]  | Closed |   472 | 217.5 | [[https://github.com/vlead/vlabs-landing-pages/milestone/5?closed=1][ref]]    |
+  |---+----+----+-----+------------------------------------------------+------+--------+-------+-------+--------|
+  |   | 6. | [[https://github.com/vlead/vlabs-landing-pages/milestone/4][4]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/4][Populate data using lds]]                        | [[Loading data dynamically from LDS][ref]]  | Closed | 357.5 | 303.5 | [[https://github.com/vlead/vlabs-landing-pages/milestone/4?closed=1][ref]]    |
+  |---+----+----+-----+------------------------------------------------+------+--------+-------+-------+--------|
+  |   | 7. | [[https://github.com/vlead/vlabs-landing-pages/milestone/1][1]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/1][Building landing pages using LDS]]               |      | Closed |       |       | [[https://github.com/vlead/vlabs-landing-pages/milestone/1?closed=1][ref]]    |
+  |---+----+----+-----+------------------------------------------------+------+--------+-------+-------+--------|
+  |   |    |    |     | Total                                          |      |        | 951.5 |  521. |        |
+  | ^ |    |    |     |                                                |      |        |   est |   act |        |
+  |---+----+----+-----+------------------------------------------------+------+--------+-------+-------+--------|
+  #+TBLFM: @3$8=remote(tbl-rlz-pln-ml-9, $est)
+  #+TBLFM: @3$9=remote(tbl-rlz-pln-ml-9, $act)
+  #+TBLFM: @4$8=remote(tbl-rlz-pln-ml-8, $est)
+  #+TBLFM: @4$9=remote(tbl-rlz-pln-ml-8, $act)
+  #+TBLFM: @5$9=remote(tbl-rlz-pln-ml-7, $est)
+  #+TBLFM: @5$9=remote(tbl-rlz-pln-ml-7, $act)
+  #+TBLFM: @6$8=remote(tbl-rlz-pln-ml-6, $est)
+  #+TBLFM: @6$9=remote(tbl-rlz-pln-ml-6, $act)
+  #+TBLFM: @7$8=remote(tbl-rlz-pln-ml-5, $est)
+  #+TBLFM: @7$9=remote(tbl-rlz-pln-ml-5, $act)
+  #+TBLFM: @8$8=remote(tbl-rlz-pln-ml-4, $est)
+  #+TBLFM: @8$9=remote(tbl-rlz-pln-ml-4, $act)
+
   #+TBLFM: $est=vsum(@II+1..@-1)
   #+TBLFM: $act=vsum(@II+1..@-1)
 
@@ -773,5 +779,42 @@
 |   | Total |                       |        | 0        | 0      |            |            |         |          |
 | ^ |       |                       |        | est      | act    |            |            |         |          |
 |---+-------+-----------------------+--------+----------+--------+------------+------------+---------+----------|
+#+TBLFM: $est=vsum(@II+1..@-1)
+#+TBLFM: $act=vsum(@II+1..@-1)
+
+** upgrade openedx version from dogwood to ginkgo
+#+caption:  realization-plan-milestone-9
+#+name: tbl-rlz-pln-ml-9
+|---+-------+------------------------+--------+----------+--------+------------+------------+-------------+----------|
+|   |    S. | Tasks                  | Github | Expected | Actual |     Actual |  Estimated | Status      | Assignee |
+|   |    NO |                        | Issues | Effort   | Effort |     Start, |     Start/ |             |          |
+|   |       |                        |        | (in      | (in    |        End |        End |             |          |
+|   |       |                        |        | person   | person |      Dates |      Dates |             |          |
+|   |       |                        |        | hours)   | hours) |            |            |             |          |
+|---+-------+------------------------+--------+----------+--------+------------+------------+-------------+----------|
+|   |    1. | openedx user database  | [[https://github.com/vlead/vlabs-landing-pages/issues/150][#150]]   | 6        |        | 12-12-2017 | 13-12-2017 | In progress |          |
+|   |       | migration from dogwood |        |          |        | 13-12-2017 |            |             |          |
+|   |       | to ginkgo version      |        |          |        |            |            |             |          |
+|   |       |                        |        |          |        |            |            |             |          |
+|   |       |                        |        |          |        |            |            |             |          |
+|   |       |                        |        |          |        |            |            |             |          |
+|---+-------+------------------------+--------+----------+--------+------------+------------+-------------+----------|
+|   |    2. | setup vm running       | [[https://github.com/vlead/vlabs-landing-pages/issues/151][#151]]   | 6        |        | 08-12-2017 | 12-10-2017 |             |          |
+|   |       | openedx ginkgo version |        |          |        | 08-12-2017 | 12-10-2017 |             |          |
+|   |       |                        |        |          |        |            |            | Done        |          |
+|   |       |                        |        |          |        |            |            |             |          |
+|   |       |                        |        |          |        |            |            |             |          |
+|   |       |                        |        |          |        |            |            |             |          |
+|---+-------+------------------------+--------+----------+--------+------------+------------+-------------+----------|
+|   |    3. | steps to be documented | [[https://github.com/vlead/vlabs-landing-pages/issues/152][#152]]   | 6        |        | 13-11-2017 | 14-11-2017 | Backlog     |          |
+|   |       | post installation      |        |          |        | 14-11-2017 |            |             |          |
+|   |       | of opedx platform      |        |          |        |            |            |             |          |
+|   |       | running ginkgo version |        |          |        |            |            |             |          |
+|   |       |                        |        |          |        |            |            |             |          |
+|   |       |                        |        |          |        |            |            |             |          |
+|---+-------+------------------------+--------+----------+--------+------------+------------+-------------+----------|
+|   | Total |                        |        | 18       | 0      |            |            |             |          |
+| ^ |       |                        |        | est      | act    |            |            |             |          |
+|---+-------+------------------------+--------+----------+--------+------------+------------+-------------+----------|
 #+TBLFM: $est=vsum(@II+1..@-1)
 #+TBLFM: $act=vsum(@II+1..@-1)
