@@ -179,7 +179,21 @@ function validatePostMessage(evt) {
         loadAllInstitutes();
       }
     }
-
+    else if(evt.data.indexOf("all-labs")!=-1 ){
+      if(window.all_disc_flag == false){
+        window.all_disc_flag = true;
+        console.log("==========true case=======");
+        console.log(window.all_disc_flag);
+      }
+      else
+      {
+        window.all_disc_flag = false;
+        console.log("==========false case=======");
+        console.log(window.all_disc_flag);
+        console.log("madhavi");
+        loadAllDisciplines();
+      }
+    }
     validateCookie();
   }
 }

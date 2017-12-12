@@ -163,10 +163,11 @@ var setLabDataInIframe = function() {
    content is set.
 #+NAME: reset-content
 #+BEGIN_SRC javascript 
-var resetContentInIframe = function(data) {
+var resetContentInIframe = function(data, htmlFile) {
   console.log("=======re setting content=====");        
   var iframe = parent.document.getElementById("contentIframe");
   iframe.sandbox = 'allow-scripts allow-same-origin allow-popups allow-forms';
+  iframe.src = htmlFile;
   var content = iframe.contentWindow.document;
   content.body.innerHTML="";
   content.write(data);

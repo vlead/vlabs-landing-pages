@@ -28,8 +28,7 @@ var loadAllInstitutes = function() {
 
 #+END_SRC
 
-** Get All Institutes
-   
+** Get All Institutes   
    All the institutes from the =LDS= are collected along
    with images, hyperlinks.  This data is formatted and
    events are attached.  A div element is created containing
@@ -137,8 +136,10 @@ onclick="javascript:validateAuthentication(this)" src="' + path +'" id="' + host
 
     });
 //    console.log(labs);
+
     var labs_list = '<div class="container-fluid"><div class="row">'+ labs +'</div></div>';
-    resetContentInIframe(labs);
+    setContent(labs_list, "labs.html");
+//    resetContentInIframe(labs);
   })
   .done(function() {
      console.log( "second success" );

@@ -243,6 +243,7 @@
 #+BEGIN_SRC html
 <html>
   <head>
+    <script type="text/javascript" src="./js/disciplines.js"></script>
     <script>
       document.domain="localhost"
       function testDiscFunc(){
@@ -286,6 +287,32 @@
 
 #+END_SRC
 
+** Labs HTML layout
+   This is the source of the iframe when labs are
+   displayed.  
+#+NAME:labs-html
+#+BEGIN_SRC html
+<html>
+  <head>
+    <!-- <link rel="stylesheet" -->
+    <!--       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+    <script>
+      document.domain="localhost"
+      function testLabsFunc(){
+      console.log("labs on page show called");
+      msg = window.parent.postMessage("all-labs", "http://localhost:8000");
+       }
+    </script>
+
+  </head>
+  <body onpageshow="testLabsFunc()">
+  <div id="contentDiv" class="container-fluid" style="padding-top:5em" >
+    </div>
+  </body>
+</html>
+
+#+END_SRC
+
 * Tangle 
 ** Index HTML
 #+BEGIN_SRC html :tangle index.html :eval no :noweb yes
@@ -299,4 +326,8 @@
 ** Institute HTML
 #+BEGIN_SRC html :tangle institutes.html :eval no :noweb yes
 <<institutes-html>>
+#+END_SRC
+** Labs HTML
+#+BEGIN_SRC html :tangle labs.html :eval no :noweb yes
+<<labs-html>>
 #+END_SRC

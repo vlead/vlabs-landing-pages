@@ -89,6 +89,7 @@ var getLabsByDisciplineName = function(image, flag) {
     deleteFrameInDivision("contentIframe", "contentDiv");
     var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "650em");
     insertFrameInDivision(newFrame, "contentDiv");
+    newFrame.src = "labs.html";
   }
   var discipline_name = image.id;
   var labs_url = lds_url + "/labs";
@@ -131,7 +132,8 @@ onclick="javascript:validateAuthentication(this)" src="' + path +'" id="' + host
       '" style="text-align:center; color:#2c99ce;" >'+ lab_name +'</h4></a></div></div></div>';
    });
     var labs_list = '<div class="container-fluid"><div class="row">'+ labs +'</div></div>';
-    resetContentInIframe(labs);
+    resetContentInIframe(labs, labs.html);
+//    resetContentInIframe(labs);
   })
     .done(function() {
      console.log( "second success" );

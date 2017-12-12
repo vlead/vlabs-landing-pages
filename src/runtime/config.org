@@ -30,7 +30,7 @@
 document.domain="localhost";
 // update this to base url to lds url where your lds service was running
 var openedx_url = "http://themeless.vlabs.ac.in";
-var lds_url = "http://lds.vlabs.ac.in"; 
+var lds_url = "http://ld.base4.vlabs.ac.in"; 
 var institute_images_url ="http://files.vlabs.ac.in/lds/images/institutes/";
 var discipline_images_url = "http://files.vlabs.ac.in/lds/images/disciplines/";
 var lab_images_url = "http://files.vlabs.ac.in/lds/images/labs/";
