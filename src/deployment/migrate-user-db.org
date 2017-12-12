@@ -14,89 +14,110 @@
   #+NAME: connect-db
   #+BEGIN_SRC python
 
-def connect_db():
+def connect_db(db_name):
 
     config = {
         'user': USER,
         'passwd': PASSWORD,
-        'host': HOST
+        'host': HOST,
+        'db': db_name
         }
     try:
         cnx = MySQLdb.connect(**config)
         print "connected to database"
-	return cnx
+        return cnx
     except Exception as err:
-	print(err)
-	exit(1)
-        
+        print(err)
+        exit(1)
+
   #+END_SRC
 * Create database
   #+NAME: create-db
   #+BEGIN_SRC python
 
-def create_database(cursor, db_name):
+def create_database(cnx, db_name):
+    cursor = cnx.cursor()
     try:
         query = "create database %s" % (db_name)
-	cursor.execute(query)
-	print "database created"
-	return True
+        cursor.execute(query)
+        print "database created"
+        return True
     except MySQLdb.Error as err:
-	print "Failed creating database: {}".format(err)
-	return False
+        print "Failed creating database: {}".format(err)
+        return False
 
   #+END_SRC
 * Delete database
   #+NAME: delete-db
   #+BEGIN_SRC python
 
-def delete_database(cursor, db_name):
+def delete_database(cnx, db_name):
+    cursor = cnx.cursor()
     try:
-	query = "drop database %s" % (db_name)
-	cursor.execute(query)
-	print "database deleted"
-	return True
+        query = "drop database %s" % (db_name)
+        cursor.execute(query)
+        print "database deleted"
+        return True
     except MySQLdb.Error as err:
         print "Failed deleting database: {}".format(err)
         return False
 
   #+END_SRC
 
-* Restore dogwood user database
-  #+NAME: restore_db
-  #+BEGIN_SRC python
-
-  def restore_db():
-      pass
-
-  #+END_SRC
 * Get users from dogwood database
   #+NAME: get-users-dogwood-db
   #+BEGIN_SRC python
 
-def get_users_from_dogwood_db(cursor, db_name):
-    query = "use %s" % db_name
+def get_users_from_dogwood_db(cnx):
+    cursor = cnx.cursor()
+    print "get_users_from_dogwood_db"
+    query = "select * from auth_user"
     cursor.execute(query)
-    tables = cursor.fetchall()
-    print tables
+    users = cursor.fetchall()
+    users_list = []
+
+    for user in users:
+        user_dict = {}
+        user_dict["id"] = int(user[0])
+        user_dict["password"] = user[1]
+        user_dict["last_login"] = user[2]
+        user_dict["is_superuser"] = user[3]
+        user_dict["username"] = user[4]
+        user_dict["first_name"] =  user[5]
+        user_dict["last_name"] = user[6]
+        user_dict["email"] = user[7]
+        user_dict["is_staff"] = user[8]
+        user_dict["is_active"] = user[9]
+        user_dict["date_joined"] = user[10]
+        users_list.append(user_dict)
+
+    return users_list
+
 
   #+END_SRC
 * Set users into ginkgo database
   #+NAME: set-users-to-ginkgo-db
   #+BEGIN_SRC python
 
-def set_users_to_ginkgo_db():
-    pass
+def set_users_to_ginkgo_db(cnx, user_list):
+    cursor = cnx.cursor()
+    try:
+        for user in user_list:
+            query = "insert into %s (password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) values('%s', '%s', %s, '%s', '%s', '%s', '%s', %s, %s, '%s')" %\
+ \
+                ("auth_user", user['password'], user['last_login'], user['is_superuser'], user['username'], user['first_name'], user['last_name'], user['email'], user['is_staff'], user['is_active'], user['date_\
+joined'])
 
+            if user['id'] > 5:
+                cursor.execute(query)
+                cnx.commit()
+            else:
+                print user['email']
+    except Exception as e:
+        print str(e)
+
+        
   #+END_SRC
-* Migrate user database
-  #+NAME: migrate_user_db
-  #+BEGIN_SRC python
-
-def migrate_user_db():
-    pass
-
-  #+END_SRC
-
 * Config
   #+NAME: config
   #+BEGIN_SRC python
@@ -114,11 +135,17 @@ from config import *
 * Main function
   #+NAME: main-func
   #+BEGIN_SRC python
+
 if __name__ == "__main__":
-    db_name = "openedx_dogwood"
-    dogwood_db_cnx = connect_db().cursor()
-    create_database(dogwood_db_cnx, db_name)
-    #delete_database(dogwood_db_cnx, db_name)
+    src_db_name = "dogwood"
+    dest_db_name = "ginkgo"
+    dogwood_db_cnx = connect_db(src_db_name)
+    user_list = get_users_from_dogwood_db(dogwood_db_cnx)
+    ginkgo_db_cnx = connect_db(dest_db_name)
+    set_users_to_ginkgo_db(ginkgo_db_cnx, user_list)
+    #delete_database(dogwood_db_cnx, src_db_name)
+    #create_database(dogwood_db_cnx, db_name)                                           
+    #delete_database(dogwood_db_cnx, db_name)    
 
   #+END_SRC
 * Tangle
@@ -135,7 +162,5 @@ if __name__ == "__main__":
 <<get-users-dogwood-db>>
 <<set-users-to-ginkgo-db>>
 <<main-func>>
-<<import-db>>
-<<migrate-db>>
-<<clos-conn>>
+
 #+END_SRC
