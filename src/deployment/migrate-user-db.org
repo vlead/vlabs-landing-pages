@@ -1,0 +1,141 @@
+#+TITLE: Migrate user database from Dogwood to Ginkgo version
+#+AUTHOR: VLEAD
+#+DATE: [2017-12-11 Mon]
+#+SETUPFILE: ./org-templates/level-0.org
+#+TAGS: boilerplate(b)
+#+EXCLUDE_TAGS: boilerplate
+#+OPTIONS: ^:nil
+
+* Introduction
+  This document has script to migrate the user database from
+  =Dogwood= to =Ginkgo= version
+
+* Connect to database
+  #+NAME: connect-db
+  #+BEGIN_SRC python
+
+def connect_db():
+
+    config = {
+        'user': USER,
+        'passwd': PASSWORD,
+        'host': HOST
+        }
+    try:
+        cnx = MySQLdb.connect(**config)
+        print "connected to database"
+	return cnx
+    except Exception as err:
+	print(err)
+	exit(1)
+        
+  #+END_SRC
+* Create database
+  #+NAME: create-db
+  #+BEGIN_SRC python
+
+def create_database(cursor, db_name):
+    try:
+        query = "create database %s" % (db_name)
+	cursor.execute(query)
+	print "database created"
+	return True
+    except MySQLdb.Error as err:
+	print "Failed creating database: {}".format(err)
+	return False
+
+  #+END_SRC
+* Delete database
+  #+NAME: delete-db
+  #+BEGIN_SRC python
+
+def delete_database(cursor, db_name):
+    try:
+	query = "drop database %s" % (db_name)
+	cursor.execute(query)
+	print "database deleted"
+	return True
+    except MySQLdb.Error as err:
+        print "Failed deleting database: {}".format(err)
+        return False
+
+  #+END_SRC
+
+* Restore dogwood user database
+  #+NAME: restore_db
+  #+BEGIN_SRC python
+
+  def restore_db():
+      pass
+
+  #+END_SRC
+* Get users from dogwood database
+  #+NAME: get-users-dogwood-db
+  #+BEGIN_SRC python
+
+def get_users_from_dogwood_db(cursor, db_name):
+    query = "use %s" % db_name
+    cursor.execute(query)
+    tables = cursor.fetchall()
+    print tables
+
+  #+END_SRC
+* Set users into ginkgo database
+  #+NAME: set-users-to-ginkgo-db
+  #+BEGIN_SRC python
+
+def set_users_to_ginkgo_db():
+    pass
+
+  #+END_SRC
+* Migrate user database
+  #+NAME: migrate_user_db
+  #+BEGIN_SRC python
+
+def migrate_user_db():
+    pass
+
+  #+END_SRC
+
+* Config
+  #+NAME: config
+  #+BEGIN_SRC python
+HOST="localhost"
+USER="root"
+PASSWORD="root"
+  
+  #+END_SRC
+* Imports
+  #+NAME: imports
+  #+BEGIN_SRC python
+import MySQLdb
+from config import *  
+  #+END_SRC
+* Main function
+  #+NAME: main-func
+  #+BEGIN_SRC python
+if __name__ == "__main__":
+    db_name = "openedx_dogwood"
+    dogwood_db_cnx = connect_db().cursor()
+    create_database(dogwood_db_cnx, db_name)
+    #delete_database(dogwood_db_cnx, db_name)
+
+  #+END_SRC
+* Tangle
+** sources
+#+BEGIN_SRC python :tangle config.py :eval no :noweb yes 
+<<config>>
+#+END_SRC
+
+#+BEGIN_SRC python :tangle migrate-usr-db.py :eval no :noweb yes 
+<<imports>>
+<<connect-db>>
+<<create-db>>
+<<delete-db>>
+<<get-users-dogwood-db>>
+<<set-users-to-ginkgo-db>>
+<<main-func>>
+<<import-db>>
+<<migrate-db>>
+<<clos-conn>>
+#+END_SRC
