@@ -149,6 +149,7 @@ var setUsageInIframe = function() {
 var setLabDataInIframe = function() {
   var iframe = parent.document.getElementById("contentIframe");
   iframe.sandbox = 'allow-forms allow-scripts allow-same-origin';
+  iframe.src = "labs.html";
   var content = iframe.contentWindow.document;
   content.body.innerHTML = "";
   content.write(labs_data);
