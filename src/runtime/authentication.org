@@ -51,7 +51,7 @@ var setRegisterUrlInContentIframe = function() {
 #+NAME: post-message-event-listner
 #+BEGIN_SRC javascript 
 window.loggedin_handler = false;
-window.all_disc_flag = false;
+window.bk_btn_flag = false;
 window.all_inst_flag = false;
 window.lab_url = "";
 if (window.addEventListener) {
@@ -123,78 +123,73 @@ function validateCookie(){
    - If post message contains sub string =MY COURSES= then
      cookie sets to =session_status=logged in=
    - If post message contains sub string =Welcome to the
-     Open= then cookie sets to =session_status=logged out=
+     Open= then cookie sets to =session_status=logged out=  
 #+NAME: validate-post-message
 #+BEGIN_SRC javascript 
 function validatePostMessage(evt) {
   //  alert(evt.origin);
-  if (evt.origin != "http://localhost:8000") {
-    console.log("Unauthorized domain");
-  }
-  else {
-    if (evt.data.indexOf("MY COURSES") != -1){
-      document.cookie = "session_status='logged in'";
-      if (window.lab_url == ""){
-        loadAllDisciplines();
-      }
-      else{
-        var iframe = document.getElementById("contentIframe");
-        iframe.src = window.lab_url;
-      }
-    }
-    else if (evt.data.indexOf("Welcome to the Open")!= -1){
-      document.cookie = "session_status='logged out'";
+  if (evt.data.indexOf("MY COURSES") != -1){
+    document.cookie = "session_status='logged in'";
+    if (window.lab_url == ""){
       loadAllDisciplines();
-      var loginDiv = document.getElementById("login");
-      loginDiv.innerHTML = "Login";
-      loginDiv.setAttribute( "onClick", "setLoginUrlInContentIframe('login')" );
-      var register_elem = document.getElementById("register");
-      register_elem.style.display = "block";
     }
-    else if(evt.data.indexOf("all-disciplines")!=-1 ){
-      if(window.all_disc_flag == false){
-        window.all_disc_flag = true;
-        console.log("==========true case=======");
-        console.log(window.all_disc_flag);
-      }
-      else
-      {
-        window.all_disc_flag = false;
-        console.log("==========false case=======");
-        console.log(window.all_disc_flag);
-        loadAllDisciplines();
-      }
+    else{
+      var iframe = document.getElementById("contentIframe");
+      iframe.src = window.lab_url;
     }
-    else if(evt.data.indexOf("all-institutes")!=-1 ){
-      if(window.all_disc_flag == false){
-        window.all_disc_flag = true;
-        console.log("==========true case=======");
-        console.log(window.all_disc_flag);
-      }
-      else
-      {
-        window.all_disc_flag = false;
-        console.log("==========false case=======");
-        console.log(window.all_disc_flag);
-        loadAllInstitutes();
-      }
-    }
-    else if(evt.data.indexOf("all-labs")!=-1 ){
-      if(window.all_disc_flag == false){
-        window.all_disc_flag = true;
-        console.log("==========true case=======");
-        console.log(window.all_disc_flag);
-      }
-      else
-      {
-        window.all_disc_flag = false;
-        console.log("==========false case=======");
-        console.log(window.all_disc_flag);
-        loadAllDisciplines();
-      }
-    }
-    validateCookie();
   }
+  else if (evt.data.indexOf("Welcome to the Open")!= -1){
+    document.cookie = "session_status='logged out'";
+    loadAllDisciplines();
+    var loginDiv = document.getElementById("login");
+    loginDiv.innerHTML = "Login";
+    loginDiv.setAttribute( "onClick", "setLoginUrlInContentIframe('login')" );
+    var register_elem = document.getElementById("register");
+    register_elem.style.display = "block";
+  }
+  else if(evt.data.indexOf("all-disciplines")!=-1 ){
+    if(window.bk_btn_flag == false){
+      window.bk_btn_flag = true;
+      console.log("==========true case=======");
+      console.log(window.bk_btn_flag);
+    }
+    else
+    {
+      window.bk_btn_flag = false;
+      console.log("==========false case=======");
+      console.log(window.bk_btn_flag);
+      loadAllDisciplines();
+    }
+  }
+  else if(evt.data.indexOf("all-institutes")!=-1 ){
+    if(window.bk_btn_flag == false){
+      window.bk_btn_flag = true;
+      console.log("==========true case=======");
+      console.log(window.bk_btn_flag);
+    }
+    else
+    {
+      window.bk_btn_flag = false;
+      console.log("==========false case=======");
+      console.log(window.bk_btn_flag);
+      loadAllInstitutes();
+    }
+  }
+  else if(evt.data.indexOf("all-labs")!=-1 ){
+    if(window.bk_btn_flag == false){
+      window.bk_btn_flag = true;
+      console.log("==========true case=======");
+      console.log(window.bk_btn_flag);
+    }
+    else
+    {
+      window.bk_btn_flag = false;
+      console.log("==========false case=======");
+      console.log(window.bk_btn_flag);
+      loadAllDisciplines();
+    }
+  }
+  validateCookie();
 }
 
 #+END_SRC
