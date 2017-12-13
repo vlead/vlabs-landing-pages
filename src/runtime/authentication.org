@@ -21,9 +21,9 @@
 var setLoginUrlInContentIframe = function(event) {
   console.log("=======setting login url to content iframe=====");
   var iframe = document.getElementById("contentIframe");
+  iframe.sandbox = 'allow-scripts allow-same-origin allow-popups allow-forms';
   if(event == "login"){
     iframe.src = openedx_url + "/login";
-    iframe.sandbox = 'allow-scripts allow-same-origin allow-popups allow-forms';
   }
   else{
     iframe.src = openedx_url + "/logout";
