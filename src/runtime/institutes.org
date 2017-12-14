@@ -164,9 +164,11 @@ onclick="javascript:validateAuthentication(this)" src="' + path +'" id="' + host
 var getAllInstitutesInCombobox = function(){
   console.log("=========inside get all institutes in combobox==========");
   var institute_url = lds_url+"/institutes";
-//  console.log(institute_url);
   $.getJSON(institute_url, function(data) {
     var institutes = '';
+    data.sort(function (key, value) {
+      return key.institute_name.localeCompare(value.institute_name);
+    });
     $.each(data, function(key, value){
       var institute_name = value['institute_name'];
       institutes +=  '<li onclick="getLabsByInstituteName(this, 1)" value="'
@@ -175,7 +177,6 @@ var getAllInstitutesInCombobox = function(){
     });
     var institute_list = '<li onclick="loadAllInstitutes()">\
 <a >All Institutes</a></li>' + institutes;
-//    console.log(institute_list);
     $('.filterInstituteComboBox').append(institute_list);
   })
     .done(function() {

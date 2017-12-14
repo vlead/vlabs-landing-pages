@@ -60,8 +60,6 @@ style="cursor: pointer; padding: 0px !important; padding-top:15px !important;"> 
     var discipline_list = '<div class="container-fluid"><div class="row">'
     + disciplines +'</div></div>';
     setContent(discipline_list, "disciplines.html");
-//    setNewContentInIframe(discipline_list);
-//    addScriptTags();
     })
     .done(function() {
       console.log( "second success" );
@@ -160,6 +158,9 @@ var getAllDisciplinesInCombobox = function(){
   var discipline_url = lds_url + "/disciplines";
   $.getJSON(discipline_url, function(data) {
     var disciplines = '';
+    data.sort(function (key, value) {
+      return key.discipline_name.localeCompare(value.discipline_name);
+    });
     $.each(data, function(key, value){
     var discipline_name = value['discipline_name'];
       disciplines += '<li onclick="getLabsByDisciplineName(this, 1)" value="'

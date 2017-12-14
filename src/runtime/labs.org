@@ -44,6 +44,9 @@ var getAllLabs = function(){
   var lab_url = lds_url+"/labs";
   $.getJSON(lab_url, function(data) {
     var labs = '';
+    data.sort(function (key, value) {
+      return key.lab_name.localeCompare(value.lab_name);
+    });
     $.each(data, function(key, value){
       var lab_name = value['lab_name'];
       var hosting_info = value['hosting_info'];
