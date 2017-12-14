@@ -46,6 +46,9 @@ var getAllInstitutes = function(){
 //  console.log(institute_url);
   $.getJSON(institute_url, function(data) {
     var institutes = '';
+    data.sort(function (key, value) {
+      return key.institute_name.localeCompare(value.institute_name);
+    });
     $.each(data, function(key, value){
       var institute_name = value['institute_name'];
       var image_name = value['assets'][0]['path'];
@@ -101,6 +104,9 @@ var getLabsByInstituteName = function(image, flag) {
   console.log(labs_by_institute_url);
   $.getJSON(labs_by_institute_url, function(data) {
     var labs = '';
+    data.sort(function (key, value) {
+      return key.lab_name.localeCompare(value.lab_name);
+    });
     $.each(data, function(key, value){
       var lab_name = value['lab_name'];
       var hosting_info = value['hosting_info'];

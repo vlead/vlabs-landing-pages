@@ -44,6 +44,9 @@ var getAllDisciplines = function(){
 //  console.log(dis_url);
   $.getJSON(dis_url, function(data) {
     var disciplines = '';
+    data.sort(function (key, value) {
+      return key.discipline_name.localeCompare(value.discipline_name);
+    });
     $.each(data, function(key, value){
     var discipline_name = value['discipline_name'];
     var image_name = value['assets'][0]['path'];
@@ -94,6 +97,9 @@ var getLabsByDisciplineName = function(image, flag) {
   var labs_by_dis_url = labs_url + "?discipline_name="+ discipline_name;
   $.getJSON(labs_by_dis_url, function(data) {
     var labs = '';
+    data.sort(function (key, value) {
+      return key.lab_name.localeCompare(value.lab_name);
+    });
     $.each(data, function(key, value){
       var lab_name = value['lab_name'];
       var hosting_info = value['hosting_info'];

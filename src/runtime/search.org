@@ -40,6 +40,9 @@ var getLabsByKeyword = function(){
     }
   }
   var labs='';
+  data.sort(function (key, value) {
+    return key.lab_name.localeCompare(value.lab_name);
+  });
   $.each(data, function(key, value){
     var lab_name = value['lab_name'];
     var hosting_info = value['hosting_info'];
@@ -75,7 +78,7 @@ onclick="javascript:validateAuthentication(this)" src="' + path +'" id="' + host
       '" style="text-align:center; color:#2c99ce;" >'+ lab_name +'</h4></a></div></div></div>';
   });
   var labs_list = '<div class="container-fluid"><div class="row">'+ labs +'</div></div>';
-  resetContentInIframe(labs, "labs.html");
+  resetContentInIframe(labs);
 };
 
 #+END_SRC

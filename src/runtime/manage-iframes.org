@@ -175,6 +175,16 @@ var resetContentInIframe = function(data, htmlFile) {
   addScriptTags();
 };
 
+var resetContentInIframe = function(data) {
+  console.log("=======re setting content=====");        
+  var iframe = parent.document.getElementById("contentIframe");
+  iframe.sandbox = 'allow-scripts allow-same-origin allow-popups allow-forms';
+  var content = iframe.contentWindow.document;
+  content.body.innerHTML="";
+  content.write(data);
+  addScriptTags();
+};
+
 #+END_SRC
 
 ** Set the source and content to an frame
