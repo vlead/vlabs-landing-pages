@@ -96,7 +96,7 @@ var getLabsByInstituteName = function(image, flag) {
     deleteFrameInDivision("contentIframe", "contentDiv");
     var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "650em");
     insertFrameInDivision(newFrame, "contentDiv");
-    newFrame.src = "labs.html";
+//    newFrame.src = "labs.html";
   }
   var institute_name = image.id;
   var labs_url = lds_url+"/labs";
