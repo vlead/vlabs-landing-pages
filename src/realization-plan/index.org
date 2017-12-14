@@ -55,44 +55,52 @@
 #+caption:  realization-plan-milestone-8
 #+name: tbl-rlz-pln-ml-8
 
-|---+-------+-----------------------+--------+----------+--------+------------+--------+-------------+-----------|
-|   |    S. | Tasks                 | Github | Expected | Actual |  Estimated | Actual | Status      | Assignee  |
-|   |    NO |                       | Issues | Effort   | Effort |     Start, | Start/ |             |           |
-|   |       |                       |        | (in      | (in    |        End | End    |             |           |
-|   |       |                       |        | person   | person |      Dates | Dates  |             |           |
-|   |       |                       |        | hours)   | hours) |            |        |             |           |
-|---+-------+-----------------------+--------+----------+--------+------------+--------+-------------+-----------|
-|   |    1. | Styles are breaking,  | [[https://github.com/vlead/vlabs-landing-pages/issues/118][#118]]   | 32       | 0      |            |        | Bug         |           |
-|   |       | while traveling       |        |          |        |            |        | Backlog     |           |
-|   |       | through browser back  |        |          |        |            |        |             |           |
-|   |       | button from the       |        |          |        |            |        |             |           |
-|   |       | experiment page to    |        |          |        |            |        |             |           |
-|   |       | institutes page       |        |          |        |            |        |             |           |
-|---+-------+-----------------------+--------+----------+--------+------------+--------+-------------+-----------|
-|   |    2. | Styles are breaking,  | [[https://github.com/vlead/vlabs-landing-pages/issues/119][#119]]   | 32       |        | 01-11-2017 |        | Bug         | Balamma   |
-|   |       | while traveling       |        |          |        | 06-10-2017 |        | In progress | Mrudhvika |
-|   |       | through browser back  |        |          |        |            |        |             |           |
-|   |       | button from the       |        |          |        |            |        |             |           |
-|   |       | experiment page to    |        |          |        |            |        |             |           |
-|   |       | disciplines page      |        |          |        |            |        |             |           |
-|---+-------+-----------------------+--------+----------+--------+------------+--------+-------------+-----------|
-|   |    3. | Bug:Loading labs and  | [[https://github.com/vlead/vlabs-landing-pages/issues/116][#116]]   | 48       |        |            |        | Bug         |           |
-|   |       | institutes in a same  |        |          |        |            |        | Backlog     |           |
-|   |       | page, while traveling |        |          |        |            |        |             |           |
-|   |       | through browser back  |        |          |        |            |        |             |           |
-|   |       | button from the       |        |          |        |            |        |             |           |
-|   |       | experiment page       |        |          |        |            |        |             |           |
-|---+-------+-----------------------+--------+----------+--------+------------+--------+-------------+-----------|
-|   |    4. | Bug: Loading labs and | [[https://github.com/vlead/vlabs-landing-pages/issues/117][#117]]   | 48       |        | 01-11-2017 |        | Bug         | Balamma   |
-|   |       | disciplines in a same |        |          |        | 07-11-2017 |        | Backlog     | Mrudhvika |
-|   |       | page, while traveling |        |          |        |            |        |             |           |
-|   |       | through browser back  |        |          |        |            |        |             |           |
-|   |       | button from the       |        |          |        |            |        |             |           |
-|   |       | experiment page       |        |          |        |            |        |             |           |
-|---+-------+-----------------------+--------+----------+--------+------------+--------+-------------+-----------|
-|   | Total |                       |        | 160      | 0      |            |        |             |           |
-| ^ |       |                       |        | est      | act    |            |        |             |           |
-|---+-------+-----------------------+--------+----------+--------+------------+--------+-------------+-----------|
+|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+----------|
+|   |    S. | Tasks                 | Github | Expected | Actual |  Estimated |     Actual | Status | Assignee |
+|   |    NO |                       | Issues |   Effort | Effort |     Start, |     Start/ |        |          |
+|   |       |                       |        |      (in |    (in |        End |        End |        |          |
+|   |       |                       |        |   person | person |      Dates |      Dates |        |          |
+|   |       |                       |        |   hours) | hours) |            |            |        |          |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+----------|
+|   |    1. | Styles are breaking,  | [[https://github.com/vlead/vlabs-landing-pages/issues/118][#118]]   |       32 |     12 | 12-12-2017 | 12-12-2017 | Done   | Madhavi  |
+|   |       | while traveling       |        |          |        | 15-12-2017 | 12-12-2017 |        | Sripathi |
+|   |       | through browser back  |        |          |        |            |            |        |          |
+|   |       | button from the       |        |          |        |            |            |        |          |
+|   |       | experiment page to    |        |          |        |            |            |        |          |
+|   |       | institutes page       |        |          |        |            |            |        |          |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+----------|
+|   |    2. | Styles are breaking,  | [[https://github.com/vlead/vlabs-landing-pages/issues/119][#119]]   |       32 |     12 | 01-11-2017 | 06-12-2017 | Done   | Madhavi  |
+|   |       | while traveling       |        |          |        | 06-10-2017 | 06-12-2017 |        | Sripathi |
+|   |       | through browser back  |        |          |        |            |            |        |          |
+|   |       | button from the       |        |          |        |            |            |        |          |
+|   |       | experiment page to    |        |          |        |            |            |        |          |
+|   |       | disciplines page      |        |          |        |            |            |        |          |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+----------|
+|   |    3. | Bug:Loading labs and  | [[https://github.com/vlead/vlabs-landing-pages/issues/116][#116]]   |       48 |     12 | 12-12-2017 | 12-12-2017 | Done   | Madhavi  |
+|   |       | institutes in a same  |        |          |        | 15-12-2017 | 12-12-2017 |        | Sripathi |
+|   |       | page, while traveling |        |          |        |            |            |        |          |
+|   |       | through browser back  |        |          |        |            |            |        |          |
+|   |       | button from the       |        |          |        |            |            |        |          |
+|   |       | experiment page       |        |          |        |            |            |        |          |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+----------|
+|   |    4. | Bug: Loading labs and | [[https://github.com/vlead/vlabs-landing-pages/issues/117][#117]]   |       48 |     12 | 01-11-2017 | 07-12-2017 | Done   | Madhavi  |
+|   |       | disciplines in a same |        |          |        | 07-11-2017 | 07-12-2017 |        | Sripathi |
+|   |       | page, while traveling |        |          |        |            |            |        |          |
+|   |       | through browser back  |        |          |        |            |            |        |          |
+|   |       | button from the       |        |          |        |            |            |        |          |
+|   |       | experiment page       |        |          |        |            |            |        |          |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+----------|
+|   |    5. | Sort the Lab names    | [[https://github.com/vlead/vlabs-landing-pages/issues/155][#115]]   |       24 |      3 | 14-11-2017 | 14-11-2017 | Done   | Madhavi  |
+|   |       | in all functions      |        |          |        | 14-11-2017 | 14-11-2017 |        |          |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+----------|
+|   |    6. | Sort the names of     | [[https://github.com/vlead/vlabs-landing-pages/issues/154][#154]]   |       24 |      6 | 13-11-2017 | 13-11-2017 | Done   | Madhavi  |
+|   |       | Institutes and        |        |          |        | 13-11-2017 | 13-11-2017 |        |          |
+|   |       | Disciplines in Drop   |        |          |        |            |            |        |          |
+|   |       | down menu             |        |          |        |            |            |        |          |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+----------|
+|   | Total |                       |        |      208 |     57 |            |            |        |          |
+| ^ |       |                       |        |      est |    act |            |            |        |          |
+|---+-------+-----------------------+--------+----------+--------+------------+------------+--------+----------|
 #+TBLFM: $est=vsum(@II+1..@-1)
 #+TBLFM: $act=vsum(@II+1..@-1)
 
