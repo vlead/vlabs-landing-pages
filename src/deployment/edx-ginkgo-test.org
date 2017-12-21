@@ -1,0 +1,77 @@
+#+TITLE: Steps to Configure openedx labs on dev environment
+#+AUTHOR: VLEAD
+#+DATE: [2017-12-21 Mon]
+#+SETUPFILE: ./org-templates/level-0.org
+#+TAGS: boilerplate(b)
+#+EXCLUDE_TAGS: boilerplate
+#+OPTIONS: ^:nil
+
+* Introduction
+  This document lists steps to configure vagrant box running ginkgo
+  version on dev environment.
+* Steps to configure vagrant box
+  1. Download the vagrant box running ginkgo version from [[http://files.vlabs.ac.in/downloads/vagrant-boxes/openedx-ginkgo-fullstack-vagrant.box][here]].
+  2. Open terminal and add the downloaded box to vagrant using the
+     below commands:
+     #+BEGIN_EXAMPLE
+     vagrant box add edx-ginkgo openedx-ginkgo-fullstack-vagrant.box
+     #+END_EXAMPLE
+  3. Make a directory edx-ginkgo and run "vagrant init" inside the directory.
+  4. Vagrantfile  is generated, then  run the command "vagrant  up" in
+     the terminal.
+  5. Log into the vagrant box by doing "vagrant ssh".
+  6. Type if config to know the IP of the vagrant box.
+  7. Edit and save the file "/etc/hosts" by adding the IP of the
+     vagrant box with a domain name as below:
+     #+BEGIN_EXAMPLE
+     10.2.57.64 themeless.vlabs.ac.in
+     #+END_EXAMPLE
+  8. Open browser and type themeless.vlabs.ac.in to access the labs.
+* Steps to configure vlabs landing pages 
+  1. Open terminal and clone the [[https://github.com/vlead/vlabs-landing-pages.git][vlabs-landing-pages]] repository.
+     #+BEGIN_EXAMPLE
+     git clone https://github.com/vlead/vlabs-landing-pages.git
+     #+END_EXAMPLE
+  2. Switch to refactor branch and run make file
+     #+BEGIN_EXAMPLE
+     git checkout refactor
+     make
+     #+END_EXAMPLE
+  3. Change directory to "build/code/runtime", replace
+     "localhost:8080" with "pages.vlabs.ac.in" in the below files:
+     - disciplines.html
+     - institutes.html
+     - labs.html
+  4. Edit the file "build/code/runtime/js/app-config.js" and replace
+     "localhost" with "vlabs.ac.in" at the "document.domain" field.
+* Steps to configure opeedx-server
+  1. Open terminal -->  go to "/edx/var/nginx/server-static/" --> 
+     create a file nameing "message.html"and paste the below code 
+     snippet to configure openedx server.
+     #+BEGIN_EXAMPLE
+     <html>
+        <head>
+          <script>
+            var postM = function() {
+            textOfContentIframe = document.body.innerText;
+            console.log("Sender message: " + textOfContentIframe);
+            //console.log("Referrer: " + document.referrer);
+            msg = window.parent.postMessage(textOfContentIframe, "http://pages.vlabs.ac.in");
+            };
+          </script>
+        </head>
+        <body onload="postM();">
+        </body>
+     </html>
+     #+END_EXAMPLE
+  2. Edit the file "/etc/nginx/sites-enabled/lms" and add the below
+     code snippet
+     #+BEGIN_EXAMPLE
+     location @proxy_to_lms_app {
+        add_after_body /server/message.html;
+     #+END_EXAMPLE
+  4. Run the below command to start the openedx server
+     #+BEGIN_EXAMPLE
+     sudo python -m SimpleHTTPServer 80
+     #+END_EXAMPLE
+  3. Open browser and type pages.vlabs.ac.in to access the lds labs.
