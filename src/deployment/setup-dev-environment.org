@@ -1,0 +1,125 @@
+#+TITLE: Setup Vlabs Landing Pages in Dev Environment
+#+AUTHOR: VLEAD
+#+DATE: [2017-12-21 Mon]
+#+SETUPFILE: ./org-templates/level-0.org
+#+TAGS: boilerplate(b)
+#+EXCLUDE_TAGS: boilerplate
+#+OPTIONS: ^:nil
+
+* Introduction
+  This document has steps to run vlabs-landing-pages on
+  development environment
+* Setup Openedx on dev environment
+  Following are the steps to setup Openedx =ginkgo= version
+  on development environment
+** Steps  
+  1. Download the vagrant box running Openedx ginkgo version [[http://files.vlabs.ac.in/downloads/vagrant-boxes/openedx-ginkgo-fullstack-vagrant.box][link]]
+  2. Add the box to vagrant
+     #+BEGIN_EXAMPLE
+     vagrant box add edx-ginkgo openedx-ginkgo-fullstack-vagrant.box
+     #+END_EXAMPLE
+  3. create a directory =edx-ginkgo= and run "vagrant init"
+     #+BEGIN_EXAMPLE
+     mkdir edx-ginkgo
+     cd edx-ginkgo
+     vagrant init edx-ginkgo
+     #+END_EXAMPLE
+  4. Above step(3) generates =Vagrantfile=
+  5. Edit the =Vagrantfile= using editor (like e.g emacs,
+     vim, etc.) and uncomment below line by removing =#= in
+     the beginning of the line to set the vagrant to use
+     private network (e.g 192.168.34.10)
+     #+BEGIN_EXAMPLE
+     #config.vm.network "private_network", ip: "192.168.33.10" 
+     config.vm.network "private_network", ip: "192.168.34.10" 
+     #+END_EXAMPLE
+  6. Boot the machine
+     #+BEGIN_EXAMPLE
+     vagrant up 
+     #+END_EXAMPLE
+
+  7. Login in to the machine as root.  Sometimes, login will
+     succeed after a few tries. 
+     #+BEGIN_EXAMPLE
+     vagrant ssh 
+     sudo su -
+     #+END_EXAMPLE
+
+  8. Configure post message, following code snippet is to be
+     configured in =openedx= server. This is required to
+     send the post messages to destination server. Place the
+     following snippet inside
+     =/edx/var/nginx/server-static/message.html=
+     #+BEGIN_SRC html
+     <html>
+      <head>
+        <script>
+          var postM = function() {
+          textOfContentIframe = document.body.innerText;
+          console.log("Sender message: " + textOfContentIframe);
+          //console.log("Referrer: " + document.referrer);
+          msg = window.parent.postMessage(textOfContentIframe, "http://pages.vlabs.ac.in");
+          };
+        </script>
+      </head>
+      <body onload="postM();">
+      </body>
+     </html>
+     #+END_SRC
+     In above code snippet =http://pages.vlabs.ac.in= is the
+     destination server name where all post messages will be
+     sent.
+
+  9. Edit the file =/etc/nginx/sites-enabled/lms= and add
+     the below code snippet
+     #+BEGIN_EXAMPLE
+      location @proxy_to_lms_app {
+         add_after_body /server/message.html;
+         -------
+         --------
+     #+END_EXAMPLE
+  10. Configure x-frame options, by default =x-frame= http
+      response header of pages served from OpenEdx are set
+      to =DENY= for security reasons. To enable loading all
+      these pages inside iframes this is to be set to
+      =ALLOW=.  To enable this feature change
+      =x_frame_option= value from =DENY= to =ALLOW= in
+      =/edx/app/edxapp/edx-platform/common/djangoapps/third_party_auth/decorators.py=
+      #+BEGIN_EXAMPLE
+      #x_frame_option = 'DENY'
+      x_frame_option = 'ALLOW'
+      #+END_EXAMPLE
+  11. Delete header and footer, to disable =header= and
+      =footer= pages from openedx comment out below lines
+      from file
+      =/edx/app/edxapp/edx-platform/lms/templates/main.html=
+      #+BEGIN_EXAMPLE
+      ##<%static:optional_include_mako file="body-initial.html" is_theming_enabled="True" />
+      ## % if not disable_header:
+      ##   <%include file="${static.get_template_path('header.html')}" args="online_help_token=online_help_token" />
+      ## <%include file="/preview_menu.html" />
+      ##% endif
+
+      ##  % if not disable_footer:
+      ##    <%include file="${static.get_template_path('footer.html')}" />
+      ##% endif
+      #+END_EXAMPLE
+
+* Steps to configure vlabs landing pages 
+  1. Create vagrant vm
+  2. Clone the [[https://github.com/vlead/vlabs-landing-pages.git][vlabs-landing-pages]] repository.
+     #+BEGIN_EXAMPLE
+     git clone https://github.com/vlead/vlabs-landing-pages.git
+     #+END_EXAMPLE
+  3. Checkout to refactor branch and run make file
+     #+BEGIN_EXAMPLE
+     git checkout refactor
+     make
+     #+END_EXAMPLE
+  4. Change directory to =build/code/runtime=, replace
+     "localhost:8080" with "pages.vlabs.ac.in" in the below files:
+     - disciplines.html
+     - institutes.html
+     - labs.html
+  5. Edit the file "build/code/runtime/js/app-config.js" and replace
+     "localhost" with "vlabs.ac.in" at the "document.domain" field.
