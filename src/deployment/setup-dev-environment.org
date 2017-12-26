@@ -10,58 +10,6 @@
   This document has steps to run the vlabs-landing-pages on
   development environment
 
-* Steps to configure vlabs landing pages 
-  Following are the steps to setup the vlabs-landing-pages
-  on development environment
-
-  1. Create [[https://github.com/vlead/vlead-templates/blob/develop/src/vagrant-boxes/create-box-from-existing-vagrant-machine.org#steps-to-create-vm-using-vagrant][vagrant machine]] and make sure that machine has
-     ip address =192.168.33.20=
-  2. Clone the [[https://github.com/vlead/vlabs-landing-pages.git][vlabs-landing-pages]] repository.
-     #+BEGIN_EXAMPLE
-     git clone https://github.com/vlead/vlabs-landing-pages.git
-     #+END_EXAMPLE
-  3. Checkout to =refactor= branch and build the sources
-     #+BEGIN_EXAMPLE
-     git checkout refactor
-     make
-     #+END_EXAMPLE
-  4. Change directory to =build/code/runtime=
-     #+BEGIN_EXAMPLE
-     cd build/code/runtime
-     #+END_EXAMPLE
-  5. Configure =document.domain= value to =vlabs.ac.in= and
-     post message url to =http://pages.vlabs.ac.in= in
-     =disciplines.html=, =institutes.html= and =labs.html=
-     files
-     #+BEGIN_EXAMPLE
-     document.domain="vlabs.ac.in"
-     function testDiscFunc(){
-     console.log("disciplines on page show called");
-     msg = window.parent.postMessage("all-disciplines", "http://pages.vlabs.ac.in");
-     }
-     </script>
-
-     #+END_EXAMPLE
-  6. Configure the following variables in
-     =build/code/runtime/js/app-config.js= 
-
-     1. document.domain = "vlabs.ac.in"
-
-     2. openedx_url = "http://themeless.vlabs.ac.in"
-
-     3. lds_url = "http://lds-alpha.vlabs.ac.in:5000"
-
-  7. Run simple http server in =build/code/runtime= port =80=
-     #+BEGIN_EXAMPLE
-     cd build/code/runtime
-     python -m SimpleHTTPServer 80
-     #+END_EXAMPLE
-
-* Steps to configure lab-data-service
-  1. Create [[https://github.com/vlead/vlead-templates/blob/develop/src/vagrant-boxes/create-box-from-existing-vagrant-machine.org#steps-to-create-vm-using-vagrant][vagrant machine]] and make sure that machine has
-     ip address =192.168.33.21=
-  2. Follow [[https://github.com/vlead/lab-data-service/blob/master/src/deployment/run-lds-in-development-environment.org][documentation]] to setup lab-data-service
-
 * Steps to Openedx on dev environment
   Following are the steps to setup Openedx =ginkgo= version
   on development environment
@@ -157,9 +105,74 @@
       ##    <%include file="${static.get_template_path('footer.html')}" />
       ##% endif
       #+END_EXAMPLE
+  12. Restart the services on Open edX to pick the new
+      configuration changes.
+      #+BEGIN_EXAMPLE
+      /edx/bin/supervisorctl restart edxapp:
+      #+END_EXAMPLE
+  13. Exit from the VM and reload the vagrant machine
+      #+BEGIN_EXAMPLE
+      exit
+      #+END_EXAMPLE
+      #+BEGIN_EXAMPLE
+      vagrat reload
+      #+END_EXAMPLE
+
+* Steps to configure vlabs landing pages 
+  Following are the steps to setup the vlabs-landing-pages
+  on development environment
+
+  1. Create [[https://github.com/vlead/vlead-templates/blob/develop/src/vagrant-boxes/create-box-from-existing-vagrant-machine.org#steps-to-create-vm-using-vagrant][vagrant machine]] and make sure that machine has
+     ip address =192.168.33.20=
+  2. Clone the [[https://github.com/vlead/vlabs-landing-pages.git][vlabs-landing-pages]] repository.
+     #+BEGIN_EXAMPLE
+     git clone https://github.com/vlead/vlabs-landing-pages.git
+     #+END_EXAMPLE
+  3. Checkout to =refactor= branch and build the sources
+     #+BEGIN_EXAMPLE
+     git checkout refactor
+     make
+     #+END_EXAMPLE
+  4. Change directory to =build/code/runtime=
+     #+BEGIN_EXAMPLE
+     cd build/code/runtime
+     #+END_EXAMPLE
+  5. Configure =document.domain= value to =vlabs.ac.in= and
+     post message url to =http://pages.vlabs.ac.in= in
+     =disciplines.html=, =institutes.html= and =labs.html=
+     files
+     #+BEGIN_EXAMPLE
+     document.domain="vlabs.ac.in"
+     function testDiscFunc(){
+     console.log("disciplines on page show called");
+     msg = window.parent.postMessage("all-disciplines", "http://pages.vlabs.ac.in");
+     }
+     </script>
+
+     #+END_EXAMPLE
+  6. Configure the following variables in
+     =build/code/runtime/js/app-config.js= 
+
+     1. document.domain = "vlabs.ac.in"
+
+     2. openedx_url = "http://themeless.vlabs.ac.in"
+
+     3. lds_url = "http://lds-alpha.vlabs.ac.in:5000"
+
+  7. Run simple http server in =build/code/runtime= port =80=
+     #+BEGIN_EXAMPLE
+     cd build/code/runtime
+     python -m SimpleHTTPServer 80
+     #+END_EXAMPLE
+
+
+* Steps to configure lab-data-service
+  1. Create [[https://github.com/vlead/vlead-templates/blob/develop/src/vagrant-boxes/create-box-from-existing-vagrant-machine.org#steps-to-create-vm-using-vagrant][vagrant machine]] and make sure that machine has
+     ip address =192.168.33.21=
+  2. Follow [[https://github.com/vlead/lab-data-service/blob/master/src/deployment/run-lds-in-development-environment.org][documentation]] to setup lab-data-service
 * Configure base machine =/etc/hosts= file
-  1. Copy the following lines into =/etc/hosts= to resolve the
-     domain names locally
+  1. Copy the following lines into =/etc/hosts= to resolve
+     the domain names locally
      #+BEGIN_EXAMPLE
      ---------
      ---------
