@@ -20,10 +20,10 @@
   environment it is required to setup =Lab data service= and
   =Openedx platform= in prior.
 ** Setup Lab data service (LDS)
-   Follow the documentation to setup the LDS in development
+   Follow the [[https://github.com/vlead/lab-data-service/blob/develop/src/deployment/run-lds-in-development-environment.org][documentation]] to setup the LDS in development
    environment
 ** Setup the Openedx platform
-   Follow the d[[https://github.com/vlead/vlabs-openedx-platform/blob/develop/src/deployment/index.org#introduction][documentation]]ion to setup the Openedx platform
+   Follow the [[https://github.com/vlead/vlabs-openedx-platform/blob/develop/src/deployment/index.org#introduction][documentation]]ion to setup the Openedx platform
    with version =Ginkgo= in development environment
 ** Setup vlabs-landing pages
    Following are the steps to run the =vlabs-landing-pages=
@@ -112,6 +112,9 @@
       #+END_EXAMPLE
 
 ** Configure base machine =/etc/hosts= file
+   Since the =vlabs-landing-pages= , =lab-data-service= and
+   =openedx-platform= are configured separately following
+   changes should be done for resolving local machines 
   1. Copy the following lines into =/etc/hosts= to resolve
      the domain names locally
      #+BEGIN_EXAMPLE
