@@ -10,26 +10,43 @@
   This document has steps to run the vlabs-landing-pages on
   development environment
 
-* Steps to Openedx on dev environment
-  Following are the steps to setup Openedx =ginkgo= version
-  on development environment
-** Steps  
-  1. Download the vagrant box running Openedx ginkgo version [[http://files.vlabs.ac.in/downloads/vagrant-boxes/openedx-ginkgo-fullstack-vagrant.box][link]]
+
+* Run Vlabs landing pages in development environment
+  Vlabs landing pages is a Javascript based application
+  which is built based on
+    - Lab data service
+    - Openedx platform
+  Therefore to run Vlabs landing pages in development
+  environment it is required to setup =Lab data service= and
+  =Openedx platform= in prior.
+** Setup Lab data service (LDS)
+   Follow the documentation to setup the LDS in development
+   environment
+** Setup the Openedx platform
+   Follow the d[[https://github.com/vlead/vlabs-openedx-platform/blob/develop/src/deployment/index.org#introduction][documentation]]ion to setup the Openedx platform
+   with version =Ginkgo= in development environment
+** Setup vlabs-landing pages
+   Following are the steps to run the =vlabs-landing-pages=
+   in development environment
+  
+  1. [[http://files.vlabs.ac.in/downloads/vagrant-boxes/vlead-dev.box][Download]] the vagrant box 
   2. Add the box to vagrant
      #+BEGIN_EXAMPLE
-     vagrant box add edx-ginkgo openedx-ginkgo-fullstack-vagrant.box
+     #vagrant box add vlabs-pages <file-name>.box
+     vagrant box add vlabs-pages vlead-dev.box
      #+END_EXAMPLE
-  3. create a directory =edx-ginkgo= and run "vagrant init"
+  3. Create a directory =vlabs-pages= and initialize the
+     vagrant setup
      #+BEGIN_EXAMPLE
-     mkdir edx-ginkgo
-     cd edx-ginkgo
-     vagrant init edx-ginkgo
+     mkdir vlabs-pages
+     cd vlabs-pages
+     vagrant init vlabs-pages
      #+END_EXAMPLE
   4. Above step(3) generates =Vagrantfile=
   5. Edit the =Vagrantfile= using editor (like e.g emacs,
      vim, etc.) and uncomment below line by removing =#= in
      the beginning of the line to set the vagrant to use
-     private network (e.g 192.168.34.10)
+     private network (e.g 192.168.33.22)
      #+BEGIN_EXAMPLE
      #config.vm.network "private_network", ip: "192.168.33.10" 
      config.vm.network "private_network", ip: "192.168.33.22" 
@@ -38,147 +55,71 @@
      #+BEGIN_EXAMPLE
      vagrant up 
      #+END_EXAMPLE
-
   7. Login in to the machine as root.  Sometimes, login will
      succeed after a few tries. 
      #+BEGIN_EXAMPLE
      vagrant ssh 
      sudo su -
      #+END_EXAMPLE
-
-  8. Configure post message, following code snippet is to be
-     configured in =openedx= server. This is required to
-     send the post messages to destination server. Place the
-     following snippet inside
-     =/edx/var/nginx/server-static/message.html=
-     #+BEGIN_SRC html
-     <html>
-      <head>
-        <script>
-          var postM = function() {
-          textOfContentIframe = document.body.innerText;
-          console.log("Sender message: " + textOfContentIframe);
-          //console.log("Referrer: " + document.referrer);
-          msg = window.parent.postMessage(textOfContentIframe, "http://pages.vlabs.ac.in");
-          };
-        </script>
-      </head>
-      <body onload="postM();">
-      </body>
-     </html>
-     #+END_SRC
-     In above code snippet =http://pages.vlabs.ac.in= is the
-     destination server name where all post messages will be
-     sent.
-
-  9. Edit the file =/etc/nginx/sites-enabled/lms= and add
-     the below code snippet
+  8. Export =http_proxy= and =https_proxy= variables if your
+     network behind the =http_proxy=
      #+BEGIN_EXAMPLE
-      location @proxy_to_lms_app {
-         add_after_body /server/message.html;
-         -------
-         --------
+     export http_proxy="http://proxy.iiit.ac.in:8080"
+     export https_proxy="http://proxy.iiit.ac.in:8080"
      #+END_EXAMPLE
-  10. Configure x-frame options, by default =x-frame= http
-      response header of pages served from OpenEdx are set
-      to =DENY= for security reasons. To enable loading all
-      these pages inside iframes this is to be set to
-      =ALLOW=.  To enable this feature change
-      =x_frame_option= value from =DENY= to =ALLOW= in
-      =/edx/app/edxapp/edx-platform/common/djangoapps/third_party_auth/decorators.py=
-      #+BEGIN_EXAMPLE
-      #x_frame_option = 'DENY'
-      x_frame_option = 'ALLOW'
-      #+END_EXAMPLE
-  11. Delete header and footer, to disable =header= and
-      =footer= pages from openedx comment out below lines
-      from file
-      =/edx/app/edxapp/edx-platform/lms/templates/main.html=
-      #+BEGIN_EXAMPLE
-      ##<%static:optional_include_mako file="body-initial.html" is_theming_enabled="True" />
-      ## % if not disable_header:
-      ##   <%include file="${static.get_template_path('header.html')}" args="online_help_token=online_help_token" />
-      ## <%include file="/preview_menu.html" />
-      ##% endif
 
-      ##  % if not disable_footer:
-      ##    <%include file="${static.get_template_path('footer.html')}" />
-      ##% endif
-      #+END_EXAMPLE
-  12. Restart the services on Open edX to pick the new
-      configuration changes.
-      #+BEGIN_EXAMPLE
-      /edx/bin/supervisorctl restart edxapp:
-      #+END_EXAMPLE
-  13. Exit from the VM and reload the vagrant machine
-      #+BEGIN_EXAMPLE
-      exit
-      #+END_EXAMPLE
-      #+BEGIN_EXAMPLE
-      vagrat reload
-      #+END_EXAMPLE
-
-* Steps to configure vlabs landing pages 
-  Following are the steps to setup the vlabs-landing-pages
-  on development environment
-
-  1. Create [[https://github.com/vlead/vlead-templates/blob/develop/src/vagrant-boxes/create-box-from-existing-vagrant-machine.org#steps-to-create-vm-using-vagrant][vagrant machine]] and make sure that machine has
-     ip address =192.168.33.20=
-  2. Clone the [[https://github.com/vlead/vlabs-landing-pages.git][vlabs-landing-pages]] repository.
+  9. Clone the [[https://github.com/vlead/vlabs-landing-pages.git][vlabs-landing-pages]] repository.
      #+BEGIN_EXAMPLE
      git clone https://github.com/vlead/vlabs-landing-pages.git
      #+END_EXAMPLE
-  3. Checkout to =refactor= branch and build the sources
-     #+BEGIN_EXAMPLE
-     git checkout refactor
-     make
-     #+END_EXAMPLE
-  4. Change directory to =build/code/runtime=
-     #+BEGIN_EXAMPLE
-     cd build/code/runtime
-     #+END_EXAMPLE
-  5. Configure =document.domain= value to =vlabs.ac.in= and
-     post message url to =http://pages.vlabs.ac.in= in
-     =disciplines.html=, =institutes.html= and =labs.html=
-     files
-     #+BEGIN_EXAMPLE
-     document.domain="vlabs.ac.in"
-     function testDiscFunc(){
-     console.log("disciplines on page show called");
-     msg = window.parent.postMessage("all-disciplines", "http://pages.vlabs.ac.in");
-     }
-     </script>
+  10. Checkout to =refactor= branch and build the sources
+      #+BEGIN_EXAMPLE
+      git checkout refactor
+      make
+      #+END_EXAMPLE
+  11. Remove the default =index.html= from =/var/www/=
+  12. Rsync directory =build/code/runtime/= to =/var/www/=
+      #+BEGIN_EXAMPLE
+      rsync -avz --progress build/code/runtime/ /var/www/
+      #+END_EXAMPLE
+  13. Configure =document.domain= value to =vlabs.ac.in= and
+      post message url to =http://pages.vlabs.ac.in= in
+      =disciplines.html=, =institutes.html= and =labs.html=
+      files
+      #+BEGIN_EXAMPLE
+      ------
+      --------
+      document.domain="vlabs.ac.in"
+      --------
+      -------
+      msg = window.parent.postMessage("all-disciplines", "http://pages.vlabs.ac.in");
+      ------
+      ------
 
-     #+END_EXAMPLE
-  6. Configure the following variables in
-     =build/code/runtime/js/app-config.js= 
+      #+END_EXAMPLE
+  14. Configure the following variables in
+      =build/code/runtime/js/app-config.js= 
 
-     1. document.domain = "vlabs.ac.in"
+      1. document.domain = "vlabs.ac.in"
 
-     2. openedx_url = "http://themeless.vlabs.ac.in"
+      2. base_url = "http://alpha-openedx.vlabs.ac.in"
 
-     3. lds_url = "http://lds-alpha.vlabs.ac.in:5000"
+      3. lds_url = "http://alpha-lds.vlabs.ac.in"
 
-  7. Run simple http server in =build/code/runtime= port =80=
-     #+BEGIN_EXAMPLE
-     cd build/code/runtime
-     python -m SimpleHTTPServer 80
-     #+END_EXAMPLE
+  15. Restart the =apache= servier
+      #+BEGIN_EXAMPLE
+      service apache2 restart
+      #+END_EXAMPLE
 
-
-* Steps to configure lab-data-service
-  1. Create [[https://github.com/vlead/vlead-templates/blob/develop/src/vagrant-boxes/create-box-from-existing-vagrant-machine.org#steps-to-create-vm-using-vagrant][vagrant machine]] and make sure that machine has
-     ip address =192.168.33.21=
-  2. Follow [[https://github.com/vlead/lab-data-service/blob/master/src/deployment/run-lds-in-development-environment.org][documentation]] to setup lab-data-service
-* Configure base machine =/etc/hosts= file
+** Configure base machine =/etc/hosts= file
   1. Copy the following lines into =/etc/hosts= to resolve
      the domain names locally
      #+BEGIN_EXAMPLE
      ---------
      ---------
      192.168.33.20 pages.vlabs.ac.in
-     192.168.33.21 lds-alpha.vlabs.ac.in
-     192.168.33.22 themless.vlabs.ac.in
+     192.168.33.21 alpha-lds.vlabs.ac.in
+     192.168.33.22 alpha-openedx.vlabs.ac.in
      #+END_EXAMPLE
   2. Access vlabs-landig-page on base machine's browser
      #+BEGIN_EXAMPLE
