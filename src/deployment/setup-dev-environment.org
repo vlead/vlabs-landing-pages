@@ -130,6 +130,7 @@
      #+END_EXAMPLE
   2. Access vlabs-landig-page on base machine's browser
      #+BEGIN_EXAMPLE
-     firefox http://pages.vlabs.ac.in
+     firefox http://alpha.vlabs.ac.in
      #+END_EXAMPLE
   
+     
