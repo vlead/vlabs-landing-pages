@@ -10,7 +10,7 @@
 * Introduction
   This has all the configuration required to run the
   =vlabs-landing-pages=
-* Configuration
+* Configurationa
   =vlabs-landing-pages= gets the data from different
   set of micro services. They are:
   1. *Lab Data Service* : This service provides the
@@ -27,10 +27,10 @@
 
 #+NAME: app-config
 #+BEGIN_SRC javascript
-document.domain="localhost";
+document.domain="vlabs.ac.in";
 // update this to base url to lds url where your lds service was running
-var openedx_url = "http://themeless.vlabs.ac.in";
-var lds_url = "http://ld.base4.vlabs.ac.in"; 
+var hosted_base = "http://alpha-openedx.vlabs.ac.in"
+var lds_url = "http://lds-hosting.base4.vlabs.ac.in"; 
 var institute_images_url ="http://files.vlabs.ac.in/lds/images/institutes/";
 var discipline_images_url = "http://files.vlabs.ac.in/lds/images/disciplines/";
 var lab_images_url = "http://files.vlabs.ac.in/lds/images/labs/";

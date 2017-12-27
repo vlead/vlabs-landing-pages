@@ -180,6 +180,15 @@ head.appendChild(favicon);
 
 #+END_SRC
 
+** Modify url
+   #+NAME: modify-url
+   #+BEGIN_SRC javascript 
+var modifyUrl = function(url) {
+  return hosted_base + "/" + url.split("/").slice(3).join("/");
+};
+
+
+   #+END_SRC
 * Tangle 
 ** sources
 *** Javascript
@@ -188,5 +197,6 @@ head.appendChild(favicon);
 <<load-index>>
 <<add-script-tags>>
 <<mouse-over>>
+<<modify-url>>
 #+END_SRC
 

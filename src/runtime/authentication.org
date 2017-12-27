@@ -23,10 +23,10 @@ var setLoginUrlInContentIframe = function(event) {
   var iframe = document.getElementById("contentIframe");
   iframe.sandbox = 'allow-scripts allow-same-origin allow-popups allow-forms';
   if(event == "login"){
-    iframe.src = openedx_url + "/login";
+    iframe.src = hosted_base + "/login";
   }
   else{
-    iframe.src = openedx_url + "/logout";
+    iframe.src = hosted_base + "/logout";
   }
 };
 
@@ -40,7 +40,7 @@ var setLoginUrlInContentIframe = function(event) {
 var setRegisterUrlInContentIframe = function() {
   console.log("=======setting registration url to content iframe=====");
   var iframe = document.getElementById("contentIframe");
-  iframe.src = openedx_url + "/register";
+  iframe.src = hosted_base + "/register";
   iframe.sandbox = 'allow-scripts allow-same-origin allow-popups allow-forms';
 };
 
@@ -75,7 +75,7 @@ var validateAuthentication = function(url) {
   var iframe = parent.document.getElementById("contentIframe");
   if(loggedinHandler == false){
     parent.window.lab_url = lab_url;
-    iframe.src = openedx_url + "/login";
+    iframe.src = hosted_base + "/login";
   }
   else{
     iframe.src = lab_url;
