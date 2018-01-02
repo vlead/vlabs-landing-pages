@@ -209,10 +209,23 @@ server name where all post messages will be sent. Configure
 the =nginx= server file in =/etc/nginx/sites-enabled/lms= to
 sent post messages script
 #+BEGIN_EXAMPLE
-location @proxy_to_lms_app {
-   add_after_body /server/message.html;
-   --------------
-   -------------
+
+--------
+--------
+  location @append_and_proxy_to_lms_app {
+             add_after_body /server/message.html;
+             proxy_set_header X-Forwarded-Proto $scheme;
+             proxy_set_header X-Forwarded-Port $server_port;
+             proxy_set_header X-Forwarded-For $remote_addr;
+             proxy_set_header Host $http_host;
+
+             proxy_redirect off;
+             proxy_pass http://lms-backend;
+  }
+  location /dashboard {
+        try_files $uri @append_and_proxy_to_lms_app;
+  }
+--------------
 #+END_EXAMPLE
 
 * Tangle 
@@ -224,6 +237,6 @@ location @proxy_to_lms_app {
 <<set-register-url-to-content-iframe>>
 <<set-login-url-to-content-iframe>>
 <<validate-authentication>>
-<<toggle-btns>>
+<<toggle-log-btns>>
 <<process-post-message>>
 #+END_SRC
