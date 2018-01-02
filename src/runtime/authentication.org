@@ -12,10 +12,12 @@
   =vlabs-landing-pages=
 * Authentication
 ** Set Login url to content iframe
-   By default on page loads =contentIframe= is set to load
-   all the disciplines. This is to be replaced with login
-   url of the OpenEdx when user clicks on =Login= button
-   from the header division
+   When =Login= button is clicked, the content iframe is set
+   to the login page of Open edX.  
+
+   When =Logout= button is clicked, the content iframe is
+   loaded with all disciplines, toggles the button to
+   =login= and makes a call to Open edX to the =/logout=
 #+NAME: set-login-url-to-content-iframe
 #+BEGIN_SRC javascript 
 var setLoginUrlInContentIframe = function(event) {
@@ -25,7 +27,8 @@ var setLoginUrlInContentIframe = function(event) {
   if(event == "login"){
     iframe.src = hosted_base + "/login";
   }
-  else{
+  else {
+    document.cookie = "session-status='logged-out'";
     iframe.src = hosted_base + "/logout";
     loadAllDisciplines();
   }
@@ -109,6 +112,8 @@ function toggleBtns(){
     window.loggedInState = false;
     document.getElementById("login").innerHTML = "Login";
     document.getElementById("login").setAttribute( "onClick", "setLoginUrlInContentIframe('login')" );
+    var register_elem = document.getElementById("register");
+    register_elem.style.display = "block";
   }
   else{
     console.log("");
