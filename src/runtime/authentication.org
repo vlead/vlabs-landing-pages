@@ -136,24 +136,6 @@ function toggleBtns(){
 #+NAME: process-post-message
 #+BEGIN_SRC javascript 
 function processPostMessage(evt) {
-
-  var post_msg = evt.data.toLocaleLowerCase();
-
-  if (post_msg.indexOf("my courses") != -1) {
-    document.cookie = "session-status='logged-in'";
-    if (window.lab_url == "") {
-      loadAllDisciplines();
-    }
-    else {
-      var iframe = document.getElementById("contentIframe");
-      iframe.src = window.lab_url;
-    }
-  } else {
-    handlePostForBackBtn(post_msg);
-  }
-
-  toggleBtns();
-
   var handlePostForBackBtn = function(postMsg) {
     var toggleBackButtonFlag = function(loadF) {
       if(window.bk_btn_flag == false){
@@ -180,6 +162,23 @@ function processPostMessage(evt) {
       toggleBackButtonFlag(loadAllDisciplines);
     }
   };
+
+  var post_msg = evt.data.toLocaleLowerCase();
+
+  if (post_msg.indexOf("my courses") != -1) {
+    document.cookie = "session-status='logged-in'";
+    if (window.lab_url == "") {
+      loadAllDisciplines();
+    }
+    else {
+      var iframe = document.getElementById("contentIframe");
+      iframe.src = window.lab_url;
+    }
+  } else {
+    handlePostForBackBtn(post_msg);
+  }
+
+  toggleBtns();
 };
 
 #+END_SRC
