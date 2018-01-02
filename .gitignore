@@ -30,3 +30,4 @@ src/sitemap.org
 elisp
 *.html
 *.tex
+config.org
