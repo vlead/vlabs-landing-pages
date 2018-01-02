@@ -1,7 +1,7 @@
 #+TITLE: Setup Vlabs Landing Pages in Dev Environment
 #+AUTHOR: VLEAD
 #+DATE: [2017-12-21 Mon]
-#+SETUPFILE: ./org-templates/level-0.org
+#+SETUPFILE: ../org-templates/level-1.org
 #+TAGS: boilerplate(b)
 #+EXCLUDE_TAGS: boilerplate
 #+OPTIONS: ^:nil
