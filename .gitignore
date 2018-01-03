@@ -28,4 +28,6 @@ lint_output
 literate-tools
 src/sitemap.org
 elisp
-
+*.html
+*.tex
+config.org
