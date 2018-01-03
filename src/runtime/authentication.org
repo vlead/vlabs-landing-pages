@@ -30,6 +30,7 @@ var setLoginUrlInContentIframe = function(event) {
   else {
     document.cookie = "session-status='logged-out'";
     iframe.src = hosted_base + "/logout";
+    toggleBtns();
     loadAllDisciplines();
   }
 };

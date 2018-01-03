@@ -243,16 +243,11 @@
 #+BEGIN_SRC html
 <html>
   <head>
-    <script type="text/javascript" src="./js/disciplines.js"></script>
     <script>
       document.domain="localhost"
-      function testDiscFunc(){
-      console.log("disciplines on page show called");
-      msg = window.parent.postMessage("all-disciplines", "http://localhost:8000");
-      }
     </script>
   </head>
-  <body onpageshow="testDiscFunc()">
+  <body>
     <div id="contentDiv" class="container-fluid" style="padding-top:5em" >
     </div>
   </body>
@@ -268,18 +263,11 @@
 #+BEGIN_SRC html
 <html>
   <head>
-    <!-- <link rel="stylesheet" -->
-    <!--       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
     <script>
       document.domain="localhost"
-      function testInstFunc(){
-      console.log("institutes on page show called");
-      msg = window.parent.postMessage("all-institutes", "http://localhost:8000");
-       }
     </script>
-
   </head>
-  <body onpageshow="testInstFunc()">
+  <body>
   <div id="contentDiv" class="container-fluid" style="padding-top:5em" >
     </div>
   </body>
@@ -294,18 +282,11 @@
 #+BEGIN_SRC html
 <html>
   <head>
-    <!-- <link rel="stylesheet" -->
-    <!--       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
     <script>
       document.domain="localhost"
-      function testLabsFunc(){
-      console.log("labs on page show called");
-      msg = window.parent.postMessage("all-labs", "http://localhost:8000");
-       }
     </script>
-
   </head>
-  <body onpageshow="testLabsFunc()">
+  <body>
   <div id="contentDiv" class="container-fluid" style="padding-top:5em" >
     </div>
   </body>
