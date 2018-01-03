@@ -1,4 +1,4 @@
-c#+TITLE: Runtime
+#+TITLE: Runtime
 #+AUTHOR: VLEAD
 #+DATE: [2017-04-06 Thursday]
 #+PROPERTY: results output
