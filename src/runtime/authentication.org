@@ -31,7 +31,7 @@ var setLoginUrlInContentIframe = function(event) {
     document.cookie = "session-status='logged-out'";
     iframe.src = hosted_base + "/logout";
     toggleBtns();
-    loadAllDisciplines();
+    setTimeout(loadAllDisciplines, 600);
   }
 };
 
@@ -168,16 +168,20 @@ function processPostMessage(evt) {
       toggleBackButtonFlag(loadAllDisciplines);
     }
   };
-
-  var post_msg = evt.data.toLocaleLowerCase();
+  var post_msg_dict = JSON.parse(evt.data);
+  var post_msg = post_msg_dict.message.toLocaleLowerCase();
+  var referrer = post_msg_dict.referrer;
+  var iframe = document.getElementById("contentIframe");
 
   if (post_msg.indexOf("my courses") != -1) {
     document.cookie = "session-status='logged-in'";
-    if (window.lab_url == "") {
+    if (window.loggedInState == true) {
+      iframe.src = referrer;
+    }
+    else if (window.lab_url == "") {
       loadAllDisciplines();
     }
     else {
-      var iframe = document.getElementById("contentIframe");
       iframe.src = window.lab_url;
     }
   } else {
