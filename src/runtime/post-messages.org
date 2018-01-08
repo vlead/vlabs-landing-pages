@@ -1,0 +1,64 @@
+#+TITLE: Post Messages
+#+AUTHOR: VLEAD
+#+DATE: [2018-01-08 Mon]
+#+PROPERTY: results output
+#+PROPERTY: exports code
+#+SETUPFILE: ../org-templates/level-1.org
+#+options: ^:nil
+#+LATEX: Literal LaTeX code for export
+
+* Introduction 
+  This document talks about formation of different post
+  messages and posting them to the controller.  [[https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage][postMessage]]
+  is an effective way to communicate between iframes.  This
+  mechanism is harnessed in this design.  The controller is
+  the one that sets the content of the content iframe.
+  Whenever an event occurs in the content iframe, that event
+  is signalled to the controller by posting a message.  The
+  controller upon the receipt of the message, takes
+  appropriate action and changes the content of the content
+  iframe.
+
+* Post to Display Labs of a Discipline
+  All disciplines are listed and displayed in the content
+  iframe when a user select =All Disciplines= from the drop
+  down menu.  The next state the user sees when any
+  discipline is clicked is a page with a list of labs
+  belonging to that discipline.  The list of disciplines are
+  displayed in the content iframe.  For the controller to
+  take the appropriate action of displaying the labs of that
+  discipline in the content iframe is achieved by triggering
+  a post message when a discipline is clicked. 
+
+  For the controller to display the labs of a discipline, it
+  has to know the action it has to take along with the data.
+  The action here is to display the labs of a discipline and
+  the data is the discipline id.
+
+#+name: post-for-labs-of-discipline
+#+BEGIN_SRC js
+var postForLabsOfDiscipline = function(obj) {
+  var msg = {edx: false, action: "display-labs-of-discipline", id: obj.id};
+  var status = window.parent.postMessage(JSON.stringify(msg), postServer);
+};
+
+var postForLabsOfInstitute = function(obj) {
+  var msg = {edx: false, action: "display-labs-of-institute", id: obj.id};
+  var status = window.parent.postMessage(JSON.stringify(msg), postServer);
+};
+
+var postForLabUrl = function(obj) {
+  var msg = {edx: false, action: "display-lab", id: obj.id};
+  var status = window.parent.postMessage(JSON.stringify(msg), postServer);
+};
+
+#+END_SRC
+
+
+
+* Tangle 
+** sources
+#+BEGIN_SRC javascript :tangle js/post-messages.js :eval no :noweb yes 
+<<post-for-labs-of-discipline>>
+#+END_SRC
+

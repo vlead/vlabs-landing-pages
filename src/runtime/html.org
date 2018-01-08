@@ -36,7 +36,7 @@
     <link rel="stylesheet" href="./css/style.css"/>
     <script type="text/javascript" src="./js/app-config.js"></script>
     <script type="text/javascript" src="./js/main.js"></script>
-    <script type="text/javascript" src="./js/manage_iframes.js"></script>
+    <script type="text/javascript" src="./js/manage-iframes.js"></script>
     <title>Virtual Labs</title>    
   </head>
   <body onload="loadIndex()">
@@ -236,9 +236,8 @@
 #+BEGIN_SRC html
 <html>
   <head>
-    <script>
-      document.domain="pages.vlabs.ac.in"
-    </script>
+    <script type="text/javascript" src="./js/app-config.js"></script>
+    <script type="text/javascript" src="./js/post-messages.js"></script>
   </head>
   <body>
     <div id="contentDiv" class="container-fluid" style="padding-top:5em" >
@@ -256,10 +255,8 @@
 #+BEGIN_SRC html
 <html>
   <head>
-    <script>
-      document.domain="pages.vlabs.ac.in"
-    </script>
-    
+    <script type="text/javascript" src="./js/app-config.js"></script>
+    <script type="text/javascript" src="./js/post-messages.js"></script>
   </head>
   <body>
     <div id="contentDiv" class="container-fluid" style="padding-top:5em" >
@@ -276,9 +273,8 @@
 #+BEGIN_SRC html
 <html>
   <head>
-    <script>
-      document.domain="pages.vlabs.ac.in"
-    </script>
+    <script type="text/javascript" src="./js/app-config.js"></script>
+    <script type="text/javascript" src="./js/post-messages.js"></script>
   </head>
   <body>
     <div id="contentDiv" class="container-fluid" style="padding-top:5em" >
