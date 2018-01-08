@@ -76,6 +76,7 @@
       #+BEGIN_EXAMPLE
       cd vlabs-landing-pages
       git checkout develop
+      cp src/runtime/config.org.sample src/runtime/config.org
       make
       #+END_EXAMPLE
   11. Remove the default =index.html= from =/var/www/html/=
