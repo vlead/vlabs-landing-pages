@@ -526,8 +526,8 @@ var buildDisciplineDisplayList = function(disciplines) {
     var discipline_name = discipline['discipline_name'];                                                          
     var image_name = discipline['assets'][0]['path'];
     var image_path = discipline_images_url + image_name;
-    return '<div class="col-lg-3 col-md-4 col-xs-12 thumb" onclick="postForLabsOfDiscipline(this)" src="' +
-      image_path + '" id="' + discipline_id + '"><div class="thumbnail" style="cursor:pointer; padding: 0px !important; padding-top:15px !important;"> <a><img class="img-responsive " onclick="postForLabsOfDiscipline(this)" src="' + image_path +'" id="' + discipline_id + '"><div class="caption" style="min-height: 110px;"><h4 onclick="postForLabsOfDiscipline(this)"  src="' + image_path +'" id="' + discipline_id + '" style="text-align:center; color:#2c99ce;" >'+ discipline_name +'</h4></a></div></div></div>';
+    return '<div class="col-lg-3 col-md-4 col-xs-12 thumb" onclick="handleEventOnADiscipline(this)" src="' +
+      image_path + '" id="' + discipline_id + '"><div class="thumbnail" style="cursor:pointer; padding: 0px !important; padding-top:15px !important;"> <a><img class="img-responsive " onclick="handleEventOnADiscipline(this)" src="' + image_path +'" id="' + discipline_id + '"><div class="caption" style="min-height: 110px;"><h4 onclick="handleEventOnADiscipline(this)"  src="' + image_path +'" id="' + discipline_id + '" style="text-align:center; color:#2c99ce;" >'+ discipline_name +'</h4></a></div></div></div>';
   });
 
   var displayDisciplines = displayList.reduce(function(acc, el) {
@@ -556,9 +556,7 @@ var buildDisciplineDisplayList = function(disciplines) {
 #+BEGIN_SRC js
 var attachDisciplineDisplayListToIframe = function(content) {
   deleteFrameInDivision("contentIframe", "contentDiv");
-  var newFrame = createContentIframe();
-  insertFrameInDivision(newFrame, "contentDiv");
-  setContent(content, "disciplines.html");
+  setContentInContentDiv(content);
 };
 
 #+END_SRC
@@ -610,8 +608,8 @@ var buildInstituteDisplayList = function(institutes) {
     var institute_name = institute['institute_name'];                                                          
     var image_name = institute['assets'][0]['path'];
     var image_path = institute_images_url + image_name;
-    return '<div class="col-lg-3 col-md-4 col-xs-12 thumb" onclick="postForLabsOfInstitute(this)" src="' +
-      image_path + '" id="' + institute_id + '"><div class="thumbnail" style="cursor:pointer; padding: 0px !important; padding-top:15px !important;"> <a><img class="img-responsive " onclick="postForLabsOfInstitute(this)" src="' + image_path +'" id="' + institute_id + '"><div class="caption" style="min-height: 110px;"><h4 onclick="postForLabsOfInstitute(this)"  src="' + image_path +'" id="' + institute_id + '" style="text-align:center; color:#2c99ce;" >'+ institute_name +'</h4></a></div></div></div>';
+    return '<div class="col-lg-3 col-md-4 col-xs-12 thumb" onclick="handleEventOnAInstitute(this)" src="' +
+      image_path + '" id="' + institute_id + '"><div class="thumbnail" style="cursor:pointer; padding: 0px !important; padding-top:15px !important;"> <a><img class="img-responsive " onclick="handleEventOnAInstitute(this)" src="' + image_path +'" id="' + institute_id + '"><div class="caption" style="min-height: 110px;"><h4 onclick="handleEventOnAInstitute(this)"  src="' + image_path +'" id="' + institute_id + '" style="text-align:center; color:#2c99ce;" >'+ institute_name +'</h4></a></div></div></div>';
   });
 
   var displayInstitutes = displayList.reduce(function(acc, el) {
@@ -640,9 +638,7 @@ var buildInstituteDisplayList = function(institutes) {
 #+BEGIN_SRC js
 var attachInstituteDisplayListToIframe = function(content) {
   deleteFrameInDivision("contentIframe", "contentDiv");
-  var newFrame = createContentIframe();
-  insertFrameInDivision(newFrame, "contentDiv");
-  setContent(content, "institutes.html");
+  setContentInContentDiv(content);
 };
 
 #+END_SRC
@@ -709,7 +705,7 @@ var buildLabsDisplayList = function(labs) {
         path = lab_images_url + image_name;
       }
     }
-    return '<div class=" col-md-3 " id='+ lab_name + '> <div class="thumbnail" style="cursor:pointer; padding: 0px !important;"><a><img class="img-responsive" onclick="javascript:postForLabUrl(this)" src="' + path +'" id="' + hosted_url + '"><div class="caption" style="min-height: 110px;"><h4 onclick="javascript:postForLabUrl(this)"  src="' + path +'" id="' + hosted_url + '" style="text-align:center; color:#2c99ce;" >'+ lab_name +'</h4></a></div></div></div>';
+    return '<div class=" col-md-3 " id='+ lab_name + '> <div class="thumbnail" style="cursor:pointer; padding: 0px !important;"><a><img class="img-responsive" onclick="javascript:handleEventOnLab(this)" src="' + path +'" id="' + hosted_url + '"><div class="caption" style="min-height: 110px;"><h4 onclick="javascript:handleEventOnLab(this)"  src="' + path +'" id="' + hosted_url + '" style="text-align:center; color:#2c99ce;" >'+ lab_name +'</h4></a></div></div></div>';
   });
 
   var displayLabs = displayList.reduce(function(acc, el) {
@@ -738,9 +734,7 @@ var buildLabsDisplayList = function(labs) {
 #+BEGIN_SRC js
 var attachLabsDisplayListToIframe = function(content) {
   deleteFrameInDivision("contentIframe", "contentDiv");
-  var newFrame = createContentIframe();
-  insertFrameInDivision(newFrame, "contentDiv");
-  setContent(content, "labs.html");
+  setContentInContentDiv(content);
 };
 
 #+END_SRC
@@ -843,6 +837,19 @@ var enableAllLabsButton = function() {
 
 #+END_SRC
 * Display the Lab
+** Handle the click on a Lab item
+   Labs are listed for a discipline, institute, on search
+   and all labs.  Whenever a click event occurs, the handler
+   attached to the event gets the lab object and displays
+   the lab. 
+#+name: handle-event-on-lab
+#+BEGIN_SRC js
+var handleEventOnLab = function(obj) {
+  displayLab(obj.id);
+};
+
+#+END_SRC
+** Display the in a sandboxed iframe
   This is the actual lab being served from a different
   server.  The content of a lab is either served from Open
   edX or from a VM. 
@@ -856,6 +863,8 @@ var enableAllLabsButton = function() {
 #+BEGIN_SRC js
 var displayLab = function(url) {
   deleteFrameInDivision("contentIframe", "contentDiv");
+  elem = document.getElementById("contentDiv");
+  elem.innerHTML = "";
   var newFrame = createContentIframe();
   insertFrameInDivision(newFrame, "contentDiv");
   setUrlToSandBoxedContentIframe(url);
@@ -892,6 +901,18 @@ if (window.addEventListener) {
 
 #+END_SRC
 
+* Set Content in ContentDiv
+  HTML content is set to the contentDiv of the main page.
+  Before content is set, the older content is deleted. 
+#+name: set-content-in-content-div
+#+BEGIN_SRC js
+var setContentInContentDiv = function(content) {
+  elem = document.getElementById("contentDiv");
+  elem.innerHTML = "";
+  elem.innerHTML = content;
+};
+
+#+END_SRC
 * Tangle 
 ** sources
 #+BEGIN_SRC javascript :tangle js/main.js :eval no :noweb yes 
@@ -907,6 +928,7 @@ if (window.addEventListener) {
 <<filter-query>>
 <<lab-by-discipline-promise>>
 <<lab-by-institute-promise>>
+<<set-content-in-content-div>>
 <<populate-discipline-combo-box>>
 <<build-discipline-drop-down-list>>
 <<attach-discipline-list-to-box>>
@@ -924,6 +946,7 @@ if (window.addEventListener) {
 <<attach-labs-display-list-to-iframe>>
 <<display-labs-of-institute>>
 <<display-all-labs>>
+<<handle-event-on-lab>>
 <<display-lab>>
 <<handle-event-on-a-discipline>>
 <<handle-event-on-a-institute>>
