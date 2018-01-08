@@ -206,7 +206,7 @@ var filterQuery = function(ls, id) {
 
 #+END_SRC
 
-*** Get Labs for an Discipline
+*** Get Labs for a Discipline
      When labs for a discipline are retrieved for the first
      time, those labs are saved as a promise.  On any further
      requests on the same discipline, the same promise is
@@ -214,13 +214,13 @@ var filterQuery = function(ls, id) {
 #+name: lab-by-discipline-promise
 #+BEGIN_SRC js
 var labsByDisciplinePromises = [];
-var getLabsByDiscipline = function(discId) {
-  var labByInstResPath = lds_url + "/labs?discipline_id=" + discId;
-  var searchList = filterQuery(labsByDisciplinePromises, discId);
+var getLabsByDiscipline = function(discName) {
+  var labByDiscResPath = lds_url + "/labs?discipline_name=" + discName;
+  var searchList = filterQuery(labsByDisciplinePromises, discName);
   var labsByDiscPromise;
   if (searchList.length == 0) {
-    labsByDiscPromise = getJSON(labByInstResPath);
-    labsByDisciplinePromises.push({'id': discId, 'promise': labsByDiscPromise});
+    labsByDiscPromise = getJSON(labByDiscResPath);
+    labsByDisciplinePromises.push({'id': discName, 'promise': labsByDiscPromise});
   } else {
     labsByDiscPromise = searchList[0].promise;
   }
@@ -241,7 +241,7 @@ var getLabsByDiscipline = function(discId) {
 #+BEGIN_SRC js
 var labsByInstitutePromises = [];
 var getLabsByInstitute = function(instId) {
-  var labByInstResPath = lds_url + "/labs?institute_id=" + instId;
+  var labByInstResPath = lds_url + "/labs?institute_name=" + instId;
   var searchList = filterQuery(labsByInstitutePromises, instId);
   var labsByInstPromise;
   if (searchList.length == 0) {
@@ -629,7 +629,122 @@ var attachInstituteDisplayListToIframe = function(content) {
 
 #+END_SRC
 
-* Display Labs of a Discipline
+* Display the page with labs of a Discipline
+** The Flow
+   A page listing all the labs of a discipline is displayed.
+   This page contains name, image and a click event attached
+   to each lab.  Clicking on a lab displays the lab.
+#+name: display-labs-of-discipline
+#+BEGIN_SRC js
+var displayLabsOfDiscipline = function(discId) {
+ getLabsByDiscipline(discId)
+    .then(buildLabsDisplayList)
+    .then(attachLabsDisplayListToIframe)
+    .catch(function(err) {
+      console.log("Error from displayLabsOfDiscipline: " + err);
+    });
+};
+
+#+END_SRC
+
+** Build Lab display list
+   Display list is built from the list of labs returned in
+   the json format either from =getLabsByDiscipline= or
+   =getLabsByInstitute= or =getLabs= promise. For each lab, name and image are
+   displayed and a click event is attached.  The click event
+   when triggered displays the lab page. 
+#+name: build-labs-display-list
+#+BEGIN_SRC js
+var buildLabsDisplayList = function(labs) {
+  labs.sort(function(a, b) {
+    var nameA = a['lab_name'].toUpperCase(); // ignore upper and lowercase
+    var nameB = b['lab_name'].toUpperCase(); // ignore upper and lowercase
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+    // names must be equal
+    return 0;
+  });
+
+  var displayList = labs.map(function(lab) {
+    var lab_name = lab['lab_name'];                                                                      
+    var hosting_info = lab['hosting_info'];
+    for(var i = 0; i< hosting_info.length; i++) {
+      var hosted_on = lab['hosting_info'][i]['hosted_on'];
+        if (hosting_info.length == 1) {
+          var hosted_url = lab['hosting_info'][0]['hosted_url'];
+        } else if(labs_hosted_platform == hosted_on) {
+          hosted_url = modifyUrl(lab['hosting_info'][i]['hosted_url']);
+        } else {        
+          continue;
+        }
+      }                                                                                                            
+    var assets = lab['assets'];
+    for(i = 0; i < assets.length; i++) {
+      var  asset_type = lab['assets'][i]['asset_type']['asset_type'];
+      var path = lab['assets'][i]['path'];                                              
+      if (asset_type == 'image') {
+        var image_name = lab['assets'][i]['path'];
+        path = lab_images_url + image_name;
+      }
+    }
+    return '<div class=" col-md-3 " id='+ lab_name + '> <div class="thumbnail" style="cursor:pointer; padding: 0px !important;"><a><img class="img-responsive $onclick="javascript:validateAuthentication(this)" src="' + path +'" id="' + hosted_url + '"><div class="caption" style="min-height: 110px;"><h4 onclick="javascript:validateAuthentication(this)"  src="' + path +'" id="' + hosted_url + '" style="text-align:center; color:#2c99ce;" >'+ lab_name +'</h4></a></div></div></div>';
+  });
+
+  var displayLabs = displayList.reduce(function(acc, el) {
+    acc += el;
+    return acc;
+  });
+  return '<div class="container-fluid"><div class="row">' + 
+    displayLabs +
+    '</div></div>';
+};
+
+#+END_SRC
+
+** Attach the display content to an Iframe
+   The display content for all labs with images, names and
+   callbacks for =click= event generated in the previous
+   step is set in contentIframe.  The steps here are:
+   1. An iframe is created.
+   2. The source of this iframe is set to =labs.html=
+   3. This iframe is inserted into the =ContentDiv= of the
+      index page. 
+   4. =labs.html= contains a division named
+      =ContentDiv= and the labs display content is
+      set in this division. 
+#+name: attach-labs-display-list-to-iframe
+#+BEGIN_SRC js
+var attachLabsDisplayListToIframe = function(content) {
+  deleteFrameInDivision("contentIframe", "contentDiv");
+  var newFrame = createContentIframe();
+  insertFrameInDivision(newFrame, "contentDiv");
+  setContent(content, "labs.html");
+};
+
+#+END_SRC
+
+* Display the page with labs of an Institute
+** The Flow
+   A page listing all the labs of a institute is displayed.
+   This page contains name, image and a click event attached
+   to each lab.  Clicking on a lab displays the lab.
+#+name: display-labs-of-institute
+#+BEGIN_SRC js
+var displayLabsOfInstitute = function(instId) {
+ getLabsByInstitute(instId)
+    .then(buildLabsDisplayList)
+    .then(attachLabsDisplayListToIframe)
+    .catch(function(err) {
+      console.log("Error from displayLabsOfInstitute: " + err);
+    });
+};
+
+#+END_SRC
+
 * Tangle 
 ** sources
 *** Javascript
@@ -659,5 +774,9 @@ var attachInstituteDisplayListToIframe = function(content) {
 <<display-institutes>>
 <<build-institute-display-list>>
 <<attach-institute-display-list-to-iframe>>
+<<display-labs-of-discipline>>
+<<build-labs-display-list>>
+<<attach-labs-display-list-to-iframe>>
+<<display-labs-of-institute>>
 #+END_SRC
 
