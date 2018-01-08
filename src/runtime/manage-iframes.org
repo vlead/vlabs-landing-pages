@@ -22,7 +22,6 @@
 #+NAME: create-new-iframe
 #+BEGIN_SRC javascript 
 var createNewIframe = function(name, id, width, height) {
-  console.log("=======creating new frame=====");
   var newIframe = document.createElement("iframe");
   newIframe.setAttribute("width", width);
   newIframe.setAttribute("height", height);
@@ -40,7 +39,6 @@ var createNewIframe = function(name, id, width, height) {
 #+NAME: insert-frame-in-division
 #+BEGIN_SRC javascript 
 var insertFrameInDivision = function(iframe, divId) {
-  console.log("=======inserting iframe in division=====");
   var divElem = parent.document.getElementById(divId);
   divElem.appendChild(iframe);
 };
@@ -53,12 +51,10 @@ var insertFrameInDivision = function(iframe, divId) {
 #+NAME: delete-frame-in-division
 #+BEGIN_SRC javascript 
 var deleteFrameInDivision = function(frameId, divId) {
-  console.log("=======inside delete frame=====");
   if (parent.document.getElementById(divId).hasChildNodes()) {
     var frameElem = parent.document.getElementById(frameId);
     if (frameElem !== null) {
       frameElem.parentNode.removeChild(frameElem);
-      console.log("======deleted====");
     }
   }
 };
@@ -71,7 +67,6 @@ var deleteFrameInDivision = function(frameId, divId) {
 #+NAME: insert-content-iframe
 #+BEGIN_SRC javascript 
 var insertContentIframe = function() {
-  console.log("=======creating content iframe=====");
   var newFrame = createContentIframe();
   var division = document.getElementById("contentDiv");
   insertFrameInDivision(newFrame, division.id);
@@ -86,7 +81,6 @@ var insertContentIframe = function() {
 #+NAME: insert-footer-iframe
 #+BEGIN_SRC javascript 
 var insertFooterIframe = function() {
-  console.log("=======creating footer iframe=====");
   var newFrame = createFooterIframe();
   var division = document.getElementById("footerDiv");
   insertFrameInDivision(newFrame, division.id);
@@ -102,7 +96,6 @@ var insertFooterIframe = function() {
 #+NAME: set-footer-content-in-iframe
 #+BEGIN_SRC javascript
 var setFooterUrlToFooterIframe = function() {
-  console.log("=======setting footer in iframe=====");
   var iframe = document.getElementById("footerIframe");
   iframe.src = footerUrl;
 };
@@ -153,7 +146,6 @@ var setContentToContentIframe = function(content) {
 #+NAME: set-usage-in-iframe
 #+BEGIN_SRC javascript 
 var setUsageInContentIframe = function() {
-  console.log("=======setting usage to content iframe=====");        
   var iframe = parent.document.getElementById("contentIframe");
   iframe.src = "https://info.vlabs.ac.in/analytics/analytics/usage.html";
 };

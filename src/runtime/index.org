@@ -21,7 +21,6 @@
     are segregated based on disciplines.
   - Accessing all the data of labs.
 
-
 * Index page on load 
    Every page has a controller, content and footer.  Both
    the content and the footer are served from iframes.  The
@@ -41,13 +40,14 @@
 #+NAME: load-index
 #+BEGIN_SRC js
 var loadIndex = function() {
-  console.log("=======loading index page=====");
   on_mouse_hover();
   insertContentIframe();
   insertFooterIframe();
   setFooterUrlToFooterIframe();
   populateDisciplineDropDownBox();
   populateInstituteDropDownBox();
+  displayAllDisciplines();
+  enableAllLabsButton();
 };
 
 #+END_SRC
@@ -145,7 +145,6 @@ var getDisciplines = function() {
   disciplinePromise = disciplinePromise || getJSON(disResPath);
 
   return disciplinePromise.then(function(disciplines) {
-    // console.log(disciplines);
     return disciplines;
   });
 }
@@ -163,7 +162,6 @@ var getInstitutes = function() {
   institutePromise = institutePromise || getJSON(instResPath);
 
   return institutePromise.then(function(institutes) {
-    // console.log(institutes);
     return institutes;
   });
 }
@@ -181,7 +179,6 @@ var getLabs = function() {
   labPromise = labPromise || getJSON(labResPath);
 
   return labPromise.then(function(labs) {
-    // console.log(institutes);
     return labs;
   });
 }
@@ -214,13 +211,13 @@ var filterQuery = function(ls, id) {
 #+name: lab-by-discipline-promise
 #+BEGIN_SRC js
 var labsByDisciplinePromises = [];
-var getLabsByDiscipline = function(discName) {
-  var labByDiscResPath = lds_url + "/labs?discipline_name=" + discName;
-  var searchList = filterQuery(labsByDisciplinePromises, discName);
+var getLabsByDiscipline = function(discId) {
+  var labByDiscResPath = lds_url + "/labs?discipline_name=" + discId;
+  var searchList = filterQuery(labsByDisciplinePromises, discId);
   var labsByDiscPromise;
   if (searchList.length == 0) {
     labsByDiscPromise = getJSON(labByDiscResPath);
-    labsByDisciplinePromises.push({'id': discName, 'promise': labsByDiscPromise});
+    labsByDisciplinePromises.push({'id': discId, 'promise': labsByDiscPromise});
   } else {
     labsByDiscPromise = searchList[0].promise;
   }
@@ -362,7 +359,7 @@ var attachDisciplineListToBox = function(content) {
 };
 
 #+END_SRC
-** Handle click event on an Discipline in the combo box
+** Handle click event on a Discipline in the combo box
    The click event is attached to a callback that displays
    all the labs of that discipline. 
 #+name: handle-event-on-a-discipline
@@ -783,6 +780,68 @@ var displayAllLabs = function() {
 
 #+END_SRC
 
+* Display Labs By KeyWord
+** The Flow
+  The labs that match the keyword are displayed.  The
+  function is attached to both the =keyup= and =click=
+  events of the search box.  The labs are filtered based on
+  the keyword and the list is displayed.  
+#+name: display-labs-by-keyword
+#+BEGIN_SRC js
+var displayLabsByKeyWord = function() {
+  $('#keyword').keypress(function (e) {
+    if (e.which == 13) {
+      e.preventDefault();
+    }                                                                               
+  });
+  var keyword = document.getElementById("keyword").value;
+  getLabs()
+    .then(function(labs) {
+      return filterLabsByKeyWord(labs, keyword);
+    })
+    .then(buildLabsDisplayList)
+    .then(attachLabsDisplayListToIframe)
+    .catch(function(err) {
+      console.log("Error from displayLabsByKeyWord: " + err);
+    });
+};
+
+#+END_SRC
+
+** Filter the labs by a Keyword
+   The labs are filtered on the basis of keyword matching.
+   Labs that contain the keyword in their lab names are
+   returned.
+#+name: filter-labs-by-keyword
+#+BEGIN_SRC js
+var filterLabsByKeyWord = function(labs, keyword) {
+  return labs.filter(function(lab) {
+    return lab['lab_name'].toString().toLowerCase().indexOf(keyword.toLowerCase()) > -1;
+  });
+};
+
+#+END_SRC
+* Enable All Labs Button and Search Box
+  Currently, the ajax call to fetch the data takes a while.
+  The API that fetches all the labs has to refactored.
+  Meanwhile, =All Labs= button and the =Search= box are
+  disabled until the data is fetched. 
+#+name: enable-all-labs-button
+#+BEGIN_SRC js
+var enableAllLabsButton = function() {
+  getLabs()
+    .then(function(labs) {
+      var all_labs_element = document.getElementById("allLabs");
+      all_labs_element.classList.remove("disabled");
+      var search_element = document.getElementById("search");
+      search_element.classList.remove("disabled");
+    })
+    .catch(function(err) {
+      console.log("Error from enableAllLabsButton: " + err);
+    });
+};
+
+#+END_SRC
 * Display the Lab
   This is the actual lab being served from a different
   server.  The content of a lab is either served from Open
@@ -815,9 +874,9 @@ var processPostMessage = function(event) {
     var recvMsg = JSON.parse(event.data);
     if (!recvMsg.edx) {
       if (recvMsg.action == "display-labs-of-discipline")
-        displayLabsOfDiscipline(recvMsg.id)
+        displayLabsOfDiscipline(recvMsg.id);
       else if (recvMsg.action == "display-labs-of-institute")
-        displayLabsOfInstitute(recvMsg.id)
+        displayLabsOfInstitute(recvMsg.id);
       else if (recvMsg.action == "display-lab")
         displayLab(recvMsg.id);
     }
@@ -832,7 +891,6 @@ if (window.addEventListener) {
 
 
 #+END_SRC
-
 
 * Tangle 
 ** sources
@@ -871,5 +929,8 @@ if (window.addEventListener) {
 <<handle-event-on-a-institute>>
 //<<action-to-function-mapper>>
 <<event-listener>>
+<<enable-all-labs-button>>
+<<filter-labs-by-keyword>>
+<<display-labs-by-keyword>>
 #+END_SRC
 
