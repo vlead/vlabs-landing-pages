@@ -21,8 +21,8 @@
     are segregated based on disciplines.
   - Accessing all the data of labs.
 
-* Implementation
-** Index page on load 
+
+* Index page on load 
    Every page has a controller, content and footer.  Both
    the content and the footer are served from iframes.  The
    content is either:
@@ -40,113 +40,19 @@
 
 #+NAME: load-index
 #+BEGIN_SRC js
-var labs_data = null;
-var labs_data_db = null;
 var loadIndex = function() {
   console.log("=======loading index page=====");
-  getAllInstitutesInCombobox(); 
-  getAllDisciplinesInCombobox(); 
   on_mouse_hover();
-  getWorkshopUsage();
-  getTotalUsage();
   insertContentIFrame();
-  if (labs_data == null)
-  {
-    getAllLabs();
-  }
-  loadAllDisciplines();
   insertFooterIFrame();
   setFooterContentInIframe();
-};
-
-#+END_SRC
-** Add Script Tags 
-   Script tags are created dynamically and appended to the
-   =<head>= tag.
-
-#+NAME: add-script-tags
-#+BEGIN_SRC javascript 
-var addScriptTags = function(){
-  var contentIframe = parent.document.getElementById("contentIframe");
-  
-  var js_script = contentIframe.contentWindow.document.createElement("script");
-  var js_url = "./js/main.js";
-  js_script.type = "text/javascript";
-  js_script.src = js_url;
-  var head = contentIframe.contentWindow.document.head;
-  head.appendChild(js_script);
-
-  var auth_js_script = contentIframe.contentWindow.document.createElement("script");
-  var auth_js_url = "./js/auth.js";
-  auth_js_script.type = "text/javascript";
-  auth_js_script.src = auth_js_url;
-  head.appendChild(auth_js_script);
-
-  var manage_iframes_js_script = contentIframe.contentWindow.document.createElement("script");
-  var manage_iframes_js_url = "./js/manage_iframes.js";
-  manage_iframes_js_script.type = "text/javascript";
-  manage_iframes_js_script.src = manage_iframes_js_url;
-  head.appendChild(manage_iframes_js_script);
-
-  var search_js_script = contentIframe.contentWindow.document.createElement("script");
-  var search_js_url = "./js/search.js";
-  search_js_script.type = "text/javascript";
-  search_js_script.src = search_js_url;
-  head.appendChild(search_js_script);
-  
-  var disciplines_js_script = contentIframe.contentWindow.document.createElement("script");
-  var disciplines_js_url = "./js/disciplines.js";
-  disciplines_js_script.type = "text/javascript";
-  disciplines_js_script.src = disciplines_js_url;
-  head.appendChild(disciplines_js_script);
-
-  var institutes_js_script = contentIframe.contentWindow.document.createElement("script");
-  var institutes_js_url = "./js/institutes.js";
-  institutes_js_script.type = "text/javascript";
-  institutes_js_script.src = institutes_js_url;
-  head.appendChild(institutes_js_script);
-  
-  var usage_script = contentIframe.contentWindow.document.createElement("script");
-  var usage_url = "./js/usage.js";
-  usage_script.type = "text/javascript";
-  usage_script.src = usage_url;
-  head.appendChild(usage_script);
-
-  var config_script = contentIframe.contentWindow.document.createElement("script");
-  var config_url = "./js/app-config.js";
-  config_script.type = "text/javascript";
-  config_script.src = config_url;
-  head.appendChild(config_script);
-  
-  var jquery_script = contentIframe.contentWindow.document.createElement("script");
-  var jquery_url = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js";
-  jquery_script.type = "text/javascript";
-  jquery_script.src = jquery_url;
-  head.appendChild(jquery_script);  
-
-  var styles = contentIframe.contentWindow.document.createElement("link");
-  var css_url = "./css/style.css";
-  styles.type = "text/stylesheet";
-  styles.href = css_url;
-  head.appendChild(styles);
-
-  var bootstrap_styles = contentIframe.contentWindow.document.createElement("link");
-  var bootstrap_css_url = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css";
-  bootstrap_styles.rel = "stylesheet";
-  bootstrap_styles.href = bootstrap_css_url;
-  head.appendChild(bootstrap_styles);
-
-  var favicon = contentIframe.contentWindow.document.createElement("link");
-  var favicon_url = "";
-  favicon.type = "image/x-icon";
-  favicon.href = favicon_url;
-  head.appendChild(favicon);
-
+  populateDisciplineDropDownBox();
+  populateInstituteDropDownBox();
 };
 
 #+END_SRC
 
-** Mouse Over
+* Mouse Over
    This function allows the dropdown menu on the mousehover
    event.
 #+NAME: mouse-over
@@ -165,7 +71,7 @@ $(".dropdown").hover(
 };
 #+END_SRC
 
-** Favicon
+* Favicon
    =Favicon= image is dynamically created and appended to
    the =<head>= tag.
 #+NAME: favicon
@@ -180,15 +86,550 @@ head.appendChild(favicon);
 
 #+END_SRC
 
-** Modify url
-   #+NAME: modify-url
-   #+BEGIN_SRC javascript 
+* Modify url
+  #+NAME: modify-url
+  #+BEGIN_SRC javascript 
 var modifyUrl = function(url) {
   return hosted_base + "/" + url.split("/").slice(3).join("/");
 };
 
 
-   #+END_SRC
+  #+END_SRC
+* Different Promises
+** Define a promise to make an AJAX call
+    This will be a generic promise that fulfills an ajax
+    call. 
+#+name: make-ajax-call
+#+BEGIN_SRC js
+var get = function get(url) {
+  return new Promise(function(resolve, reject) {
+    var req = new XMLHttpRequest(url);
+    req.open('GET', url);
+    req.onload = function() {
+      if (req.status == 200) {
+        resolve(req.response);
+      } else {
+        reject(Error(req.statusText));
+      }
+    };
+
+    req.onerror = function() {
+      reject(Error("network error"));
+    };
+    req.send();
+  });
+};
+
+#+END_SRC
+
+** Get Json for an API call    
+    Uses the promises that makes the ajax call and applies
+    the parsing on the response -- that is a json -- from
+    the AJAX call. 
+#+name: get-json
+#+BEGIN_SRC js
+var getJSON = function(resourcePath) {
+  return get(resourcePath).then(JSON.parse);
+};
+
+#+END_SRC
+
+** Discipline Promise
+    This promise holds all the disciplines.  An AJAX is made
+    only once, but the result will reside in the promise.
+#+name: discipline-promise
+#+BEGIN_SRC js
+var disciplinePromise;
+var getDisciplines = function() {
+  disResPath = lds_url + "/disciplines";
+  disciplinePromise = disciplinePromise || getJSON(disResPath);
+
+  return disciplinePromise.then(function(disciplines) {
+    // console.log(disciplines);
+    return disciplines;
+  });
+}
+
+#+END_SRC
+
+** Institute Promise
+    This promise holds all the institutes.  An AJAX is made
+    only once, but the result will reside in the promise.
+#+name: institute-promise
+#+BEGIN_SRC js
+var institutePromise;
+var getInstitutes = function() {
+  instResPath = lds_url + "/institutes";
+  institutePromise = institutePromise || getJSON(instResPath);
+
+  return institutePromise.then(function(institutes) {
+    // console.log(institutes);
+    return institutes;
+  });
+}
+
+#+END_SRC
+
+** Labs Promise
+    This promise holds all the labs.  An AJAX is made only
+    once, but the result will reside in the promise.
+#+name: lab-promise
+#+BEGIN_SRC js
+var labPromise;
+var getLabs = function() {
+  labResPath = lds_url + "/labs";
+  labPromise = labPromise || getJSON(labResPath);
+
+  return labPromise.then(function(labs) {
+    // console.log(institutes);
+    return labs;
+  });
+}
+
+#+END_SRC
+** Labs By Institute and Discipline
+   A corresponding promise stores the list of labs of a
+   given institute or a given discipline.  An AJAX call is
+   made whenever labs have not been retrieved earlier for
+   either an institute or a discipline.
+
+*** Filter a list based on a query
+     If a query and a list are given, filter the elements in
+     the list which match the query. [[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter][Ref]]
+#+name: filter-query
+#+BEGIN_SRC js
+var filterQuery = function(ls, id) {
+  return ls.filter(function(el) {
+    return el.id == id;
+  });
+};
+
+#+END_SRC
+
+*** Get Labs for an Discipline
+     When labs for a discipline are retrieved for the first
+     time, those labs are saved as a promise.  On any further
+     requests on the same discipline, the same promise is
+     returned.  
+#+name: lab-by-discipline-promise
+#+BEGIN_SRC js
+var labsByDisciplinePromises = [];
+var getLabsByDiscipline = function(discId) {
+  var labByInstResPath = lds_url + "/labs?discipline_id=" + discId;
+  var searchList = filterQuery(labsByDisciplinePromises, discId);
+  var labsByDiscPromise;
+  if (searchList.length == 0) {
+    labsByDiscPromise = getJSON(labByInstResPath);
+    labsByDisciplinePromises.push({'id': discId, 'promise': labsByDiscPromise});
+  } else {
+    labsByDiscPromise = searchList[0].promise;
+  }
+
+  return labsByDiscPromise.then(function(labs) {
+    return labs;
+  });
+};
+
+#+END_SRC
+
+*** Get Labs for an Institute
+     When labs for a institute are retrieved for the first
+     time, those labs are saved as a promise.  On any further
+     requests on the same institute, the same promise is
+     returned.  
+#+name: lab-by-institute-promise
+#+BEGIN_SRC js
+var labsByInstitutePromises = [];
+var getLabsByInstitute = function(instId) {
+  var labByInstResPath = lds_url + "/labs?institute_id=" + instId;
+  var searchList = filterQuery(labsByInstitutePromises, instId);
+  var labsByInstPromise;
+  if (searchList.length == 0) {
+    labsByInstPromise = getJSON(labByInstResPath);
+    labsByInstitutePromises.push({'id': instId, 'promise': labsByInstPromise});
+  } else {
+    labsByInstPromise = searchList[0].promise;
+  }
+
+  return labsByInstPromise.then(function(labs) {
+    return labs;
+  });
+};
+
+#+END_SRC
+
+* Fill the Discipline Combo Box
+** The Flow
+  The discipline combo box contains list of available
+  disciplines plus =All Disciplines=.  Each item in the
+  combo box is attached to an =onclick= event.  When
+  =onclick= event is triggered for each discipline, the labs
+  of that particular discipline are displayed.  The
+  =onclick= event for =All Disciplines= displays a page with
+  all the available disciplines.  
+
+#+name: populate-discipline-combo-box
+#+BEGIN_SRC js
+var populateDisciplineDropDownBox = function() {
+  getDisciplines()
+    .then(buildDisciplineDropDownList)
+    .then(attachDisciplineListToBox)
+    .catch(function(err) {
+      console.log("Error from populateDisciplineDropDownBox: " + err);
+    });
+};
+#+END_SRC
+
+** Build the items in the discipline drop down box
+   We already have a promise that on success returns the
+   list of disciplines in the json format.  The format of
+   each element in the discipline list is:
+   #+BEGIN_EXAMPLE
+    {
+      "id": "1",
+      "discipline_name": "Aerospace Engineering",
+      "assets": [
+        {
+          "path": "aerospace-engineering.png",
+          "asset_type": {
+            "asset_type": "image",
+            "id": "1"
+          },
+          "id": "378"
+        }
+      ],
+      "discipline_id": "aero"
+    }
+   #+END_EXAMPLE
+
+   A corresponding list item (li) is built from each of
+   above such elements.  =discipline_name= becomes the
+   display name while =onclick= event that is attached
+   fetches all the labs belonging to this discipline
+   identified by =disciplie_id=.  Apart from list item for
+   each discipline, =All Disciplines= is also part of the
+   drop down menu, and when clicked displays all the
+   disciplines.  All the items in the drop down menu are
+   sorted alphabetically.
+
+   - References
+     1. [[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort][Sorting]]
+     2. [[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce][map]]
+     3. [[https://medium.freecodecamp.org/reduce-f47a7da511a9][reduce]]
+                   
+#+name: build-discipline-drop-down-list
+#+BEGIN_SRC js
+var buildDisciplineDropDownList = function(disciplines) {
+  disciplines.sort(function(a, b) {
+    var nameA = a['discipline_name'].toUpperCase(); // ignore upper and lowercase
+    var nameB = b['discipline_name'].toUpperCase(); // ignore upper and lowercase
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+    // names must be equal
+    return 0;
+  });
+
+  var liList = disciplines.map(function(discipline) {
+    return '<li onclick="displayLabsOfDiscipline(this)" value="' +
+      discipline['discipline_name'] + '" id="' + discipline['discipline_id'] + 
+      '"><a>' + discipline['discipline_name'] + '</a></li>';
+  });
+
+  var allDisciplinesItem = '<li onclick="displayAllDisciplines()"> <a>All Disciplines</a></li>';
+
+  var dropDownContent = liList.reduce(function(acc, liItem) {
+    acc += liItem;
+    return acc;
+  }, allDisciplinesItem);
+
+  return dropDownContent;
+
+};
+
+#+END_SRC
+
+** Attach Discipline list to the drop down box
+   The discipline drop down content is attached to the box. 
+#+name: attach-discipline-list-to-box
+#+BEGIN_SRC js
+var attachDisciplineListToBox = function(content) {
+  $('.filterDisciplineComboBox').empty();
+  $('.filterDisciplineComboBox').append(content);
+};
+
+#+END_SRC
+* Fill the Institute Combo Box
+** The Flow
+  The Institute combo box contains list of available
+  Institutes plus =All Institutes=.  Each item in the combo
+  box is attached to an =onclick= event.  When =onclick=
+  event is triggered for each institute, the labs of that
+  particular institute are displayed.  The =onclick= event
+  for =All Institutes= displays a page with all the
+  available institutes.
+
+#+name: populate-institute-combo-box
+#+BEGIN_SRC js
+var populateInstituteDropDownBox = function() {
+  getInstitutes()
+    .then(buildInstituteDropDownList)
+    .then(attachInstituteListToBox)
+    .catch(function(err) {
+      console.log("Error from populateInstituteDropDownBox: " + err);
+    });
+};
+#+END_SRC
+
+** Build the items in the institute drop down box
+   We already have a promise that on success returns the
+   list of institutes in the json format.  The format of
+   each element in the institute list is:
+   #+BEGIN_EXAMPLE
+    {
+      "assets": [
+        {
+          "asset_type": {
+            "asset_type": "image", 
+            "id": "1"
+          }, 
+          "id": "144", 
+          "path": "iit-bombay.png"
+        }
+      ], 
+      "id": "4", 
+      "institute_id": "iitb", 
+      "institute_name": "IIT Bombay"
+    }
+   #+END_EXAMPLE
+
+   A corresponding list item (li) is built from each of
+   above such elements.  =institute_name= becomes the
+   display name while =onclick= event that is attached
+   fetches all the labs belonging to this institute
+   identified by =disciplie_id=.  Apart from list item for
+   each institute, =All Institutes= is also part of the
+   drop down menu, and when clicked displays all the
+   institutes.  All the items in the drop down menu are
+   sorted alphabetically.
+#+name: build-institute-drop-down-list
+#+BEGIN_SRC js
+var buildInstituteDropDownList = function(institutes) {
+  institutes.sort(function(a, b) {
+    var nameA = a['institute_name'].toUpperCase(); // ignore upper and lowercase
+    var nameB = b['institute_name'].toUpperCase(); // ignore upper and lowercase
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+    // names must be equal
+    return 0;
+  });
+
+  var liList = institutes.map(function(institute) {
+    return '<li onclick="displayLabsOfInstitute(this)" value="' +
+      institute['institute_name'] + '" id="' + institute['institute_id'] + 
+      '"><a>' + institute['institute_name'] + '</a></li>';
+  });
+
+  var allInstitutesItem = '<li onclick="displayAllInstitutes()"> <a>All Institutes</a></li>';
+
+  var dropDownContent = liList.reduce(function(acc, liItem) {
+    acc += liItem;
+    return acc;
+  }, allInstitutesItem);
+
+  return dropDownContent;
+
+};
+
+#+END_SRC
+
+** Attach Institute list to the drop down box
+   The institute drop down content is attached to the box. 
+#+name: attach-institute-list-to-box
+#+BEGIN_SRC js
+var attachInstituteListToBox = function(content) {
+  $('.filterInstituteComboBox').empty();
+  $('.filterInstituteComboBox').append(content);
+};
+
+#+END_SRC
+
+* Display the page with all Disciplines
+** The Flow
+   A page listing all disciplines is displayed.  This page
+   contains name, image and a click event attached to each
+   discipline.  Clicking on a discipline displays all the
+   labs of that discipline. 
+#+name: display-disciplines
+#+BEGIN_SRC js
+var displayAllDisciplines = function() {
+ getDisciplines()
+    .then(buildDisciplineDisplayList)
+    .then(attachDisciplineDisplayListToIframe)
+    .catch(function(err) {
+      console.log("Error from displayAllDisciplines: " + err);
+    });
+};
+
+#+END_SRC
+
+** Build discipline display list
+   Display list is build from the list of disciplines
+   returned in the json format from the =getDisciplines=
+   promise.  For each discipline, name and image are
+   displayed and a click event is attached.  The click event
+   when triggered displays all the labs of that particular
+   discipline. 
+#+name: build-discipline-display-list
+#+BEGIN_SRC js
+var buildDisciplineDisplayList = function(disciplines) {
+  disciplines.sort(function(a, b) {
+    var nameA = a['discipline_name'].toUpperCase(); // ignore upper and lowercase
+    var nameB = b['discipline_name'].toUpperCase(); // ignore upper and lowercase
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+    // names must be equal
+    return 0;
+  });
+
+  var displayList = disciplines.map(function(discipline) {
+    var discipline_id = discipline['discipline_id'];
+    var discipline_name = discipline['discipline_name'];                                                          
+    var image_name = discipline['assets'][0]['path'];
+    var image_path = discipline_images_url + image_name;
+    return '<div class="col-lg-3 col-md-4 col-xs-12 thumb" onclick="displayLabsOfDiscipline(this)" src="' +
+      image_path + '" id="' + discipline_id + '"><div class="thumbnail" style="cursor:pointer; padding: 0px !important; padding-top:15px !important;"> <a><img class="img-responsive " onclick="displayLabsOfDiscipline(this, 0)" src="' + image_path +'" id="' + discipline_id + '"><div class="caption" style="min-height: 110px;"><h4 onclick="displayLabsOfDiscipline(this)"  src="' + image_path +'" id="' + discipline_id + '" style="text-align:center; color:#2c99ce;" >'+ discipline_name +'</h4></a></div></div></div>';
+  });
+
+  var displayDisciplines = displayList.reduce(function(acc, el) {
+    acc += el;
+    return acc;
+  });
+   return '<div class="container-fluid"><div class="row">' + 
+    displayDisciplines +
+    '</div></div>';
+};
+
+#+END_SRC
+
+** Attach the display content to an Iframe
+   The display content for all disciplines with images, names
+   and callbacks for =click= event generated in the previous
+   step is set in contentIframe.  The steps here are:
+   1. An iframe is created.
+   2. The source of this iframe is set to =disciplines.html=
+   3. This iframe is inserted into the =ContentDiv= of the
+      index page. 
+   4. =disciplines.html= contains a division named
+      =ContentDiv= and the disciplines display content is
+      set in this division. 
+#+name: attach-discipline-display-list-to-iframe
+#+BEGIN_SRC js
+var attachDisciplineDisplayListToIframe = function(content) {
+  deleteFrameInDivision("contentIframe", "contentDiv");
+  var newFrame = createContentIframe();
+  insertFrameInDivision(newFrame, "contentDiv");
+  setContent(content, "disciplines.html");
+};
+
+#+END_SRC
+
+* Display the page with all Institutes
+** The Flow
+   A page listing all institutes is displayed.  This page
+   contains name, image and a click event attached to each
+   institute.  Clicking on a institute displays all the
+   labs of that institute. 
+#+name: display-institutes
+#+BEGIN_SRC js
+var displayAllInstitutes = function() {
+ getInstitutes()
+    .then(buildInstituteDisplayList)
+    .then(attachInstituteDisplayListToIframe)
+    .catch(function(err) {
+      console.log("Error from displayAllInstitutes: " + err);
+    });
+};
+
+#+END_SRC
+
+** Build institute display list
+   Display list is built from the list of institutes
+   returned in the json format from the =getInstitutes=
+   promise.  For each institute, name and image are
+   displayed and a click event is attached.  The click event
+   when triggered displays all the labs of that particular
+   institute. 
+#+name: build-institute-display-list
+#+BEGIN_SRC js
+var buildInstituteDisplayList = function(institutes) {
+  institutes.sort(function(a, b) {
+    var nameA = a['institute_name'].toUpperCase(); // ignore upper and lowercase
+    var nameB = b['institute_name'].toUpperCase(); // ignore upper and lowercase
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+    // names must be equal
+    return 0;
+  });
+
+  var displayList = institutes.map(function(institute) {
+    var institute_id = institute['institute_id'];
+    var institute_name = institute['institute_name'];                                                          
+    var image_name = institute['assets'][0]['path'];
+    var image_path = institute_images_url + image_name;
+    return '<div class="col-lg-3 col-md-4 col-xs-12 thumb" onclick="displayLabsOfInstitute(this)" src="' +
+      image_path + '" id="' + institute_id + '"><div class="thumbnail" style="cursor:pointer; padding: 0px !important; padding-top:15px !important;"> <a><img class="img-responsive " onclick="displayLabsOfInstitute(this, 0)" src="' + image_path +'" id="' + institute_id + '"><div class="caption" style="min-height: 110px;"><h4 onclick="displayLabsOfInstitute(this)"  src="' + image_path +'" id="' + institute_id + '" style="text-align:center; color:#2c99ce;" >'+ institute_name +'</h4></a></div></div></div>';
+  });
+
+  var displayInstitutes = displayList.reduce(function(acc, el) {
+    acc += el;
+    return acc;
+  });
+   return '<div class="container-fluid"><div class="row">' + 
+    displayInstitutes +
+    '</div></div>';
+};
+
+#+END_SRC
+
+** Attach the display content to an Iframe
+   The display content for all institutes with images, names
+   and callbacks for =click= event generated in the previous
+   step is set in contentIframe.  The steps here are:
+   1. An iframe is created.
+   2. The source of this iframe is set to =institutes.html=
+   3. This iframe is inserted into the =ContentDiv= of the
+      index page. 
+   4. =institutes.html= contains a division named
+      =ContentDiv= and the institutes display content is
+      set in this division. 
+#+name: attach-institute-display-list-to-iframe
+#+BEGIN_SRC js
+var attachInstituteDisplayListToIframe = function(content) {
+  deleteFrameInDivision("contentIframe", "contentDiv");
+  var newFrame = createContentIframe();
+  insertFrameInDivision(newFrame, "contentDiv");
+  setContent(content, "institutes.html");
+};
+
+#+END_SRC
+
+* Display Labs of a Discipline
 * Tangle 
 ** sources
 *** Javascript
@@ -198,5 +639,25 @@ var modifyUrl = function(url) {
 <<add-script-tags>>
 <<mouse-over>>
 <<modify-url>>
+<<make-ajax-call>>
+<<get-json>>
+<<discipline-promise>>
+<<institute-promise>>
+<<lab-promise>>
+<<filter-query>>
+<<lab-by-discipline-promise>>
+<<lab-by-institute-promise>>
+<<populate-discipline-combo-box>>
+<<build-discipline-drop-down-list>>
+<<attach-discipline-list-to-box>>
+<<populate-institute-combo-box>>
+<<build-institute-drop-down-list>>
+<<attach-institute-list-to-box>>
+<<display-disciplines>>
+<<build-discipline-display-list>>
+<<attach-discipline-display-list-to-iframe>>
+<<display-institutes>>
+<<build-institute-display-list>>
+<<attach-institute-display-list-to-iframe>>
 #+END_SRC
 

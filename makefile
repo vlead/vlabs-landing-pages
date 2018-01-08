@@ -29,3 +29,7 @@ run-py-tests:
 
 clean:	
 	make -f tangle-make clean
+
+move-to-var:
+	rm -rf /var/www/html/*
+	rsync -a ${PWD}/${CODE_DIR}/runtime/ /var/www/html/
