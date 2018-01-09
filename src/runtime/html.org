@@ -136,8 +136,8 @@
                   </span>
                 </div>
               </form>
-              <li><a class ="cursor-pointer" id="register" onclick="setRegisterUrlInContentIframe();"><span class="glyphicon glyphicon-user"></span>Register</a></li>
-              <li><a class ="cursor-pointer" onclick="setLoginUrlInContentIframe('login');" id="login" class="glyphicon glyphicon-log-in"> Login</a></li>
+              <li><a class ="cursor-pointer" id="register"><span class="glyphicon glyphicon-user"></span>Register</a></li>
+              <li><a class ="cursor-pointer" id="login" class="glyphicon glyphicon-log-in"> Login</a></li>
             </ul>
           </div>
         </div>

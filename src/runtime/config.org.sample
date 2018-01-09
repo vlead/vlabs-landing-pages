@@ -41,6 +41,10 @@ var total_usage_url = "http://stats.vlabs.ac.in/analytics";
 var labs_hosted_platform = "test-openedx";
 var postServer = "";
 var footerUrl = "http://footer.vlabs.ac.in/footer";
+var loginUrl = hosted_base + "/login";
+var logoutUrl = hosted_base + "/logout";
+var registerUrl = hosted_base + "/register";
+
 #+END_SRC
 
 * Tangle

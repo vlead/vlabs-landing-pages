@@ -22,9 +22,13 @@
   - Accessing all the data of labs.
 
 * Index page on load 
-   Every page has a controller, content and footer.  Both
-   the content and the footer are served from iframes.  The
-   content is either:
+   The index page has a controller, content and footer.  The
+   footer is set to an iframe.  The content - disciplines,
+   institutes, labs of an institute, labs of a discipline
+   and all the labs are displayed in the content division of
+   the index page.  The lab itself
+
+   The content is either:
    1. list of disciplines
    2. list of institutes
    3. list of labs which can either be:
@@ -34,20 +38,25 @@
       or
    4. the lab itself. 
 
-   On the initial load,  the content lists all the
-   disciplines.  
+   The first three are displayed in the content division of
+   the index page while the lab itself is displayed in an
+   iframe that is embedded in the content division of the
+   index page.
+
+   On the initial load, the content lists all
+   the disciplines.
 
 #+NAME: load-index
 #+BEGIN_SRC js
 var loadIndex = function() {
   on_mouse_hover();
-  insertContentIframe();
   insertFooterIframe();
   setFooterUrlToFooterIframe();
   populateDisciplineDropDownBox();
   populateInstituteDropDownBox();
   displayAllDisciplines();
   enableAllLabsButton();
+  displayBtnsForAuthentication();
 };
 
 #+END_SRC
@@ -490,7 +499,7 @@ var handleEventOnAInstitute = function(obj) {
 var displayAllDisciplines = function() {
  getDisciplines()
     .then(buildDisciplineDisplayList)
-    .then(attachDisciplineDisplayListToIframe)
+    .then(setContentInContentDiv)
     .catch(function(err) {
       console.log("Error from displayAllDisciplines: " + err);
     });
@@ -541,24 +550,25 @@ var buildDisciplineDisplayList = function(disciplines) {
 
 #+END_SRC
 
-** Attach the display content to an Iframe
-   The display content for all disciplines with images, names
-   and callbacks for =click= event generated in the previous
-   step is set in contentIframe.  The steps here are:
-   1. An iframe is created.
-   2. The source of this iframe is set to =disciplines.html=
-   3. This iframe is inserted into the =ContentDiv= of the
-      index page. 
-   4. =disciplines.html= contains a division named
-      =ContentDiv= and the disciplines display content is
-      set in this division. 
-#+name: attach-discipline-display-list-to-iframe
-#+BEGIN_SRC js
-var attachDisciplineDisplayListToIframe = function(content) {
-  deleteFrameInDivision("contentIframe", "contentDiv");
-  setContentInContentDiv(content);
-};
 
+** Set Content in ContentDiv
+   Attach the display content to content division
+   The display content contains images, names
+   and callbacks for =click= event.
+
+   The steps here are:
+   1. If an iframe exists in the content div, that iframe is
+      deleted.
+   2. The current content of content division is cleared.
+   3. The new content is set to the content division.
+#+name: set-content-in-content-div
+#+BEGIN_SRC js
+var setContentInContentDiv = function(content) {
+  deleteFrameInDivision("contentIframe", "contentDiv");
+  elem = document.getElementById("contentDiv");
+  elem.innerHTML = "";
+  elem.innerHTML = content;
+};
 #+END_SRC
 
 * Display the page with all Institutes
@@ -572,7 +582,7 @@ var attachDisciplineDisplayListToIframe = function(content) {
 var displayAllInstitutes = function() {
  getInstitutes()
     .then(buildInstituteDisplayList)
-    .then(attachInstituteDisplayListToIframe)
+    .then(setContentInContentDiv)
     .catch(function(err) {
       console.log("Error from displayAllInstitutes: " + err);
     });
@@ -623,26 +633,6 @@ var buildInstituteDisplayList = function(institutes) {
 
 #+END_SRC
 
-** Attach the display content to an Iframe
-   The display content for all institutes with images, names
-   and callbacks for =click= event generated in the previous
-   step is set in contentIframe.  The steps here are:
-   1. An iframe is created.
-   2. The source of this iframe is set to =institutes.html=
-   3. This iframe is inserted into the =ContentDiv= of the
-      index page. 
-   4. =institutes.html= contains a division named
-      =ContentDiv= and the institutes display content is
-      set in this division. 
-#+name: attach-institute-display-list-to-iframe
-#+BEGIN_SRC js
-var attachInstituteDisplayListToIframe = function(content) {
-  deleteFrameInDivision("contentIframe", "contentDiv");
-  setContentInContentDiv(content);
-};
-
-#+END_SRC
-
 * Display the page with labs of a Discipline
 ** The Flow
    A page listing all the labs of a discipline is displayed.
@@ -653,7 +643,7 @@ var attachInstituteDisplayListToIframe = function(content) {
 var displayLabsOfDiscipline = function(discId) {
  getLabsByDiscipline(discId)
     .then(buildLabsDisplayList)
-    .then(attachLabsDisplayListToIframe)
+    .then(setContentInContentDiv)
     .catch(function(err) {
       console.log("Error from displayLabsOfDiscipline: " + err);
     });
@@ -719,26 +709,6 @@ var buildLabsDisplayList = function(labs) {
 
 #+END_SRC
 
-** Attach the display content to an Iframe
-   The display content for all labs with images, names and
-   callbacks for =click= event generated in the previous
-   step is set in contentIframe.  The steps here are:
-   1. An iframe is created.
-   2. The source of this iframe is set to =labs.html=
-   3. This iframe isp inserted into the =ContentDiv= of the
-      index page. 
-   4. =labs.html= contains a division named
-      =ContentDiv= and the labs display content is
-      set in this division. 
-#+name: attach-labs-display-list-to-iframe
-#+BEGIN_SRC js
-var attachLabsDisplayListToIframe = function(content) {
-  deleteFrameInDivision("contentIframe", "contentDiv");
-  setContentInContentDiv(content);
-};
-
-#+END_SRC
-
 * Display the page with labs of an Institute
 ** The Flow
    A page listing all the labs of a institute is displayed.
@@ -749,7 +719,7 @@ var attachLabsDisplayListToIframe = function(content) {
 var displayLabsOfInstitute = function(instId) {
  getLabsByInstitute(instId)
     .then(buildLabsDisplayList)
-    .then(attachLabsDisplayListToIframe)
+    .then(setContentInContentDiv)
     .catch(function(err) {
       console.log("Error from displayLabsOfInstitute: " + err);
     });
@@ -766,7 +736,7 @@ var displayLabsOfInstitute = function(instId) {
 var displayAllLabs = function() {
   getLabs()
     .then(buildLabsDisplayList)
-    .then(attachLabsDisplayListToIframe)
+    .then(setContentInContentDiv)
     .catch(function(err) {
       console.log("Error from displayAllLabs: " + err);
     });
@@ -794,7 +764,7 @@ var displayLabsByKeyWord = function() {
       return filterLabsByKeyWord(labs, keyword);
     })
     .then(buildLabsDisplayList)
-    .then(attachLabsDisplayListToIframe)
+    .then(setContentInContentDiv)
     .catch(function(err) {
       console.log("Error from displayLabsByKeyWord: " + err);
     });
@@ -844,8 +814,13 @@ var enableAllLabsButton = function() {
    the lab. 
 #+name: handle-event-on-lab
 #+BEGIN_SRC js
+var labUrl;
 var handleEventOnLab = function(obj) {
-  displayLab(obj.id);
+  labUrl = obj.id;
+  if (authenticated())
+    displayLab(obj.id);
+  else
+    authenticate({id: loginUrl});
 };
 
 #+END_SRC
@@ -871,6 +846,90 @@ var displayLab = function(url) {
 };
 #+END_SRC
 
+* Login Support
+  Since Open edX does not provide an API for authentication,
+  the controller decides if the user is successfully signed
+  in by parsing the content of the page returned after
+  successful login.
+
+  The flow of login:
+  1. Open edX login page or Register page is displayed in
+     the content iframe.
+  2. When the login is successful, Open edX redirects the
+     page to Dashboard.
+  3. When the Dashboard page is served by Open edX, a custom
+     javascript is embedded into the page.
+  4. This custom javascript posts the content of the page to
+     the controller.
+  5. The controller on receipt of this message, determines
+     that the user has logged in and toggles the login
+     button to logout.  Register button is made invisible.
+
+  The above flow happens in the following scenarios:
+  1. When the login button or register button id clicked.
+  2. When a lab is clicked and the user is not logged in.
+
+  When a lab hosted on Open edX is clicked and the user is
+  not enrolled in this, Open edX platform displays the
+  enroll page.  Once the user enrolls into this lab, Open
+  edX redirects to Open edX Dashboard which is not the
+  expected state.  The expected state is landing page of
+  this lab.  When Dashboard page is displayed, a post
+  message is sent to the controller, and the controller
+  redirects to the landing page of the lab.
+#+name: authentication
+#+BEGIN_SRC js
+var authenticated = function() {
+  return document.cookie.includes("logged-in");
+};
+
+var authenticate = function(obj) {
+  displayLab(obj.id);
+};
+
+var logoutHandler = function() {
+  displayLab(logoutUrl);
+  setTimeout(logoutCleanUp, 1000);
+};
+
+var logoutCleanUp = function() {
+  document.cookie = "session-status='logged-out'";
+  labUrl = "";
+  displayBtnsForAuthentication();
+  displayAllDisciplines();
+};
+
+var displayBtnsForAuthentication = function() {
+  var lElem = document.getElementById("login");
+  var rElem = document.getElementById("register");
+  if (document.cookie.includes("logged-in")) {
+    lElem.innerHTML = "Logout";
+    lElem.removeEventListener("click", loginHandler);
+    lElem.removeEventListener("click", logoutHandler);
+    lElem.addEventListener("click", logoutHandler);
+    rElem = document.getElementById("register");
+    rElem.style.display = "none";
+  } else {
+    lElem.innerHTML = "Login";
+    lElem.removeEventListener("click", logoutHandler);
+    lElem.removeEventListener("click", loginHandler);
+    lElem.addEventListener("click", loginHandler);
+    rElem.style.display = "block";
+    rElem.removeEventListener("click", registerHandler);
+    rElem.addEventListener("click", registerHandler);
+  }
+};
+
+var loginHandler = function() {
+  authenticate({id: loginUrl});
+};
+
+var registerHandler = function() {
+  authenticate({id: registerUrl});
+};
+
+#+END_SRC
+
 * Support for Event Listening on post messages
   This is the support code for providing the ability to
   listen to the post messages sent to the index page. 
@@ -881,13 +940,14 @@ var processPostMessage = function(event) {
     return;
   } else {
     var recvMsg = JSON.parse(event.data);
-    if (!recvMsg.edx) {
-      if (recvMsg.action == "display-labs-of-discipline")
-        displayLabsOfDiscipline(recvMsg.id);
-      else if (recvMsg.action == "display-labs-of-institute")
-        displayLabsOfInstitute(recvMsg.id);
-      else if (recvMsg.action == "display-lab")
-        displayLab(recvMsg.id);
+    var msg = recvMsg.message.toLocaleLowerCase();
+    if (msg.indexOf("my courses") != -1) {                                                                   
+      document.cookie = "session-status='logged-in'";
+      displayBtnsForAuthentication();
+      if (labUrl)
+        displayLab(labUrl)
+      else
+        displayAllDisciplines();
     }
   }
 };
@@ -898,21 +958,8 @@ if (window.addEventListener) {
   window.attachEvent("onmessage", processPostMessage);
 }
 
-
 #+END_SRC
 
-* Set Content in ContentDiv
-  HTML content is set to the contentDiv of the main page.
-  Before content is set, the older content is deleted. 
-#+name: set-content-in-content-div
-#+BEGIN_SRC js
-var setContentInContentDiv = function(content) {
-  elem = document.getElementById("contentDiv");
-  elem.innerHTML = "";
-  elem.innerHTML = content;
-};
-
-#+END_SRC
 * Tangle 
 ** sources
 #+BEGIN_SRC javascript :tangle js/main.js :eval no :noweb yes 
@@ -937,23 +984,20 @@ var setContentInContentDiv = function(content) {
 <<attach-institute-list-to-box>>
 <<display-disciplines>>
 <<build-discipline-display-list>>
-<<attach-discipline-display-list-to-iframe>>
 <<display-institutes>>
 <<build-institute-display-list>>
-<<attach-institute-display-list-to-iframe>>
 <<display-labs-of-discipline>>
 <<build-labs-display-list>>
-<<attach-labs-display-list-to-iframe>>
 <<display-labs-of-institute>>
 <<display-all-labs>>
 <<handle-event-on-lab>>
 <<display-lab>>
 <<handle-event-on-a-discipline>>
 <<handle-event-on-a-institute>>
-//<<action-to-function-mapper>>
 <<event-listener>>
 <<enable-all-labs-button>>
 <<filter-labs-by-keyword>>
 <<display-labs-by-keyword>>
+<<authentication>>
 #+END_SRC
 
