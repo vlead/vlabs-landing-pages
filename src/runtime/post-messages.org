@@ -56,7 +56,7 @@ var postForLabUrl = function(obj) {
 
 #+END_SRC
 
-* Tangle 
+* Tangle                                       :boilerplate:
 ** sources
 #+BEGIN_SRC javascript :tangle js/post-messages.js :eval no :noweb yes 
 <<post-for-labs-of-discipline>>

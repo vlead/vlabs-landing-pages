@@ -983,7 +983,7 @@ var makeNewListOfLabs = function() {
 };
 
 #+END_SRC
-* Tangle 
+* Tangle                                       :boilerplate:
 ** sources
 #+BEGIN_SRC javascript :tangle js/main.js :eval no :noweb yes 
 <<load-index>>

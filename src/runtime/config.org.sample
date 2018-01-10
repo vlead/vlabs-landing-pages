@@ -49,7 +49,7 @@ var registerUrl = hosted_base + "/register";
 
 #+END_SRC
 
-* Tangle
+* Tangle                                       :boilerplate:
 ** Configuration
 #+BEGIN_SRC javascript :tangle js/app-config.js :eval no :noweb yes 
 <<app-config>>

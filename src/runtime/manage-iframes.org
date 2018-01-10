@@ -185,7 +185,7 @@ var setUrlToSandBoxedContentIframe = function(url) {
 };
 
 #+END_SRC
-* Tangle 
+* Tangle                                       :boilerplate:
 ** sources
 #+BEGIN_SRC javascript :tangle js/manage-iframes.js :eval no :noweb yes 
 <<create-new-iframe>>

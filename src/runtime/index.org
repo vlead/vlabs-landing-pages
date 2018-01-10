@@ -15,8 +15,7 @@
 
 * [[./manage-frames.org][Frame Management]]
 
-* [[Posting of Messages]]
-
+* [[./post-messages.org][Posting of Messages]]
 * [[./config.org.sample][Configuration]]
 
 * [[./styles.org][Styles]]

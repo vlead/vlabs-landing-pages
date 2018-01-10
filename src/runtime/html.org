@@ -286,7 +286,7 @@
 
 #+END_SRC
 
-* Tangle 
+* Tangle                                       :boilerplate:
 ** Index HTML
 #+BEGIN_SRC html :tangle index.html :eval no :noweb yes
 <<index-html>>
