@@ -12,7 +12,7 @@
 * Introduction
   This has all the configuration required to run the
   =vlabs-landing-pages=
-* Configurationa
+* Configuration
   =vlabs-landing-pages= gets the data from different
   set of micro services. They are:
   1. *Lab Data Service* : This service provides the
@@ -29,19 +29,23 @@
 
 #+NAME: app-config
 #+BEGIN_SRC javascript
-
-document.domain="vlabs.ac.in";
+document.domain="pages.vlabs.ac.in";
 // update this to base url to lds url where your lds service was running
-var hosted_base = "http://alpha-openedx.vlabs.ac.in"
-var lds_url = "http://lds-hosting.base4.vlabs.ac.in"; 
-var institute_images_url ="http://files.vlabs.ac.in/lds/images/institutes/";
+var hosted_base = "http://mybox.vlabs.ac.in";
+var lds_url = "http://192.168.33.16:5000";                                         
+var institute_images_url ="http://files.vlabs.ac.in/lds/images/institutes/";                                      
 var discipline_images_url = "http://files.vlabs.ac.in/lds/images/disciplines/";
-var lab_images_url = "http://files.vlabs.ac.in/lds/images/labs/";
-var workshop_usage_url = "http://outreach.vlabs.ac.in/get_outreach_analytics";
-var total_usage_url = "http://stats.vlabs.ac.in/analytics";
-//set the below variable to "test-openedx" or "openedx"
+var lab_images_url = "http://files.vlabs.ac.in/lds/images/labs/";                                       
+
+//set the below variable to "test-openedx" or "openedx"                                                           
 var labs_hosted_platform = "test-openedx";
-var postServer = "";
+
+var wsUsageUrl = "http://outreach.vlabs.ac.in/get_outreach_analytics";
+var wsUsageDetailUrl = "http://outreach.virtual-labs.ac.in/usage"
+var logUsageUrl = "http://stats.vlabs.ac.in/analytics";
+var logUsageDetailUrl = "https://info.vlabs.ac.in/analytics/analytics/usage.html"
+
+var postServer = "http://mybox.vlabs.ac.in";
 var footerUrl = "http://footer.vlabs.ac.in/footer";
 var loginUrl = hosted_base + "/login";
 var logoutUrl = hosted_base + "/logout";

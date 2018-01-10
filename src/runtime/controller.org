@@ -48,6 +48,8 @@ var loadIndex = function() {
   displayAllDisciplines();
   enableAllLabsButton();
   displayBtnsForAuthentication();
+  fillDataAndSetEventForLogUsage();
+  fillDataAndSetEventForWsUsage();
 };
 
 #+END_SRC
@@ -254,6 +256,33 @@ var getLabsByInstitute = function(instId) {
 };
 
 #+END_SRC
+
+** WorkShop Usage
+#+name: ws-usage
+#+BEGIN_SRC js
+var wsUsagePromise;
+var getWsUsage = function() {
+  wsUsagePromise = wsUsagePromise || getJSON(wsUsageUrl);
+  return wsUsagePromise.then(function(data) {
+    return data;
+  });
+}
+
+#+END_SRC
+
+** Usage from Logs
+#+name: log-usage
+#+BEGIN_SRC js
+var logUsagePromise;
+var getLogUsage = function() {
+  logUsagePromise = logUsagePromise || getJSON(logUsageUrl);
+  return logUsagePromise.then(function(data) {
+    return data;
+  });
+}
+
+#+END_SRC
+
 
 * Fill the Discipline Combo Box
 ** The Flow
@@ -951,6 +980,62 @@ if (window.addEventListener) {
 
 #+END_SRC
 
+* Fill and Set Click event to load Log Usage in Detail Page
+#+name: fill-and-set-log-usage
+#+BEGIN_SRC js
+var displayLogUsage = function(data) {
+  document.getElementById("logUsageDisplay").innerText = data["usage"]
+};
+
+var showLogUsageDetailPage = function() {
+  displayLab(logUsageDetailUrl);
+}
+
+var setClickEventHandlerOnLogUsage = function() {
+  document.getElementById("logUsageClick").removeEventListener("click", showLogUsageDetailPage);
+  document.getElementById("logUsageClick").addEventListener("click", showLogUsageDetailPage);
+
+};
+
+var fillDataAndSetEventForLogUsage = function() {
+  getLogUsage()
+    .then(displayLogUsage)
+    .then(setClickEventHandlerOnLogUsage)
+    .catch(function(err) {
+      console.log("Error from fillDataAndSetEventForLogUsage: " + err);
+    });
+};
+
+#+END_SRC
+
+* Fill and Set Click event to load workshop Usage in Detail Page
+#+name: fill-and-set-ws-usage
+#+BEGIN_SRC js
+var displayWsUsage = function(data) {
+  document.getElementById("wsUsageDisplay").innerText = data["usage"]
+};
+
+var showWsUsageDetailPage = function() {
+  displayLab(wsUsageDetailUrl);
+}
+
+var setClickEventHandlerOnWsUsage = function() {
+  document.getElementById("wsUsageClick").removeEventListener("click", showWsUsageDetailPage);
+  document.getElementById("wsUsageClick").addEventListener("click", showWsUsageDetailPage);
+
+};
+
+var fillDataAndSetEventForWsUsage = function() {
+  getWsUsage()
+    .then(displayWsUsage)
+    .then(setClickEventHandlerOnWsUsage)
+    .catch(function(err) {
+      console.log("Error from fillDataAndSetEventForWsUsage: " + err);
+    });
+};
+
+#+END_SRC
+
 * Create a list of labs with lab id, hosting url and hosted platform
 #+name: make-list-of-labs
 #+BEGIN_SRC js
@@ -1023,5 +1108,9 @@ var makeNewListOfLabs = function() {
 <<display-labs-by-keyword>>
 <<authentication>>
 <<make-list-of-labs>>
+<<log-usage>>
+<<fill-and-set-log-usage>>
+<<ws-usage>>
+<<fill-and-set-ws-usage>>
 #+END_SRC
 
