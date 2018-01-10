@@ -7,11 +7,21 @@
 #+OPTIONS: ^:nil
 
 * Introduction
-  This is the index for vlabs portal. 
+  This "Literate Document" illustrates building the =Vlabs
+  Landing Pages=.  The pages are built dynamically by
+  fetching data served by =Lab Data Service=. 
+
+  Some of the goals achieved are:
+  - List disciplines and institutes.
+  - List labs of each discipline and each institute.
+  - List of all the labs.
+  - Display the lab using the hosted url.
 
 * [[./requirements/index.org][Requirements]]
 
 * [[./design/index.org][Design]]
 
+* [[./runtime/index.org][Runtime]]
+* [[./deployment/index.org][Deployment]]
 * [[./realization-plan/index.org][Realization Plan]]
 
