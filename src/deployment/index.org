@@ -5,6 +5,8 @@
 #+TAGS: boilerplate(b)
 #+EXCLUDE_TAGS: boilerplate
 #+OPTIONS: ^:nil
+#+TAGS: boilerplate(b)
+#+EXCLUDE_TAGS: boilerplate
 
 * [[./setup-dev-environment.org][Deployment in User Environment]]
 

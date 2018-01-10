@@ -6,13 +6,15 @@
 #+SETUPFILE: ../org-templates/level-1.org
 #+options: ^:nil
 #+LATEX: Literal LaTeX code for export
+#+TAGS: boilerplate(b)
+#+EXCLUDE_TAGS: boilerplate
+
 
 * Introduction
   This has the functionality to manage iframes which
   includes creation, insertion, deletion, setting content to
   an iframe,..etc.  In this application, the index page is
   divided into 
-
 
 * Manage Iframes
 ** Create a frame

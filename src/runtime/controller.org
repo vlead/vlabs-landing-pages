@@ -6,6 +6,8 @@
 #+SETUPFILE: ../org-templates/level-1.org
 #+options: ^:nil
 #+LATEX: Literal LaTeX code for export
+#+TAGS: boilerplate(b)
+#+EXCLUDE_TAGS: boilerplate
 
 * Introduction 
   This document lists all that is necessary to control the
@@ -949,6 +951,38 @@ if (window.addEventListener) {
 
 #+END_SRC
 
+* Create a list of labs with lab id, hosting url and hosted platform
+#+name: make-list-of-labs
+#+BEGIN_SRC js
+var labHostedOnOpenEdx = function(lab) {
+  var hostingInfo = lab['hosting_info'];
+  var retVal = false;
+  for(var i = 0; i < hostingInfo.length; i++) {
+    var hostedOn = lab['hosting_info'][i]['hosted_on'];
+    if (hostedOn == "openedx" || hostedOn == "open-edx") {
+      retVal = true;
+      break;
+    }
+  }
+  return retVal;
+};
+
+var filterLabs = function(labs) {
+  return labs.filter(labHostedOnOpenEdx);
+};
+
+var makeNewListOfLabs = function() {
+ getLabs()
+    .then(filterLabs)
+    .then(function(labs) {
+      console.log(labs);
+    })
+    .catch(function(err) {
+      console.log("Error from makeListOfLabs: " + err);
+    });
+};
+
+#+END_SRC
 * Tangle 
 ** sources
 #+BEGIN_SRC javascript :tangle js/main.js :eval no :noweb yes 
@@ -988,5 +1022,6 @@ if (window.addEventListener) {
 <<filter-labs-by-keyword>>
 <<display-labs-by-keyword>>
 <<authentication>>
+<<make-list-of-labs>>
 #+END_SRC
 

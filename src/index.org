@@ -5,6 +5,8 @@
 #+TAGS: boilerplate(b)
 #+EXCLUDE_TAGS: boilerplate
 #+OPTIONS: ^:nil
+#+TAGS: boilerplate(b)
+#+EXCLUDE_TAGS: boilerplate
 
 * Introduction
   This "Literate Document" illustrates building the =Vlabs
