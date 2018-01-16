@@ -158,7 +158,7 @@ var setUsageInContentIframe = function() {
 #+name: create-content-iframe
 #+BEGIN_SRC js
 var createContentIframe = function() {
-  return createNewIframe("contentIframe", "contentIframe", "100%", "9500em");
+  return createNewIframe("contentIframe", "contentIframe", "100%", "4500em");
 };
 
 #+END_SRC
