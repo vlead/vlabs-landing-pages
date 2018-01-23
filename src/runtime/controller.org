@@ -92,7 +92,7 @@ head.appendChild(favicon);
   #+NAME: modify-url
   #+BEGIN_SRC javascript 
 var modifyUrl = function(url) {
-  return hosted_base + "/" + url.split("/").slice(3).join("/");
+  return hostedBaseForOpenEdx + "/" + url.split("/").slice(3).join("/");
 };
 
 
@@ -143,7 +143,7 @@ var getJSON = function(resourcePath) {
 #+BEGIN_SRC js
 var disciplinePromise;
 var getDisciplines = function() {
-  disResPath = lds_url + "/disciplines";
+  disResPath = ldsUrl + "/disciplines";
   disciplinePromise = disciplinePromise || getJSON(disResPath);
 
   return disciplinePromise.then(function(disciplines) {
@@ -160,7 +160,7 @@ var getDisciplines = function() {
 #+BEGIN_SRC js
 var institutePromise;
 var getInstitutes = function() {
-  instResPath = lds_url + "/institutes";
+  instResPath = ldsUrl + "/institutes";
   institutePromise = institutePromise || getJSON(instResPath);
 
   return institutePromise.then(function(institutes) {
@@ -177,7 +177,7 @@ var getInstitutes = function() {
 #+BEGIN_SRC js
 var labPromise;
 var getLabs = function() {
-  labResPath = lds_url + "/labs";
+  labResPath = ldsUrl + "/labs";
   labPromise = labPromise || getJSON(labResPath);
 
   return labPromise.then(function(labs) {
@@ -214,7 +214,7 @@ var filterQuery = function(ls, id) {
 #+BEGIN_SRC js
 var labsByDisciplinePromises = [];
 var getLabsByDiscipline = function(discId) {
-  var labByDiscResPath = lds_url + "/labs?discipline_name=" + discId;
+  var labByDiscResPath = ldsUrl + "/labs?discipline_name=" + discId;
   var searchList = filterQuery(labsByDisciplinePromises, discId);
   var labsByDiscPromise;
   if (searchList.length == 0) {
@@ -240,7 +240,7 @@ var getLabsByDiscipline = function(discId) {
 #+BEGIN_SRC js
 var labsByInstitutePromises = [];
 var getLabsByInstitute = function(instId) {
-  var labByInstResPath = lds_url + "/labs?institute_name=" + instId;
+  var labByInstResPath = ldsUrl + "/labs?institute_name=" + instId;
   var searchList = filterQuery(labsByInstitutePromises, instId);
   var labsByInstPromise;
   if (searchList.length == 0) {
@@ -554,7 +554,7 @@ var buildDisciplineDisplayList = function(disciplines) {
     var discipline_id = discipline['discipline_name'];
     var discipline_name = discipline['discipline_name'];                                                          
     var image_name = discipline['assets'][0]['path'];
-    var image_path = discipline_images_url + image_name;
+    var image_path = disciplineImagesUrl + image_name;
     return '<div class="col-lg-3 col-md-4 col-xs-12 thumb" onclick="handleEventOnADiscipline(this)" src="' +
       image_path + '" id="' + discipline_id + '"><div class="thumbnail" style="cursor:pointer; padding: 0px !important; padding-top:15px !important;"> <a><img class="img-responsive " onclick="handleEventOnADiscipline(this)" src="' + image_path +'" id="' + discipline_id + '"><div class="caption" style="min-height: 110px;"><h4 onclick="handleEventOnADiscipline(this)"  src="' + image_path +'" id="' + discipline_id + '" style="text-align:center; color:#2c99ce;" >'+ discipline_name +'</h4></a></div></div></div>';
   });
@@ -637,7 +637,7 @@ var buildInstituteDisplayList = function(institutes) {
     var institute_id = institute['institute_name'];
     var institute_name = institute['institute_name'];                                                          
     var image_name = institute['assets'][0]['path'];
-    var image_path = institute_images_url + image_name;
+    var image_path = instituteImagesUrl + image_name;
     return '<div class="col-lg-3 col-md-4 col-xs-12 thumb" onclick="handleEventOnAInstitute(this)" src="' +
       image_path + '" id="' + institute_id + '"><div class="thumbnail" style="cursor:pointer; padding: 0px !important; padding-top:15px !important;"> <a><img class="img-responsive " onclick="handleEventOnAInstitute(this)" src="' + image_path +'" id="' + institute_id + '"><div class="caption" style="min-height: 110px;"><h4 onclick="handleEventOnAInstitute(this)"  src="' + image_path +'" id="' + institute_id + '" style="text-align:center; color:#2c99ce;" >'+ institute_name +'</h4></a></div></div></div>';
   });
@@ -671,7 +671,7 @@ var displayLabsOfDiscipline = function(discId) {
 
 #+END_SRC
 
-** Build Lab display list
+** COMMENT Build Lab display list
    Display list is built from the list of labs returned in
    the json format either from =getLabsByDiscipline= or
    =getLabsByInstitute= or =getLabs= promise. For each lab, name and image are
@@ -680,6 +680,7 @@ var displayLabsOfDiscipline = function(discId) {
 #+name: build-labs-display-list
 #+BEGIN_SRC js
 var buildLabsDisplayList = function(labs) {
+
   labs.sort(function(a, b) {
     var nameA = a['lab_name'].toUpperCase(); // ignore upper and lowercase
     var nameB = b['lab_name'].toUpperCase(); // ignore upper and lowercase
@@ -695,24 +696,15 @@ var buildLabsDisplayList = function(labs) {
 
   var displayList = labs.map(function(lab) {
     var lab_name = lab['lab_name'];                                                                      
-    var hosting_info = lab['hosting_info'];
-    for(var i = 0; i< hosting_info.length; i++) {
-      var hosted_on = lab['hosting_info'][i]['hosted_on'];
-        if (hosting_info.length == 1) {
-          var hosted_url = lab['hosting_info'][0]['hosted_url'];
-        } else if(labs_hosted_platform == hosted_on) {
-          hosted_url = modifyUrl(lab['hosting_info'][i]['hosted_url']);
-        } else {        
-          continue;
-        }
-      }                                                                                                            
+    var hosted_url = getTheRightUrl(lab['hosting_info']);
+
     var assets = lab['assets'];
     for(i = 0; i < assets.length; i++) {
-      var  asset_type = lab['assets'][i]['asset_type']['asset_type'];
-      var path = lab['assets'][i]['path'];                                              
+      var asset_type = lab['assets'][i]['asset_type']['asset_type'];
+      var path = lab['assets'][i]['path'];
       if (asset_type == 'image') {
         var image_name = lab['assets'][i]['path'];
-        path = lab_images_url + image_name;
+        path = labImagesUrl + image_name;
       }
     }
     return '<div class=" col-md-3 " id='+ lab_name + '> <div class="thumbnail" style="cursor:pointer; padding: 0px !important;"><a><img class="img-responsive" onclick="javascript:handleEventOnLab(this)" src="' + path +'" id="' + hosted_url + '"><div class="caption" style="min-height: 110px;"><h4 onclick="javascript:handleEventOnLab(this)"  src="' + path +'" id="' + hosted_url + '" style="text-align:center; color:#2c99ce;" >'+ lab_name +'</h4></a></div></div></div>';
@@ -728,6 +720,62 @@ var buildLabsDisplayList = function(labs) {
 };
 
 #+END_SRC
+
+* Get the right Url for a lab
+  A lab is hosted at multiple places - production openedx,
+  multiple test openedx servers, multiple cloud servers
+  (production, test, staging) and probably at an institute.
+  When the labs are displayed, the url that is attached to
+  open on the click event determines where the lab is
+  fetched from.  This url is configurable - say for this
+  landing pages version, pick the openedx url from a certain
+  test instance, or pick the cloud url from a certain
+  staging instance.   This is achieved by setting the
+  =openEdxHosted= and =cloudHosted= variables to the server
+  instances where the labs are hosted.  A first and second
+  choice alternates between either =openedx= or =cloud=.
+  The third choice is the institute url. 
+
+#+name: select-the-right-url
+#+BEGIN_SRC js
+var getTheRightUrl = function(hostingInfos) {
+  var filterHostingInfo = function(hostingInfos, key) {
+    return hostingInfos.filter(function(hostingInfo) {
+      return hostingInfo.hosted_on == key;
+    });
+  };
+
+  var getAtleastOneHostingInfo = function(hostingInfos) {
+    var filteredHostingInfos = filterHostingInfo(hostingInfos, firstChoiceUrl);
+
+    if (filteredHostingInfos.length == 0) {
+      filteredHostingInfos = filterHostingInfo(hostingInfos, secondChoiceUrl);
+    }
+
+    if (filteredHostingInfos.length == 0) {
+      filteredHostingInfos = filterHostingInfo(hostingInfos, thirdChoiceUrl);
+    }
+
+    if (filteredHostingInfos.length > 0) {
+      return filteredHostingInfos[0];
+    } else {
+      return null;
+    }
+  };
+
+  var hostedUrl = "";
+  var hostingInfo = getAtleastOneHostingInfo(hostingInfos);
+  if (hostingInfo != null) {
+    if (hostingInfo['hosted_on'] == openEdxHosted) {
+      hostedUrl = modifyUrl(hostingInfo['hosted_url']);
+    } else {
+      hostedUrl = hostingInfo['hosted_url'];
+    }
+  }
+  return hostedUrl;
+};
+#+END_SRC
+
 
 * Display the page with labs of an Institute
 ** The Flow
@@ -1036,7 +1084,7 @@ var fillDataAndSetEventForWsUsage = function() {
 
 #+END_SRC
 
-* Create a list of labs with lab id, hosting url and hosted platform
+* COMMENT Create a list of labs with lab id, hosting url and hosted platform
 #+name: make-list-of-labs
 #+BEGIN_SRC js
 var labHostedOnOpenEdx = function(lab) {
@@ -1094,6 +1142,7 @@ var makeNewListOfLabs = function() {
 <<build-discipline-display-list>>
 <<display-institutes>>
 <<build-institute-display-list>>
+<<select-the-right-url>>
 <<display-labs-of-discipline>>
 <<build-labs-display-list>>
 <<display-labs-of-institute>>
@@ -1107,7 +1156,7 @@ var makeNewListOfLabs = function() {
 <<filter-labs-by-keyword>>
 <<display-labs-by-keyword>>
 <<authentication>>
-<<make-list-of-labs>>
+//<<make-list-of-labs>>
 <<log-usage>>
 <<fill-and-set-log-usage>>
 <<ws-usage>>
