@@ -31,15 +31,13 @@
 #+BEGIN_SRC javascript
 document.domain="pages.vlabs.ac.in";
 // update this to base url to lds url where your lds service was running
-var hosted_base = "http://mybox.vlabs.ac.in";
-var lds_url = "http://192.168.33.16:5000";                                         
-var institute_images_url ="http://files.vlabs.ac.in/lds/images/institutes/";                                      
-var discipline_images_url = "http://files.vlabs.ac.in/lds/images/disciplines/";
-var lab_images_url = "http://files.vlabs.ac.in/lds/images/labs/";                                       
 
-//set the below variable to "test-openedx" or "openedx"                                                           
-var labs_hosted_platform = "test-openedx";
+var ldsUrl = "http://192.168.33.16:5000";                                         
+var instituteImagesUrl ="http://files.vlabs.ac.in/lds/images/institutes/";                                      
+var disciplineImagesUrl = "http://files.vlabs.ac.in/lds/images/disciplines/";
+var labImagesUrl = "http://files.vlabs.ac.in/lds/images/labs/";                                       
 
+var hostedBaseForOpenEdx = "http://mybox.vlabs.ac.in";
 var wsUsageUrl = "http://outreach.vlabs.ac.in/get_outreach_analytics";
 var wsUsageDetailUrl = "http://outreach.virtual-labs.ac.in/usage"
 var logUsageUrl = "http://stats.vlabs.ac.in/analytics";
@@ -47,13 +45,20 @@ var logUsageDetailUrl = "https://info.vlabs.ac.in/analytics/analytics/usage.html
 
 var postServer = "http://mybox.vlabs.ac.in";
 var footerUrl = "http://footer.vlabs.ac.in/footer";
-var loginUrl = hosted_base + "/login";
-var logoutUrl = hosted_base + "/logout";
-var registerUrl = hosted_base + "/register";
+var loginUrl = hostedBaseForOpenEdx + "/login";
+var logoutUrl = hostedBaseForOpenEdx + "/logout";
+var registerUrl = hostedBaseForOpenEdx + "/register";
+var openEdxHosted = "test-openedx"; //this can be either "openedx" or "test-openedx" etc. 
+var cloudHosted = "cloud";  //this can be either "cloud" or staging etc.
+
+//this variable can be either "openedx", "test-openedx", "cloud" or "institute"
+var firstChoiceUrl = openEdxHosted;
+var secondChoiceUrl = cloudHosted;
+var thirdChoiceUrl = "institute";
 
 #+END_SRC
 
-* Tangle                                       :boilerplate:
+* Tangle                                                        :boilerplate:
 ** Configuration
 #+BEGIN_SRC javascript :tangle js/app-config.js :eval no :noweb yes 
 <<app-config>>
