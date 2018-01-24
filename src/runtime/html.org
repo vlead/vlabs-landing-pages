@@ -67,62 +67,17 @@
               </li>
               <li class="dropdown">
                 <a class="dropdown-toggle cursor-pointer" data-toggle="dropdown"  >Institutes <b class="caret"></b></a>
-                <ul class="dropdown-menu filterInstituteComboBox" id="getInstituteName" >
-                </ul>
+                <ul class="dropdown-menu filterInstituteComboBox" id="getInstituteName"></ul>
+              </li>
               <li class="dropdown">
                 <a class="dropdown-toggle cursor-pointer" data-toggle="dropdown">Disciplines <b class="caret"></b></a>
-                <ul  class="dropdown-menu filterDisciplineComboBox" >
-                </ul>
-              <li class="dropdown mega-dropdown">
-                <a class="dropdown-toggle cursor-pointer "
-                   data-toggle="dropdown">About
-                  <span class="caret"></span></a>				
-                <ul class="dropdown-menu mega-dropdown-menu">
-                  <li class="col-sm-2">
-                    <ul>
-                      <li class="dropdown-header">Community</li>
-                      <li><a target="_blank" href="https://plus.google.com/communities/104131148292250423165">Teachers</a></li>
-                      <li><a target="_blank" href="https://groups.google.com/a/vlabs.ac.in/forum/#!forum/engineers">Developers</a></li>
-                      <li><a target="_blank" href="https://groups.google.com/a/vlabs.ac.in/forum/#!forum/users">Students</a></li>
-                    </ul>
-                  </li>
-                  <li class="col-sm-3">
-                    <ul>
-                      <li class="dropdown-header">Development</li>
-                      <li><a target="_blank" href="http://dev.vlabs.ac.in/">Virtual Development</a></li>
-                      <li><a target="_blank" href="https://info.vlabs.ac.in/runtime-browser-for-virtual-labs/">Runtime Browser for Virutal Labs</a></li>
-                    </ul>
-                  </li>
-                  <li class="col-sm-2">
-                    <ul>
-                      <li class="dropdown-header">Workshops</li>
-                      <li><a target="_blank" href="https://info.vlabs.ac.in/workshops/">Online</a></li>
-                      <li><a target="_blank" href="https://info.vlabs.ac.in/college-cloud-edition/">College Cloud Edition</a></li>
-                    </ul>
-                  </li>
-                  <li class="col-sm-3">
-                    <ul>
-                      <li class="dropdown-header">FAQ</li>
-                      <li><a target="_blank" href="https://info.vlabs.ac.in/faq/index.html">Virtual Labs</a></li>
-                      <li><a target="_blank" href="https://info.vlabs.ac.in/faq/index.html">Virtuals
-                          College Cloud Edition</a>
-                      </li>
-                      <li><a target="_blank" href="https://info.vlabs.ac.in/faq/index.html">Expression  of Interest for Workshops</a></li>
-                    </ul>
-                  </li>
-                  <li class="col-sm-2">
-                    <ul>
-                      <li class="dropdown-header">Information</li>
-                      <li><a target="_blank" href="https://info.vlabs.ac.in/announcements/index.html">Announcements</a></li>
-                      <li><a target="_blank" href="https://info.vlabs.ac.in/contactus/">Contact us</a></li>
-                      <li><a target="_blank" href="https://info.vlabs.ac.in/2017-summer-internship/">2017-summer-intership</a></li>
-                    </ul>
-                  </li>
+                <ul  class="dropdown-menu filterDisciplineComboBox"></ul>
               </li>
-              </ul>
+              <li id="About">
+                <a onclick="showAboutPage()" class="dropdown-toggle cursor-pointer">About <b></b></a>
               </li>
-              </li>
-            </ul>
+
+            </ul>  
             <ul class="nav navbar-nav navbar-right">
               <form class="navbar-form navbar-left">
                 <div  class="input-group stylish-input-group">

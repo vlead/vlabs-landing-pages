@@ -1084,6 +1084,15 @@ var fillDataAndSetEventForWsUsage = function() {
 
 #+END_SRC
 
+* Display About Pages
+  Display the about pages using the configured url.
+#+name: display-about-pages
+#+BEGIN_SRC js
+var showAboutPage = function() {
+  displayLab(aboutPagesUrl);
+}
+
+#+END_SRC
 * COMMENT Create a list of labs with lab id, hosting url and hosted platform
 #+name: make-list-of-labs
 #+BEGIN_SRC js
@@ -1161,5 +1170,6 @@ var makeNewListOfLabs = function() {
 <<fill-and-set-log-usage>>
 <<ws-usage>>
 <<fill-and-set-ws-usage>>
+<<display-about-pages>>
 #+END_SRC
 
