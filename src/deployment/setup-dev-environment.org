@@ -1,7 +1,7 @@
 #+TITLE: Setup Vlabs Landing Pages in Dev Environment
 #+AUTHOR: VLEAD
 #+DATE: [2017-12-21 Mon]
-#+SETUPFILE: ./org-templates/level-0.org
+#+SETUPFILE: ../org-templates/level-1.org
 #+TAGS: boilerplate(b)
 #+EXCLUDE_TAGS: boilerplate
 #+OPTIONS: ^:nil
@@ -26,93 +26,37 @@
    Follow the [[https://github.com/vlead/vlabs-openedx-platform/blob/develop/src/deployment/index.org#introduction][documentation]]ion to setup the Openedx platform
    with version =Ginkgo= in development environment
 ** Setup vlabs-landing pages
-   Following are the steps to run the =vlabs-landing-pages=
-   in development environment
-  
-  1. [[http://files.vlabs.ac.in/downloads/vagrant-boxes/vlead-dev.box][Download]] the vagrant box 
-  2. Add the box to vagrant
-     #+BEGIN_EXAMPLE
-     #vagrant box add vlabs-pages <file-name>.box
-     vagrant box add vlabs-pages vlead-dev.box
-     #+END_EXAMPLE
-  3. Create a directory =vlabs-pages= and initialize the
-     vagrant setup
-     #+BEGIN_EXAMPLE
-     mkdir vlabs-pages
-     cd vlabs-pages
-     vagrant init vlabs-pages
-     #+END_EXAMPLE
-  4. Above step(3) generates =Vagrantfile=
-  5. Edit the =Vagrantfile= using editor (like e.g emacs,
-     vim, etc.) and uncomment below line by removing =#= in
-     the beginning of the line to set the vagrant to use
-     private network (e.g 192.168.33.22)
-     #+BEGIN_EXAMPLE
-     #config.vm.network "private_network", ip: "192.168.33.10" 
-     config.vm.network "private_network", ip: "192.168.33.22" 
-     #+END_EXAMPLE
-  6. Boot the machine
-     #+BEGIN_EXAMPLE
-     vagrant up 
-     #+END_EXAMPLE
-  7. Login in to the machine as root.  Sometimes, login will
-     succeed after a few tries. 
-     #+BEGIN_EXAMPLE
-     vagrant ssh 
-     sudo su -
-     #+END_EXAMPLE
-  8. Export =http_proxy= and =https_proxy= variables if your
-     network behind the =http_proxy=
-     #+BEGIN_EXAMPLE
-     export http_proxy="http://proxy.iiit.ac.in:8080"
-     export https_proxy="http://proxy.iiit.ac.in:8080"
-     #+END_EXAMPLE
+   Testing of Landing pages can be done either from a
+   developer's base machine or from a vagrant machine.  For
+   creation of a vagrant machine, please follow the [[Creation of a vagrant box][steps]]. 
 
-  9. Clone the [[https://github.com/vlead/vlabs-landing-pages.git][vlabs-landing-pages]] repository.
-     #+BEGIN_EXAMPLE
-     git clone https://github.com/vlead/vlabs-landing-pages.git
-     #+END_EXAMPLE
-  10. Checkout to =refactor= branch and build the sources
+   Please follow the steps listed below either on your newly
+   created vagrant box or on your base machine. 
+
+    
+   1. Clone the [[https://github.com/vlead/vlabs-landing-pages.git][vlabs-landing-pages]] repository.
+       #+BEGIN_EXAMPLE
+       git clone https://github.com/vlead/vlabs-landing-pages.git
+       #+END_EXAMPLE
+
+   2. Checkout to the branch from where you want test the
+       pages and build the sources.
+       #+BEGIN_EXAMPLE
+       git checkout refactor
+       make
+       #+END_EXAMPLE
+
+   3. Make changes to the configuration, change the =hosted_base= and
+      =postServer= urls in =src/runtime/config.org= as below:
       #+BEGIN_EXAMPLE
-      git checkout refactor
-      make
+      hosted_base = "http://mybox.vlabs.ac.in"
+      postServer = "http://mybox.vlab.ac.in"
       #+END_EXAMPLE
-  11. Remove the default =index.html= from =/var/www/html/=
-  12. Rsync directory =build/code/runtime/= to =/var/www/html/=
+   4. Build the sources.
+
+   5. Move the sources to =/var/www/=
       #+BEGIN_EXAMPLE
-      rsync -avz --progress build/code/runtime/ /var/www/
-      #+END_EXAMPLE
-  13. Change directory to =/var/www/html=
-      #+BEGIN_EXAMPLE
-      cd /var/www/html/
-      #+END_EXAMPLE
-  14. Configure =document.domain= value to =vlabs.ac.in= and
-      post message url to =http://pages.vlabs.ac.in= in
-      =disciplines.html=, =institutes.html= and =labs.html=
-      files
-      #+BEGIN_EXAMPLE
-      ------
-      --------
-      document.domain="vlabs.ac.in"
-      --------
-      -------
-      msg = window.parent.postMessage("all-disciplines", "http://pages.vlabs.ac.in");
-      ------
-      ------
-
-      #+END_EXAMPLE
-  15. Configure the following variables in
-      =/var/www/html/js/app-config.js= 
-
-      1. document.domain = "vlabs.ac.in"
-
-      2. base_url = "http://alpha-openedx.vlabs.ac.in"
-
-      3. lds_url = "http://alpha-lds.vlabs.ac.in"
-
-  16. Restart the =apache= servier
-      #+BEGIN_EXAMPLE
-      service apache2 restart
+      make move-to-var
       #+END_EXAMPLE
 
 ** Configure base machine =/etc/hosts= file
@@ -124,13 +68,54 @@
      #+BEGIN_EXAMPLE
      ---------
      ---------
-     192.168.33.20 alpha.vlabs.ac.in
+     192.168.33.20 pages.vlabs.ac.in
      192.168.33.21 alpha-lds.vlabs.ac.in
-     192.168.33.22 alpha-openedx.vlabs.ac.in
+     10.2.57.25 mybox.vlabs.ac.in
      #+END_EXAMPLE
-  2. Access vlabs-landig-page on base machine's browser
+  2. Access vlabs-landing-page on base machine's browser
      #+BEGIN_EXAMPLE
-     firefox http://alpha.vlabs.ac.in
+     firefox http://pages.vlabs.ac.in
      #+END_EXAMPLE
   
-     
+* Creation of a vagrant box
+  Following are the steps to run the =vlabs-landing-pages=
+  in development environment
+  
+  1. [[http://files.vlabs.ac.in/downloads/vagrant-boxes/vlead-dev.box][Download]] the vagrant box 
+  2. Add the box to vagrant
+       #+BEGIN_EXAMPLE
+         #vagrant box add vlabs-pages <file-name>.box
+         vagrant box add vlabs-pages vlead-dev.box
+       #+END_EXAMPLE
+  3. Create a directory =vlabs-pages= and initialize the
+     vagrant setup
+     #+BEGIN_EXAMPLE
+       mkdir vlabs-pages
+       cd vlabs-pages
+       vagrant init vlabs-pages
+     #+END_EXAMPLE
+  4. Above step(3) generates =Vagrantfile=
+  5. Edit the =Vagrantfile= using editor (like e.g emacs,
+     vim, etc.) and uncomment below line by removing =#= in
+     the beginning of the line to set the vagrant to use
+     private network (e.g 192.168.33.22)
+     #+BEGIN_EXAMPLE
+       #config.vm.network "private_network", ip: "192.168.33.10" 
+       config.vm.network "private_network", ip: "192.168.33.22" 
+     #+END_EXAMPLE
+  6. Boot the machine
+     #+BEGIN_EXAMPLE
+       vagrant up 
+     #+END_EXAMPLE
+  7. Login in to the machine as root.  Sometimes, login will
+     succeed after a few tries. 
+     #+BEGIN_EXAMPLE
+       vagrant ssh 
+       sudo su -
+     #+END_EXAMPLE
+  8. Export =http_proxy= and =https_proxy= variables if your
+     network behind the =http_proxy=
+     #+BEGIN_EXAMPLE
+       export http_proxy="http://proxy.iiit.ac.in:8080"
+       export https_proxy="http://proxy.iiit.ac.in:8080"
+     #+END_EXAMPLE

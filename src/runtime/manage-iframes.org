@@ -6,11 +6,15 @@
 #+SETUPFILE: ../org-templates/level-1.org
 #+options: ^:nil
 #+LATEX: Literal LaTeX code for export
+#+TAGS: boilerplate(b)
+#+EXCLUDE_TAGS: boilerplate
+
 
 * Introduction
   This has the functionality to manage iframes which
   includes creation, insertion, deletion, setting content to
-  an iframe,..etc
+  an iframe,..etc.  In this application, the index page is
+  divided into 
 
 * Manage Iframes
 ** Create a frame
@@ -20,7 +24,6 @@
 #+NAME: create-new-iframe
 #+BEGIN_SRC javascript 
 var createNewIframe = function(name, id, width, height) {
-  console.log("=======creating new frame=====");
   var newIframe = document.createElement("iframe");
   newIframe.setAttribute("width", width);
   newIframe.setAttribute("height", height);
@@ -38,7 +41,6 @@ var createNewIframe = function(name, id, width, height) {
 #+NAME: insert-frame-in-division
 #+BEGIN_SRC javascript 
 var insertFrameInDivision = function(iframe, divId) {
-  console.log("=======inserting iframe in division=====");
   var divElem = parent.document.getElementById(divId);
   divElem.appendChild(iframe);
 };
@@ -51,63 +53,37 @@ var insertFrameInDivision = function(iframe, divId) {
 #+NAME: delete-frame-in-division
 #+BEGIN_SRC javascript 
 var deleteFrameInDivision = function(frameId, divId) {
-  console.log("=======inside delete frame=====");
   if (parent.document.getElementById(divId).hasChildNodes()) {
     var frameElem = parent.document.getElementById(frameId);
     if (frameElem !== null) {
       frameElem.parentNode.removeChild(frameElem);
-      console.log("======deleted====");
     }
   }
 };
 
 #+END_SRC
 
-** Change the content of an iframe
-   Iframe content is updated with the given data. Also make
-   an iframe sand boxed and set the source to it.  Sometimes
-   this is necessary since certain web pages expand out of
-   iframe and these need to be sand boxed.
-
-#+NAME: set-new-content-in-iframe
-#+BEGIN_SRC javascript 
-var setNewContentInIframe = function(data) {
-  console.log("=======setting new content to content iframe=====");        
-  var iframe = parent.document.getElementById("contentIframe");
-  iframe.sandbox = 'allow-forms allow-scripts allow-same-origin allow-popups';
-  try {
-    cnt = iframe.contentDocument;
-    cnt.write(data);
-  } catch(err) {
-    console.log(err);
-  }
-};
-
-#+END_SRC
-
-** Create the content iframe 
+** Create and insert content iframe 
    This function creates a =contentIframe= and inserts it
    into =contentDiv=
 #+NAME: insert-content-iframe
 #+BEGIN_SRC javascript 
-var insertContentIFrame = function() {
-  console.log("=======creating content iframe=====");
-  var newFrame = createNewIframe("contentIframe", "contentIframe", "100%", "9500em");
+var insertContentIframe = function() {
+  var newFrame = createContentIframe();
   var division = document.getElementById("contentDiv");
   insertFrameInDivision(newFrame, division.id);
 };
 
 #+END_SRC
 
-** Create the footer iframe
+** Create and insert footer iframe
    This function creates a =footerIframe= and inserts it
    into =footerDiv=
 
 #+NAME: insert-footer-iframe
 #+BEGIN_SRC javascript 
-var insertFooterIFrame = function() {
-  console.log("=======creating footer iframe=====");
-  var newFrame = createNewIframe("footerIframe", "footerIframe", "100%", "390em");
+var insertFooterIframe = function() {
+  var newFrame = createFooterIframe();
   var division = document.getElementById("footerDiv");
   insertFrameInDivision(newFrame, division.id);
 };
@@ -121,10 +97,47 @@ var insertFooterIFrame = function() {
    served from the footer service.
 #+NAME: set-footer-content-in-iframe
 #+BEGIN_SRC javascript
-var setFooterContentInIframe=function() {
-  console.log("=======setting footer in iframe=====");
+var setFooterUrlToFooterIframe = function() {
   var iframe = document.getElementById("footerIframe");
-  iframe.src = "http://footer.vlabs.ac.in/footer";
+  iframe.src = footerUrl;
+};
+
+#+END_SRC
+
+** Set the source and content to an frame
+#+NAME: set-source-and-content-to-content-iframe
+#+BEGIN_SRC js
+var setContent = function(content, htmlFile) {
+  setSourceToContentIframe(htmlFile);
+  setTimeout(setContentToContentIframe, 100, content);
+};
+
+#+END_SRC
+
+** Set Source To Content Iframe
+   The frame source is set to the corresponding html that is
+   passed as an argument.
+#+NAME: set-source-to-content-iframe
+#+BEGIN_SRC js
+var setSourceToContentIframe = function(htmlFile) {
+  var cIframe = document.getElementById("contentIframe");
+  cIframe.src = htmlFile;
+};
+
+#+END_SRC
+
+** Set Content to Content Iframe
+   The content is set to the =contentDiv= that is common in
+   all the different html files (lab, discipline and
+   institute).  At given time, one of these html files is
+   the source of the content iframe.
+#+NAME: set-content-to-content-iframe
+#+BEGIN_SRC javascript 
+var setContentToContentIframe = function(content) {
+  var cIframe = document.getElementById("contentIframe");
+  var contentDoc = cIframe.contentDocument;
+  var elem = contentDoc.getElementById("contentDiv");
+  elem.innerHTML = content;
 };
 
 #+END_SRC
@@ -134,155 +147,58 @@ var setFooterContentInIframe=function() {
    =contentIframe=.
 #+NAME: set-usage-in-iframe
 #+BEGIN_SRC javascript 
-var setUsageInIframe = function() {
-  console.log("=======setting usage to content iframe=====");        
+var setUsageInContentIframe = function() {
   var iframe = parent.document.getElementById("contentIframe");
   iframe.src = "https://info.vlabs.ac.in/analytics/analytics/usage.html";
 };
 
 #+END_SRC
-** Set All Lab Data
-   Iframe content is set with labs data. Labs data is
-   available in a global variable =labs_data=.
-#+NAME: set-lab-data-in-iframe
+
+** Create Content Iframe
+#+name: create-content-iframe
 #+BEGIN_SRC js
-var setLabDataInIframe = function() {
-  var iframe = parent.document.getElementById("contentIframe");
-  iframe.sandbox = 'allow-forms allow-scripts allow-same-origin';
-  iframe.src = "labs.html";
-  var content = iframe.contentWindow.document;
-  content.body.innerHTML = "";
-  content.write(labs_data);
-  addScriptTags();  
+var createContentIframe = function() {
+  return createNewIframe("contentIframe", "contentIframe", "100%", "4500em");
+};
+
+#+END_SRC
+** Create Footer Iframe
+#+name: create-footer-iframe
+#+BEGIN_SRC js
+var createFooterIframe = function() {
+  return createNewIframe("footerIframe", "footerIframe", "100%", "390em");
 };
 
 #+END_SRC
 
-** Resetting content in Iframe
-   Resetting the content in the same frame is just element
-   manipulation where =contentIframe= is accessed and new
-   content is set.
-#+NAME: reset-content
-#+BEGIN_SRC javascript 
-var resetContentInIframe = function(data, htmlFile) {
-  console.log("=======re setting content=====");        
-  var iframe = parent.document.getElementById("contentIframe");
+** Set Url to a Sandboxed content iframe
+   The lab should run from a sandboxed iframe since the Open
+   edX labs expand out when loaded into a frame.  To ensure
+   such urls stay within the iframe, the property sandbox
+   should be set. 
+#+name: set-url-to-sandboxed-content-iframe
+#+BEGIN_SRC js
+var setUrlToSandBoxedContentIframe = function(url) {
+  var iframe = document.getElementById("contentIframe");                                       
   iframe.sandbox = 'allow-scripts allow-same-origin allow-popups allow-forms';
-  iframe.src = htmlFile;
-  var content = iframe.contentWindow.document;
-  content.body.innerHTML="";
-  content.write(data);
-  addScriptTags();
-};
-
-var resetContentInIframe = function(data) {
-  console.log("=======re setting content=====");        
-  var iframe = parent.document.getElementById("contentIframe");
-  iframe.sandbox = 'allow-scripts allow-same-origin allow-popups allow-forms';
-  var content = iframe.contentWindow.document;
-  content.body.innerHTML="";
-  content.write(data);
-  addScriptTags();
+  iframe.src = url;
 };
 
 #+END_SRC
-
-** Set the source and content to an frame
-#+NAME: set-src-content-iframe
-#+BEGIN_SRC js
-var setContent = function(content, htmlFile) {
-  if (!contentIframeExists()) {
-    var cIframe = createIframeForContent();
-    insertContentIframe(cIframe);
-  }
-  setSourceToIframe(htmlFile);
-  setTimeout(setContentToIframe, 100, content);
-};
-
-#+END_SRC
-
-** Does Content Iframe exists
-   Check if the content iframe exists
-#+NAME: check-ciframe-exists
-#+BEGIN_SRC js
-var contentIframeExists = function() {
-  cIframe = document.getElementById("contentIframe");
-  if (cIframe == null)
-    return false;
-  else
-    return true;
-};
-
-#+END_SRC
-
-** Create Iframe For Content
-   The content is named =contentIframe=.  Its width is
-   =100%= and height is =9500em=.
-#+NAME: create-iframe-for-content
-#+BEGIN_SRC javascript 
-var createIframeForContent = function() {
-  console.log("=======create Iframe For Content=====");
-  var cIframe = createNewIframe("contentIframe", "contentIframe", "100%", "1310em");
-  return cIframe;
-};
-
-#+END_SRC
-
-** Insert content iframe
-#+NAME: insert-content-iframe
-#+BEGIN_SRC javascript 
-var insertContentIframe = function(cIframe) {
-  insertFrameInDivision(cIframe, "contentDiv");
-};
-
-#+END_SRC
-** Set Source To Iframe
-   The frame source is set to the corresponding html that is
-   passed as an argument.
-#+NAME: set-source-to-iframe
-#+BEGIN_SRC js
-var setSourceToIframe = function(htmlFile) {
-  var cIframe = document.getElementById("contentIframe");
-  cIframe.src = htmlFile;
-};
-
-#+END_SRC
-
-** Set Content For Iframe
-   This is a generic function, where content is set to the
-   =contentDiv= that is common in all the different html
-   files.
-#+NAME: set-content-to-iframe
-#+BEGIN_SRC javascript 
-var setContentToIframe = function(content) {
-  var cIframe = document.getElementById("contentIframe");
-  var contentDoc = cIframe.contentDocument;
-  var elem = contentDoc.getElementById("contentDiv");
-  elem.innerHTML = content;
-  addScriptTags();
-};
-
-#+END_SRC
-
-* Tangle 
+* Tangle                                       :boilerplate:
 ** sources
-*** Javascript
-**** Main JS
-#+BEGIN_SRC javascript :tangle js/manage_iframes.js :eval no :noweb yes 
+#+BEGIN_SRC javascript :tangle js/manage-iframes.js :eval no :noweb yes 
 <<create-new-iframe>>
-<<set-lab-data-in-iframe>>
+<<create-content-iframe>>
+<<create-footer-iframe>>
 <<insert-frame-in-division>>
 <<delete-frame-in-division>>
 <<insert-content-iframe>>
 <<insert-footer-iframe>>
-<<set-new-content-in-iframe>>
 <<set-footer-content-in-iframe>>
-<<reset-content>>
+<<set-source-to-content-iframe>>
+<<set-content-to-content-iframe>>
+<<set-source-and-content-to-content-iframe>>
 <<set-usage-in-iframe>>
-<<set-src-content-iframe>>
-<<check-ciframe-exists>>
-<<create-iframe-for-content>>
-<<insert-content-iframe>>
-<<set-source-to-iframe>>
-<<set-content-to-iframe>>
+<<set-url-to-sandboxed-content-iframe>>
 #+END_SRC

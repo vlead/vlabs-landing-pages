@@ -1,0 +1,66 @@
+#+TITLE: Configuration
+#+AUTHOR: VLEAD
+#+DATE: <2017-04-06 Thu>
+#+PROPERTY: results output
+#+PROPERTY: exports code
+#+SETUPFILE: ../org-templates/level-1.org
+#+options: ^:nil
+#+LATEX: Literal LaTeX code for export
+#+TAGS: boilerplate(b)
+#+EXCLUDE_TAGS: boilerplate
+
+* Introduction
+  This has all the configuration required to run the
+  =vlabs-landing-pages=
+* Configuration
+  =vlabs-landing-pages= gets the data from different
+  set of micro services. They are:
+  1. *Lab Data Service* : This service provides the
+     information about the labs such as hosted urls,
+     images..,etc.
+  2. *Files Server* : This server provides all the artifacts
+     required to build =vlabs-landing-pages= such as images,
+     videos, logos..,etc.
+  3. *Analytics Service* : This service provides the total
+     lab usage analytics.
+  4. *Outreach Service* : This service provides the total
+     workshop usage information.
+  5. *OpenedX* : This is a platform used to host the labs.   
+
+#+NAME: app-config
+#+BEGIN_SRC javascript
+document.domain="pages.vlabs.ac.in";
+// update this to base url to lds url where your lds service was running
+
+var aboutPagesUrl = "http://vlabs-about.base1.vlabs.ac.in";
+var ldsUrl = "http://192.168.33.16:5000";                                         
+var instituteImagesUrl ="http://files.vlabs.ac.in/lds/images/institutes/";                                      
+var disciplineImagesUrl = "http://files.vlabs.ac.in/lds/images/disciplines/";
+var labImagesUrl = "http://files.vlabs.ac.in/lds/images/labs/";                                       
+
+var hostedBaseForOpenEdx = "http://mybox.vlabs.ac.in";
+var wsUsageUrl = "http://outreach.vlabs.ac.in/get_outreach_analytics";
+var wsUsageDetailUrl = "http://outreach.virtual-labs.ac.in/usage";
+var logUsageUrl = "http://stats.vlabs.ac.in/analytics";
+var logUsageDetailUrl = "https://info.vlabs.ac.in/analytics/analytics/usage.html";
+
+var postServer = "http://mybox.vlabs.ac.in";
+var footerUrl = "http://footer.vlabs.ac.in/footer";
+var loginUrl = hostedBaseForOpenEdx + "/login";
+var logoutUrl = hostedBaseForOpenEdx + "/logout";
+var registerUrl = hostedBaseForOpenEdx + "/register";
+var openEdxHosted = "test-openedx"; //this can be either "openedx" or "test-openedx" etc. 
+var cloudHosted = "cloud";  //this can be either "cloud" or staging etc.
+
+//this variable can be either "openedx", "test-openedx", "cloud" or "institute"
+var firstChoiceUrl = openEdxHosted;
+var secondChoiceUrl = cloudHosted;
+var thirdChoiceUrl = "institute";
+
+#+END_SRC
+
+* Tangle                                                        :boilerplate:
+** Configuration
+#+BEGIN_SRC javascript :tangle js/app-config.js :eval no :noweb yes 
+<<app-config>>
+#+END_SRC

@@ -6,6 +6,8 @@
 #+SETUPFILE: ../org-templates/level-1.org
 #+options: ^:nil
 #+LATEX: Literal LaTeX code for export
+#+TAGS: boilerplate(b)
+#+EXCLUDE_TAGS: boilerplate
 
 * Introduction 
   This document lists steps to demonstrate various features
@@ -38,7 +40,7 @@
   in.
 
 ** Disciplines
-   1. Click [[http://header.vlabs.ac.in][here]] (http://header.vlabs.ac.in) to load the beta version of Virtual Labs
+   1. Click [[http://beta.vlabs.ac.in][here]] ([[http://beta.vlabs.ac.in]]) to load the beta version of Virtual Labs
       portal.
    2. The first page lists all the disciplines.
    3. Click on =Aerospace Engineering= to list the labs in
