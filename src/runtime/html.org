@@ -158,7 +158,7 @@
         <div class="feature-wrap">
           <h3 class="text-h3-darkblack-bold"
               style="text-align: center;">
-            <a id="logUsageClick" class="broad-labs-a" >Usage</a>
+            <a id="logUsageClick" class="broad-labs-a"style="cursor: pointer"; >Usage</a>
             <span id="logUsageDisplay"></span> <sup>+</sup></h3>
         </div>
       </div>                
@@ -170,14 +170,14 @@
         <div class="feature-wrap">
           <h3 class="text-h3-darkblack-bold"
               style="text-align: center;">
-            <a id="wsUsageClick" class="broad-labs-a">Workshop Usage</a>
+            <a id="wsUsageClick" class="broad-labs-a"  style="cursor: pointer";>Workshop Usage</a>
             <span id="wsUsageDisplay" ></span> <sup>+</sup></h3>
         </div>
       </div>
     </div>
     <div id="contentDiv" class="container-fluid" style="padding-top:5em" >
     </div>
-    <div id="footerDiv" class="container-fluid">
+    <div id="footerDiv" class="container-fluid" style="margin:0 auto -100px">
     </div>
 </body>
 </html>

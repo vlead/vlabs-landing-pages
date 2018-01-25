@@ -166,7 +166,7 @@ var createContentIframe = function() {
 #+name: create-footer-iframe
 #+BEGIN_SRC js
 var createFooterIframe = function() {
-  return createNewIframe("footerIframe", "footerIframe", "100%", "390em");
+  return createNewIframe("footerIframe", "footerIframe", "100%", "155em");
 };
 
 #+END_SRC
