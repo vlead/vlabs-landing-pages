@@ -1127,7 +1127,7 @@ var makeNewListOfLabs = function() {
 #+END_SRC
 * Tangle                                       :boilerplate:
 ** sources
-#+BEGIN_SRC javascript :tangle js/main.js :eval no :noweb yes 
+#+BEGIN_SRC javascript :tangle js/main.js :eval no :noweb yes
 <<load-index>>
 <<add-script-tags>>
 <<mouse-over>>
