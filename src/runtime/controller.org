@@ -892,10 +892,13 @@ var handleEventOnLab = function(obj) {
 };
 
 #+END_SRC
-** Display the in a sandboxed iframe
+** Display the lab or any other application in a sandboxed iframe
   This is the actual lab being served from a different
   server.  The content of a lab is either served from Open
-  edX or from a VM. 
+  edX or from a VM.  When the portal is https, and the lab
+  is non http, it will not be displayed.  So, when an non
+  https lab has to be displayed, the protocol is stripped
+  before the iframe source is set.  [[https://stackoverflow.com/a/32510420/7305481][Reference]]
 
   Here the steps are:
   1. Create content iframe with sandboxed attribute to true.
@@ -910,6 +913,9 @@ var displayLab = function(url) {
   elem.innerHTML = "";
   var newFrame = createContentIframe();
   insertFrameInDivision(newFrame, "contentDiv");
+  if (url.slice(0, 5) != "https") {
+    url = url.slice(5,);
+  }
   setUrlToSandBoxedContentIframe(url);
 };
 #+END_SRC
