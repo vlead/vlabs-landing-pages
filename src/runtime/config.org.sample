@@ -32,7 +32,7 @@
 document.domain="pages.vlabs.ac.in";
 // update this to base url to lds url where your lds service was running
 
-var aboutPagesUrl = "http://vlabs-about.base1.vlabs.ac.in";
+var aboutPagesUrl = "http://localhost:8000";
 var ldsUrl = "http://192.168.33.16:5000";                                         
 var instituteImagesUrl ="http://files.vlabs.ac.in/lds/images/institutes/";                                      
 var disciplineImagesUrl = "http://files.vlabs.ac.in/lds/images/disciplines/";
