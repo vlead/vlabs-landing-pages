@@ -68,7 +68,7 @@
           "configure": [],
           "pre_build": [],
           "build": [
-            "cd ../;make build"
+            "cd ../;cp src/runtime/config.org.sample src/runtime/config.org;make build"
           ],
           "post_build": [
             "rm /var/www/html/index.html",
