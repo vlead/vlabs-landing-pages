@@ -31,9 +31,9 @@
   3) Full Screen Tab in case of OpenedX labs (Working/Not
      Working)
   4) Feedback Links and
-  5) Usage
+  5) Analytics Usage
   
-
+ *NOTE:* Fort Testing analytics and feedback, please follow the [[https://github.com/vlead/vlabs-openedx-platform/blob/develop/src/deployment/test-analytics-and-feedback.org][link]]
 |--------+------------+------------------------------------+---------------+------------+---------------+--------------------------+----------------+-----------------+--------------+------------------------------------------------+--------------|
 | *S.No* | *LabId*    | *LabName*                          | *OpenedX/*    | *Assignee* | *Lab URL*     | *Experiment URLs*        | *FullScreen*   | *Feedback Link* | *Analytics*  | *Remarks*                                      | *Bugs Fixed* |
 |        |            |                                    | *Non OpenedX* |            | *(Working/    | *(Working/               |                |                 |              |                                                |              |
@@ -505,6 +505,6 @@
 |        |            | Physical Aspects of Design         |               |            |               |                          |                |                 |              |                                                |              |
 |--------+------------+------------------------------------+---------------+------------+---------------+--------------------------+----------------+-----------------+--------------+------------------------------------------------+--------------|
 |    179 | mining01   | Virtual Lab on Mine Ventilation    | Non OpenedX   | Madhavi    | Working       | Working                  | N/A            | N/A             | N/A          | Extra space in list of experiments             |              |
-|        |            |                                    |               |            |               |                          |                |                 |              |                                                |              |
 |--------+------------+------------------------------------+---------------+------------+---------------+--------------------------+----------------+-----------------+--------------+------------------------------------------------+--------------|
+|        |            |                                    |               |            |               |                          |                |                 |              |                                                |              |
 
