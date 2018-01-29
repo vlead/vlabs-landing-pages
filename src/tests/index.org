@@ -33,7 +33,11 @@
   4) Feedback Links and
   5) Analytics Usage
   
- *NOTE:* Fort Testing analytics and feedback, please follow the [[https://github.com/vlead/vlabs-openedx-platform/blob/develop/src/deployment/test-analytics-and-feedback.org][link]]
+ *NOTE:* 
+ 1) For Testing analytics and feedback, please follow the [[https://github.com/vlead/vlabs-openedx-platform/blob/develop/src/deployment/test-analytics-and-feedback.org][link]]
+ 2) Find the List of Bugs for OpenedX labs [[https://github.com/issues?utf8=%E2%9C%93&q=org%3Avlabs-on-openedx+is%3Aissue+org%3Avlabs-on-openedx+archived%3Afalse+is%3Aopenlabel%3Abug+][here]]
+
+
 |--------+------------+------------------------------------+---------------+------------+---------------+--------------------------+----------------+-----------------+--------------+------------------------------------------------+--------------|
 | *S.No* | *LabId*    | *LabName*                          | *OpenedX/*    | *Assignee* | *Lab URL*     | *Experiment URLs*        | *FullScreen*   | *Feedback Link* | *Analytics*  | *Remarks*                                      | *Bugs Fixed* |
 |        |            |                                    | *Non OpenedX* |            | *(Working/    | *(Working/               |                |                 |              |                                                |              |
