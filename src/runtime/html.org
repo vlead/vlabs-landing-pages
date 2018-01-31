@@ -33,7 +33,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="icon" type="image/x-icon" href="http://files.vlabs.ac.in/lds/images/vlabs-logo/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://s3-us-west-1.amazonaws.com/ld-service/images/vlabs-logo/favicon.ico">
     <link rel="stylesheet" href="./css/style.css"/>
     <script type="text/javascript" src="./js/app-config.js"></script>
     <script type="text/javascript" src="./js/main.js"></script>
@@ -55,7 +55,7 @@
                href="https://vlabs.ac.in"
                style=" width:100px; height:40px;
                       margin-top:-13px">
-              <img src="http://files.vlabs.ac.in/lds/images/logo.png"
+              <img src="https://s3-us-west-1.amazonaws.com/ld-service/images/logo.png"
                    class="img-responsive main-logo"
                    style="width:100%; maring-top:2px;"></a>
           </div>
@@ -104,7 +104,7 @@
   </ol>
   <div class="carousel-inner">
     <div class="item active">
-      <img src="http://files.vlabs.ac.in/lds/images/slider-images/slider-img-01.jpg" class="img-responsive">
+      <img src="https://s3-us-west-1.amazonaws.com/ld-service/images/slider-images/slider-img-01.jpg" class="img-responsive">
       <div class="container">
         <div class="carousel-caption col-md-8 col-sm-12" style="top:60px;">
         <h3>Online labs and experiments from top technical institutes.</h3>
