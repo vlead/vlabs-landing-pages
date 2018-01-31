@@ -241,7 +241,6 @@ font-weight: bold;
 }
 .container-fluid input.text
 {
-	background:#fff url(../../../images/shadow.gif) repeat-x top;
 	border-bottom:1px solid #ddd;
 	border-left:1px solid #c3c3c3;
 	border-right:1px solid #c3c3c3;
@@ -326,7 +325,6 @@ margin-top:120px;
 
 .search-textbox
 {
-  background: url("../images/search-box.png") no-repeat;
   border: 0 none;
   color: #666666;
   float: left;
@@ -342,7 +340,6 @@ margin-top:120px;
 
 .search-button
 {
-  background: url("../images/search.png") no-repeat;
   cursor: pointer;
   height: 36px;
   text-indent: -99999em;
@@ -604,7 +601,6 @@ margin-top:120px;
 	}
 	.col-md-2-5-1-l
 	{
-			background: url("../images/dotted-devider-h-o.png") no-repeat;
 	background-position: left bottom;
 	}
 }
@@ -642,7 +638,6 @@ margin-top:120px;
 
 .col-md-2-5-1-withbg
 {
-	background: url("../images/dotted-devider-h-o.png") no-repeat;
 	background-position: left bottom;
 	width: 100%;
 	  min-height: 228px;
@@ -915,7 +910,6 @@ font-size: 30px;
 
 .lab-list-col-10
 {
-	background: url("../images/devider-blue-v-o.png") repeat-y;
 	background-position: left top;
 	margin-bottom: 25px;
 }
@@ -926,7 +920,6 @@ font-size: 30px;
 
 .lab-list-row-div
 {
-	  background: url('../images/bottom-line-n.png') no-repeat;
   background-position: left bottom;
   height: auto;
   overflow: hidden;

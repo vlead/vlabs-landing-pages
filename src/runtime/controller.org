@@ -1194,5 +1194,7 @@ var makeNewListOfLabs = function() {
 <<ws-usage>>
 <<fill-and-set-ws-usage>>
 <<display-about-pages>>
+<<runtime-browser>>
+<<offline-edition>>
 #+END_SRC
 
