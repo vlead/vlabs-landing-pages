@@ -1099,6 +1099,23 @@ var showAboutPage = function() {
 }
 
 #+END_SRC
+* Show OffLine Edition
+  Display the offline edition web page
+#+name: offline-edition
+#+BEGIN_SRC js
+var showOfflineEditionPage = function() {
+  displayLab(offlineEditionUrl);
+}
+
+#+END_SRC
+* Show Runtime Browser
+  Display the page about runtime browser.
+#+name: runtime-browser
+#+BEGIN_SRC js
+var showRuntimeBrowserPage = function() {
+  displayLab(runtimeBrowserUrl);
+}
+#+END_SRC
 * COMMENT Create a list of labs with lab id, hosting url and hosted platform
 #+name: make-list-of-labs
 #+BEGIN_SRC js
