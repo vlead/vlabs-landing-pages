@@ -72,7 +72,7 @@
      192.168.33.21 alpha-lds.vlabs.ac.in
      10.2.57.25 mybox.vlabs.ac.in
      #+END_EXAMPLE
-  2. Access vlabs-landig-page on base machine's browser
+  2. Access vlabs-landing-page on base machine's browser
      #+BEGIN_EXAMPLE
      firefox http://pages.vlabs.ac.in
      #+END_EXAMPLE
@@ -119,4 +119,3 @@
        export http_proxy="http://proxy.iiit.ac.in:8080"
        export https_proxy="http://proxy.iiit.ac.in:8080"
      #+END_EXAMPLE
-

@@ -892,10 +892,13 @@ var handleEventOnLab = function(obj) {
 };
 
 #+END_SRC
-** Display the in a sandboxed iframe
+** Display the lab or any other application in a sandboxed iframe
   This is the actual lab being served from a different
   server.  The content of a lab is either served from Open
-  edX or from a VM. 
+  edX or from a VM.  When the portal is https, and the lab
+  is non http, it will not be displayed.  So, when an non
+  https lab has to be displayed, the protocol is stripped
+  before the iframe source is set.  [[https://stackoverflow.com/a/32510420/7305481][Reference]]
 
   Here the steps are:
   1. Create content iframe with sandboxed attribute to true.
@@ -910,6 +913,9 @@ var displayLab = function(url) {
   elem.innerHTML = "";
   var newFrame = createContentIframe();
   insertFrameInDivision(newFrame, "contentDiv");
+  if (url.slice(0, 5) != "https") {
+    url = url.slice(5,);
+  }
   setUrlToSandBoxedContentIframe(url);
 };
 #+END_SRC
@@ -1084,6 +1090,32 @@ var fillDataAndSetEventForWsUsage = function() {
 
 #+END_SRC
 
+* Display About Pages
+  Display the about pages using the configured url.
+#+name: display-about-pages
+#+BEGIN_SRC js
+var showAboutPage = function() {
+  displayLab(aboutPagesUrl);
+}
+
+#+END_SRC
+* Show OffLine Edition
+  Display the offline edition web page
+#+name: offline-edition
+#+BEGIN_SRC js
+var showOfflineEditionPage = function() {
+  displayLab(offlineEditionUrl);
+}
+
+#+END_SRC
+* Show Runtime Browser
+  Display the page about runtime browser.
+#+name: runtime-browser
+#+BEGIN_SRC js
+var showRuntimeBrowserPage = function() {
+  displayLab(runtimeBrowserUrl);
+}
+#+END_SRC
 * COMMENT Create a list of labs with lab id, hosting url and hosted platform
 #+name: make-list-of-labs
 #+BEGIN_SRC js
@@ -1118,7 +1150,7 @@ var makeNewListOfLabs = function() {
 #+END_SRC
 * Tangle                                       :boilerplate:
 ** sources
-#+BEGIN_SRC javascript :tangle js/main.js :eval no :noweb yes 
+#+BEGIN_SRC javascript :tangle js/main.js :eval no :noweb yes
 <<load-index>>
 <<add-script-tags>>
 <<mouse-over>>
@@ -1161,5 +1193,8 @@ var makeNewListOfLabs = function() {
 <<fill-and-set-log-usage>>
 <<ws-usage>>
 <<fill-and-set-ws-usage>>
+<<display-about-pages>>
+<<runtime-browser>>
+<<offline-edition>>
 #+END_SRC
 

@@ -32,6 +32,9 @@
 document.domain="pages.vlabs.ac.in";
 // update this to base url to lds url where your lds service was running
 
+var runtimeBrowserUrl = "http://localhost:8000/#orge205cd1";
+var offlineEditionUrl = "http://localhost:8000/#orgaa62568";
+var aboutPagesUrl = "http://localhost:8000";
 var ldsUrl = "http://192.168.33.16:5000";                                         
 var instituteImagesUrl ="http://files.vlabs.ac.in/lds/images/institutes/";                                      
 var disciplineImagesUrl = "http://files.vlabs.ac.in/lds/images/disciplines/";
@@ -39,9 +42,9 @@ var labImagesUrl = "http://files.vlabs.ac.in/lds/images/labs/";
 
 var hostedBaseForOpenEdx = "http://mybox.vlabs.ac.in";
 var wsUsageUrl = "http://outreach.vlabs.ac.in/get_outreach_analytics";
-var wsUsageDetailUrl = "http://outreach.virtual-labs.ac.in/usage"
+var wsUsageDetailUrl = "http://outreach.virtual-labs.ac.in/usage";
 var logUsageUrl = "http://stats.vlabs.ac.in/analytics";
-var logUsageDetailUrl = "https://info.vlabs.ac.in/analytics/analytics/usage.html"
+var logUsageDetailUrl = "http://pages.vlabs.ac.in/info/analytics/usage.html";
 
 var postServer = "http://mybox.vlabs.ac.in";
 var footerUrl = "http://footer.vlabs.ac.in/footer";

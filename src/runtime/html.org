@@ -31,10 +31,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="http://files.vlabs.ac.in/lds/libraries/css/bootsnipp.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="icon" type="image/x-icon" href="http://files.vlabs.ac.in/lds/images/vlabs-logo/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://s3-us-west-1.amazonaws.com/ld-service/images/vlabs-logo/favicon.ico">
     <link rel="stylesheet" href="./css/style.css"/>
     <script type="text/javascript" src="./js/app-config.js"></script>
     <script type="text/javascript" src="./js/main.js"></script>
@@ -53,10 +52,10 @@
               <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand main-logo-a"
-               href="http://header.vlabs.ac.in"
+               href="https://vlabs.ac.in"
                style=" width:100px; height:40px;
                       margin-top:-13px">
-              <img src="https://vlabs.ac.in/static/edx-bootstrap-theme/images/logo.7e034286282a.png"
+              <img src="https://s3-us-west-1.amazonaws.com/ld-service/images/logo.png"
                    class="img-responsive main-logo"
                    style="width:100%; maring-top:2px;"></a>
           </div>
@@ -67,62 +66,17 @@
               </li>
               <li class="dropdown">
                 <a class="dropdown-toggle cursor-pointer" data-toggle="dropdown"  >Institutes <b class="caret"></b></a>
-                <ul class="dropdown-menu filterInstituteComboBox" id="getInstituteName" >
-                </ul>
+                <ul class="dropdown-menu filterInstituteComboBox" id="getInstituteName"></ul>
+              </li>
               <li class="dropdown">
                 <a class="dropdown-toggle cursor-pointer" data-toggle="dropdown">Disciplines <b class="caret"></b></a>
-                <ul  class="dropdown-menu filterDisciplineComboBox" >
-                </ul>
-              <li class="dropdown mega-dropdown">
-                <a class="dropdown-toggle cursor-pointer "
-                   data-toggle="dropdown">About
-                  <span class="caret"></span></a>				
-                <ul class="dropdown-menu mega-dropdown-menu">
-                  <li class="col-sm-2">
-                    <ul>
-                      <li class="dropdown-header">Community</li>
-                      <li><a target="_blank" href="https://plus.google.com/communities/104131148292250423165">Teachers</a></li>
-                      <li><a target="_blank" href="https://groups.google.com/a/vlabs.ac.in/forum/#!forum/engineers">Developers</a></li>
-                      <li><a target="_blank" href="https://groups.google.com/a/vlabs.ac.in/forum/#!forum/users">Students</a></li>
-                    </ul>
-                  </li>
-                  <li class="col-sm-3">
-                    <ul>
-                      <li class="dropdown-header">Development</li>
-                      <li><a target="_blank" href="http://dev.vlabs.ac.in/">Virtual Development</a></li>
-                      <li><a target="_blank" href="https://info.vlabs.ac.in/runtime-browser-for-virtual-labs/">Runtime Browser for Virutal Labs</a></li>
-                    </ul>
-                  </li>
-                  <li class="col-sm-2">
-                    <ul>
-                      <li class="dropdown-header">Workshops</li>
-                      <li><a target="_blank" href="https://info.vlabs.ac.in/workshops/">Online</a></li>
-                      <li><a target="_blank" href="https://info.vlabs.ac.in/college-cloud-edition/">College Cloud Edition</a></li>
-                    </ul>
-                  </li>
-                  <li class="col-sm-3">
-                    <ul>
-                      <li class="dropdown-header">FAQ</li>
-                      <li><a target="_blank" href="https://info.vlabs.ac.in/faq/index.html">Virtual Labs</a></li>
-                      <li><a target="_blank" href="https://info.vlabs.ac.in/faq/index.html">Virtuals
-                          College Cloud Edition</a>
-                      </li>
-                      <li><a target="_blank" href="https://info.vlabs.ac.in/faq/index.html">Expression  of Interest for Workshops</a></li>
-                    </ul>
-                  </li>
-                  <li class="col-sm-2">
-                    <ul>
-                      <li class="dropdown-header">Information</li>
-                      <li><a target="_blank" href="https://info.vlabs.ac.in/announcements/index.html">Announcements</a></li>
-                      <li><a target="_blank" href="https://info.vlabs.ac.in/contactus/">Contact us</a></li>
-                      <li><a target="_blank" href="https://info.vlabs.ac.in/2017-summer-internship/">2017-summer-intership</a></li>
-                    </ul>
-                  </li>
+                <ul  class="dropdown-menu filterDisciplineComboBox"></ul>
               </li>
-              </ul>
+              <li id="About">
+                <a onclick="showAboutPage()" class="dropdown-toggle cursor-pointer">About <b></b></a>
               </li>
-              </li>
-            </ul>
+
+            </ul>  
             <ul class="nav navbar-nav navbar-right">
               <form class="navbar-form navbar-left">
                 <div  class="input-group stylish-input-group">
@@ -150,14 +104,14 @@
   </ol>
   <div class="carousel-inner">
     <div class="item active">
-      <img src="http://files.vlabs.ac.in/lds/images/slider-images/slider-img-01.jpg" class="img-responsive">
+      <img src="https://s3-us-west-1.amazonaws.com/ld-service/images/slider-images/slider-img-01.jpg" class="img-responsive">
       <div class="container">
         <div class="carousel-caption col-md-8 col-sm-12" style="top:60px;">
         <h3>Online labs and experiments from top technical institutes.</h3>
         <h3>Now available in</h1>
-        <p><a href="https://info.vlabs.ac.in/college-cloud-edition/">Offline
+          <p><a onclick="showOfflineEditionPage()" class="dropdown-toggle cursor-pointer">Offline
         Edition</a> for your college.</p>
-        <p><a href="https://info.vlabs.ac.in/runtime-browser-for-virtual-labs/">
+          <p><a onclick="showRuntimeBrowserPage()" class="dropdown-toggle cursor-pointer">
         Runtime Browser </a> for Virtual Labs</p>
           </div>
       </div>
@@ -203,7 +157,7 @@
         <div class="feature-wrap">
           <h3 class="text-h3-darkblack-bold"
               style="text-align: center;">
-            <a id="logUsageClick" class="broad-labs-a" >Usage</a>
+            <a id="logUsageClick" class="broad-labs-a"style="cursor: pointer"; >Usage</a>
             <span id="logUsageDisplay"></span> <sup>+</sup></h3>
         </div>
       </div>                
@@ -215,14 +169,14 @@
         <div class="feature-wrap">
           <h3 class="text-h3-darkblack-bold"
               style="text-align: center;">
-            <a id="wsUsageClick" class="broad-labs-a">Workshop Usage</a>
+            <a id="wsUsageClick" class="broad-labs-a"  style="cursor: pointer";>Workshop Usage</a>
             <span id="wsUsageDisplay" ></span> <sup>+</sup></h3>
         </div>
       </div>
     </div>
     <div id="contentDiv" class="container-fluid" style="padding-top:5em" >
     </div>
-    <div id="footerDiv" class="container-fluid">
+    <div id="footerDiv" class="container-fluid" style="margin:0 auto -100px">
     </div>
 </body>
 </html>
