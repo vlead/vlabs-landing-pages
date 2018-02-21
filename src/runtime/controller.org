@@ -815,16 +815,29 @@ var displayAllLabs = function() {
 * Display Phase-2 Labs
 #+name: display-phase-2-labs
 #+BEGIN_SRC js
-var displayPhase2Labs = [];
-//console.log("---------------------------------------------");
-var filterByPhase2Labs = new Promise(function(labs) {
-   console.log(labs);
-   var phase2Labs = labs.filter(function(labs) {
-     console.log(labs.phase[0].phase_id);
-     return (labs.phase[0].phase_id == 2);
-});
-});
 
+var displayPhase2LabsPromise = [];
+console.log("---------------------------------------------");
+var filterByPhase2Labs = new Promise(function() {
+  
+     console.log("---------------------------------------------");
+     var labsByPhasePath = ldsUrl + "/labs";
+     var response = fetch(labsByPhasePath)
+         .then(function(response) {
+           return response.json();
+         })
+         .then(function(json) {
+           var labsByPhasePromise = json;
+           console.log(labsByPhasePromise);
+           console.log(labsByPhasePromise.length);
+          // console.log(labs);
+     
+           // var labsByPhasePromise = labs;
+           var phase2Labs = labsByPhasePromise.filter(function(labsByPhasePromise) {
+             return labsByPhasePromise.phase.phase_id == 2;
+});
+});
+   });
 //var displayPhase2LabsPromise = [];
 //var displayNonPhase2LabsPromise = [];
 //var getPhase2Labs = new Promise(function(phase2labs, error) {
