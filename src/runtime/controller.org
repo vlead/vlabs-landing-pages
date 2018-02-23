@@ -816,78 +816,25 @@ var displayAllLabs = function() {
 #+name: display-phase-2-labs
 #+BEGIN_SRC js
 
-var displayPhase2LabsPromise = [];
-console.log("---------------------------------------------");
-var filterByPhase2Labs = new Promise(function() {
-  
-     console.log("---------------------------------------------");
-     var labsByPhasePath = ldsUrl + "/labs";
-     var response = fetch(labsByPhasePath)
-         .then(function(response) {
-           return response.json();
-         })
-         .then(function(json) {
-           var labsByPhasePromise = json;
-           console.log(labsByPhasePromise);
-           console.log(labsByPhasePromise.length);
-          // console.log(labs);
-     
-           // var labsByPhasePromise = labs;
-           var phase2Labs = labsByPhasePromise.filter(function(labsByPhasePromise) {
-             return labsByPhasePromise.phase.phase_id == 2;
-});
-});
-   });
-//var displayPhase2LabsPromise = [];
-//var displayNonPhase2LabsPromise = [];
-//var getPhase2Labs = new Promise(function(phase2labs, error) {
-//var labsByPhasePath = ldsUrl + "/labs";
-  //  console.log(labsByPhasePath);
-//  var labsByPhasePromise = [];
-// var labsByNonPhasePromise;
- //var labsByPhasePromiseData;
-  // var response = fetch(labsByPhasePath)
- // .then(function(response) {
-   // return response.json();
-     // })
-   //    .then(function(json) {
-//     labsByPhasePromise = json;
- // console.log(labsByPhasePromise);
-      // console.log(labsByPhasePromise.length);
-      //      var i, phase_id, count = 0;
-//    for(i = 0; i < labsByPhasePromise.length; i++) {
-  //    if(labsByPhasePromise[i].phase.length == 1) {
-    //    var value = labsByPhasePromise[i];
-      //  if(labsByPhasePromise[i].phase[0].phase_id == 2) {      
-        //  displayPhase2LabsPromise.push({value});
-          //count++;
-            //          } else{
-//          continue;
-  //    }
-      //console.log(count);
-          //    }
-    //else {
-        //continue;
-          //        }
-//    }
-  //  console.log(displayPhase2LabsPromise);
-    //console.log(displayPhase2LabsPromise.length);
-      // return labsByPhasePromise.then(function(labsByPhasePromise) {
-      //   return labsByPhasePromise;
-      //    });
-//})
-//.catch (function(error) {
-  //console.log(error);
-    // });
-// .then(response => response.json())
-// .then((result) => {
-//   console.log(result);
-//   labsByPhasePromise = result;
-// })
-// .catch(err => { throw err() });
-// labsByPhasePromise = JSON(ldsUrl + "/labs");
-//console.log(labsByPhasePromise);
-//------------------------------------------------------------------------------
+var filterByPhase2Labs = function(labs) {
+  var displayFilterPhase2Labs = [];
+  var count=0;
+  console.log(labs);
+  console.log(labs.length);
+  var phase2Labs = labs.filter(function(labs) {
+    //console.log(labsByPhasePromise.phase[0]);
+    if(labs.phase.length == 1) {
+      displayFilterPhase2Labs.push({labs});
+//      console.log(count);
+//      count++; 
+    } 
+  });
+  console.log(displayFilterPhase2Labs);
+  console.log(displayFilterPhase2Labs.length);
+  return displayFilterPhase2Labs;
+};
+// ---------------------------------------------------------------------------------------------
+
 
 #+END_SRC
 
