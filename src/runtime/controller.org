@@ -526,7 +526,7 @@ var displayAllDisciplines = function() {
 };
 
 #+END_SRC
-
+   
 ** Build discipline display list
    Display list is build from the list of disciplines
    returned in the json format from the =getDisciplines=
@@ -662,6 +662,7 @@ var buildInstituteDisplayList = function(institutes) {
 #+BEGIN_SRC js
 var displayLabsOfDiscipline = function(discId) {
  getLabsByDiscipline(discId)
+    .then(filterByPhase2Labs)
     .then(buildLabsDisplayList)
     .then(setContentInContentDiv)
     .catch(function(err) {
@@ -682,8 +683,8 @@ var displayLabsOfDiscipline = function(discId) {
 var buildLabsDisplayList = function(labs) {
 
   labs.sort(function(a, b) {
-    var nameA = a['lab_name'].toUpperCase(); // ignore upper and lowercase
-    var nameB = b['lab_name'].toUpperCase(); // ignore upper and lowercase
+    var nameA = a['labs']['lab_name'].toUpperCase(); // ignore upper and lowercase
+    var nameB = b['labs']['lab_name'].toUpperCase(); // ignore upper and lowercase
     if (nameA < nameB) {
       return -1;
     }
@@ -786,6 +787,7 @@ var getTheRightUrl = function(hostingInfos) {
 #+BEGIN_SRC js
 var displayLabsOfInstitute = function(instId) {
  getLabsByInstitute(instId)
+    .then(filterByPhase2Labs)
     .then(buildLabsDisplayList)
     .then(setContentInContentDiv)
     .catch(function(err) {
