@@ -683,8 +683,8 @@ var displayLabsOfDiscipline = function(discId) {
 var buildLabsDisplayList = function(labs) {
 
   labs.sort(function(a, b) {
-    var nameA = a['labs']['lab_name'].toUpperCase(); // ignore upper and lowercase
-    var nameB = b['labs']['lab_name'].toUpperCase(); // ignore upper and lowercase
+    var nameA = a['lab_name'].toUpperCase(); // ignore upper and lowercase
+    var nameB = b['lab_name'].toUpperCase(); // ignore upper and lowercase
     if (nameA < nameB) {
       return -1;
     }
@@ -787,7 +787,6 @@ var getTheRightUrl = function(hostingInfos) {
 #+BEGIN_SRC js
 var displayLabsOfInstitute = function(instId) {
  getLabsByInstitute(instId)
-    .then(filterByPhase2Labs)
     .then(buildLabsDisplayList)
     .then(setContentInContentDiv)
     .catch(function(err) {
@@ -805,7 +804,6 @@ var displayLabsOfInstitute = function(instId) {
 #+BEGIN_SRC js
 var displayAllLabs = function() {
   getLabs()
-    .then(filterByPhase2Labs)
     .then(buildLabsDisplayList)
     .then(setContentInContentDiv)
     .catch(function(err) {
