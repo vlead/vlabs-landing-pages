@@ -787,6 +787,7 @@ var getTheRightUrl = function(hostingInfos) {
 #+BEGIN_SRC js
 var displayLabsOfInstitute = function(instId) {
  getLabsByInstitute(instId)
+    .then(filterByPhase2Labs)
     .then(buildLabsDisplayList)
     .then(setContentInContentDiv)
     .catch(function(err) {
@@ -804,6 +805,7 @@ var displayLabsOfInstitute = function(instId) {
 #+BEGIN_SRC js
 var displayAllLabs = function() {
   getLabs()
+    .then(filterByPhase2Labs)
     .then(buildLabsDisplayList)
     .then(setContentInContentDiv)
     .catch(function(err) {
@@ -817,21 +819,7 @@ var displayAllLabs = function() {
 #+BEGIN_SRC js
 
 var filterByPhase2Labs = function(labs) {
-  var displayFilterPhase2Labs = [];
-  var count=0;
-  console.log(labs);
-  console.log(labs.length);
-  var phase2Labs = labs.filter(function(labs) {
-    //console.log(labsByPhasePromise.phase[0]);
-    if(labs.phase.length == 1) {
-      displayFilterPhase2Labs.push({labs});
-//      console.log(count);
-//      count++; 
-    } 
-  });
-  console.log(displayFilterPhase2Labs);
-  console.log(displayFilterPhase2Labs.length);
-  return displayFilterPhase2Labs;
+  return labs.filter(function(labs) { return labs.phase.length == 1; }) 
 };
 // ---------------------------------------------------------------------------------------------
 
