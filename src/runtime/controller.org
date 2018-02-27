@@ -1053,7 +1053,7 @@ if (window.addEventListener) {
 #+name: fill-and-set-log-usage
 #+BEGIN_SRC js
 var displayLogUsage = function(data) {
-  document.getElementById("logUsageDisplay").innerText = data["usage"]
+  document.getElementById("logUsageDisplay").innerText = data["usage"].toLocaleString();
 };
 
 var showLogUsageDetailPage = function() {
@@ -1081,7 +1081,7 @@ var fillDataAndSetEventForLogUsage = function() {
 #+name: fill-and-set-ws-usage
 #+BEGIN_SRC js
 var displayWsUsage = function(data) {
-  document.getElementById("wsUsageDisplay").innerText = data["usage"]
+  document.getElementById("wsUsageDisplay").innerText = data["usage"].toLocaleString();
 };
 
 var showWsUsageDetailPage = function() {
