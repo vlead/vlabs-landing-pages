@@ -146,7 +146,7 @@
            data-wow-duration="1000ms" data-wow-delay="600ms">
         <div class="feature-wrap">
           <h3 class="text-h3-darkblack-bold"
-              style="text-align: center;">Experiments 1700<sup>+</sup></h3>
+              style="text-align: center;">Experiments 1,700<sup>+</sup></h3>
         </div>
       </div>
       <div style="visibility: visible; animation-duration:
