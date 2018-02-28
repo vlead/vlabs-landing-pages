@@ -819,7 +819,7 @@ var displayAllLabs = function() {
 #+BEGIN_SRC js
 
 var filterByPhase2Labs = function(labs) {
-  return labs.filter(function(labs) { return labs.phase.length == 1; }) 
+  return labs.filter(function(labs) { return ((labs.phase.length == 1) && (labs.phase[0].phase_id == 2)); }) 
 };
 // ---------------------------------------------------------------------------------------------
 
