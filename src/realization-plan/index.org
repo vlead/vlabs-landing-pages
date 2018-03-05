@@ -6,8 +6,6 @@
 #+SETUPFILE: ../org-templates/level-1.org
 #+options: ^:nil
 #+LATEX: Literal LaTeX code for export
-#+TAGS: boilerplate(b)
-#+EXCLUDE_TAGS: boilerplate
 
 * Introduction
   - This document contains the realization plan for
@@ -15,30 +13,29 @@
 
 * Milestones Snapshot
 
-  |---+----+----+-----+------------------------------------------------+------+--------+-------+-------+--------|
-  |   | S. | Mi | Req | Milestone                                      | Plan | Status |   Est |   Act | Issues |
-  |   | no | no | Map |                                                |      |        |   hrs |   hrs |        |
-  |---+----+----+-----+------------------------------------------------+------+--------+-------+-------+--------|
-  |   | 1. | [[https://github.com/vlead/vlabs-landing-pages/milestone/10][10]] |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/10][update phase II labs as and usage]]              | [[update phase II labs and usage][ref]]  | Open   |       |       |        |
-  |---+----+----+-----+------------------------------------------------+------+--------+-------+-------+--------|
-  |   | 2. | [[https://github.com/vlead/vlabs-landing-pages/milestone/9][9]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/9][upgrade openedx version from dogwood to ginkgo]] | [[Fix back button functionality][ref]]  | Open   |    18 |     0 | [[https://github.com/vlead/vlabs-landing-pages/milestone/9][ref]]    |
-  |---+----+----+-----+------------------------------------------------+------+--------+-------+-------+--------|
-  |   | 3. | [[https://github.com/vlead/vlabs-landing-pages/milestone/8][8]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/8][Fix back button functionality]]                  | [[Fix back button functionality][ref]]  | Open   |   160 |     0 | [[https://github.com/vlead/vlabs-landing-pages/milestone/8][ref]]    |
-  |---+----+----+-----+------------------------------------------------+------+--------+-------+-------+--------|
-  |   | 4. | [[https://github.com/vlead/vlabs-landing-pages/milestone/7][7]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/7][Deployment of 'vlabs landing pages' v1.2.0]]     | [[Deployment of Vlabs landing pages][ref]]  | Closed |   472 |     6 | [[https://github.com/vlead/vlabs-landing-pages/milestone/7?closed=1][ref]]    |
-  |---+----+----+-----+------------------------------------------------+------+--------+-------+-------+--------|
-  |   | 5. | [[https://github.com/vlead/vlabs-landing-pages/milestone/6][6]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/6][Signup and Login functionality]]                 | [[Login and Register functionality][ref]]  | Open   |   266 | 178.5 | [[https://github.com/vlead/vlabs-landing-pages/milestone/6][ref]]    |
-  |---+----+----+-----+------------------------------------------------+------+--------+-------+-------+--------|
-  |   | 6. | [[https://github.com/vlead/vlabs-landing-pages/milestone/5][5]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/5][Search functionality]]                           | [[Search Functionality][ref]]  | Closed |   472 | 217.5 | [[https://github.com/vlead/vlabs-landing-pages/milestone/5?closed=1][ref]]    |
-  |---+----+----+-----+------------------------------------------------+------+--------+-------+-------+--------|
-  |   | 7. | [[https://github.com/vlead/vlabs-landing-pages/milestone/4][4]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/4][Populate data using lds]]                        | [[Loading data dynamically from LDS][ref]]  | Closed | 357.5 | 303.5 | [[https://github.com/vlead/vlabs-landing-pages/milestone/4?closed=1][ref]]    |
-  |---+----+----+-----+------------------------------------------------+------+--------+-------+-------+--------|
-  |   | 8. | [[https://github.com/vlead/vlabs-landing-pages/milestone/1][1]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/1][Building landing pages using LDS]]               |      | Closed |       |       | [[https://github.com/vlead/vlabs-landing-pages/milestone/1?closed=1][ref]]    |
-  |---+----+----+-----+------------------------------------------------+------+--------+-------+-------+--------|
-  |   |    |    |     | Total                                          |      |        | 951.5 |  521. |        |
-  | ^ |    |    |     |                                                |      |        |   est |   act |        |
-  |---+----+----+-----+------------------------------------------------+------+--------+-------+-------+--------|
-  #+TBLFM: @3$8=remote(tbl-rlz-pln-ml-9, $est)
+  |---+-----+----+-----+------------------------------------------------+------+--------+-------+-------+--------|
+  |   |  S. | Mi | Req | Milestone                                      | Plan | Status |   Est |   Act | Issues |
+  |   |  no | no | Map |                                                |      |        |   hrs |   hrs |        |
+  |---+-----+----+-----+------------------------------------------------+------+--------+-------+-------+--------|
+  |   |  3. | [[https://github.com/vlead/vlabs-landing-pages/milestone/10][10]] |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/10][Update phase II labs as and usage]]              | [[update phase II labs and usage][ref]]  | Open   |    32 |       | [[https://github.com/vlead/vlabs-landing-pages/milestone/10][ref]]    |
+  |---+-----+----+-----+------------------------------------------------+------+--------+-------+-------+--------|
+  |   |  4. | [[https://github.com/vlead/vlabs-landing-pages/milestone/9][9]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/9][upgrade openedx version from dogwood to ginkgo]] | [[Fix back button functionality][ref]]  | Open   |    18 |     0 | [[https://github.com/vlead/vlabs-landing-pages/milestone/9][ref]]    |
+  |---+-----+----+-----+------------------------------------------------+------+--------+-------+-------+--------|
+  |   |  5. | [[https://github.com/vlead/vlabs-landing-pages/milestone/8][8]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/8][Fix back button functionality]]                  | [[Fix back button functionality][ref]]  | Open   |   160 |     0 | [[https://github.com/vlead/vlabs-landing-pages/milestone/8][ref]]    |
+  |---+-----+----+-----+------------------------------------------------+------+--------+-------+-------+--------|
+  |   |  6. | [[https://github.com/vlead/vlabs-landing-pages/milestone/7][7]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/7][Deployment of 'vlabs landing pages' v1.2.0]]     | [[Deployment of Vlabs landing pages][ref]]  | Closed |   472 |     6 | [[https://github.com/vlead/vlabs-landing-pages/milestone/7?closed=1][ref]]    |
+  |---+-----+----+-----+------------------------------------------------+------+--------+-------+-------+--------|
+  |   |  7. | [[https://github.com/vlead/vlabs-landing-pages/milestone/6][6]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/6][Signup and Login functionality]]                 | [[Login and Register functionality][ref]]  | Open   |   266 | 178.5 | [[https://github.com/vlead/vlabs-landing-pages/milestone/6][ref]]    |
+  |---+-----+----+-----+------------------------------------------------+------+--------+-------+-------+--------|
+  |   |  8. | [[https://github.com/vlead/vlabs-landing-pages/milestone/5][5]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/5][Search functionality]]                           | [[Search Functionality][ref]]  | Closed |   472 | 217.5 | [[https://github.com/vlead/vlabs-landing-pages/milestone/5?closed=1][ref]]    |
+  |---+-----+----+-----+------------------------------------------------+------+--------+-------+-------+--------|
+  |   |  9. | [[https://github.com/vlead/vlabs-landing-pages/milestone/4][4]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/4][Populate data using lds]]                        | [[Loading data dynamically from LDS][ref]]  | Closed | 357.5 | 303.5 | [[https://github.com/vlead/vlabs-landing-pages/milestone/4?closed=1][ref]]    |
+  |---+-----+----+-----+------------------------------------------------+------+--------+-------+-------+--------|
+  |   | 10. | [[https://github.com/vlead/vlabs-landing-pages/milestone/1][1]]  |     | [[https://github.com/vlead/vlabs-landing-pages/milestone/1][Building landing pages using LDS]]               |      | Closed |       |       | [[https://github.com/vlead/vlabs-landing-pages/milestone/1?closed=1][ref]]    |
+  |---+-----+----+-----+------------------------------------------------+------+--------+-------+-------+--------|
+  |   |     |    |     | Total                                          |      |        | 951.5 |  521. |        |
+  | ^ |     |    |     |                                                |      |        |   est |   act |        |
+  |---+-----+----+-----+------------------------------------------------+------+--------+-------+-------+--------| 
   #+TBLFM: @3$9=remote(tbl-rlz-pln-ml-9, $act)
   #+TBLFM: @4$8=remote(tbl-rlz-pln-ml-8, $est)
   #+TBLFM: @4$9=remote(tbl-rlz-pln-ml-8, $act)
@@ -50,7 +47,6 @@
   #+TBLFM: @7$9=remote(tbl-rlz-pln-ml-5, $act)
   #+TBLFM: @8$8=remote(tbl-rlz-pln-ml-4, $est)
   #+TBLFM: @8$9=remote(tbl-rlz-pln-ml-4, $act)
-
   #+TBLFM: $est=vsum(@II+1..@-1)
   #+TBLFM: $act=vsum(@II+1..@-1)
 
@@ -837,31 +833,29 @@
 ** update phase II labs and usage 
 #+caption:  realization-plan-milestone-10
 #+name: tbl-rlz-pln-ml-10
-|---+----+--------------------+--------+----------+--------+------------+------------+-------------+----------+---|
-|   | S. | Tasks              | Github | Expected | Actual | Actual     | Estimated  | Status      | Assignee |   |
-|   | NO |                    | Issues | Effort   | Effort | Start,     | Start/     |             |          |   |
-|   |    |                    |        | (in      | (in    | End        | End        |             |          |   |
-|   |    |                    |        | person   | person | Dates      | Dates      |             |          |   |
-|   |    |                    |        | hours)   | hours) |            |            |             |          |   |
-|---+----+--------------------+--------+----------+--------+------------+------------+-------------+----------+---|
-|   | 1. | Display 114 Phase  | [[https://github.com/vlead/vlabs-landing-pages/issues/197][#197]]   | 32       |        | 15-02-2018 | 15-02-2018 | In progress |          |   |
-|   |    | II labs instead of |        |          |        |            | 19-02-2018 |             |          |   |
-|   |    | 177 labs on Vlabs  |        |          |        |            |            |             |          |   |
-|   |    | Landing Pages      |        |          |        |            |            |             |          |   |
-|   |    |                    |        |          |        |            |            |             |          |   |
-|   |    |                    |        |          |        |            |            |             |          |   |
-|---+----+--------------------+--------+----------+--------+------------+------------+-------------+----------+---|
-|   | 2. | Add Commas to the  | [[https://github.com/vlead/vlabs-landing-pages/issues/198][#198]]   | 8        |        |            |            |             |          |   |
-|   |    | Usage and Workshop |        |          |        |            |            |             |          |   |
-|   |    | Usage Count on     |        |          |        |            |            | Backlog     |          |   |
-|   |    | Analytics band     |        |          |        |            |            |             |          |   |
-|---+----+--------------------+--------+----------+--------+------------+------------+-------------+----------+---|
-|   | 3. | Refactor analytics | [[https://github.com/vlead/vlabs-landing-pages/issues/199][#199]]   |          |        |            |            |             |          |   |
-|   |    | web page in vlabs  |        |          |        |            |            |             |          |   |
-|   |    | landing pages      |        |          |        |            |            |             |          |   |
-|---+----+--------------------+--------+----------+--------+------------+------------+-------------+----------+---|
-|   |    | Total              |        | 40       | 0      | 0          |            |             |          |   |
-| ^ |    |                    |        | est      | act    |            |            |             |          |   |
-|---+----+--------------------+--------+----------+--------+------------+------------+-------------+----------+---|
+|---+----+--------------------+--------+----------+--------+------------+------------+-------------+--------------|
+|   | S. | Tasks              | Github | Expected | Actual | Actual     |  Estimated | Status      | Assignee     |
+|   | NO |                    | Issues | Effort   | Effort | Start,     |     Start/ |             |              |
+|   |    |                    |        | (in      | (in    | End        |        End |             |              |
+|   |    |                    |        | person   | person | Dates      |      Dates |             |              |
+|   |    |                    |        | hours)   | hours) |            |            |             |              |
+|---+----+--------------------+--------+----------+--------+------------+------------+-------------+--------------|
+|   | 1. | Display 114 Phase  | [[https://github.com/vlead/vlabs-landing-pages/issues/197][#197]]   | 32       | 50     | 15-02-2018 | 15-02-2018 | In progress | Mrudhvika    |
+|   |    | II labs instead of |        |          |        |            | 27-02-2018 |             | Sravanthi. M |
+|   |    | 177 labs on Vlabs  |        |          |        |            |            |             |              |
+|   |    | Landing Pages      |        |          |        |            |            |             |              |
+|---+----+--------------------+--------+----------+--------+------------+------------+-------------+--------------|
+|   | 2. | Add Commas to the  | [[https://github.com/vlead/vlabs-landing-pages/issues/198][#198]]   | 8        | 2      |            | 28-02-2018 | In progress | Mrudhvika    |
+|   |    | Usage and Workshop |        |          |        |            |            |             | Sravanthi. M |
+|   |    | Usage Count on     |        |          |        |            |            |             |              |
+|   |    | Analytics band     |        |          |        |            |            |             |              |
+|---+----+--------------------+--------+----------+--------+------------+------------+-------------+--------------|
+|   | 3. | Refactor analytics | [[https://github.com/vlead/vlabs-landing-pages/issues/199][#199]]   | 49       |        |            | 02-03-2018 | In progress | Mrudhvika    |
+|   |    | web page in vlabs  |        |          |        |            |            |             | Sravanthi. M |
+|   |    | landing pages      |        |          |        |            |            |             | Sanchita     |
+|---+----+--------------------+--------+----------+--------+------------+------------+-------------+--------------|
+|   |    | Total              |        | 89       | 0      | 0          |            |             |              |
+| ^ |    |                    |        | est      | act    |            |            |             |              |
+|---+----+--------------------+--------+----------+--------+------------+------------+-------------+--------------|
 #+TBLFM: $est=vsum(@II+1..@-1)
 #+TBLFM: $act=vsum(@II+1..@-1)
