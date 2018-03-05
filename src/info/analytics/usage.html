@@ -55,9 +55,9 @@
         <tbody>
           <tr>
             <td><a href="./iframe-src.html">Total Web Analytics</a></td>
-            <td><%= (target.hits).toLocaleString() %></td>
-            <td><%= (target.visits).toLocaleString() %></td>
-            <td><%= (target.usage).toLocaleString() %></td>
+            <td><%= (target.analytics.nonopenedx.hits).toLocaleString() %></td>
+            <td><%= (target.analytics.nonopenedx.visits).toLocaleString() %></td>
+            <td><%= (target.analytics.total_usage).toLocaleString() %></td>
           </tr>          
         </tbody>
       </table>
@@ -143,7 +143,7 @@
                           console.log("incoming Text " + jqxhr.responseText);
                       });
          
-         var jqxhr = $.getJSON('https://stats.vlabs.ac.in/analytics', function(data) {
+         var jqxhr = $.getJSON('https://analytics.vlabs.ac.in/analytics/vlabs', function(data) {
              var data = { target: data };
              
              var template = _.template( $("#tpl-html1").text() );
