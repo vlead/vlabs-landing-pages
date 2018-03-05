@@ -6,11 +6,13 @@
 #+SETUPFILE: ../org-templates/level-1.org
 #+options: ^:nil
 #+LATEX: Literal LaTeX code for export
+#+TAGS: boilerplate(b)
+#+EXCLUDE_TAGS: boilerplate
 
 * Introduction
   This has all the configuration required to run the
   =vlabs-landing-pages=
-* Configurationa
+* Configuration
   =vlabs-landing-pages= gets the data from different
   set of micro services. They are:
   1. *Lab Data Service* : This service provides the
@@ -27,21 +29,39 @@
 
 #+NAME: app-config
 #+BEGIN_SRC javascript
-document.domain="vlabs.ac.in";
+document.domain="pages.vlabs.ac.in";
 // update this to base url to lds url where your lds service was running
-var hosted_base = "http://alpha-openedx.vlabs.ac.in"
-var lds_url = "http://lds-hosting.base4.vlabs.ac.in"; 
-var institute_images_url ="http://files.vlabs.ac.in/lds/images/institutes/";
-var discipline_images_url = "http://files.vlabs.ac.in/lds/images/disciplines/";
-var lab_images_url = "http://files.vlabs.ac.in/lds/images/labs/";
-var workshop_usage_url = "http://outreach.vlabs.ac.in/get_outreach_analytics";
-var total_usage_url = "http://stats.vlabs.ac.in/analytics";
-//set the below variable to "test-openedx" or "openedx"
-var labs_hosted_platform = "test-openedx";
+
+var runtimeBrowserUrl = "http://localhost:8000/#orge205cd1";
+var offlineEditionUrl = "http://localhost:8000/#orgaa62568";
+var aboutPagesUrl = "http://localhost:8000";
+var ldsUrl = "http://192.168.33.16:5000";                                         
+var instituteImagesUrl ="http://files.vlabs.ac.in/lds/images/institutes/";                                      
+var disciplineImagesUrl = "http://files.vlabs.ac.in/lds/images/disciplines/";
+var labImagesUrl = "http://files.vlabs.ac.in/lds/images/labs/";                                       
+
+var hostedBaseForOpenEdx = "http://mybox.vlabs.ac.in";
+var wsUsageUrl = "http://outreach.vlabs.ac.in/get_outreach_analytics";
+var wsUsageDetailUrl = "http://outreach.virtual-labs.ac.in/usage";
+var logUsageUrl = "http://stats.vlabs.ac.in/analytics";
+var logUsageDetailUrl = "http://pages.vlabs.ac.in/info/analytics/usage.html";
+
+var postServer = "http://mybox.vlabs.ac.in";
+var footerUrl = "http://footer.vlabs.ac.in/footer";
+var loginUrl = hostedBaseForOpenEdx + "/login";
+var logoutUrl = hostedBaseForOpenEdx + "/logout";
+var registerUrl = hostedBaseForOpenEdx + "/register";
+var openEdxHosted = "test-openedx"; //this can be either "openedx" or "test-openedx" etc. 
+var cloudHosted = "cloud";  //this can be either "cloud" or staging etc.
+
+//this variable can be either "openedx", "test-openedx", "cloud" or "institute"
+var firstChoiceUrl = openEdxHosted;
+var secondChoiceUrl = cloudHosted;
+var thirdChoiceUrl = "institute";
 
 #+END_SRC
 
-* Tangle
+* Tangle                                                        :boilerplate:
 ** Configuration
 #+BEGIN_SRC javascript :tangle js/app-config.js :eval no :noweb yes 
 <<app-config>>

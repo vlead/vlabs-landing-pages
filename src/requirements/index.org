@@ -6,11 +6,10 @@
 #+SETUPFILE: ../org-templates/level-1.org
 #+options: ^:nil
 #+LATEX: Literal LaTeX code for export
+#+TAGS: boilerplate(b)
+#+EXCLUDE_TAGS: boilerplate
 
 * Introduction 
-  :PROPERTIES:
-  :CUSTOM_ID: introduction
-  :END: 
   This document describes all the requirements of =vlabs-landing-pages=.
 
 * Requirements

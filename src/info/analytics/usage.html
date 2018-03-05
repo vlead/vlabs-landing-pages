@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Welcome to Virtual Labs - A MHRD Govt of india Initiative">
+    <meta name="author" content="Virtual Labs - A MHRD Govt of india Initiative">
+    <title>Welcome to Virtual Labs - A MHRD Govt of india Initiative</title>
+    <!-- Important Owl stylesheet -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/font-awesome.css">
+    
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet">
+    <title>analytics</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.3.3/underscore-min.js"></script>
+    <script type="text/template" id="tpl-html">
+      <table class="table">
+        <thead>
+          <tr>
+            <th class = "text-h3-darkblue-bold" style= "margin-top: 2px; width:30%" >Lab Name</th>
+            <th class = "text-h3-darkblue-bold" style= "margin-top: 2px; width:30%" >Hits</th>
+            <th class = "text-h3-darkblue-bold" style= "margin-top: 2px; width:30%" >Visits</th>
+            <th class = "text-h3-darkblue-bold" style= "margin-top: 2px; width:10%">Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% _.each( target, function(i) {%>
+          <% if ((i.lab_name !== "None") && (i.usage > 100)) { %>
+          <tr>
+            <td><%= (i.lab_name).toLocaleString() %></td>
+            <td><%= (i.hits).toLocaleString() %></td>
+            <td><%= (i.visits).toLocaleString() %></td>
+            <td><%= (i.usage).toLocaleString() %></td>
+          </tr>
+          <% } %>    
+          <% }); %>
+        </tbody>
+      </table>
+      <div id="output1"></div>
+      
+    </script>
+    <script type="text/template" id="tpl-html1">
+      <table class="table">
+        <thead>
+          <tr>
+            <th class = "text-h3-darkblue-bold" style= "margin-top: 2px; width:30%" >Analytics</th>
+            <th class = "text-h3-darkblue-bold" style= "margin-top: 2px; width:30%" >Hits</th>
+            <th class = "text-h3-darkblue-bold" style= "margin-top: 2px; width:30%" >Visits</th>
+            <th class = "text-h3-darkblue-bold" style= "margin-top: 2px; width:10%" >Total Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="./iframe-src.html">Total Web Analytics</a></td>
+            <td><%= (target.hits).toLocaleString() %></td>
+            <td><%= (target.visits).toLocaleString() %></td>
+            <td><%= (target.usage).toLocaleString() %></td>
+          </tr>          
+        </tbody>
+      </table>
+      <div id="output2"></div>
+    </script>
+    <script type="text/template" id="tpl-html2">
+      <table class="table">
+        <thead>
+          <tr>
+            <th class = "text-h3-darkblue-bold" style= "margin-top: 2px; width:30%" >Analytics</th>
+            <th class = "text-h3-darkblue-bold" style= "margin-top: 2px; width:30%">Total Nodal Centers</<th></th>>
+     <th class = "text-h3-darkblue-bold" style= "margin-top: 2px; width:30%" >Total Workshops</th>
+     <th class = "text-h3-darkblue-bold" style= "margin-top: 2px; width:10%" >Total Usage</th>
+     </tr>
+     </thead>
+     <tbody>
+     <tr>
+     <td>Total</td>
+     <td><%= ((target.nodal_centres)-1).toLocaleString() %></td>
+     <td><%= (target.workshops).toLocaleString() %></td>
+     <td><%= (target.usage).toLocaleString() %></td>
+     </tr>          
+     </tbody>
+     </table>
+     <div id="output3"></div>
+
+    </script>
+    <script type="text/template" id="tpl-html3">
+         <table class="table">
+           <thead>
+             <tr>
+               <th class = "text-h3-darkblue-bold" style= "margin-top: 2px; width:30%" >Institute Name</th>
+               <th class = "text-h3-darkblue-bold" style= "margin-top: 2px; width:30%" >Nodal Centres</th>
+               <th class = "text-h3-darkblue-bold" style= "margin-top: 2px; width:30%" >Workshops</th>
+               <th class = "text-h3-darkblue-bold" style= "margin-top: 2px; width:10%" >Usage</th>
+             </tr>
+           </thead>
+           <tbody>
+             <% _.each(target, function(key, value) {%>
+         <% if (value != "VLEAD-IIITH"){ %>
+             <tr>
+               <td><%= value %></td>
+               <td><%= (key.nc_count).toLocaleString() %></td>
+               <td><%= (key.workshops).toLocaleString() %></td>
+               <td><%= (key.usage).toLocaleString() %></td>
+             </tr>
+             <% } %>              
+             <% }); %>
+           </tbody>
+         </table>
+         <div id="output4"></div>
+         
+    </script>   
+    <script>
+     function generateTopLabs() {
+         var jqxhr = $.getJSON('https://stats.vlabs.ac.in/analytics/labs', function(data) {
+             var sorted_data = _.sortBy(data, 'usage');
+             var reverse_data = sorted_data.reverse();
+             var slice_data = reverse_data.slice(0,10)
+             var data = { target: slice_data };
+             
+             var template = _.template( $("#tpl-html").text() );
+             $("#output").html( template(data) );
+             $("a").removeClass("btn-warning");
+             $("#html").addClass("btn-warning");
+             
+         })
+                      .error(function(jqxhr, textStatus, errorThrown) {
+                          console.log("error " + textStatus);
+                          console.log("incoming Text " + jqxhr.responseText);
+                      });
+         
+         var jqxhr = $.getJSON('http://outreach.base1.vlabs.ac.in/get_nc_wise_usage', function(data) {
+             var data = { target: data };
+             var template = _.template( $("#tpl-html3").text() );
+             $("#output4").html( template(data) );
+             $("a").removeClass("btn-warning");
+             $("#html").addClass("btn-warning");
+             
+         })
+                      .error(function(jqxhr, textStatus, errorThrown) {
+                          console.log("error " + textStatus);
+                          console.log("incoming Text " + jqxhr.responseText);
+                      });
+         
+         var jqxhr = $.getJSON('https://stats.vlabs.ac.in/analytics', function(data) {
+             var data = { target: data };
+             
+             var template = _.template( $("#tpl-html1").text() );
+             $("#output2").html( template(data) );
+             $("a").removeClass("btn-warning");
+             $("#html").addClass("btn-warning");  
+         })
+                      .error(function(jqxhr, textStatus, errorThrown) {
+                          console.log("error " + textStatus);
+                          console.log("incoming Text " + jqxhr.responseText);
+                      });
+         
+         
+         var jqxhr = $.getJSON('https://outreach.vlabs.ac.in/get_outreach_analytics', function(data) {
+             var data = { target: data };
+             var template = _.template( $("#tpl-html2").text() );
+             $("#output3").html( template(data) );
+             $("a").removeClass("btn-warning");
+             $("#html").addClass("btn-warning");
+         })
+                      .error(function(jqxhr, textStatus, errorThrown) {
+                          console.log("error " + textStatus);
+                          console.log("incoming Text " + jqxhr.responseText);
+                      });
+         var date = new Date();
+         var dateString = (date.getDate() + '/'
+                         + ('0' + (date.getMonth() + 1)).slice(-2)
+                         + '/' + ('0' + (date.getFullYear())).slice(1));
+         document.getElementById("date").innerHTML = "Web Analytics from 14/01/2012   - "+dateString;
+         document.getElementById("date1").innerHTML = "Workshop Analytics from 01/09/2013 - "+dateString;
+     }
+     function generateAllLabs() {
+         var jqxhr = $.getJSON('https://stats.vlabs.ac.in/analytics/labs', function(data) {
+             var sorted_data = _.sortBy(data, 'usage');
+             var reverse_data = sorted_data.reverse();
+             var slice_data = reverse_data.slice(0,10)
+             var remaining_data = _.difference(reverse_data, slice_data);
+             var all_data = { target:remaining_data };
+             
+             var template = _.template( $("#tpl-html").text() );
+             $("#output1").html( template(all_data) );
+             $("a").removeClass("btn-warning");
+             $("#html").addClass("btn-warning");
+             
+         })
+                      .error(function(jqxhr, textStatus, errorThrown) {
+                          console.log("error " + textStatus);
+                          console.log("incoming Text " + jqxhr.responseText);
+                      });
+     }
+    </script>
+  </head>
+  <body id="page-top" class="index" onload="generateTopLabs()">
+    <div id="top">
+      <!-- =================================================================================================================================== -->
+      <div class="container-fluid" style="margin-top:20px">
+        <h2 class="text-h2-lightblue" id="date1" style=" margin-bottom: 20px; margin-top:
+                   106px; "></h2>
+        <!--  <h2 class="text-h2-lightblue" style=" margin-bottom: 20px; margin-top:
+             30px; ">Workshop Analytics as on 20/10/2016</h2>-->
+        <div id="output3"></div>
+        <!-- <div style="margin-bottom: 50px;">-->
+        <div  >
+          <div id="output4"></div>
+        </div>
+        <h2 class="text-h2-lightblue" id="date" style=" margin-bottom: 20px; margin-top: 30px; "></h2>
+        <div>
+          <div class="navbar-inner">
+            <div id="output2"></div>
+            <h2 class="text-h3-darkblue-bold" style="margin-top: 2px; ">Top 10 Labs</h2>
+            <div id="output"></div>
+            <h2 class="text-h2-lightblue" id = "click"></h2>
+            <a href="javascript:generateAllLabs()">Click Here to view More Labs</a>
+          </div>
+        </div>
+      </div>
+      <div id="output1"></div>
+      <div class="col-md-10 lab-list-col-10">
+        <!--edit -->
+      </div>
+    </div>
+  </body>
+
+</html>
+
+

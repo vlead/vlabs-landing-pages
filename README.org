@@ -1,6 +1,10 @@
 * Introduction
   This repository contains the implementation of
   =vlabs-landing-pages= 
+
 * Setup development environment
   Follow [[src/deployment/setup-dev-environment.org][documentation]] to setup the development environment
+  This repository contains the sources of
+  =vlabs-landing-pages= generated dynamically using data
+  from =lab-data-service=
    
