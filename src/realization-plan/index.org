@@ -6,8 +6,6 @@
 #+SETUPFILE: ../org-templates/level-1.org
 #+options: ^:nil
 #+LATEX: Literal LaTeX code for export
-#+TAGS: boilerplate(b)
-#+EXCLUDE_TAGS: boilerplate
 
 * Introduction
   - This document contains the realization plan for
@@ -852,8 +850,6 @@
 |   |    | II labs instead of |        |          |        |            | 27-02-2018 |             | Sravanthi. M |   
 |   |    | 177 labs on Vlabs  |        |          |        |            |            |             |              |   
 |   |    | Landing Pages      |        |          |        |            |            |             |              |
-|   |    |                    |        |          |        |            |            |             |              |   
-|   |    |                    |        |          |        |            |            |             |              |   
 |---+----+--------------------+--------+----------+--------+------------+------------+-------------+--------------|
 |   | 2. | Add Commas to the  | [[https://github.com/vlead/vlabs-landing-pages/issues/198][#198]]   | 8        |  2     |            | 28-02-2018 | In progress | Mrudhvika    |   
 |   |    | Usage and Workshop |        |          |        |            |            |             | Sravanthi. M |   
