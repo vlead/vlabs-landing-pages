@@ -28,12 +28,15 @@
         </thead>
         <tbody>
           <% _.each( target, function(i) {%>
-          <% if ((i.lab_name !== "None") && (i.analytics.total_usage > 100)) { %>
+          <% if ((i.lab_name !== "None") &&
+             (i.analytics.nonopenedx.usage > 100) &&
+          (i.analytics.nonopenedx.usage !== 0)) { %>
+          <% console.log(i) %>
           <tr>
             <td><%= (i.lab_name).toLocaleString() %></td>
             <td><%= (i.analytics.nonopenedx.hits).toLocaleString() %></td>
             <td><%= (i.analytics.nonopenedx.visits).toLocaleString() %></td>
-            <td><%= (i.analytics.total_usage).toLocaleString() %></td>
+            <td><%= (i.analytics.nonopenedx.usage).toLocaleString() %></td>
           </tr>
           <% } %>    
           <% }); %>
@@ -57,7 +60,7 @@
             <td><a href="./iframe-src.html">Total Web Analytics</a></td>
             <td><%= (target.analytics.nonopenedx.hits).toLocaleString() %></td>
             <td><%= (target.analytics.nonopenedx.visits).toLocaleString() %></td>
-            <td><%= (target.analytics.total_usage).toLocaleString() %></td>
+            <td><%= (target.analytics.nonopenedx.usage).toLocaleString() %></td>
           </tr>          
         </tbody>
       </table>
@@ -175,13 +178,16 @@
          document.getElementById("date1").innerHTML = "Workshop Analytics from 01/09/2013 - "+dateString;
      }
      function generateAllLabs() {
-         var jqxhr = $.getJSON('https://analytics.vlabs.ac.in/analytics/labs/vlabs', function(data) {
+         var jqxhr =
+             $.getJSON('https://analytics.vlabs.ac.in/analytics/labs/vlabs',
+             function(data) {
              var sorted_data = _.sortBy(data, 'usage');
              var reverse_data = sorted_data.reverse();
              var slice_data = reverse_data.slice(0,10)
-             var remaining_data = _.difference(reverse_data, slice_data);
+             var remaining_data = _.difference(reverse_data,
+             slice_data);
              var all_data = { target:remaining_data };
-             
+
              var template = _.template( $("#tpl-html").text() );
              $("#output1").html( template(all_data) );
              $("a").removeClass("btn-warning");
