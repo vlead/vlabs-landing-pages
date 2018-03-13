@@ -26,6 +26,8 @@
     (Sravanthi.M). Sravanthi.M tested the same setup of landing pages
     on Firefox 52 version and could access all the labs with their
     working simulations, this issue did not arise for 52 version.
+  + For the testing process, installing the dependencies was done
+    using the steps from [[https://github.com/integration-team-iiith/pre-requisites-for-iiith-labs][here]].
   + The story till now says : pages work fine with 52 version and
     doesn't work with below 50 versions. The conclusion was drawn
     after a brief dicussion with Thirumal that we need to test
@@ -71,28 +73,32 @@
 
 *** *Detailed plan of action*
 
-     |------------------------------------------+--------------------------+--------------+---------|
-     | Agenda                                   | Artefact                 | Assignee     | Remarks |
-     |------------------------------------------+--------------------------+--------------+---------|
-     | Initial Testing by Sravanthi.B.          | [[https://github.com/vlead/vlabs-landing-pages/issues/201][Github Issue]]             | Sravanthi.B. |         |
-     | (only landing page)                      |                          |              |         |
-     |------------------------------------------+--------------------------+--------------+---------|
-     | Thorough testing by Sravanthi.M.         | [[https://github.com/integration-team-iiith/pre-requisites-for-iiith-labs][Github Issue]]             | Sravanthi.M. |         |
-     | (both landing page and independent labs  |                          |              |         |
-     | /experiments, firefox versions 50,52,58) |                          |              |         |
-     |------------------------------------------+--------------------------+--------------+---------|
-     | Landing page and lab simulation testing  | Tested on Vitual Box     | Sanchita     |         |
-     | by Sanchita (firefox version 57)         |                          |              |         |
-     |                                          |                          |              |         |
-     |------------------------------------------+--------------------------+--------------+---------|
-     | Landing page testing for firefox version | Tested on Virtual Box    | Thirumal     |         |
-     | 45 by thirumal - post messages do not    |                          |              |         |
-     | work                                     |                          |              |         |
-     |------------------------------------------+--------------------------+--------------+---------|
-     | Code change for tested landing pages on  | [[https://github.com/vlead/vlabs-landing-pages/commit/a8e4f59aae1c40e3d10538ce5f0606b83450fa0e][commit ID for the change]] | Thirumal,    |         |
-     | firefox 50 version                       |                          | Sravanthi.M, |         |
-     |                                          |                          | Sanchita     |         |
-     |------------------------------------------+--------------------------+--------------+---------|
+     |--------------------------------------------+--------------------------+--------------+---------|
+     | Agenda                                     | Artefact                 | Assignee     | Remarks |
+     |--------------------------------------------+--------------------------+--------------+---------|
+     | Initial Testing by Sravanthi.B.            | [[https://github.com/vlead/vlabs-landing-pages/issues/201][Github Issue]]             | Sravanthi.B. |         |
+     | (only landing page)                        |                          |              |         |
+     |--------------------------------------------+--------------------------+--------------+---------|
+     | Thorough testing by Sravanthi.M.           | [[https://github.com/integration-team-iiith/pre-requisites-for-iiith-labs][Github Issue]]             | Sravanthi.M. |         |
+     | (both landing page and independent labs    |                          |              |         |
+     | /experiments, firefox versions 50,52,58)   |                          |              |         |
+     |--------------------------------------------+--------------------------+--------------+---------|
+     | Landing page and lab simulation testing    | Tested on Vitual Box     | Sanchita     |         |
+     | by Sanchita (firefox version 57)           |                          |              |         |
+     |                                            |                          |              |         |
+     |--------------------------------------------+--------------------------+--------------+---------|
+     | Landing page testing for firefox version   | Tested on Virtual Box    | Thirumal     |         |
+     | 45 by thirumal - post messages do not      |                          |              |         |
+     | work                                       |                          |              |         |
+     |--------------------------------------------+--------------------------+--------------+---------|
+     | Code change for tested landing pages on    | [[https://github.com/vlead/vlabs-landing-pages/commit/a8e4f59aae1c40e3d10538ce5f0606b83450fa0e][commit ID for the change]] | Thirumal,    |         |
+     | firefox 50 version                         |                          | Sravanthi.M, |         |
+     |                                            |                          | Sanchita     |         |
+     |--------------------------------------------+--------------------------+--------------+---------|
+     | Creation of a new virtual box with         | [[http://files.vlabs.ac.in/downloads/virtual-boxes/][virtual box]]              | Sravanthi.M  |         |
+     | firefox browser version 50 compatible with |                          |              |         |
+     | landing pages as well as lab simulations   |                          |              |         |
+     |--------------------------------------------+--------------------------+--------------+---------|
      
 
 
