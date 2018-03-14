@@ -821,7 +821,7 @@ var displayAllLabs = function() {
 #+name: display-phase-2-labs
 #+BEGIN_SRC js
 var filterByPhase2Labs = function(labs) {
-  return labs.filter(function(labs) { return ((labs.phase.length == 1) && (labs.phase[0].phase_id == 2)); }) 
+  return labs.filter(function(labs) { return ((labs.phase.length == phaseLength) && (labs.phase[0].phase_id == phaseId)); }) 
 };
 
 #+END_SRC
