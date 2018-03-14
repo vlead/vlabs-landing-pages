@@ -814,10 +814,8 @@ var displayAllLabs = function() {
 };
 
 #+END_SRC
-* Display Phase-2 Labs
-  A page listing all the labs of phase2 are displayed.  This page
-  contains name, image and a click event attached to each
-  lab.  Clicking on a lab displays the lab.
+* Filter Phase-2 Labs
+  This function filters phase2 labs (114) from list of all labs (179).
 #+name: display-phase-2-labs
 #+BEGIN_SRC js
 
