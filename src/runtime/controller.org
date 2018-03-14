@@ -273,13 +273,23 @@ var getWsUsage = function() {
 ** Usage from Logs
 #+name: log-usage
 #+BEGIN_SRC js
-var logUsagePromise;
+/*var logUsagePromise;
 var getLogUsage = function() {
   logUsagePromise = logUsagePromise || getJSON(logUsageUrl);
   return logUsagePromise.then(function(data) {
     return data;
   });
+}*/
+
+var logUsage;
+var getLogUsage = function() {
+  logUsage = logUsage || getJSON(usage);
+  return logUsage.then(function(data) {
+    console.log(data);
+    return data;
+  });
 }
+
 
 #+END_SRC
 
@@ -1054,9 +1064,8 @@ if (window.addEventListener) {
 #+name: fill-and-set-log-usage
 #+BEGIN_SRC js
 var displayLogUsage = function(data) {
-  document.getElementById("logUsageDisplay").innerText = data["usage"].toLocaleString();
+  document.getElementById("logUsageDisplay").innerText = data["analytics"]["nonopenedx"]["usage"].toLocaleString();
 };
-
 var showLogUsageDetailPage = function() {
   displayLab(logUsageDetailUrl);
 }
