@@ -930,7 +930,7 @@ var displayLab = function(url) {
   var newFrame = createContentIframe();
   insertFrameInDivision(newFrame, "contentDiv");
   if (url.slice(0, 5) != "https") {
-    url = url.slice(5,);
+    url = url.slice(5, url.length);
   }
   setUrlToSandBoxedContentIframe(url);
 };
