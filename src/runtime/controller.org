@@ -273,13 +273,15 @@ var getWsUsage = function() {
 ** Usage from Logs
 #+name: log-usage
 #+BEGIN_SRC js
-var logUsagePromise;
+var logUsage;
 var getLogUsage = function() {
-  logUsagePromise = logUsagePromise || getJSON(logUsageUrl);
-  return logUsagePromise.then(function(data) {
+  logUsage = logUsage || getJSON(usage);
+  return logUsage.then(function(data) {
+    console.log(data);
     return data;
   });
 }
+
 
 #+END_SRC
 
@@ -818,12 +820,9 @@ var displayAllLabs = function() {
   This function filters phase2 labs (114) from list of all labs (179).
 #+name: display-phase-2-labs
 #+BEGIN_SRC js
-
 var filterByPhase2Labs = function(labs) {
-  return labs.filter(function(labs) { return ((labs.phase.length == 1) && (labs.phase[0].phase_id == 2)); }) 
+  return labs.filter(function(labs) { return ((labs.phase.length == phaseLength) && (labs.phase[0].phase_id == phaseId)); }) 
 };
-// ---------------------------------------------------------------------------------------------
-
 
 #+END_SRC
 
@@ -1054,9 +1053,8 @@ if (window.addEventListener) {
 #+name: fill-and-set-log-usage
 #+BEGIN_SRC js
 var displayLogUsage = function(data) {
-  document.getElementById("logUsageDisplay").innerText = data["usage"].toLocaleString();
+  document.getElementById("logUsageDisplay").innerText = data["analytics"]["nonopenedx"]["usage"].toLocaleString();
 };
-
 var showLogUsageDetailPage = function() {
   displayLab(logUsageDetailUrl);
 }

@@ -28,12 +28,15 @@
         </thead>
         <tbody>
           <% _.each( target, function(i) {%>
-          <% if ((i.lab_name !== "None") && (i.usage > 100)) { %>
+          <% if ((i.lab_name !== "None") &&
+             (i.analytics.nonopenedx.usage > 100) &&
+          (i.analytics.nonopenedx.usage !== 0)) { %>
+          <% console.log(i) %>
           <tr>
             <td><%= (i.lab_name).toLocaleString() %></td>
-            <td><%= (i.hits).toLocaleString() %></td>
-            <td><%= (i.visits).toLocaleString() %></td>
-            <td><%= (i.usage).toLocaleString() %></td>
+            <td><%= (i.analytics.nonopenedx.hits).toLocaleString() %></td>
+            <td><%= (i.analytics.nonopenedx.visits).toLocaleString() %></td>
+            <td><%= (i.analytics.nonopenedx.usage).toLocaleString() %></td>
           </tr>
           <% } %>    
           <% }); %>
@@ -55,9 +58,9 @@
         <tbody>
           <tr>
             <td><a href="./iframe-src.html">Total Web Analytics</a></td>
-            <td><%= (target.hits).toLocaleString() %></td>
-            <td><%= (target.visits).toLocaleString() %></td>
-            <td><%= (target.usage).toLocaleString() %></td>
+            <td><%= (target.analytics.nonopenedx.hits).toLocaleString() %></td>
+            <td><%= (target.analytics.nonopenedx.visits).toLocaleString() %></td>
+            <td><%= (target.analytics.nonopenedx.usage).toLocaleString() %></td>
           </tr>          
         </tbody>
       </table>
@@ -68,7 +71,7 @@
         <thead>
           <tr>
             <th class = "text-h3-darkblue-bold" style= "margin-top: 2px; width:30%" >Analytics</th>
-            <th class = "text-h3-darkblue-bold" style= "margin-top: 2px; width:30%">Total Nodal Centers</<th></th>>
+            <th class = "text-h3-darkblue-bold" style= "margin-top: 2px; width:30%">Total Nodal Centers</th>
      <th class = "text-h3-darkblue-bold" style= "margin-top: 2px; width:30%" >Total Workshops</th>
      <th class = "text-h3-darkblue-bold" style= "margin-top: 2px; width:10%" >Total Usage</th>
      </tr>
@@ -83,7 +86,6 @@
      </tbody>
      </table>
      <div id="output3"></div>
-
     </script>
     <script type="text/template" id="tpl-html3">
          <table class="table">
@@ -113,7 +115,7 @@
     </script>   
     <script>
      function generateTopLabs() {
-         var jqxhr = $.getJSON('https://stats.vlabs.ac.in/analytics/labs', function(data) {
+         var jqxhr = $.getJSON('https://analytics.vlabs.ac.in/analytics/labs/vlabs', function(data) {
              var sorted_data = _.sortBy(data, 'usage');
              var reverse_data = sorted_data.reverse();
              var slice_data = reverse_data.slice(0,10)
@@ -139,11 +141,11 @@
              
          })
                       .error(function(jqxhr, textStatus, errorThrown) {
-                          console.log("error " + textStatus);
-                          console.log("incoming Text " + jqxhr.responseText);
+                          console.log("error" + textStatus);
+                          console.log("incoming Text" + jqxhr.responseText);
                       });
          
-         var jqxhr = $.getJSON('https://stats.vlabs.ac.in/analytics', function(data) {
+         var jqxhr = $.getJSON('https://analytics.vlabs.ac.in/analytics/vlabs', function(data) {
              var data = { target: data };
              
              var template = _.template( $("#tpl-html1").text() );
@@ -176,13 +178,16 @@
          document.getElementById("date1").innerHTML = "Workshop Analytics from 01/09/2013 - "+dateString;
      }
      function generateAllLabs() {
-         var jqxhr = $.getJSON('https://stats.vlabs.ac.in/analytics/labs', function(data) {
+         var jqxhr =
+             $.getJSON('https://analytics.vlabs.ac.in/analytics/labs/vlabs',
+             function(data) {
              var sorted_data = _.sortBy(data, 'usage');
              var reverse_data = sorted_data.reverse();
              var slice_data = reverse_data.slice(0,10)
-             var remaining_data = _.difference(reverse_data, slice_data);
+             var remaining_data = _.difference(reverse_data,
+             slice_data);
              var all_data = { target:remaining_data };
-             
+
              var template = _.template( $("#tpl-html").text() );
              $("#output1").html( template(all_data) );
              $("a").removeClass("btn-warning");
@@ -198,15 +203,11 @@
   </head>
   <body id="page-top" class="index" onload="generateTopLabs()">
     <div id="top">
-      <!-- =================================================================================================================================== -->
       <div class="container-fluid" style="margin-top:20px">
         <h2 class="text-h2-lightblue" id="date1" style=" margin-bottom: 20px; margin-top:
                    106px; "></h2>
-        <!--  <h2 class="text-h2-lightblue" style=" margin-bottom: 20px; margin-top:
-             30px; ">Workshop Analytics as on 20/10/2016</h2>-->
         <div id="output3"></div>
-        <!-- <div style="margin-bottom: 50px;">-->
-        <div  >
+        <div>
           <div id="output4"></div>
         </div>
         <h2 class="text-h2-lightblue" id="date" style=" margin-bottom: 20px; margin-top: 30px; "></h2>
