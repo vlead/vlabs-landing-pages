@@ -820,7 +820,7 @@ var displayAllLabs = function() {
 #+BEGIN_SRC js
 
 var filterByPhase2Labs = function(labs) {
-  return labs.filter(function(labs) { return ((labs.phase.length == 1) && (labs.phase[0].phase_id == 2)); }) 
+  return labs.filter(function(labs) { return ((labs.phase.length == phaseLength) && (labs.phase[0].phase_id == phaseId)); }) 
 };
 // ---------------------------------------------------------------------------------------------
 
@@ -847,6 +847,7 @@ var displayLabsByKeyWord = function() {
     .then(function(labs) {
       return filterLabsByKeyWord(labs, keyword);
     })
+    .then(filterByPhase2Labs)    
     .then(buildLabsDisplayList)
     .then(setContentInContentDiv)
     .catch(function(err) {
