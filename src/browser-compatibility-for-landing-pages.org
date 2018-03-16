@@ -1,0 +1,123 @@
+#+TITLE: Plan for vlabs landing pages regarding support for firefox browser
+#+AUTHOR: VLEAD
+#+DATE: [2018-03-13 Tue]
+
+ 
+* Introduction
+  This document deals with the detailed description of the firefox
+  browser version requirements for the vlabs landing pages for the
+  client/end user. 
+
+* Revision History 
+  + The issue of browser incompatibility with the landing pages and
+    the labs hosted on it came into picture when the landing pages
+    were tested thourougly by the testing team (Sravanthi.B).
+  + Sravanthi.B came across an issue where she was unable to access
+    anything on the landing pages (a blank page) when she was testing
+    with firefox browser version less than 50. She did not listed the
+    exact error which she encountered from the console. Landing pages
+    are bounded with firefox browsers because the labs hosted on them
+    use Java plugins which are no longer supported by Chrome
+    browsers. Internet Explorer browsers still support such plugins
+    but they are not thought of as an option for running vlabs landing
+    pages because of performance issues with IE browsers.
+  + When Sravanthi.B encountered such problem, she escalated it to the
+    development team working on landing pages
+    (Sravanthi.M). Sravanthi.M tested the same setup of landing pages
+    on Firefox 52 version and could access all the labs with their
+    working simulations, this issue did not arise for 52 version.
+  + For the testing process, installing the dependencies was done
+    using the steps from [[https://github.com/integration-team-iiith/pre-requisites-for-iiith-labs][here]].
+  + The story till now says : pages work fine with 52 version and
+    doesn't work with below 50 versions. The conclusion was drawn
+    after a brief dicussion with Thirumal that we need to test
+    everything on firefox version 50, based on the success and failure
+    of it, the solution could be planned.
+  + Sravanthi.M tested vlabs landing pages on firefox 50 version and
+    encountered the same problem of blank page with error on console :
+    Failed to load LoadIndex() funtion. As an additional testing she
+    also tested the labs with Java plugin simulations independently
+    from landing pages, the labs and the simulations were working
+    perfectly fine with version 50. This additional testing was not
+    carried out by Sravanthi.B as she was supposed to test only the
+    landing pages. Sravanthi M also tested lab simulations
+    independently on firefox version 52 and 58 java plugins are not
+    supported in this firefox version as well. 
+  + Sanchita also tested the landing page and lab simulations on
+    firefox version 57.0.4, same conclusion was drawn that, only
+    landing pages work perfectly but the java plug in dependent
+    simulations do not work on this firefox version.
+  + This brought us to the conclusion that we need to fix the landing
+    pages code to provide the client with the working pages on firefox
+    browser 50.
+
+** Findings and Conclusion : 
+**** Reason for using only firefox version 50 is derived from the observations below :
+     + Below version 50 : Landing page doesnt work as well as post
+       messages doesnt work. Lab experiment simulations dependent on
+       java plugins work as per expectations.
+     + Above version 50 : Landing page and post messages work as per
+       expectations but the lab experiment simulations dependent on
+       Java plugins do not work.
+**** Preventing the browser upgrade
+     Even if we provide a virtual box for runtime browser to the end
+     user, there would be a pop up for browser upgrade. If the user
+     then upgrades the browser, again the same issues of non working
+     landing pages or lab simulations would arise. To prevent this, a
+     small setting in the firefox browser (Preferences>Advanced>check
+     the option, Never check for updates).
+**** Never save the username and passwords while creating the virtual box
+     For testing purposes, we have used the account with Username :
+     audit@example.com, do not do save passwords and create the
+     virtual box as it would display the same saved account details
+     for the end users as well preventing them from using their own
+     accounts for accessing the virtual labs pages.
+**** Flash plugins
+     If flash plugin is not installed in the user machine, it has to
+     be installed manually by the user. As of now we have included all
+     the dependencies for the simulations in the runtime browser box
+     itself.
+    
+* Overall Plan
+  
+** Vlabs landing pages bug fixing as a result of testing
+
+*** *Duration*
+   * Feb, March month
+
+*** *The Team* 
+   * Sravanthi.M and Sanchita guided by Thirumal
+
+*** *Detailed plan of action*
+
+     |--------------------------------------------+--------------------------+--------------+---------|
+     | Agenda                                     | Artefact                 | Assignee     | Remarks |
+     |--------------------------------------------+--------------------------+--------------+---------|
+     | Initial Testing by Sravanthi.B.            | [[https://github.com/vlead/vlabs-landing-pages/issues/201][Github Issue]]             | Sravanthi.B. |         |
+     | (only landing page)                        |                          |              |         |
+     |--------------------------------------------+--------------------------+--------------+---------|
+     | Thorough testing by Sravanthi.M.           | [[https://github.com/integration-team-iiith/pre-requisites-for-iiith-labs][Github Issue]]             | Sravanthi.M. |         |
+     | (both landing page and independent labs    |                          |              |         |
+     | /experiments, firefox versions 50,52,58)   |                          |              |         |
+     |--------------------------------------------+--------------------------+--------------+---------|
+     | Landing page and lab simulation testing    | Tested on Vitual Box     | Sanchita     |         |
+     | by Sanchita (firefox version 57)           |                          |              |         |
+     |                                            |                          |              |         |
+     |--------------------------------------------+--------------------------+--------------+---------|
+     | Landing page testing for firefox version   | Tested on Virtual Box    | Thirumal     |         |
+     | 45 by thirumal - post messages do not      |                          |              |         |
+     | work                                       |                          |              |         |
+     |--------------------------------------------+--------------------------+--------------+---------|
+     | Code change for tested landing pages on    | [[https://github.com/vlead/vlabs-landing-pages/commit/a8e4f59aae1c40e3d10538ce5f0606b83450fa0e][commit ID for the change]] | Thirumal,    |         |
+     | firefox 50 version                         |                          | Sravanthi.M, |         |
+     |                                            |                          | Sanchita     |         |
+     |--------------------------------------------+--------------------------+--------------+---------|
+     | Creation of a new virtual box with         | [[http://files.vlabs.ac.in/downloads/virtual-boxes/][virtual box]]              | Sravanthi.M  |         |
+     | firefox browser version 50 compatible with |                          |              |         |
+     | landing pages as well as lab simulations   |                          |              |         |
+     |--------------------------------------------+--------------------------+--------------+---------|
+     
+
+
+
+   
