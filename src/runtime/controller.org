@@ -815,15 +815,21 @@ var displayAllLabs = function() {
 
 #+END_SRC
 * Filter Phase-2 Labs
-  This function filters phase2 labs (114) from list of all labs (179).
+  This function filters phase2 labs from list of all
+  labs. =phaseLength= and =phaseId= are the configuration
+  variables.
 #+name: display-phase-2-labs
 #+BEGIN_SRC js
-
 var filterByPhase2Labs = function(labs) {
-  return labs.filter(function(labs) { return ((labs.phase.length == phaseLength) && (labs.phase[0].phase_id == phaseId)); }) 
+  return labs.filter(function(labs) { 
+    if (phaseLength == 0) {
+      return true;
+    }
+    else {
+      return ((labs.phase.length == phaseLength) && (labs.phase[0].phase_id == phaseId)); 
+    }
+  }) 
 };
-// ---------------------------------------------------------------------------------------------
-
 
 #+END_SRC
 

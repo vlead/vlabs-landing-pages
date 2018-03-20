@@ -32,26 +32,27 @@
 document.domain="pages.vlabs.ac.in";
 // update this to base url to lds url where your lds service was running
 
-var runtimeBrowserUrl = "http://localhost:8000/#orge205cd1";
-var offlineEditionUrl = "http://localhost:8000/#orgaa62568";
-var aboutPagesUrl = "http://localhost:8000";
-var ldsUrl = "http://192.168.33.16:5000";                                         
-var instituteImagesUrl ="http://files.vlabs.ac.in/lds/images/institutes/";                                      
+var ldsUrl = "http://lds.vlabs.ac.in/";                                        
+var instituteImagesUrl ="http://files.vlabs.ac.in/lds/images/institutes/";                                     
 var disciplineImagesUrl = "http://files.vlabs.ac.in/lds/images/disciplines/";
-var labImagesUrl = "http://files.vlabs.ac.in/lds/images/labs/";                                       
+var labImagesUrl = "http://files.vlabs.ac.in/lds/images/new-lab-images/";                                      
 
 var hostedBaseForOpenEdx = "http://mybox.vlabs.ac.in";
 var wsUsageUrl = "http://outreach.vlabs.ac.in/get_outreach_analytics";
 var wsUsageDetailUrl = "http://outreach.virtual-labs.ac.in/usage";
 var logUsageUrl = "http://stats.vlabs.ac.in/analytics";
+//var usage = "https://analytics.vlabs.ac.in/analytics/vlabs";
 var logUsageDetailUrl = "http://pages.vlabs.ac.in/info/analytics/usage.html";
+
+var phaseLength = 1;
+var phaseId =2;
 
 var postServer = "http://mybox.vlabs.ac.in";
 var footerUrl = "http://footer.vlabs.ac.in/footer";
 var loginUrl = hostedBaseForOpenEdx + "/login";
 var logoutUrl = hostedBaseForOpenEdx + "/logout";
 var registerUrl = hostedBaseForOpenEdx + "/register";
-var openEdxHosted = "test-openedx"; //this can be either "openedx" or "test-openedx" etc. 
+var openEdxHosted = "test-openedx"; //this can be either "openedx" or "test-openedx" etc.
 var cloudHosted = "cloud";  //this can be either "cloud" or staging etc.
 
 //this variable can be either "openedx", "test-openedx", "cloud" or "institute"
@@ -60,6 +61,7 @@ var secondChoiceUrl = cloudHosted;
 var thirdChoiceUrl = "institute";
 
 #+END_SRC
+
 
 * Tangle                                                        :boilerplate:
 ** Configuration
