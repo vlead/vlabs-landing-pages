@@ -1,0 +1,73 @@
+#+TITLE: Differences between vlabs.ac.in version 1 and vlabs.ac.in version 2
+#+AUTHOR: VLEAD
+#+DATE: [2018-03-21 Wed]
+#+SETUPFILE: ./org-templates/level-0.org
+#+TAGS: boilerplate(b)
+#+EXCLUDE_TAGS: boilerplate
+#+OPTIONS: ^:nil
+
+* Introduction
+  This document deals with the UX/UI and design differences between
+  the previous version of published vlabs website with the recently
+  released pages. After the inputs from the different institutes and
+  users regarding their labs not visible any more on the current
+  vlabs.ac.in, an elaborate discussion on the same brought out other
+  design differences and the delta of differences seems to have
+  widened even more than the previous releases.
+
+** Header Differences
+
+   |--------+------------------------------------------+----------------------------------------|
+   | SL No. | Older version                            | New Version                            |
+   |--------+------------------------------------------+----------------------------------------|
+   |     1. | Virtual Labs logo                        | Same logo persists                     |
+   |        | on the top left corner                   | at the same location                   |
+   |--------+------------------------------------------+----------------------------------------|
+   |     2. | Labs dropdown :                          | All Labs tab which                     |
+   |        | a. All Labs (Domain Wise)                | displays all 113 labs                  |
+   |        | b. All Labs (Institute wise)             | in the body of the page                |
+   |        | c. All labs on Open Edx                  | below.                                 |
+   |--------+------------------------------------------+----------------------------------------|
+   |     3. | Community Dropdown :                     | Clubbed into About tab.                |
+   |        | a. Teachers                              | It opens in the same                   |
+   |        | b. Developers                            | frame in the body below.               |
+   |        | c. Students                              |                                        |
+   |        | All these leading to their               |                                        |
+   |        | respective pages                         |                                        |
+   |--------+------------------------------------------+----------------------------------------|
+   |     4. | Development Dropdown :                   | Clubbed into About tab                 |
+   |        | a. Virtual Labs Development -            | opening in the same                    |
+   |        | going to dev pages                       | frame below.                           |
+   |        | b. Runtime Browser for Virtual           |                                        |
+   |        | Labs                                     |                                        |
+   |--------+------------------------------------------+----------------------------------------|
+   |     5. | Workshops Dropdown :                     | Clubbed into About tab                 |
+   |        | a. Online                                | opening in the same                    |
+   |        | b. College Cloud Edition                 | frame below.                           |
+   |--------+------------------------------------------+----------------------------------------|
+   |     6. | FAQ and Information Dropdowns :          | Clubbed into About tab                 |
+   |        | a. Virtual Labs                          | opening in the same                    |
+   |        | b. College CLoud edition                 | frame below.                           |
+   |        | c. Expressions of interest for workshops |                                        |
+   |        | d. Announcements                         |                                        |
+   |        | e. contact us                            |                                        |
+   |        | f. 2017 summer internship                |                                        |
+   |--------+------------------------------------------+----------------------------------------|
+   |     7. | No Institutes drop down                  | Institutes drop down listing           |
+   |        |                                          | all the institutes and opening         |
+   |        |                                          | their labs in the same page below.     |
+   |--------+------------------------------------------+----------------------------------------|
+   |     8. | No Disciplines drop down                 | Disciplines drop down listing          |
+   |        |                                          | all the disciplines and opening        |
+   |        |                                          | their labs in the same page below.     |
+   |--------+------------------------------------------+----------------------------------------|
+   |     9. | No search bar                            | Search bar for keyword based search    |
+   |        |                                          | for lab names.                         |
+   |--------+------------------------------------------+----------------------------------------|
+   |    10. | Register tab for open edx registration   | Register tab for open edx registration |
+   |--------+------------------------------------------+----------------------------------------|
+   |    11. | Log in tab for open edx login            | Log in tab for open edx login          |
+   |--------+------------------------------------------+----------------------------------------|
+   
+** Body differences
+** Footer differences
