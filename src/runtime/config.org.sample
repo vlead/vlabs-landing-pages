@@ -52,7 +52,7 @@ var footerUrl = "http://footer.vlabs.ac.in/footer";
 var loginUrl = hostedBaseForOpenEdx + "/login";
 var logoutUrl = hostedBaseForOpenEdx + "/logout";
 var registerUrl = hostedBaseForOpenEdx + "/register";
-var openEdxHosted = "test-openedx"; //this can be either "openedx" or "test-openedx" etc.
+var openEdxHosted = "openedx"; //this can be either "openedx" or "test-openedx" etc.       
 var cloudHosted = "cloud";  //this can be either "cloud" or staging etc.
 
 //this variable can be either "openedx", "test-openedx", "cloud" or "institute"
