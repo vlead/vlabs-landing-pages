@@ -662,7 +662,7 @@ var buildInstituteDisplayList = function(institutes) {
 #+BEGIN_SRC js
 var displayLabsOfDiscipline = function(discId) {
  getLabsByDiscipline(discId)
-    .then(filterByPhaseLabs)
+    .then(filterLabsByPhase)
     .then(buildLabsDisplayList)
     .then(setContentInContentDiv)
     .catch(function(err) {
@@ -787,7 +787,7 @@ var getTheRightUrl = function(hostingInfos) {
 #+BEGIN_SRC js
 var displayLabsOfInstitute = function(instId) {
  getLabsByInstitute(instId)
-    .then(filterByPhaseLabs)
+    .then(filterLabsByPhase)
     .then(buildLabsDisplayList)
     .then(setContentInContentDiv)
     .catch(function(err) {
@@ -805,7 +805,7 @@ var displayLabsOfInstitute = function(instId) {
 #+BEGIN_SRC js
 var displayAllLabs = function() {
   getLabs()
-    .then(filterByPhaseLabs)
+    .then(filterLabsByPhase)
     .then(buildLabsDisplayList)
     .then(setContentInContentDiv)
     .catch(function(err) {
@@ -815,14 +815,15 @@ var displayAllLabs = function() {
 
 #+END_SRC
 * Filter Labs based on Phase
-  Based on the configuration, the labs are filtered based on
-  to which phase they belong to.  If the configuration
-  defined by =phaseId= says phase 2, then labs belonging to
-  phase 2 are filtered out.
+  The configuration provides the phase information. Based on
+  this configuration, the labs are filtered by the phase
+  they belong to.  If the configuration defined by =phaseId=
+  says phase 2, then labs belonging to phase 2 are filtered
+  out.
   
 #+name: filter-labs-by-phase
 #+BEGIN_SRC js
-var filterByPhaseLabs = function(labs) {
+var filterLabsByPhase = function(labs) {
   return labs.filter(function(labs) { 
     if (phaseLength == 0) {
       return true;
@@ -855,7 +856,7 @@ var displayLabsByKeyWord = function() {
     .then(function(labs) {
       return filterLabsByKeyWord(labs, keyword);
     })
-    .then(filterByPhaseLabs)   
+    .then(filterLabsByPhase)   
     .then(buildLabsDisplayList)
     .then(setContentInContentDiv)
     .catch(function(err) {
