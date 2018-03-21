@@ -273,14 +273,13 @@ var getWsUsage = function() {
 ** Usage from Logs
 #+name: log-usage
 #+BEGIN_SRC js
-var logUsage;
+var logUsagePromise;
 var getLogUsage = function() {
-  logUsage = logUsage || getJSON(usage);
-  return logUsage.then(function(data) {
-    console.log(data);
-    return data;
+  logUsagePromise = logUsagePromise || getJSON(usageUrl);
+    return logUsagePromise.then(function(data) {
+      return data;
   });
-}
+};
 
 
 #+END_SRC
@@ -664,7 +663,7 @@ var buildInstituteDisplayList = function(institutes) {
 #+BEGIN_SRC js
 var displayLabsOfDiscipline = function(discId) {
  getLabsByDiscipline(discId)
-    .then(filterByPhase2Labs)
+    .then(filterLabsByPhase)
     .then(buildLabsDisplayList)
     .then(setContentInContentDiv)
     .catch(function(err) {
@@ -789,7 +788,7 @@ var getTheRightUrl = function(hostingInfos) {
 #+BEGIN_SRC js
 var displayLabsOfInstitute = function(instId) {
  getLabsByInstitute(instId)
-    .then(filterByPhase2Labs)
+    .then(filterLabsByPhase)
     .then(buildLabsDisplayList)
     .then(setContentInContentDiv)
     .catch(function(err) {
@@ -807,7 +806,7 @@ var displayLabsOfInstitute = function(instId) {
 #+BEGIN_SRC js
 var displayAllLabs = function() {
   getLabs()
-    .then(filterByPhase2Labs)
+    .then(filterLabsByPhase)
     .then(buildLabsDisplayList)
     .then(setContentInContentDiv)
     .catch(function(err) {
@@ -816,12 +815,24 @@ var displayAllLabs = function() {
 };
 
 #+END_SRC
-* Filter Phase-2 Labs
-  This function filters phase2 labs (114) from list of all labs (179).
-#+name: display-phase-2-labs
+* Filter Labs based on Phase
+  The configuration provides the phase information. Based on
+  this configuration, the labs are filtered by the phase
+  they belong to.  If the configuration defined by =phaseId=
+  says phase 2, then labs belonging to phase 2 are filtered
+  out.
+  
+#+name: filter-labs-by-phase
 #+BEGIN_SRC js
-var filterByPhase2Labs = function(labs) {
-  return labs.filter(function(labs) { return ((labs.phase.length == 1) && (labs.phase[0].phase_id == 2)); }) 
+var filterLabsByPhase = function(labs) {
+  return labs.filter(function(labs) { 
+    if (phaseLength == 0) {
+      return true;
+    }
+    else {
+      return ((labs.phase.length == phaseLength) && (labs.phase[0].phase_id == phaseId)); 
+    }
+  }) 
 };
 
 #+END_SRC
@@ -846,6 +857,7 @@ var displayLabsByKeyWord = function() {
     .then(function(labs) {
       return filterLabsByKeyWord(labs, keyword);
     })
+    .then(filterLabsByPhase)   
     .then(buildLabsDisplayList)
     .then(setContentInContentDiv)
     .catch(function(err) {
@@ -1053,7 +1065,7 @@ if (window.addEventListener) {
 #+name: fill-and-set-log-usage
 #+BEGIN_SRC js
 var displayLogUsage = function(data) {
-  document.getElementById("logUsageDisplay").innerText = data["analytics"]["nonopenedx"]["usage"].toLocaleString();
+  document.getElementById("logUsageDisplay").innerText = data["analytics"]["nonopenedx"]["usage"].toLocaleString('en-IN');
 };
 var showLogUsageDetailPage = function() {
   displayLab(logUsageDetailUrl);
@@ -1080,7 +1092,7 @@ var fillDataAndSetEventForLogUsage = function() {
 #+name: fill-and-set-ws-usage
 #+BEGIN_SRC js
 var displayWsUsage = function(data) {
-  document.getElementById("wsUsageDisplay").innerText = data["usage"].toLocaleString();
+  document.getElementById("wsUsageDisplay").innerText = data["usage"].toLocaleString('en-IN');
 };
 
 var showWsUsageDetailPage = function() {
@@ -1202,7 +1214,7 @@ var makeNewListOfLabs = function() {
 <<filter-labs-by-keyword>>
 <<display-labs-by-keyword>>
 <<authentication>>
-<<display-phase-2-labs>>
+<<filter-labs-by-phase>>
 //<<make-list-of-labs>>
 <<log-usage>>
 <<fill-and-set-log-usage>>

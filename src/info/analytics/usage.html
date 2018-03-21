@@ -29,14 +29,13 @@
         <tbody>
           <% _.each( target, function(i) {%>
           <% if ((i.lab_name !== "None") &&
-             (i.analytics.nonopenedx.usage > 100) &&
-          (i.analytics.nonopenedx.usage !== 0)) { %>
+             (i.analytics.nonopenedx.usage > 100)) { %>
           <% console.log(i) %>
           <tr>
-            <td><%= (i.lab_name).toLocaleString() %></td>
-            <td><%= (i.analytics.nonopenedx.hits).toLocaleString() %></td>
-            <td><%= (i.analytics.nonopenedx.visits).toLocaleString() %></td>
-            <td><%= (i.analytics.nonopenedx.usage).toLocaleString() %></td>
+            <td><%= (i.lab_name).toLocaleString('en-IN') %></td>
+            <td><%= (i.analytics.nonopenedx.hits).toLocaleString('en-IN') %></td>
+            <td><%= (i.analytics.nonopenedx.visits).toLocaleString('en-IN') %></td>
+            <td><%= (i.analytics.nonopenedx.usage).toLocaleString('en-IN') %></td>
           </tr>
           <% } %>    
           <% }); %>
@@ -57,10 +56,10 @@
         </thead>
         <tbody>
           <tr>
-            <td><a href="./iframe-src.html">Total Web Analytics</a></td>
-            <td><%= (target.analytics.nonopenedx.hits).toLocaleString() %></td>
-            <td><%= (target.analytics.nonopenedx.visits).toLocaleString() %></td>
-            <td><%= (target.analytics.nonopenedx.usage).toLocaleString() %></td>
+            <td>Total Web Analytics</td>
+            <td><%= (target.analytics.nonopenedx.hits).toLocaleString('en-IN') %></td>
+            <td><%= (target.analytics.nonopenedx.visits).toLocaleString('en-IN') %></td>
+            <td><%= (target.analytics.nonopenedx.usage).toLocaleString('en-IN') %></td>
           </tr>          
         </tbody>
       </table>
@@ -79,9 +78,9 @@
      <tbody>
      <tr>
      <td>Total</td>
-     <td><%= ((target.nodal_centres)-1).toLocaleString() %></td>
-     <td><%= (target.workshops).toLocaleString() %></td>
-     <td><%= (target.usage).toLocaleString() %></td>
+     <td><%= ((target.nodal_centres)-1).toLocaleString('en-IN') %></td>
+     <td><%= (target.workshops).toLocaleString('en-IN') %></td>
+     <td><%= (target.usage).toLocaleString('en-IN') %></td>
      </tr>          
      </tbody>
      </table>
@@ -102,9 +101,9 @@
          <% if (value != "VLEAD-IIITH"){ %>
              <tr>
                <td><%= value %></td>
-               <td><%= (key.nc_count).toLocaleString() %></td>
-               <td><%= (key.workshops).toLocaleString() %></td>
-               <td><%= (key.usage).toLocaleString() %></td>
+               <td><%= (key.nc_count).toLocaleString('en-IN') %></td>
+               <td><%= (key.workshops).toLocaleString('en-IN') %></td>
+               <td><%= (key.usage).toLocaleString('en-IN') %></td>
              </tr>
              <% } %>              
              <% }); %>
@@ -132,7 +131,7 @@
                           console.log("incoming Text " + jqxhr.responseText);
                       });
          
-         var jqxhr = $.getJSON('http://outreach.base1.vlabs.ac.in/get_nc_wise_usage', function(data) {
+         var jqxhr = $.getJSON('https://outreach.vlabs.ac.in/get_nc_wise_usage', function(data) {
              var data = { target: data };
              var template = _.template( $("#tpl-html3").text() );
              $("#output4").html( template(data) );
