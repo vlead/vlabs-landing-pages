@@ -29,35 +29,34 @@
 
 #+NAME: app-config
 #+BEGIN_SRC javascript
-document.domain="pages.vlabs.ac.in";
-// update this to base url to lds url where your lds service was running
+document.domain="vlabs.ac.in";
+// update this to base url to lds url where your lds service was running                                             
 
-var runtimeBrowserUrl = "http://localhost:8000/#orge205cd1";
-var offlineEditionUrl = "http://localhost:8000/#orgaa62568";
-var aboutPagesUrl = "http://localhost:8000";
-var ldsUrl = "http://192.168.33.16:5000";                                         
-var instituteImagesUrl ="http://files.vlabs.ac.in/lds/images/institutes/";                                      
-var disciplineImagesUrl = "http://files.vlabs.ac.in/lds/images/disciplines/";
-var labImagesUrl = "http://files.vlabs.ac.in/lds/images/labs/";                                       
+var runtimeBrowserUrl = "https://vlabs-about.vlabs.ac.in/#sec-4-1";
+var offlineEditionUrl = "https://vlabs-about.vlabs.ac.in/#sec-2-1-1";
+var aboutPagesUrl = "https://vlabs-about.vlabs.ac.in";
+var ldsUrl = "https://lds.vlabs.ac.in";
+var instituteImagesUrl = "https://s3-us-west-1.amazonaws.com/ld-service/images/institutes/";
+var disciplineImagesUrl = "https://s3-us-west-1.amazonaws.com/ld-service/images/disciplines/";
+var labImagesUrl = "https://s3-us-west-1.amazonaws.com/ld-service/images/new-lab-images/";
+var hostedBaseForOpenEdx = "https://openedx.vlabs.ac.in";
+var wsUsageUrl = "https://outreach.vlabs.ac.in/get_outreach_analytics";
+var wsUsageDetailUrl = "https://outreach.vlabs.ac.in/usage";
+var logUsageUrl = "https://stats.vlabs.ac.in/analytics";
+var logUsageDetailUrl = "https://vlabs.ac.in/info/analytics/usage.html";
 
-var hostedBaseForOpenEdx = "http://mybox.vlabs.ac.in";
-var wsUsageUrl = "http://outreach.vlabs.ac.in/get_outreach_analytics";
-var wsUsageDetailUrl = "http://outreach.virtual-labs.ac.in/usage";
-var logUsageUrl = "http://stats.vlabs.ac.in/analytics";
-var logUsageDetailUrl = "http://pages.vlabs.ac.in/info/analytics/usage.html";
-
-var postServer = "http://mybox.vlabs.ac.in";
-var footerUrl = "http://footer.vlabs.ac.in/footer";
+var postServer = "https://openedx.vlabs.ac.in";
+var footerUrl = "https://footer.vlabs.ac.in/footer";
 var loginUrl = hostedBaseForOpenEdx + "/login";
 var logoutUrl = hostedBaseForOpenEdx + "/logout";
 var registerUrl = hostedBaseForOpenEdx + "/register";
-var openEdxHosted = "openedx"; //this can be either "openedx" or "test-openedx" etc.       
-var cloudHosted = "cloud";  //this can be either "cloud" or staging etc.
+var openEdxHosted = "openedx"; //this can be either "openedx" or "test-openedx" etc.                                 
+var cloudHosted = "cloud";  //this can be either "cloud" or staging etc.                                             
 
-//this variable can be either "openedx", "test-openedx", "cloud" or "institute"
+//this variable can be either "openedx", "test-openedx", "cloud" or "institute"                                      
 var firstChoiceUrl = openEdxHosted;
 var secondChoiceUrl = cloudHosted;
-var thirdChoiceUrl = "institute";
+filterHostingInfovar thirdChoiceUrl = "institute";
 
 #+END_SRC
 
