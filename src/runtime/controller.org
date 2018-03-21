@@ -662,7 +662,7 @@ var buildInstituteDisplayList = function(institutes) {
 #+BEGIN_SRC js
 var displayLabsOfDiscipline = function(discId) {
  getLabsByDiscipline(discId)
-    .then(filterByPhase2Labs)
+    .then(filterByPhaseLabs)
     .then(buildLabsDisplayList)
     .then(setContentInContentDiv)
     .catch(function(err) {
@@ -787,7 +787,7 @@ var getTheRightUrl = function(hostingInfos) {
 #+BEGIN_SRC js
 var displayLabsOfInstitute = function(instId) {
  getLabsByInstitute(instId)
-    .then(filterByPhase2Labs)
+    .then(filterByPhaseLabs)
     .then(buildLabsDisplayList)
     .then(setContentInContentDiv)
     .catch(function(err) {
@@ -805,7 +805,7 @@ var displayLabsOfInstitute = function(instId) {
 #+BEGIN_SRC js
 var displayAllLabs = function() {
   getLabs()
-    .then(filterByPhase2Labs)
+    .then(filterByPhaseLabs)
     .then(buildLabsDisplayList)
     .then(setContentInContentDiv)
     .catch(function(err) {
@@ -814,13 +814,15 @@ var displayAllLabs = function() {
 };
 
 #+END_SRC
-* Filter Phase-2 Labs
-  This function filters phase2 labs from list of all
-  labs. =phaseLength= and =phaseId= are the configuration
-  variables.
-#+name: display-phase-2-labs
+* Filter Labs based on Phase
+  Based on the configuration, the labs are filtered based on
+  to which phase they belong to.  If the configuration
+  defined by =phaseId= says phase 2, then labs belonging to
+  phase 2 are filtered out.
+  
+#+name: filter-labs-by-phase
 #+BEGIN_SRC js
-var filterByPhase2Labs = function(labs) {
+var filterByPhaseLabs = function(labs) {
   return labs.filter(function(labs) { 
     if (phaseLength == 0) {
       return true;
@@ -853,7 +855,7 @@ var displayLabsByKeyWord = function() {
     .then(function(labs) {
       return filterLabsByKeyWord(labs, keyword);
     })
-    .then(filterByPhase2Labs)    
+    .then(filterByPhaseLabs)   
     .then(buildLabsDisplayList)
     .then(setContentInContentDiv)
     .catch(function(err) {
@@ -1211,7 +1213,7 @@ var makeNewListOfLabs = function() {
 <<filter-labs-by-keyword>>
 <<display-labs-by-keyword>>
 <<authentication>>
-<<display-phase-2-labs>>
+<<filter-labs-by-phase>>
 //<<make-list-of-labs>>
 <<log-usage>>
 <<fill-and-set-log-usage>>
