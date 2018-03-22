@@ -86,7 +86,10 @@
    |--------+------------------------------------------+------------------------------------------|
    |      4 | It has 10 disciplines                    | It has 17 disciplines                    |
    |--------+------------------------------------------+------------------------------------------|
-   |      5 | Slider is only on home page              | Slider is common for all pages           |
+   |      5 | Slider is only on home page with 5       | Slider is common for all pages           |
+   |        | different tabs of information with       |                                          |
+   |        | virtual labs objectives, philosophy,     |                                          |
+   |        | key features, etc.,                      |                                          |
    |--------+------------------------------------------+------------------------------------------|
    |      6 | Displays all the available disciplines   | Displays only labs of the selected       |
    |        | to the left of the page                  | discipline                               |
@@ -113,6 +116,31 @@
    |     13 | Page response time is faster             | page response time is more when compared |
    |        |                                          | to the previous version                  |
    |--------+------------------------------------------+------------------------------------------|
-   |        |                                          |                                          |
+   |     14 | Contact information of respective        | No such information is available         |
+   |        | professor for a institute and discipline |                                          |
+   |        | pages                                    |                                          |
+   |--------+------------------------------------------+------------------------------------------|
+   |     15 | Every discipline and institutes page     | No such information is available         |
+   |        | has description regarding lab            |                                          |
+   |        | prerequisites and the differentiation    |                                          |
+   |        | between the openedx and non openedx labs |                                          |
+   |--------+------------------------------------------+------------------------------------------|
+   |     16 | Labs which are not available/nonworking  | There is no such provision for upcoming  |
+   |        | /under construction are under a separate | labs                                     |
+   |        | section called upcoming labs             |                                          |
+   |--------+------------------------------------------+------------------------------------------|
+   |     17 | Font, style are different from the newer | Font, style are different from the older |
+   |        | version                                  | version                                  |
+   |--------+------------------------------------------+------------------------------------------|
+
    
 ** Footer differences
+   
+   |--------+------------------------------------------+-----------------------------------------|
+   | SL No. | Older Version                            | New Version                             |
+   |--------+------------------------------------------+-----------------------------------------|
+   |      1 | All the pages are separate links related | Such links are clubbed into vlabs-about |
+   |        | to Integration/QA workshops              | page and "Contact us" is leading to     |
+   |        |                                          | "vlabs-about" page                      |
+   |--------+------------------------------------------+-----------------------------------------|
+  
