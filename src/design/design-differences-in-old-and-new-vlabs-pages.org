@@ -156,134 +156,139 @@
    |--------+--------------------------------+------------------+---------------+---------------------|
 
 *** College of Engineering, Pune
-    |--------+------------------------------+---------------+---------------+---------------|
-    | SL No. | Lab Name                     | Older version | Newer Version | Remark        |
-    |--------+------------------------------+---------------+---------------+---------------|
-    |      1 | FPGA and Embedded System Lab | Working       | Not working   | [[The web page at https://coep.vlab.co.in/index.php?sub=29 might be temporarily down or it may have moved permanently to a new web address][Error Message]] |
-    |        |                              |               |               |               |
-    |--------+------------------------------+---------------+---------------+---------------|
-    |      2 | Vibration and Acoustics Lab  | Working       | Not working   | [[Your connection is not secure, coep.vlab.co.in uses an invalid security certificate.][Error Message]] |
-    |        |                              |               |               |               |
-    |--------+------------------------------+---------------+---------------+---------------|
+    |--------+------------------------------+---------------+---------------+------------------------------------------|
+    | SL No. | Lab Name                     | Older version | Newer Version | Remark                                   |
+    |--------+------------------------------+---------------+---------------+------------------------------------------|
+    |      1 | FPGA and Embedded System Lab | Working       | Not working   | The web page at                          |
+    |        |                              |               |               | https://coep.vlab.co.in/index.php?sub=29 |
+    |        |                              |               |               | might be temporarily down or it may have |
+    |        |                              |               |               | moved permanently to a new web address   |
+    |--------+------------------------------+---------------+---------------+------------------------------------------|
+    |      2 | Vibration and Acoustics Lab  | Working       | Not working   | Your connection is not secure,           |
+    |        |                              |               |               | coep.vlab.co.in uses an invalid          |
+    |        |                              |               |               | security certificate                     |
+    |        |                              |               |               |                                          |
+    |--------+------------------------------+---------------+---------------+------------------------------------------|
  
 *** Dayalbagh Educational Institutions
-    |--------+---------------------------------------------+---------------+---------------+---------------|
-    | SL No. | Lab Name                                    | Older version | Newer Version | Remark        |
-    |--------+---------------------------------------------+---------------+---------------+---------------|
-    |      1 | Analytical and Virtual Instrumentation and  | Working       | Not working   | [[Waiting for 220.227.100.58][Error Message]] |
-    |        | Applications Lab                            |               |               |               |
-    |--------+---------------------------------------------+---------------+---------------+---------------|
-    |      2 | Virtual Advanced lab for Interactive Design | Working       | Not Working   | [[Unable to connect][Error Message]] |
-    |        | and Testing Electronics                     |               |               |               |
-    |--------+---------------------------------------------+---------------+---------------+---------------|
+    |--------+---------------------------------------------+---------------+---------------+----------------------------|
+    | SL No. | Lab Name                                    | Older version | Newer Version | Remark                     |
+    |--------+---------------------------------------------+---------------+---------------+----------------------------|
+    |      1 | Analytical and Virtual Instrumentation and  | Working       | Not working   | Waiting for 220.227.100.58 |
+    |        | Applications Lab                            |               |               |                            |
+    |--------+---------------------------------------------+---------------+---------------+----------------------------|
+    |      2 | Virtual Advanced lab for Interactive Design | Working       | Not Working   | Unable to connect          |
+    |        | and Testing Electronics                     |               |               |                            |
+    |--------+---------------------------------------------+---------------+---------------+----------------------------|
     
 *** IIIT Hyderabad
-    |--------+------------------------+---------------+---------------+---------------|
-    | SL No. | Lab Name               | Older version | Newer Version | Remarks       |
-    |--------+------------------------+---------------+---------------+---------------|
-    |      1 | Data Mining            | Working       | Not Working   | [[Unable to connect.][Error Message]] |
-    |        |                        |               |               |               |
-    |--------+------------------------+---------------+---------------+---------------|
-    |      2 | Databases              | Working       | Not Working   | [[Unable to connect.][Error Message]] |
-    |        |                        |               |               |               |
-    |--------+------------------------+---------------+---------------+---------------|
-    |      3 | Electromagnetic Theory | Working       | Not Working   | [[The server is temporarily unable to service your request due to maintenance downtime or capacity problems. Please try again later.][Error Message]] |
-    |        |                        |               |               |               |
-    |--------+------------------------+---------------+---------------+---------------|
-    |      4 | Geotechnical Lab       | Working       | Not WOrking   | [[Only the Introduction page is visible, other tabs are not visible][Error Message]] |
-    |        |                        |               |               |               |
-    |--------+------------------------+---------------+---------------+---------------|
-    |      5 | Linux Lab              |               |               |               |
-    |        |                        |               |               |               |
-    |--------+------------------------+---------------+---------------+---------------|
-    |      5 | Mobile robotics        | Working       | Not Working   | [[Unable to connect.][Error Message]] |
-    |        |                        |               |               |               |
-    |--------+------------------------+---------------+---------------+---------------|
-    |        |                        |               |               |               |
+    |--------+------------------------+---------------+---------------+--------------------------------|
+    | SL No. | Lab Name               | Older version | Newer Version | Remarks                        |
+    |--------+------------------------+---------------+---------------+--------------------------------|
+    |      1 | Data Mining            | Working       | Not Working   | Unable to connect.             |
+    |        |                        |               |               |                                |
+    |--------+------------------------+---------------+---------------+--------------------------------|
+    |      2 | Databases              | Working       | Not Working   | Unable to connect              |
+    |        |                        |               |               |                                |
+    |--------+------------------------+---------------+---------------+--------------------------------|
+    |      3 | Electromagnetic Theory | Working       | Not Working   | The server is temporarily      |
+    |        |                        |               |               | unable to service your request |
+    |        |                        |               |               | due to maintenance downtime or |
+    |        |                        |               |               | capacity problems. Please      |
+    |        |                        |               |               | try again later.               |
+    |--------+------------------------+---------------+---------------+--------------------------------|
+    |      4 | Geotechnical Lab       | Working       | Not WOrking   | Only the Introduction page     |
+    |        |                        |               |               | is visible, other tabs         |
+    |        |                        |               |               | are not visible                |
+    |--------+------------------------+---------------+---------------+--------------------------------|
+    |      5 | Mobile robotics        | Working       | Not Working   | Unable to connect              |
+    |--------+------------------------+---------------+---------------+--------------------------------|
+
     
 *** IIT Bombay
 
-    |--------+------------------------------------+---------------+---------------+---------------|
-    | SL No. | Lab Name                           | Older version | Newer Version | Remarks       |
-    |--------+------------------------------------+---------------+---------------+---------------|
-    |      1 | Electronic Design Using DSP, FGPA, | Working       | not Working   | [[Secure Connection Failed][Error Message]] |
-    |        | CPLD and Micro Controllers         |               |               |               |
-    |--------+------------------------------------+---------------+---------------+---------------|
+    |--------+------------------------------------+---------------+---------------+--------------------------|
+    | SL No. | Lab Name                           | Older version | Newer Version | Remarks                  |
+    |--------+------------------------------------+---------------+---------------+--------------------------|
+    |      1 | Electronic Design Using DSP, FGPA, | Working       | not Working   | Secure Connection Failed |
+    |        | CPLD and Micro Controllers         |               |               |                          |
+    |--------+------------------------------------+---------------+---------------+--------------------------|
     
 *** IIT Delhi 
-    |--------+-----------------------------------------------+---------------+---------------+---------------|
-    | SL No. | Lab Name                                      | Older version | Newer Version | Remarks       |
-    |--------+-----------------------------------------------+---------------+---------------+---------------|
-    |      1 | Bioreactor Modeling & Simulation Lab          | Working       | Not Working   | [[Your connection is not secure][Error Message]] |
-    |        |                                               |               |               |               |
-    |--------+-----------------------------------------------+---------------+---------------+---------------|
-    |      2 | Virtual Microwave and Antenna Laboratory      | Working       | Not Working   | [[Your connection is not secure][Error Message]] |
-    |        |                                               |               |               |               |
-    |--------+-----------------------------------------------+---------------+---------------+---------------|
-    |      3 | Virtual Power Electronics and Electric Drives | Working       | Not Working   | [[Your connection is not secure][Error Message]] |
-    |        | Lab                                           |               |               |               |
-    |--------+-----------------------------------------------+---------------+---------------+---------------|
+    |--------+-----------------------------------------------+---------------+---------------+--------------------|
+    | SL No. | Lab Name                                      | Older version | Newer Version | Remarks            |
+    |--------+-----------------------------------------------+---------------+---------------+--------------------|
+    |      1 | Bioreactor Modeling & Simulation Lab          | Working       | Not Working   | Your connection is |
+    |        |                                               |               |               | not secure         |
+    |--------+-----------------------------------------------+---------------+---------------+--------------------|
+    |      2 | Virtual Microwave and Antenna Laboratory      | Working       | Not Working   | Your connection is |
+    |        |                                               |               |               | not secure         |
+    |--------+-----------------------------------------------+---------------+---------------+--------------------|
+    |      3 | Virtual Power Electronics and Electric Drives | Working       | Not Working   | Your connection is |
+    |        | Lab                                           |               |               | not secure         |
+    |--------+-----------------------------------------------+---------------+---------------+--------------------|
   
 *** IIT Guwahati
-    |--------+-----------------------------------------------+---------------+---------------+---------------|
-    | SL No. | Lab Name                                      | Older version | Newer Version | Remarks       |
-    |--------+-----------------------------------------------+---------------+---------------+---------------|
-    |      1 | Creative Design, Prototyping & Experiential   | Working       | Not Working   | [[Your connection is not secure][Error Message]] |
-    |        | Simulation in Human Computer Interaction      |               |               |               |
-    |--------+-----------------------------------------------+---------------+---------------+---------------|
-    |      2 | Remote Triggered Electromechanical            | Working       | Not Working   | [[Your connection is not secure][Error Message]] |
-    |        | Conversion Laboratory                         |               |               |               |
-    |--------+-----------------------------------------------+---------------+---------------+---------------|
-    |      3 | Remote Triggered Fiber Optics Communication   | Working       | Not Working   | [[Your connection is not secure][Error Message]] |
-    |        | Lab                                           |               |               |               |
-    |--------+-----------------------------------------------+---------------+---------------+---------------|
-    |      4 | Speech Signal Processing Laboratory           | Working       | Not Working   | [[Your connection is not secure][Error Message]] |
-    |        |                                               |               |               |               |
-    |--------+-----------------------------------------------+---------------+---------------+---------------|
-    |      5 | Systems, Communication and Control Laboratory | Working       | Not Working   | [[Your connection is not secure][Error Message]] |
-    |        |                                               |               |               |               |
-    |--------+-----------------------------------------------+---------------+---------------+---------------|
-    |      5 | Virtual Interactive Lab                       | Working       | Not Working   | [[Your connection is not secure][Error Message]] |
-    |        |                                               |               |               |               |
-    |--------+-----------------------------------------------+---------------+---------------+---------------|
+    |--------+-----------------------------------------------+---------------+---------------+--------------------|
+    | SL No. | Lab Name                                      | Older version | Newer Version | Remarks            |
+    |--------+-----------------------------------------------+---------------+---------------+--------------------|
+    |      1 | Creative Design, Prototyping & Experiential   | Working       | Not Working   | Your connection is |
+    |        | Simulation in Human Computer Interaction      |               |               | not secure         |
+    |--------+-----------------------------------------------+---------------+---------------+--------------------|
+    |      2 | Remote Triggered Electromechanical            | Working       | Not Working   | Your connection is |
+    |        | Conversion Laboratory                         |               |               | not secure         |
+    |--------+-----------------------------------------------+---------------+---------------+--------------------|
+    |      3 | Remote Triggered Fiber Optics Communication   | Working       | Not Working   | Your connection is |
+    |        | Lab                                           |               |               | not secure         |
+    |--------+-----------------------------------------------+---------------+---------------+--------------------|
+    |      4 | Speech Signal Processing Laboratory           | Working       | Not Working   | Your connection is |
+    |        |                                               |               |               | not secure         |
+    |--------+-----------------------------------------------+---------------+---------------+--------------------|
+    |      5 | Systems, Communication and Control Laboratory | Working       | Not Working   | Your connection is |
+    |        |                                               |               |               | not secure         |
+    |--------+-----------------------------------------------+---------------+---------------+--------------------|
+    |      5 | Virtual Interactive Lab                       | Working       | Not Working   | Your connection is |
+    |        |                                               |               |               | not secure         |
+    |--------+-----------------------------------------------+---------------+---------------+--------------------|
     
 *** IIT Kanpur
-    |--------+----------------------------------------+---------------+---------------|
-    | SL No. | Lab Name                               | Older version | Newer Version |
-    |--------+----------------------------------------+---------------+---------------|
-    |      1 | Low Temperature Electrical Transport   | working       | [[The connection has timed out][Error message]] |
-    |        | and Property Measurements              |               |               |
-    |--------+----------------------------------------+---------------+---------------|
-    |      2 | Optical Device Characterizations       | working       | [[Your connection is not secure][Error message]] |
-    |--------+----------------------------------------+---------------+---------------|
-    |      3 | oscillations                           | working       | [[Your connection is not secure][Error message]] |
-    |--------+----------------------------------------+---------------+---------------|
-    |      4 | Thermal Processing and Microstructural | working       | [[The connection has timed out][Error message]] |
-    |        | Characterization                       |               |               |
-    |--------+----------------------------------------+---------------+---------------|
-    |      5 | Transducer and Instrumentation         | working       | [[Unable to connect][Error message]] |
-    |        | Virtual Lab                            |               |               |
-    |--------+----------------------------------------+---------------+---------------|
+    |--------+----------------------------------------+---------------+--------------------|
+    | SL No. | Lab Name                               | Older version | Newer Version      |
+    |--------+----------------------------------------+---------------+--------------------|
+    |      1 | Low Temperature Electrical Transport   | working       | The connection has |
+    |        | and Property Measurements              |               | timed out          |
+    |--------+----------------------------------------+---------------+--------------------|
+    |      2 | Optical Device Characterizations       | working       | Your connection is |
+    |        |                                        |               | not secure         |
+    |--------+----------------------------------------+---------------+--------------------|
+    |      3 | oscillations                           | working       | Your connection is |
+    |        |                                        |               | not secure         |
+    |--------+----------------------------------------+---------------+--------------------|
+    |      4 | Thermal Processing and Microstructural | working       | The connection has |
+    |        | Characterization                       |               | timed out          |
+    |--------+----------------------------------------+---------------+--------------------|
+    |      5 | Transducer and Instrumentation         | working       | Unable to connect  |
+    |        | Virtual Lab                            |               |                    |
+    |--------+----------------------------------------+---------------+--------------------|
     
     
 *** IIT Kharagpur
-    |--------+----------------------+---------------+---------------+---------------|
-    | SL No. | Lab Name             | Older version | Newer Version | Remarks       |
-    |--------+----------------------+---------------+---------------+---------------|
-    |      1 | Programming and Data | Working       | Not Working   | [[Your connection is not secured][Error Message]] |
-    |        | Structures           |               |               |               |
-    |--------+----------------------+---------------+---------------+---------------|
-    |      2 | Rest all labs other  | Working       | Not Working   | [[Unable to connect][Error Message]] |
-    |        | than SL No. 1        |               |               |               |
-    |--------+----------------------+---------------+---------------+---------------|
+    |--------+----------------------+---------------+---------------+--------------------|
+    | SL No. | Lab Name             | Older version | Newer Version | Remarks            |
+    |--------+----------------------+---------------+---------------+--------------------|
+    |      1 | Programming and Data | Working       | Not Working   | Your connection is |
+    |        | Structures           |               |               | not secured        |
+    |--------+----------------------+---------------+---------------+--------------------|
+    |      2 | Rest all labs other  | Working       | Not Working   | Unable to connect                         |
+    |        | than SL No. 1        |               |               |                    |
+    |--------+----------------------+---------------+---------------+--------------------|
   
 *** IIT Roorkee
     All labs are working
 
 *** NIT Surathkal
-    |--------+--------------------------------+---------------+---------------|
-    | SL No. | Lab Name                       | Older version | Newer Version |
-    |--------+--------------------------------+---------------+---------------|
-    |      1 | Remote Triggered Vibration Lab | not working   | [[Unable to connect][Error Message]] |
-    |        |                                |               |               |
-    |--------+--------------------------------+---------------+---------------|
+    |--------+--------------------------------+---------------+-------------------|
+    | SL No. | Lab Name                       | Older version | Newer Version     |
+    |--------+--------------------------------+---------------+-------------------|
+    |      1 | Remote Triggered Vibration Lab | not working   | Unable to connect |
+    |--------+--------------------------------+---------------+-------------------|
