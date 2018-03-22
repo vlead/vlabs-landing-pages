@@ -71,22 +71,48 @@
    
 ** Body differences
 
-   |--------+------------------------------------------+-----------------------------------------|
-   | SL No. | Older Version                            | New Version                             |
-   |--------+------------------------------------------+-----------------------------------------|
-   |     1. | Displays displines when the page is      | Displays only disciplines when the page |
-   |        | loaded                                   | is loaded                               |
-   |--------+------------------------------------------+-----------------------------------------|
-   |      2 | Displays institutes when the page is     | Doesn't display institutes on load      |
-   |        | loaded as a horizontal scroll bar        |                                         |
-   |--------+------------------------------------------+-----------------------------------------|
-   |      3 | Number of labs and lectures with respect | No such information is available        |
-   |        | to particular discipline are available   |                                         |
-   |--------+------------------------------------------+-----------------------------------------|
-   |      4 | It has 10 disciplines                    | It has 17 disciplines                   |
-   |--------+------------------------------------------+-----------------------------------------|
-   |      5 | Slider is only on home page              | Slider                                  |
-   |        |                                          |                                         |
-   |        |                                          |                                         |
+   |--------+------------------------------------------+------------------------------------------|
+   | SL No. | Older Version                            | New Version                              |
+   |--------+------------------------------------------+------------------------------------------|
+   |     1. | Displays displines when the page is      | Displays only disciplines when the page  |
+   |        | loaded (on main page)                    | is loaded (on main page)                 |
+   |--------+------------------------------------------+------------------------------------------|
+   |      2 | Displays institutes when the page is     | Doesn't display institutes on load       |
+   |        | loaded as a horizontal scroll bar        | (on main page)                           |
+   |        | (on main page)                           |                                          |
+   |--------+------------------------------------------+------------------------------------------|
+   |      3 | Number of labs and lectures with respect | No such information is available         |
+   |        | to particular discipline are available   |                                          |
+   |--------+------------------------------------------+------------------------------------------|
+   |      4 | It has 10 disciplines                    | It has 17 disciplines                    |
+   |--------+------------------------------------------+------------------------------------------|
+   |      5 | Slider is only on home page              | Slider is common for all pages           |
+   |--------+------------------------------------------+------------------------------------------|
+   |      6 | Displays all the available disciplines   | Displays only labs of the selected       |
+   |        | to the left of the page                  | discipline                               |
+   |--------+------------------------------------------+------------------------------------------|
+   |      7 | Displays lab name, respective university | displays only the lab name and a image   |
+   |        | along with reference books, syllabus     |                                          |
+   |        | mapping and lecture                      |                                          |
+   |--------+------------------------------------------+------------------------------------------|
+   |      8 | on clicking a lab it opens in a new tab  | on clicking a lab it opens in the same   |
+   |        |                                          | page                                     |
+   |--------+------------------------------------------+------------------------------------------|
+   |      9 | Back button works                        | Back button doesn't work                 |
+   |--------+------------------------------------------+------------------------------------------|
+   |     10 | Displays all the available institutes    | Displays only labs of the selected       |
+   |        | to the left of the page                  | institutes                               |
+   |--------+------------------------------------------+------------------------------------------|
+   |     11 | Displays lab name, respective university | displays only the lab name and a image   |
+   |        | along with reference books, syllabus     |                                          |
+   |        | mapping and lecture                      |                                          |
+   |--------+------------------------------------------+------------------------------------------|
+   |     12 | on clicking a lab it opens in a new tab  | on clicking a lab it opens in the same   |
+   |        |                                          | page                                     |
+   |--------+------------------------------------------+------------------------------------------|
+   |     13 | Page response time is faster             | page response time is more when compared |
+   |        |                                          | to the previous version                  |
+   |--------+------------------------------------------+------------------------------------------|
+   |        |                                          |                                          |
    
 ** Footer differences
