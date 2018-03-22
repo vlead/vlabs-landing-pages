@@ -252,24 +252,24 @@
     |--------+-----------------------------------------------+---------------+---------------+--------------------|
     
 *** IIT Kanpur
-    |--------+----------------------------------------+---------------+--------------------|
-    | SL No. | Lab Name                               | Older version | Newer Version      |
-    |--------+----------------------------------------+---------------+--------------------|
-    |      1 | Low Temperature Electrical Transport   | working       | The connection has |
-    |        | and Property Measurements              |               | timed out          |
-    |--------+----------------------------------------+---------------+--------------------|
-    |      2 | Optical Device Characterizations       | working       | Your connection is |
-    |        |                                        |               | not secure         |
-    |--------+----------------------------------------+---------------+--------------------|
-    |      3 | oscillations                           | working       | Your connection is |
-    |        |                                        |               | not secure         |
-    |--------+----------------------------------------+---------------+--------------------|
-    |      4 | Thermal Processing and Microstructural | working       | The connection has |
-    |        | Characterization                       |               | timed out          |
-    |--------+----------------------------------------+---------------+--------------------|
-    |      5 | Transducer and Instrumentation         | working       | Unable to connect  |
-    |        | Virtual Lab                            |               |                    |
-    |--------+----------------------------------------+---------------+--------------------|
+    |--------+----------------------------------------+---------------+---------------+--------------------|
+    | SL No. | Lab Name                               | Older version | Newer Version | Remarks            |
+    |--------+----------------------------------------+---------------+---------------+--------------------|
+    |      1 | Low Temperature Electrical Transport   | working       | Not Working   | The connection has |
+    |        | and Property Measurements              |               |               | timed out          |
+    |--------+----------------------------------------+---------------+---------------+--------------------|
+    |      2 | Optical Device Characterizations       | working       | Not Working   | Your connection is |
+    |        |                                        |               |               | not secure         |
+    |--------+----------------------------------------+---------------+---------------+--------------------|
+    |      3 | oscillations                           | working       | Not Working   | Your connection is |
+    |        |                                        |               |               | not secure         |
+    |--------+----------------------------------------+---------------+---------------+--------------------|
+    |      4 | Thermal Processing and Microstructural | working       | Not Working   | The connection has |
+    |        | Characterization                       |               |               | timed out          |
+    |--------+----------------------------------------+---------------+---------------+--------------------|
+    |      5 | Transducer and Instrumentation         | working       | Not Working   | Unable to connect  |
+    |        | Virtual Lab                            |               |               |                    |
+    |--------+----------------------------------------+---------------+---------------+--------------------|
     
     
 *** IIT Kharagpur
@@ -287,8 +287,8 @@
     All labs are working
 
 *** NIT Surathkal
-    |--------+--------------------------------+---------------+-------------------|
-    | SL No. | Lab Name                       | Older version | Newer Version     |
-    |--------+--------------------------------+---------------+-------------------|
-    |      1 | Remote Triggered Vibration Lab | not working   | Unable to connect |
-    |--------+--------------------------------+---------------+-------------------|
+    |--------+--------------------------------+---------------+---------------+-------------------|
+    | SL No. | Lab Name                       | Older version | Newer Version | Remarks           |
+    |--------+--------------------------------+---------------+---------------+-------------------|
+    |      1 | Remote Triggered Vibration Lab | not working   | Not Working   | Unable to connect |
+    |--------+--------------------------------+---------------+---------------+-------------------|
