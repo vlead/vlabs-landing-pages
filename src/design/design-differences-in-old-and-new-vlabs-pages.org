@@ -71,10 +71,22 @@
    
 ** Body differences
 
-   |--------+---------------+-------------|
-   | SL No. | Older Version | New Version |
-   |--------+---------------+-------------|
-   |     1. |               |             |
-   |--------+---------------+-------------|
-   |        |               |             |
+   |--------+------------------------------------------+-----------------------------------------|
+   | SL No. | Older Version                            | New Version                             |
+   |--------+------------------------------------------+-----------------------------------------|
+   |     1. | Displays displines when the page is      | Displays only disciplines when the page |
+   |        | loaded                                   | is loaded                               |
+   |--------+------------------------------------------+-----------------------------------------|
+   |      2 | Displays institutes when the page is     | Doesn't display institutes on load      |
+   |        | loaded as a horizontal scroll bar        |                                         |
+   |--------+------------------------------------------+-----------------------------------------|
+   |      3 | Number of labs and lectures with respect | No such information is available        |
+   |        | to particular discipline are available   |                                         |
+   |--------+------------------------------------------+-----------------------------------------|
+   |      4 | It has 10 disciplines                    | It has 17 disciplines                   |
+   |--------+------------------------------------------+-----------------------------------------|
+   |      5 | Slider is only on home page              | Slider                                  |
+   |        |                                          |                                         |
+   |        |                                          |                                         |
+   
 ** Footer differences
