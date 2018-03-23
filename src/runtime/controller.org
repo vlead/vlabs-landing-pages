@@ -143,7 +143,6 @@ var getJSON = function(resourcePath) {
 #+BEGIN_SRC js
 var disciplinePromise;
 var getDisciplines = function() {
-  disResPath = ldsUrl + "/disciplines";
   disciplinePromise = disciplinePromise || getJSON(disResPath);
 
   return disciplinePromise.then(function(disciplines) {
@@ -160,9 +159,7 @@ var getDisciplines = function() {
 #+BEGIN_SRC js
 var institutePromise;
 var getInstitutes = function() {
-  instResPath = ldsUrl + "/institutes";
   institutePromise = institutePromise || getJSON(instResPath);
-
   return institutePromise.then(function(institutes) {
     return institutes;
   });
@@ -177,9 +174,7 @@ var getInstitutes = function() {
 #+BEGIN_SRC js
 var labPromise;
 var getLabs = function() {
-  labResPath = ldsUrl + "/labs";
   labPromise = labPromise || getJSON(labResPath);
-
   return labPromise.then(function(labs) {
     return labs;
   });
@@ -214,7 +209,7 @@ var filterQuery = function(ls, id) {
 #+BEGIN_SRC js
 var labsByDisciplinePromises = [];
 var getLabsByDiscipline = function(discId) {
-  var labByDiscResPath = ldsUrl + "/labs?discipline_name=" + discId;
+  var labByDiscResPath = labsByDiscUrl + discId
   var searchList = filterQuery(labsByDisciplinePromises, discId);
   var labsByDiscPromise;
   if (searchList.length == 0) {
@@ -240,7 +235,7 @@ var getLabsByDiscipline = function(discId) {
 #+BEGIN_SRC js
 var labsByInstitutePromises = [];
 var getLabsByInstitute = function(instId) {
-  var labByInstResPath = ldsUrl + "/labs?institute_name=" + instId;
+  var labByInstResPath = labsByInstUrl + instId;
   var searchList = filterQuery(labsByInstitutePromises, instId);
   var labsByInstPromise;
   if (searchList.length == 0) {
@@ -709,7 +704,7 @@ var buildLabsDisplayList = function(labs) {
         path = labImagesUrl + image_name;
       }
     }
-    return '<div class=" col-md-3 " id='+ lab_name + '> <div class="thumbnail" style="cursor:pointer; padding: 0px !important;"><a><img class="img-responsive" onclick="javascript:handleEventOnLab(this)" src="' + path +'" id="' + hosted_url + '"><div class="caption" style="min-height: 110px;"><h4 onclick="javascript:handleEventOnLab(this)"  src="' + path +'" id="' + hosted_url + '" style="text-align:center; color:#2c99ce;" >'+ lab_name +'</h4></a></div></div></div>';
+    return '<div class=" col-md-3 " id='+ lab_name + '> <div class="thumbnail" style="cursor:pointer; padding: 0px !important;"><div class="caption" style="min-height: 110px;"><h4 onclick="javascript:handleEventOnLab(this)"  src="' + path +'" id="' + hosted_url + '" style="text-align:center; color:#2c99ce;" >'+ lab_name +'</h4></a></div></div></div>';
   });
 
   var displayLabs = displayList.reduce(function(acc, el) {
@@ -825,12 +820,12 @@ var displayAllLabs = function() {
 #+name: filter-labs-by-phase
 #+BEGIN_SRC js
 var filterLabsByPhase = function(labs) {
-  return labs.filter(function(labs) { 
+  return labs.filter(function(lab) { 
     if (phaseLength == 0) {
       return true;
     }
     else {
-      return ((labs.phase.length == phaseLength) && (labs.phase[0].phase_id == phaseId)); 
+      return ((lab.phase.length == phaseLength) && (lab.phase[0].phase_id == phaseId)); 
     }
   }) 
 };
@@ -909,13 +904,29 @@ var enableAllLabsButton = function() {
    the lab. 
 #+name: handle-event-on-lab
 #+BEGIN_SRC js
-var labUrl;
-var handleEventOnLab = function(obj) {
-  labUrl = obj.id;
-  if (authenticated())
-    displayLab(obj.id);
-  else
-    authenticate({id: loginUrl});
+var labUrl;                                                                                                          
+var isOpenedXLab;                                                                                                    
+var handleEventOnLab = function(obj) {                                                                               
+  labUrl = obj.id;                                                                                                   
+  isOpenedXLab = false;                                                                                              
+                                                                                                                     
+  if (labUrl.lastIndexOf("Anytime") != -1)                                                                           
+      isOpenedXLab = true;                                                                                           
+                                                                                                                     
+  if (authenticated()) {                                                                                             
+    if(isOpenedXLab) {                                                                                               
+      displayLab(obj.id);                                                                                            
+    } else {                                                                                                         
+      openInNewTab(obj.id);                                                                                          
+    }                                                                                                                
+  } else {                                                                                                           
+    authenticate({id: loginUrl});                                                                                    
+  }                                                                                                                  
+};
+
+var openInNewTab = function(url) {                                                                                   
+  var win = window.open(url, '_blank');                                                                              
+  win.focus();                                                                                                       
 };
 
 #+END_SRC
@@ -1036,23 +1047,27 @@ var registerHandler = function() {
   listen to the post messages sent to the index page. 
 #+name: event-listener 
 #+BEGIN_SRC js
-var processPostMessage = function(event) {
-  if (event.origin !== postServer) {
-    return;
-  } else {
-    var recvMsg = JSON.parse(event.data);
-    var msg = recvMsg.message.toLocaleLowerCase();
-    if (msg.indexOf("my courses") != -1) {                                                                   
-      document.cookie = "session-status='logged-in'";
-      displayBtnsForAuthentication();
-      if (labUrl)
-        displayLab(labUrl)
-      else
-        displayAllDisciplines();
-    }
-  }
-};
-
+var processPostMessage = function(event) {                                                                           
+  if (event.origin !== postServer) {                                                                                 
+    return;                                                                                                          
+  } else {                                                                                                           
+    var recvMsg = JSON.parse(event.data);                                                                            
+    var msg = recvMsg.message.toLocaleLowerCase();                                                                   
+    if (msg.indexOf("my courses") != -1) {                                                                           
+      document.cookie = "session-status='logged-in'";                                                                
+      displayBtnsForAuthentication();                                                                                
+      if (labUrl == undefined || labUrl == "") {                                                                     
+        displayAllDisciplines();                                                                                     
+      } else if (isOpenedXLab) {                                                                                     
+        displayLab(labUrl);                                                                                          
+      } else {                                                                                                       
+        displayAllDisciplines();                                                                                     
+        openInNewTab(labUrl);                                                                                        
+      }                                                                                                              
+    }                                                                                                                
+  }                                                                                                                  
+};                                                                                                                   
+                                                                                                                     
 if (window.addEventListener) {                                                                                       
   window.addEventListener("message", processPostMessage, false);
 } else {
@@ -1065,7 +1080,7 @@ if (window.addEventListener) {
 #+name: fill-and-set-log-usage
 #+BEGIN_SRC js
 var displayLogUsage = function(data) {
-  document.getElementById("logUsageDisplay").innerText = data["analytics"]["nonopenedx"]["usage"].toLocaleString('en-IN');
+  document.getElementById("logUsageDisplay").innerText = data["analytics"]["nonopenedx"]["usage"].toLocaleString();
 };
 var showLogUsageDetailPage = function() {
   displayLab(logUsageDetailUrl);
@@ -1092,7 +1107,7 @@ var fillDataAndSetEventForLogUsage = function() {
 #+name: fill-and-set-ws-usage
 #+BEGIN_SRC js
 var displayWsUsage = function(data) {
-  document.getElementById("wsUsageDisplay").innerText = data["usage"].toLocaleString('en-IN');
+  document.getElementById("wsUsageDisplay").innerText = data["usage"].toLocaleString();
 };
 
 var showWsUsageDetailPage = function() {
