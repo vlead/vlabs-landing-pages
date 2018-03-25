@@ -62,7 +62,8 @@ var registerUrl = hostedBaseForOpenEdx + "/register";
 var openEdxHosted = "openedx"; //this can be either "openedx" or "test-openedx" etc.
 var cloudHosted = "cloud";  //this can be either "cloud" or staging etc.
 
-//this variable can be either "openedx", "test-openedx", "cloud" or "institute"                                    var firstChoiceUrl = openEdxHosted;
+//this variable can be either "openedx", "test-openedx", "cloud" or "institute"
+var firstChoiceUrl = openEdxHosted;
 var secondChoiceUrl = cloudHosted;
 var thirdChoiceUrl = "institute";
 
