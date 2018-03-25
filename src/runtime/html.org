@@ -56,8 +56,8 @@
                style=" width:100px; height:40px;
                       margin-top:-13px">
               <img src="https://s3-us-west-1.amazonaws.com/ld-service/images/logo.png"
-                   class="img-responsive main-logo"
-                   style="width:100%; maring-top:2px;"></a>
+              class="img-responsive main-logo"
+              style="width:100%; maring-top:2px;"></a>
           </div>
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
@@ -92,8 +92,8 @@
                   </span>
                 </div>
               </form>
-              <li><a class ="cursor-pointer" id="register"><span class="glyphicon glyphicon-user"></span>Register</a></li>
-              <li><a class ="cursor-pointer" id="login" class="glyphicon glyphicon-log-in"> Login</a></li>
+              <!-- <li><a class ="cursor-pointer" id="register"><span class="glyphicon glyphicon-user"></span>Register</a></li> -->
+              <!-- <li><a class ="cursor-pointer" id="login" class="glyphicon glyphicon-log-in"> Login</a></li> -->
             </ul>
           </div>
         </div>
@@ -104,7 +104,7 @@
   </ol>
   <div class="carousel-inner">
     <div class="item active">
-      <img src="https://s3-us-west-1.amazonaws.com/ld-service/images/slider-images/slider-img-01.jpg" class="img-responsive">
+      <!-- <img src="https://s3-us-west-1.amazonaws.com/ld-service/images/slider-images/slider-img-01.jpg" class="img-responsive"> -->
       <div class="container">
         <div class="carousel-caption col-md-8 col-sm-12" style="top:60px;">
         <h3>Online labs and experiments from top technical institutes.</h3>

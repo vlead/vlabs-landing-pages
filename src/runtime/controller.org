@@ -958,7 +958,7 @@ var displayLab = function(url) {
 };
 #+END_SRC
 
-* Login Support
+* COMMENT Login Support
   Since Open edX does not provide an API for authentication,
   the controller decides if the user is successfully signed
   in by parsing the content of the page returned after
@@ -1038,6 +1038,38 @@ var loginHandler = function() {
 
 var registerHandler = function() {
   authenticate({id: registerUrl});
+};
+
+#+END_SRC
+
+* Login Support
+  Google+ login support.  Display only one button that
+  toggles between =Login= and =Logout=.
+
+#+name: gplus-authentication
+#+BEGIN_SRC js
+var authenticated = function() {
+  return true;
+};
+
+var authenticate = function(obj) {
+  return true;
+};
+
+var logoutHandler = function() {
+  return true;
+};
+
+var loginHandler = function() {
+  return true;
+};
+
+var logoutCleanUp = function() {
+  return true;
+};
+
+var displayBtnsForAuthentication = function() {
+  var lElem = document.getElementById("login");
 };
 
 #+END_SRC
@@ -1228,7 +1260,8 @@ var makeNewListOfLabs = function() {
 <<enable-all-labs-button>>
 <<filter-labs-by-keyword>>
 <<display-labs-by-keyword>>
-<<authentication>>
+//<<authentication>>
+<<gplus-authentication>>
 <<filter-labs-by-phase>>
 //<<make-list-of-labs>>
 <<log-usage>>

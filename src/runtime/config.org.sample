@@ -33,12 +33,9 @@
 #+NAME: app-config
 #+BEGIN_SRC javascript
 document.domain="vlabs.ac.in";
-// update this to base url to lds url where your lds service was running                                             
+// update this to base url to lds url where your lds service was running                                           
 
 var runtimeBrowserUrl = "https://vlabs-about.vlabs.ac.in/#sec-4-1";
-
-
-
 var offlineEditionUrl = "https://vlabs-about.vlabs.ac.in/#sec-2-1-1";
 var aboutPagesUrl = "https://vlabs-about.vlabs.ac.in";
 var instituteImagesUrl = "https://s3-us-west-1.amazonaws.com/ld-service/images/institutes/";
