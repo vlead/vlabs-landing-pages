@@ -34,7 +34,6 @@
 #+BEGIN_SRC javascript
 document.domain="vlabs.ac.in";
 // update this to base url to lds url where your lds service was running                                           
-
 var runtimeBrowserUrl = "https://vlabs-about.vlabs.ac.in/#sec-4-1";
 var offlineEditionUrl = "https://vlabs-about.vlabs.ac.in/#sec-2-1-1";
 var aboutPagesUrl = "https://vlabs-about.vlabs.ac.in";
@@ -49,7 +48,6 @@ var labResPath = ldsUrl + "/labs?cached=1&consumer=lp";
 var labsByDiscUrl = ldsUrl + "/labs?cached=1&consumer=lp&discipline_name=";
 var labsByInstUrl = ldsUrl + "/labs?cached=1&consumer=lp&institute_name=";
 
-
 var hostedBaseForOpenEdx = "https://openedx.vlabs.ac.in";
 var wsUsageUrl = "https://outreach.vlabs.ac.in/get_outreach_analytics";
 var wsUsageDetailUrl = "https://outreach.vlabs.ac.in/usage";
@@ -62,15 +60,15 @@ var loginUrl = hostedBaseForOpenEdx + "/login";
 var logoutUrl = hostedBaseForOpenEdx + "/logout";
 var registerUrl = hostedBaseForOpenEdx + "/register";
 
-var openEdxHosted = "openedx"; //this can be either "openedx" or "test-openedx" etc.                                
-var cloudHosted = "cloud";  //this can be either "cloud" or staging etc.                                             
+var openEdxHosted = "openedx"; //this can be either "openedx" or "test-openedx" etc.
+var cloudHosted = "cloud";  //this can be either "cloud" or staging etc.
 
-//this variable can be either "openedx", "test-openedx", "cloud" or "institute"                                      
-var firstChoiceUrl = cloudHosted;
-var secondChoiceUrl = openEdxHosted;
+//this variable can be either "openedx", "test-openedx", "cloud" or "institute"
+var firstChoiceUrl = openEdxHosted;
+var secondChoiceUrl = cloudHosted;
 var thirdChoiceUrl = "institute";
 
-var phaseLength = 1;
+var phaseLength = 0;
 var phaseId = 2;
 
 #+END_SRC

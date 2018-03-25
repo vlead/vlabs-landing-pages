@@ -676,46 +676,46 @@ var displayLabsOfDiscipline = function(discId) {
    when triggered displays the lab page. 
 #+name: build-labs-display-list
 #+BEGIN_SRC js
-var buildLabsDisplayList = function(labs) {
-
-  labs.sort(function(a, b) {
-    var nameA = a['lab_name'].toUpperCase(); // ignore upper and lowercase
-    var nameB = b['lab_name'].toUpperCase(); // ignore upper and lowercase
-    if (nameA < nameB) {
-      return -1;
-    }
-    if (nameA > nameB) {
-      return 1;
-    }
-    // names must be equal
-    return 0;
-  });
-
-  var displayList = labs.map(function(lab) {
-    var lab_name = lab['lab_name'];                                                                      
-    var hosted_url = getTheRightUrl(lab['hosting_info']);
-
-    var assets = lab['assets'];
-    for(i = 0; i < assets.length; i++) {
-      var asset_type = lab['assets'][i]['asset_type']['asset_type'];
-      var path = lab['assets'][i]['path'];
-      if (asset_type == 'image') {
-        var image_name = lab['assets'][i]['path'];
-        path = labImagesUrl + image_name;
+  var buildLabsDisplayList = function(labs) {
+  
+    labs.sort(function(a, b) {
+      var nameA = a['lab_name'].toUpperCase(); // ignore upper and lowercase
+      var nameB = b['lab_name'].toUpperCase(); // ignore upper and lowercase
+      if (nameA < nameB) {
+        return -1;
       }
-    }
-    return '<div class=" col-md-3 " id='+ lab_name + '> <div class="thumbnail" style="cursor:pointer; padding: 0px !important;"><div class="caption" style="min-height: 110px;"><h4 onclick="javascript:handleEventOnLab(this)"  src="' + path +'" id="' + hosted_url + '" style="text-align:center; color:#2c99ce;" >'+ lab_name +'</h4></a></div></div></div>';
-  });
-
-  var displayLabs = displayList.reduce(function(acc, el) {
-    acc += el;
-    return acc;
-  });
-  return '<div class="container-fluid"><div class="row">' + 
-    displayLabs +
-    '</div></div>';
-};
-
+      if (nameA > nameB) {
+        return 1;
+      }
+      // names must be equal
+      return 0;
+    });
+  
+    var displayList = labs.map(function(lab) {
+      var lab_name = lab['lab_name'];                                                                      
+      var hosted_url = getTheRightUrl(lab['hosting_info']);
+  
+      var assets = lab['assets'];
+      for(i = 0; i < assets.length; i++) {
+        var asset_type = lab['assets'][i]['asset_type']['asset_type'];
+        var path = lab['assets'][i]['path'];
+        if (asset_type == 'image') {
+          var image_name = lab['assets'][i]['path'];
+          path = labImagesUrl + image_name;
+        }
+      }
+        return '<div class=" col-md-3 " id='+ lab_name + '> <div class="thumbnail" style="cursor:pointer; padding: 0px !important;"><a><img class="img-responsive" onclick="javascript:handleEventOnLab(this)" src="' + path +'" id="' + hosted_url + '"><div class="caption" style="min-height: 110px;"><h4 onclick="javascript:handleEventOnLab(this)"  src="' + path +'" id="' + hosted_url + '" style="text-align:center; color:#2c99ce;" >'+ lab_name +'</h4></a></div></div></div>';
+    });
+  
+    var displayLabs = displayList.reduce(function(acc, el) {
+      acc += el;
+      return acc;
+    });
+    return '<div class="container-fluid"><div class="row">' + 
+      displayLabs +
+      '</div></div>';
+  };
+  
 #+END_SRC
 
 * Get the right Url for a lab
