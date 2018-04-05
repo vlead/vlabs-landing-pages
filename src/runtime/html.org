@@ -32,6 +32,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://info.vlabs.ac.in/common/header/files/bootsnipp.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="icon" type="image/x-icon" href="https://s3-us-west-1.amazonaws.com/ld-service/images/vlabs-logo/favicon.ico">
     <link rel="stylesheet" href="./css/style.css"/>
@@ -42,8 +43,8 @@
   </head>
   <body onload="loadIndex()">
     <div>
-      <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-        <div class="container">
+      <nav class="navbar navbar-fixed-top navbar-bootsnipp animate" role="navigation" style="z-index: 9999999" role="navigation">
+        <div class="container-fluid">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
               <span class="sr-only">Toggle navigation</span>
@@ -61,20 +62,57 @@
           </div>
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-              <li id="allLabs" class="disabled">
-                <a onclick="displayAllLabs()" "#" class="dropdown-toggle cursor-pointer" data-toggle="dropdown">All Labs <b ></b></a>
-              </li>
-              <li class="dropdown">
-                <a class="dropdown-toggle cursor-pointer" data-toggle="dropdown"  >Institutes <b class="caret"></b></a>
-                <ul class="dropdown-menu filterInstituteComboBox" id="getInstituteName"></ul>
-              </li>
-              <li class="dropdown">
-                <a class="dropdown-toggle cursor-pointer" data-toggle="dropdown">Disciplines <b class="caret"></b></a>
-                <ul  class="dropdown-menu filterDisciplineComboBox"></ul>
-              </li>
-              <li id="About">
-                <a onclick="showAboutPage()" class="dropdown-toggle cursor-pointer">About <b></b></a>
-              </li>
+
+
+
+<li class="">
+            <a href="#" class="dropdown-toggle " data-toggle="dropdown" aria-expanded="false">Labs <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+               <li><a  class="">All Labs (Domain Wise)</a></li>
+               <li><a  class="">All Labs (Institute Wise)</a></li>
+               
+            </ul>
+         </li>
+
+	      <li class="">
+            <a href="#" class="dropdown-toggle " data-toggle="dropdown" aria-expanded="false">Community <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+               <li class=""><a target="_blank" href="https://plus.google.com/communities/104131148292250423165" class="" target="_blank">Teachers </a></li>
+               <li class=""><a target="_blank" href="https://groups.google.com/a/vlabs.ac.in/forum/#!forum/engineers" class="" target="_blank">Developers </a></li>
+               <li class=""><a target="_blank" href="https://groups.google.com/a/vlabs.ac.in/forum/#!forum/users" class="" target="_blank">Students </a></li>
+            </ul>
+         </li>
+         <li class="">
+            <a href="" class="dropdown-toggle " data-toggle="dropdown" aria-expanded="false" target="_blank">Development<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+               <li class=""><a target="_blank" href="http://dev.vlabs.ac.in/" class="">Virtual Labs Development </a></li>
+               <li class=""><a href="https://info.vlabs.ac.in/runtime-browser-for-virtual-labs" class="">Runtime Browser for Virtual Labs </a></li>
+            </ul>
+         </li>
+         <li class="">
+            <a href="https://info.vlabs.ac.in/workshops/" class="dropdown-toggle " data-toggle="dropdown" aria-expanded="false">Workshops<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+               <li class=""><a href="https://info.vlabs.ac.in/workshops/" class="">Online</a></li>
+               <li class=""><a href="https://info.vlabs.ac.in/college-cloud-edition/" class="">College Cloud Edition </a></li>
+            </ul>
+         </li>
+         <li class="">
+            <a href="" class="dropdown-toggle " data-toggle="dropdown" aria-expanded="false" >FAQ<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+               <li class=""><a href="https://info.vlabs.ac.in/faq/index.html" class="">Virtual Labs </a></li>
+               <li class=""><a href="https://info.vlabs.ac.in/faq/index.html" class="">Virtual Labs College Cloud Edition  </a></li>
+               <li class=""><a href="https://info.vlabs.ac.in/faq/index.html" class="">Expression of Interest For Workshops </a></li>
+            </ul>
+         </li>
+         <li class="">
+            <a href="" class="dropdown-toggle " data-toggle="dropdown" aria-expanded="false" s>Information<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+               <li class=""><a href="https://info.vlabs.ac.in/announcements/index.html" class="">Announcements</a></li>
+               <li class=""><a href="https://info.vlabs.ac.in/contactus" class="">Contact us  </a></li>
+               <li class=""><a href="https://info.vlabs.ac.in/2017-summer-internship" class="">2017-summer-internship</a></li>
+            </ul>
+         </li>
+
 
             </ul>  
             <ul class="nav navbar-nav navbar-right">
@@ -92,15 +130,20 @@
                   </span>
                 </div>
               </form>
-              <li><a class ="cursor-pointer" id="register"><span class="glyphicon glyphicon-user"></span>Register</a></li>
-              <li><a class ="cursor-pointer" id="login" class="glyphicon glyphicon-log-in"> Login</a></li>
+              
             </ul>
           </div>
         </div>
       </nav>
       </div>
+
+
+
 <div id="myCarousel" class="carousel slide">
   <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
   </ol>
   <div class="carousel-inner">
     <div class="item active">
@@ -114,17 +157,40 @@
           <p><a onclick="showRuntimeBrowserPage()" class="dropdown-toggle cursor-pointer">
         Runtime Browser </a> for Virtual Labs</p>
           </div>
+
+      <div class="item active">
+        <img src="" alt="" style="width:100%;">
+      </div>
+
+     <div class="item active">
+        <img src="" alt="" style="width:100%;">
+      </div>
+
+     <div class="item active">
+        <img src="" alt="" style="width:100%;">
+      </div>
+
+
       </div>
     </div>
   </div>
-  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-    <span class="icon-prev"></span>
-  </a>
-  <a class="right carousel-control" href="#myCarousel" data-slide="next">
-    <span class="icon-next"></span>
-  </a>  
+ <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span class="sr-only">Next</span>
+    </a>
 </div>
 </div>
+
+
+
+
+
+
+
 <div class="container-fluid">
 <div class="row">
   <div class="features">
