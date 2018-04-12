@@ -53,6 +53,7 @@ var wsUsageUrl = "https://outreach.vlabs.ac.in/get_outreach_analytics";
 var wsUsageDetailUrl = "https://outreach.vlabs.ac.in/usage";
 var usageUrl = "https://analytics.vlabs.ac.in/analytics/vlabs";
 var logUsageDetailUrl = "https://vlabs.ac.in/info/analytics/usage.html";
+var expUrl = "http://lds.vlabs.ac.in/experiments";
 
 var postServer = "https://openedx.vlabs.ac.in";
 var footerUrl = "https://footer.vlabs.ac.in/footer";

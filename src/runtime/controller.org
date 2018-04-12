@@ -48,6 +48,7 @@ var loadIndex = function() {
   displayAllDisciplines();
   enableAllLabsButton();
   displayBtnsForAuthentication();
+  fillLabExpCount();
   fillDataAndSetEventForLogUsage();
   fillDataAndSetEventForWsUsage();
 };
@@ -265,6 +266,18 @@ var getWsUsage = function() {
 
 #+END_SRC
 
+** Exp Usage
+#+name: exp-usage
+#+BEGIN_SRC js
+var expPromise;
+var getExp = function() {
+  expPromise = expPromise || getJSON(expUrl);
+  return expPromise.then(function(data) {
+    return data.length;
+  });
+}
+
+#+END_SRC
 ** Usage from Logs
 #+name: log-usage
 #+BEGIN_SRC js
@@ -1110,6 +1123,7 @@ var displayWsUsage = function(data) {
   document.getElementById("wsUsageDisplay").innerText = data["usage"].toLocaleString();
 };
 
+
 var showWsUsageDetailPage = function() {
   displayLab(wsUsageDetailUrl);
 }
@@ -1130,7 +1144,26 @@ var fillDataAndSetEventForWsUsage = function() {
 };
 
 #+END_SRC
+* Get and display lab and exp count from lds
+#+name: fill-lab-exp-count
+#+BEGIN_SRC js
+var fillLabExpCount = function() {
+  getExp()
+    .then(displayexpCount)
+    .catch(function(err) {
+      console.log("Error from display exp count: " + err);
+    });
+};
 
+#+END_SRC
+* Display Exp Count
+#+name: display-exp-count
+#+BEGIN_SRC js
+var displayexpCount = function(data) {
+  document.getElementById("expDisplay").innerText = data.toLocaleString();
+};
+
+#+END_SRC
 * Display About Pages
   Display the about pages using the configured url.
 #+name: display-about-pages
@@ -1234,7 +1267,10 @@ var makeNewListOfLabs = function() {
 <<log-usage>>
 <<fill-and-set-log-usage>>
 <<ws-usage>>
+<<exp-usage>>
 <<fill-and-set-ws-usage>>
+<<fill-lab-exp-count>>
+<<display-exp-count>>
 <<display-about-pages>>
 <<runtime-browser>>
 <<offline-edition>>
