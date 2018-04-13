@@ -44,6 +44,7 @@ var labImagesUrl = "https://s3-us-west-1.amazonaws.com/ld-service/images/new-lab
 var ldsUrl = "https://lds.vlabs.ac.in";
 var disResPath = ldsUrl + "/disciplines";
 var instResPath = ldsUrl + "/institutes";
+var expResPath = ldsUrl +"/experiments";
 var labResPath = ldsUrl + "/labs?cached=1&consumer=lp";
 var labsByDiscUrl = ldsUrl + "/labs?cached=1&consumer=lp&discipline_name=";
 var labsByInstUrl = ldsUrl + "/labs?cached=1&consumer=lp&institute_name=";
@@ -53,7 +54,6 @@ var wsUsageUrl = "https://outreach.vlabs.ac.in/get_outreach_analytics";
 var wsUsageDetailUrl = "https://outreach.vlabs.ac.in/usage";
 var usageUrl = "https://analytics.vlabs.ac.in/analytics/vlabs";
 var logUsageDetailUrl = "https://vlabs.ac.in/info/analytics/usage.html";
-var expUrl = "http://lds.vlabs.ac.in/experiments";
 
 var postServer = "https://openedx.vlabs.ac.in";
 var footerUrl = "https://footer.vlabs.ac.in/footer";
@@ -68,7 +68,7 @@ var firstChoiceUrl = openEdxHosted;
 var secondChoiceUrl = cloudHosted;
 var thirdChoiceUrl = "institute";
 
-var phaseLength = 0;
+var phaseLength = 1;
 var phaseId = 2;
 
 #+END_SRC

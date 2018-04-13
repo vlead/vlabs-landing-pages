@@ -48,7 +48,8 @@ var loadIndex = function() {
   displayAllDisciplines();
   enableAllLabsButton();
   displayBtnsForAuthentication();
-  fillLabExpCount();
+  fillLabCount();
+  fillExpCount();
   fillDataAndSetEventForLogUsage();
   fillDataAndSetEventForWsUsage();
 };
@@ -271,9 +272,9 @@ var getWsUsage = function() {
 #+BEGIN_SRC js
 var expPromise;
 var getExp = function() {
-  expPromise = expPromise || getJSON(expUrl);
+  expPromise = expPromise || getJSON(expResPath);
   return expPromise.then(function(data) {
-    return data.length;
+    return data;
   });
 }
 
@@ -1144,10 +1145,10 @@ var fillDataAndSetEventForWsUsage = function() {
 };
 
 #+END_SRC
-* Get and display lab and exp count from lds
-#+name: fill-lab-exp-count
+* Get and display exp count from lds
+#+name: fill-exp-count
 #+BEGIN_SRC js
-var fillLabExpCount = function() {
+var fillExpCount = function() {
   getExp()
     .then(displayexpCount)
     .catch(function(err) {
@@ -1156,14 +1157,37 @@ var fillLabExpCount = function() {
 };
 
 #+END_SRC
+* Get and display lab count from lds
+#+name: fill-lab-count
+#+BEGIN_SRC js
+var fillLabCount = function() {
+  getLabs()
+    .then(filterLabsByPhase)
+    .then(displaylabCount)
+    .catch(function(err) {
+      console.log("Error from display lab count: " + err);
+    });
+};
+
+#+END_SRC
+
 * Display Exp Count
 #+name: display-exp-count
 #+BEGIN_SRC js
 var displayexpCount = function(data) {
-  document.getElementById("expDisplay").innerText = data.toLocaleString();
+  document.getElementById("expDisplay").innerText = data.length.toLocaleString();
 };
 
 #+END_SRC
+* Display Lab Count
+#+name: display-lab-count
+#+BEGIN_SRC js
+var displaylabCount = function(data) {
+  document.getElementById("labDisplay").innerText = data.length.toLocaleString();
+};
+
+#+END_SRC
+
 * Display About Pages
   Display the about pages using the configured url.
 #+name: display-about-pages
@@ -1269,8 +1293,10 @@ var makeNewListOfLabs = function() {
 <<ws-usage>>
 <<exp-usage>>
 <<fill-and-set-ws-usage>>
-<<fill-lab-exp-count>>
+<<fill-exp-count>>
+<<fill-lab-count>>
 <<display-exp-count>>
+<<display-lab-count>>
 <<display-about-pages>>
 <<runtime-browser>>
 <<offline-edition>>
