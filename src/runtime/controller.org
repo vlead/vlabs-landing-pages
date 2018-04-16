@@ -50,6 +50,7 @@ var loadIndex = function() {
   displayBtnsForAuthentication();
   fillDataAndSetEventForLogUsage();
   fillDataAndSetEventForWsUsage();
+  fillUsersCount();
 };
 
 #+END_SRC
@@ -1157,6 +1158,37 @@ var showRuntimeBrowserPage = function() {
   displayLab(runtimeBrowserUrl);
 }
 #+END_SRC
+* Users Count
+#+name: users-count
+#+BEGIN_SRC js
+var usersPromise;
+var getUsers = function() {
+  usersPromise = usersPromise || getJSON(userAnalyticsPath);
+  return usersPromise.then(function(data) {
+    return data;
+  });
+}
+#+END_SRC
+* Get and display users count from analytics
+#+name: fill-users-count
+#+BEGIN_SRC js
+var fillUsersCount = function() {
+  getUsers()
+    .then(displayUsersCount)
+    .catch(function(err) {
+      console.log("Error from display users count: " + err);
+    });
+};
+
+#+END_SRC
+* Display Users Count
+#+name: display-users-count
+#+BEGIN_SRC js
+var displayUsersCount = function(data) {
+  document.getElementById("displayUsersCount").innerText = data['registered_users'].toLocaleString();
+};
+
+#+END_SRC
 * COMMENT Create a list of labs with lab id, hosting url and hosted platform
 #+name: make-list-of-labs
 #+BEGIN_SRC js
@@ -1238,5 +1270,8 @@ var makeNewListOfLabs = function() {
 <<display-about-pages>>
 <<runtime-browser>>
 <<offline-edition>>
+<<users-count>>
+<<display-users-count>>
+<<fill-users-count>>
 #+END_SRC
 
