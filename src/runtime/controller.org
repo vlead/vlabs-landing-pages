@@ -713,17 +713,10 @@ var displayLabsOfDiscipline = function(discId) {
     var displayList = labs.map(function(lab) {
       var lab_name = lab['lab_name'];                                                                      
       var hosted_url = getTheRightUrl(lab['hosting_info']);
-  
-      var assets = lab['assets'];
-      for(i = 0; i < assets.length; i++) {
-        var asset_type = lab['assets'][i]['asset_type']['asset_type'];
-        var path = lab['assets'][i]['path'];
-        if (asset_type == 'image') {
-          var image_name = lab['assets'][i]['path'];
-          path = labImagesUrl + image_name;
-        }
-      }
-        return '<div class=" col-md-3 " id='+ lab_name + '> <div class="thumbnail" style="cursor:pointer; padding: 0px !important;"><a><img class="img-responsive" onclick="javascript:handleEventOnLab(this)" src="' + path +'" id="' + hosted_url + '"><div class="caption" style="min-height: 110px;"><h4 onclick="javascript:handleEventOnLab(this)"  src="' + path +'" id="' + hosted_url + '" style="text-align:center; color:#2c99ce;" >'+ lab_name +'</h4></a></div></div></div>';
+      var assets = filterAssetsbyAssetType(lab['assets']);
+      var image_name = assets[0].path;
+      var path = labImagesUrl + image_name;
+      return '<div class=" col-md-3 " id='+ lab_name + '> <div class="thumbnail" style="cursor:pointer; padding: 0px !important;"><a><img class="img-responsive" onclick="javascript:handleEventOnLab(this)" src="' + path +'" id="' + hosted_url + '"><div class="caption" style="min-height: 110px;"><h4 onclick="javascript:handleEventOnLab(this)"  src="' + path +'" id="' + hosted_url + '" style="text-align:center; color:#2c99ce;" >'+ lab_name +'</h4></a></div></div></div>';
     });
   
     var displayLabs = displayList.reduce(function(acc, el) {
@@ -851,6 +844,16 @@ var filterLabsByPhase = function(labs) {
 
 #+END_SRC
 
+* filter Assets by AssetType
+#+name: filter-labs-by-asset-type
+#+BEGIN_SRC js
+var filterAssetsbyAssetType = function(assets){
+  return assets.filter(function(asset){
+    return asset.asset_type.asset_type == 'image';
+  });
+};
+
+#+END_SRC
 
 * Display Labs By KeyWord
 ** The Flow
@@ -1323,6 +1326,7 @@ var makeNewListOfLabs = function() {
 <<display-labs-by-keyword>>
 <<authentication>>
 <<filter-labs-by-phase>>
+<<filter-labs-by-asset-type>>
 //<<make-list-of-labs>>
 <<log-usage>>
 <<fill-and-set-log-usage>>
