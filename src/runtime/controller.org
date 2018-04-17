@@ -678,7 +678,11 @@ var displayLabsOfDiscipline = function(discId) {
 #+name: build-labs-display-list
 #+BEGIN_SRC js
   var buildLabsDisplayList = function(labs) {
-  
+      if (labs.length == 0){
+      return '<div class="container-fluid"><div class="row">' +"<h2 style='text-align:center; color:red;'>No labs found!</h2>" +
+        '</div></div>';
+    }
+
     labs.sort(function(a, b) {
       var nameA = a['lab_name'].toUpperCase(); // ignore upper and lowercase
       var nameB = b['lab_name'].toUpperCase(); // ignore upper and lowercase
