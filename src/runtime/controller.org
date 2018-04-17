@@ -48,6 +48,8 @@ var loadIndex = function() {
   displayAllDisciplines();
   enableAllLabsButton();
   displayBtnsForAuthentication();
+  fillLabCount();
+  fillExpCount();
   fillDataAndSetEventForLogUsage();
   fillDataAndSetEventForWsUsage();
   fillUsersCount();
@@ -266,6 +268,18 @@ var getWsUsage = function() {
 
 #+END_SRC
 
+** Exp Usage
+#+name: exp-usage
+#+BEGIN_SRC js
+var expPromise;
+var getExp = function() {
+  expPromise = expPromise || getJSON(expResPath);
+  return expPromise.then(function(data) {
+    return data;
+  });
+}
+
+#+END_SRC
 ** Usage from Logs
 #+name: log-usage
 #+BEGIN_SRC js
@@ -1115,6 +1129,7 @@ var displayWsUsage = function(data) {
   document.getElementById("wsUsageDisplay").innerText = data["usage"].toLocaleString();
 };
 
+
 var showWsUsageDetailPage = function() {
   displayLab(wsUsageDetailUrl);
 }
@@ -1132,6 +1147,48 @@ var fillDataAndSetEventForWsUsage = function() {
     .catch(function(err) {
       console.log("Error from fillDataAndSetEventForWsUsage: " + err);
     });
+};
+
+#+END_SRC
+* Get and display exp count from lds
+#+name: fill-exp-count
+#+BEGIN_SRC js
+var fillExpCount = function() {
+  getExp()
+    .then(displayexpCount)
+    .catch(function(err) {
+      console.log("Error from display exp count: " + err);
+    });
+};
+
+#+END_SRC
+* Get and display lab count from lds
+#+name: fill-lab-count
+#+BEGIN_SRC js
+var fillLabCount = function() {
+  getLabs()
+    .then(filterLabsByPhase)
+    .then(displaylabCount)
+    .catch(function(err) {
+      console.log("Error from display lab count: " + err);
+    });
+};
+
+#+END_SRC
+
+* Display Exp Count
+#+name: display-exp-count
+#+BEGIN_SRC js
+var displayexpCount = function(data) {
+  document.getElementById("expDisplay").innerText = data.length.toLocaleString();
+};
+
+#+END_SRC
+* Display Lab Count
+#+name: display-lab-count
+#+BEGIN_SRC js
+var displaylabCount = function(data) {
+  document.getElementById("labDisplay").innerText = data.length.toLocaleString();
 };
 
 #+END_SRC
@@ -1270,7 +1327,12 @@ var makeNewListOfLabs = function() {
 <<log-usage>>
 <<fill-and-set-log-usage>>
 <<ws-usage>>
+<<exp-usage>>
 <<fill-and-set-ws-usage>>
+<<fill-exp-count>>
+<<fill-lab-count>>
+<<display-exp-count>>
+<<display-lab-count>>
 <<display-about-pages>>
 <<runtime-browser>>
 <<offline-edition>>
