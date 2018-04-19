@@ -294,7 +294,6 @@ var getLogUsage = function() {
 
 #+END_SRC
 
-
 * Fill the Discipline Combo Box
 ** The Flow
   The discipline combo box contains list of available
@@ -713,7 +712,7 @@ var displayLabsOfDiscipline = function(discId) {
     var displayList = labs.map(function(lab) {
       var lab_name = lab['lab_name'];                                                                      
       var hosted_url = getTheRightUrl(lab['hosting_info']);
-      var assets = filterAssetsbyAssetType(lab['assets']);
+      var assets = filterAssetsbyAssetType(lab['assets'], 'image');
       var image_name = assets[0].path;
       var path = labImagesUrl + image_name;
       return '<div class=" col-md-3 " id='+ lab_name + '> <div class="thumbnail" style="cursor:pointer; padding: 0px !important;"><a><img class="img-responsive" onclick="javascript:handleEventOnLab(this)" src="' + path +'" id="' + hosted_url + '"><div class="caption" style="min-height: 110px;"><h4 onclick="javascript:handleEventOnLab(this)"  src="' + path +'" id="' + hosted_url + '" style="text-align:center; color:#2c99ce;" >'+ lab_name +'</h4></a></div></div></div>';
@@ -785,7 +784,6 @@ var getTheRightUrl = function(hostingInfos) {
 };
 #+END_SRC
 
-
 * Display the page with labs of an Institute
 ** The Flow
    A page listing all the labs of a institute is displayed.
@@ -845,11 +843,12 @@ var filterLabsByPhase = function(labs) {
 #+END_SRC
 
 * filter Assets by AssetType
+  This function will filter the assets based on the given =assetType=.
 #+name: filter-labs-by-asset-type
 #+BEGIN_SRC js
-var filterAssetsbyAssetType = function(assets){
+var filterAssetsbyAssetType = function(assets, assetType){
   return assets.filter(function(asset){
-    return asset.asset_type.asset_type == 'image';
+    return asset.asset_type.asset_type == assetType;
   });
 };
 
